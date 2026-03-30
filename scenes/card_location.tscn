@@ -1,0 +1,52 @@
+[gd_scene load_steps=5 format=3 uid="uid://b214h44el3pxm"]
+
+[ext_resource type="PackedScene" uid="uid://coec2fnqd70g0" path="res://scenes/card.tscn" id="1_d8x6x"]
+[ext_resource type="Script" uid="uid://cuiwwce02mbjl" path="res://scripts/other/card_location.gd" id="2_uo0cj"]
+[ext_resource type="LabelSettings" uid="uid://b3j50fkpgbe26" path="res://styles/label_card_damage.tres" id="3_o4kyp"]
+[ext_resource type="Texture2D" uid="uid://31o05l6qch3w" path="res://img/ui_shovel.png" id="4_r5tm2"]
+
+[node name="CardLocation" instance=ExtResource("1_d8x6x")]
+script = ExtResource("2_uo0cj")
+location_res = null
+location_type = 0
+location_name = ""
+location_desc = ""
+location_loot = Array[Resource]([])
+digg_speed = 0.0
+res_count = 0
+remaining_res_count = 0
+is_digg_in_progress = false
+
+[node name="panel_back" parent="." index="0"]
+self_modulate = Color(1, 0.78431374, 1, 1)
+
+[node name="filler" type="Control" parent="panel_back/container_content" index="2"]
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="panel_back/container_content" index="3"]
+layout_mode = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="HBoxContainer" type="HBoxContainer" parent="panel_back/container_content/MarginContainer" index="0"]
+layout_mode = 2
+theme_override_constants/separation = 3
+alignment = 1
+
+[node name="label_uses" type="Label" parent="panel_back/container_content/MarginContainer/HBoxContainer" index="0"]
+unique_name_in_owner = true
+layout_mode = 2
+label_settings = ExtResource("3_o4kyp")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect2" type="TextureRect" parent="panel_back/container_content/MarginContainer/HBoxContainer" index="1"]
+layout_mode = 2
+texture = ExtResource("4_r5tm2")
+stretch_mode = 4
+
+[connection signal="timeout" from="activate_timer" to="." method="_on_activate_timer_timeout"]

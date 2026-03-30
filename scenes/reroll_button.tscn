@@ -1,0 +1,13 @@
+[gd_scene load_steps=2 format=3 uid="uid://d06c1qay34ipo"]
+
+[ext_resource type="Script" uid="uid://046aunmhh21a" path="res://scripts/other/reroll.gd" id="1_pmi8m"]
+
+[node name="RerollButton" type="Node2D"]
+script = ExtResource("1_pmi8m")
+
+[node name="Button" type="Button" parent="."]
+offset_right = 19.0
+offset_bottom = 8.0
+text = "Обновить"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

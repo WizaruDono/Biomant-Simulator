@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="NPCRes" load_steps=5 format=3 uid="uid://bp4mqawrj3gt8"]
+
+[ext_resource type="Texture2D" uid="uid://h01wlbak5max" path="res://img/npc_location_trader.png" id="1_08ojm"]
+[ext_resource type="Script" uid="uid://d3723m4sa384o" path="res://resources/res_scripts/card_res_script.gd" id="1_xdvkq"]
+[ext_resource type="Script" uid="uid://dl2tf7lxboat6" path="res://resources/res_scripts/npc_res.gd" id="2_tnypg"]
+[ext_resource type="Resource" uid="uid://bjkab4y45ujnd" path="res://resources/orders/order_sceleton_zombie_head.tres" id="3_0f7yi"]
+
+[resource]
+script = ExtResource("2_tnypg")
+npc_type = 1
+replics = Array[String](["Налетай, бродяга!", "Выполнишь заказ - получишь барыш"])
+npc_shop_content = Array[ExtResource("1_xdvkq")]([ExtResource("3_0f7yi"), ExtResource("3_0f7yi"), ExtResource("3_0f7yi")])
+ncp_shop_lots_count = 3
+npc_wait_timer = 60.0
+actor_health = 20
+actor_damage = 50
+card_name = "самсон"
+card_desc = "Подаёт заказы на монстров"
+card_texture = ExtResource("1_08ojm")
+card_type = 8
+card_cost = 10
+card_owner_type = 2
+metadata/_custom_type_script = "uid://dl2tf7lxboat6"

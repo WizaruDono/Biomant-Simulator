@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://d14ifl653iy4r"
+path="res://.godot/imported/Kevin MacLeod - Ghost Processional.mp3-e0b004b49cb535ef9c8b22d53f615593.mp3str"
+
+[deps]
+
+source_file="res://sounds/music/Kevin MacLeod - Ghost Processional.mp3"
+dest_files=["res://.godot/imported/Kevin MacLeod - Ghost Processional.mp3-e0b004b49cb535ef9c8b22d53f615593.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

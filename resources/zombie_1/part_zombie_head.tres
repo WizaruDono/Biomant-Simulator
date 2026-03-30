@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PartRes" load_steps=3 format=3 uid="uid://dokfgl66o7agf"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_8vatu"]
+[ext_resource type="Texture2D" uid="uid://c1w8itk7fup6l" path="res://img/zombie_head.png" id="1_v7hlv"]
+
+[resource]
+script = ExtResource("1_8vatu")
+part_type = 1
+actor_health = 2
+actor_damage = 5
+card_name = "Гнилая Башка LvL1"
+card_desc = "Так и хочется раздавить"
+card_texture = ExtResource("1_v7hlv")
+card_type = 2
+card_cost = 5
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

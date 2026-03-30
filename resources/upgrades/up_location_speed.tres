@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="UpgradeRes" load_steps=3 format=3 uid="uid://b2kgt3x0nd2o5"]
+
+[ext_resource type="Script" uid="uid://b5g6safwfk3s8" path="res://resources/res_scripts/upgrade_res.gd" id="1_138xf"]
+[ext_resource type="Texture2D" uid="uid://bs2iabl0arhec" path="res://img/up_location_speed.png" id="1_iioaj"]
+
+[resource]
+script = ExtResource("1_138xf")
+upgrade_value = 0.95
+card_name = "лопата"
+card_desc = "Ускоряет раскопку могил на кладбище на 5%"
+card_texture = ExtResource("1_iioaj")
+card_type = 10
+card_cost = 30
+metadata/_custom_type_script = "uid://b5g6safwfk3s8"

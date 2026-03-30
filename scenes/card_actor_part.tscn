@@ -1,0 +1,23 @@
+[gd_scene load_steps=5 format=3 uid="uid://bur4cr85285oq"]
+
+[ext_resource type="PackedScene" uid="uid://dv1lj8l5ryf51" path="res://scenes/card_actor.tscn" id="1_d5j1h"]
+[ext_resource type="Script" uid="uid://wpggfbj05y2w" path="res://scripts/other/card_actor_part.gd" id="2_4qxx0"]
+[ext_resource type="FontFile" uid="uid://co45erws16hd7" path="res://styles/DigitalPixelV124-Regular.otf" id="3_treje"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_kcvqy"]
+font = ExtResource("3_treje")
+font_size = 8
+font_color = Color(0.84313726, 0.70980394, 0.5803922, 1)
+
+[node name="CardActorPart" instance=ExtResource("1_d5j1h")]
+script = ExtResource("2_4qxx0")
+part_res = null
+part_perc = 0
+part_type = 0
+part_family = 0
+
+[node name="container_content" parent="panel_back" index="1"]
+size_flags_vertical = 0
+
+[node name="label_header" parent="panel_back/container_content/PanelContainer/MarginContainer" index="0"]
+label_settings = SubResource("LabelSettings_kcvqy")

@@ -1,0 +1,42 @@
+[gd_scene load_steps=7 format=3 uid="uid://n417ulkok0xv"]
+
+[ext_resource type="Script" uid="uid://bq6p8atu7x0hc" path="res://scripts/other/level.gd" id="1_w8frs"]
+[ext_resource type="Texture2D" uid="uid://bhw2veuy7pdox" path="res://img/Фон БиоЛаборатории.png" id="2_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://ve34uetygn4f" path="res://scenes/shader_layer.tscn" id="3_w8frs"]
+[ext_resource type="Script" uid="uid://yak5r71e21rc" path="res://scripts/other/camera_2d.gd" id="4_mx8sn"]
+[ext_resource type="PackedScene" uid="uid://8x708lihjj8n" path="res://scenes/UI.tscn" id="5_ppgk2"]
+[ext_resource type="Script" uid="uid://celh7vt4kjiua" path="res://scripts/other/music_lvl.gd" id="6_2r41h"]
+
+[node name="Level" type="Node2D"]
+script = ExtResource("1_w8frs")
+
+[node name="sprite_back" type="Sprite2D" parent="."]
+position = Vector2(-300, -185)
+texture = ExtResource("2_mx8sn")
+centered = false
+
+[node name="player_actors" type="Node2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1, 1)
+
+[node name="player_loot" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="player_locations" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="player_productions" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Ui" parent="." instance=ExtResource("5_ppgk2")]
+
+[node name="ShaderLayer" parent="." instance=ExtResource("3_w8frs")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 540)
+script = ExtResource("4_mx8sn")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="."]
+process_mode = 3
+bus = &"Music"
+script = ExtResource("6_2r41h")

@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjtoj4exukmws"]
+
+[ext_resource type="PackedScene" uid="uid://coec2fnqd70g0" path="res://scenes/card.tscn" id="1_g7usf"]
+[ext_resource type="Script" uid="uid://c6436xcaulev7" path="res://scripts/other/card_order.gd" id="2_81uub"]
+
+[node name="CardOrder" instance=ExtResource("1_g7usf")]
+script = ExtResource("2_81uub")
+order_res = null
+order_name = ""
+order_desc = ""
+quest_part_conditions = Array[int]([])
+quest_grade_conditions = 0
+quest_family_conditions = Array[int]([])
+order_type = 0
+reward_amount = 0
+special_reward = null

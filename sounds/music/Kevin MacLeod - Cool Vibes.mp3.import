@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dos04u4wyw38d"
+path="res://.godot/imported/Kevin MacLeod - Cool Vibes.mp3-231a3b81018d9328f5ca3d32689f3846.mp3str"
+
+[deps]
+
+source_file="res://sounds/music/Kevin MacLeod - Cool Vibes.mp3"
+dest_files=["res://.godot/imported/Kevin MacLeod - Cool Vibes.mp3-231a3b81018d9328f5ca3d32689f3846.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

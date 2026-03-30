@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PartRes" load_steps=3 format=3 uid="uid://rhm7pethaxdo"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_jkhpf"]
+[ext_resource type="Texture2D" uid="uid://bu8jxofri67kr" path="res://img/zombie_L_leg.png" id="1_jmxq0"]
+
+[resource]
+script = ExtResource("1_jkhpf")
+part_type = 4
+actor_health = 4
+card_name = "Гнилая Нога (Л) LvL1"
+card_desc = "Хлюп-Хлюп"
+card_texture = ExtResource("1_jmxq0")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

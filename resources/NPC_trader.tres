@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="NPCRes" load_steps=6 format=3 uid="uid://bl7a4crtya6vd"]
+
+[ext_resource type="Texture2D" uid="uid://h01wlbak5max" path="res://img/npc_location_trader.png" id="1_543q4"]
+[ext_resource type="Script" uid="uid://d3723m4sa384o" path="res://resources/res_scripts/card_res_script.gd" id="2_kbf5b"]
+[ext_resource type="Resource" uid="uid://bde2idpoq2fwl" path="res://resources/location_graveyard.tres" id="3_dk2vv"]
+[ext_resource type="Resource" uid="uid://b2kgt3x0nd2o5" path="res://resources/upgrades/up_location_speed.tres" id="4_tsmgx"]
+[ext_resource type="Script" uid="uid://dl2tf7lxboat6" path="res://resources/res_scripts/npc_res.gd" id="5_h678b"]
+
+[resource]
+script = ExtResource("5_h678b")
+npc_type = 1
+replics = Array[String](["Добрейшего вечерочка! Не хочешь закупиться?", "Не спеши, выбирай с умом."])
+npc_shop_content = Array[ExtResource("2_kbf5b")]([ExtResource("3_dk2vv"), ExtResource("3_dk2vv"), ExtResource("4_tsmgx"), null])
+npc_wait_timer = 60.0
+actor_health = 50
+actor_damage = 10
+card_name = "Ветошь"
+card_desc = "Торговец локациями"
+card_texture = ExtResource("1_543q4")
+card_type = 8
+card_cost = 10
+card_owner_type = 2
+metadata/_custom_type_script = "uid://dl2tf7lxboat6"

@@ -1,0 +1,35 @@
+[gd_scene load_steps=4 format=3 uid="uid://k15y2y2mejvy"]
+
+[ext_resource type="Script" uid="uid://d1eg6s3tqhq5v" path="res://scripts/other/stack.gd" id="1_tpkvb"]
+[ext_resource type="StyleBox" uid="uid://c85uuv5k61xpl" path="res://styles/bar_not_fill.tres" id="2_4rw1r"]
+[ext_resource type="StyleBox" uid="uid://dvhj56spl7rhs" path="res://styles/bar_fill_purple.tres" id="3_p7cx4"]
+
+[node name="Stack" type="Area2D"]
+script = ExtResource("1_tpkvb")
+
+[node name="collision_stack" type="CollisionShape2D" parent="."]
+unique_name_in_owner = true
+
+[node name="activation_progress" type="ProgressBar" parent="."]
+unique_name_in_owner = true
+visible = false
+offset_top = -18.0
+offset_right = 80.0
+theme_override_styles/background = ExtResource("3_p7cx4")
+theme_override_styles/fill = ExtResource("2_4rw1r")
+value = 15.0
+show_percentage = false
+
+[node name="stack_area" type="Area2D" parent="."]
+unique_name_in_owner = true
+collision_layer = 0
+collision_mask = 0
+
+[node name="stack_to_card_collision" type="CollisionShape2D" parent="stack_area"]
+unique_name_in_owner = true
+visible = false
+z_index = 1000
+
+[connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="area_entered" from="stack_area" to="." method="_on_stack_area_area_entered"]
+[connection signal="area_exited" from="stack_area" to="." method="_on_stack_area_area_exited"]

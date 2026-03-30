@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://bftjnm6c7bkmk"]
+
+[node name="sprite_container" type="Node2D"]
+
+[node name="sprite_body" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+z_index = 1
+
+[node name="Join_L_Arm" type="Marker2D" parent="sprite_body"]
+
+[node name="sprite_l_arm" type="Sprite2D" parent="sprite_body/Join_L_Arm"]
+unique_name_in_owner = true
+z_index = -1
+
+[node name="Join_L_Leg" type="Marker2D" parent="sprite_body"]
+
+[node name="sprite_l_leg" type="Sprite2D" parent="sprite_body/Join_L_Leg"]
+unique_name_in_owner = true
+z_index = -1
+
+[node name="Join_R_Leg" type="Marker2D" parent="sprite_body"]
+
+[node name="sprite_r_leg" type="Sprite2D" parent="sprite_body/Join_R_Leg"]
+unique_name_in_owner = true
+z_index = -1
+
+[node name="Join_Head" type="Marker2D" parent="sprite_body"]
+
+[node name="sprite_head" type="Sprite2D" parent="sprite_body/Join_Head"]
+unique_name_in_owner = true
+
+[node name="Join_R_Arm" type="Marker2D" parent="sprite_body"]
+
+[node name="sprite_r_arm" type="Sprite2D" parent="sprite_body/Join_R_Arm"]
+unique_name_in_owner = true
