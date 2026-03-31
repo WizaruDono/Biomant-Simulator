@@ -15,12 +15,19 @@ jobs:
         shell: powershell
         run: |
           # Download Godot Engine 4.6.1 Stable for Windows
-          Invoke-WebRequest -Uri "https://github.com" -OutFile godot.zip
+          # 1. Download the Engine
+          $godot_url = "https://github.com/godotengine/godot/releases/download/4.6.1-stable/Godot_v4.6.1-stable_win64.exe.zip"
+          Invoke-WebRequest -Uri $godot_url -OutFile godot.zip
+
+          # 2. Extract
           Expand-Archive godot.zip -DestinationPath .
-          Get-ChildItem -Filter "Godot*.exe" | Rename-Item -NewName "godot.exe"
+
+          # 3. Rename ONLY the main executable (ignoring the _console.exe)
+          # We filter for files that DON'T contain "console"
+          Get-ChildItem -Path . -Filter "Godot*.exe" | Where-Object { $_.Name -notlike "*console*" } | Rename-Item -NewName "godot.exe"
 
           # Download and Install 4.6.1 Export Templates
-          Invoke-WebRequest -Uri "https://github.com" -OutFile templates.zip
+          Invoke-WebRequest -Uri "https://downloads.godotengine.org/?version=4.6.1&flavor=stable&slug=export_templates.tpz&platform=templates" -OutFile templates.zip
           Expand-Archive templates.zip -DestinationPath .
           $appdata = [System.Environment]::GetFolderPath('ApplicationData')
           $template_path = "$appdata\Godot\export_templates\4.6.1.stable"
@@ -38,3 +45,16 @@ jobs:
         with:
           name: windows-build
           path: build/windows/
+
+      - name: Create Automated Release
+        uses: softprops/action-gh-release@v2
+        with:
+          # This creates tags like 'build-1', 'build-2', etc.
+          tag_name: "build-${{ github.run_number }}"
+          release_name: "Build v0.${{ github.run_number }}"
+          body: "Automated build from commit ${{ github.sha }}"
+          files: build/windows/monster-lab.exe
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
