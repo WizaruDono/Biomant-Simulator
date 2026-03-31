@@ -1,0 +1,40 @@
+name: "Export Windows Build"
+on: [push]
+
+jobs:
+  export-windows:
+    name: Windows Export
+    runs-on: windows-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          lfs: true
+
+      - name: Download Godot 4.6.1
+        shell: powershell
+        run: |
+          # Download Godot Engine 4.6.1 Stable for Windows
+          Invoke-WebRequest -Uri "https://github.com" -OutFile godot.zip
+          Expand-Archive godot.zip -DestinationPath .
+          Get-ChildItem -Filter "Godot*.exe" | Rename-Item -NewName "godot.exe"
+
+          # Download and Install 4.6.1 Export Templates
+          Invoke-WebRequest -Uri "https://github.com" -OutFile templates.zip
+          Expand-Archive templates.zip -DestinationPath .
+          $appdata = [System.Environment]::GetFolderPath('ApplicationData')
+          $template_path = "$appdata\Godot\export_templates\4.6.1.stable"
+          New-Item -ItemType Directory -Force -Path $template_path
+          Move-Item -Path "templates/*" -Destination $template_path -Force
+
+      - name: Export Project
+        run: |
+          mkdir build/windows -Force
+          # Ensure "Windows Desktop" matches your preset name in Godot exactly
+          .\godot.exe --headless --path . --export-release "Windows Desktop" build/windows/monster-lab.exe
+
+      - name: Upload Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: windows-build
+          path: build/windows/
