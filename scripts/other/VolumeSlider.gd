@@ -18,10 +18,10 @@ func _ready() -> void:
 	value = db_to_linear(AudioServer.get_bus_volume_db(_bus))
 
 
-func _on_value_changed(value: float) -> void:
+func _on_value_changed(val: float) -> void:
 	# Убедись, что у HSlider в инспекторе: 
 	# Min Value = 0, Max Value = 1, Step = 0.1 или 0.05
-	AudioServer.set_bus_volume_db(_bus, linear_to_db(value))
+	AudioServer.set_bus_volume_db(_bus, linear_to_db(val))
 	
 	# Чтобы звук совсем выключался на нуле:
-	AudioServer.set_bus_mute(_bus, value < 0.01)
+	AudioServer.set_bus_mute(_bus, val < 0.01)

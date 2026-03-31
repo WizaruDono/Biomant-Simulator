@@ -9,7 +9,7 @@ func create_random_trader():
 	pass
 
 
-func create_trader_by_type(trader_type : DataManager.CardType):
+func create_trader_by_type(_trader_type : DataManager.CardType):
 	pass
 
 # ТОРГОВЕЦ

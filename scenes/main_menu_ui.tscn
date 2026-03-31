@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://dvfumklriwrf3"]
+[gd_scene format=3 uid="uid://dvfumklriwrf3"]
 
 [ext_resource type="StyleBox" uid="uid://py225ruvj6j1" path="res://styles/panel_purple.tres" id="1_qooff"]
 [ext_resource type="Script" uid="uid://4vf8rxu2foyv" path="res://scripts/other/main_menu_ui.gd" id="2_np0fa"]
@@ -19,7 +19,7 @@ font = ExtResource("3_qooff")
 font_size = 7
 font_color = Color(0.20392157, 0.10980392, 0.15294118, 1)
 
-[node name="MainMenuUI" type="PanelContainer"]
+[node name="MainMenuUI" type="PanelContainer" unique_id=668799967]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -28,44 +28,44 @@ grow_vertical = 2
 theme_override_styles/panel = ExtResource("1_qooff")
 script = ExtResource("2_np0fa")
 
-[node name="CastleBack3" type="Sprite2D" parent="."]
+[node name="CastleBack3" type="Sprite2D" parent="." unique_id=222104684]
 position = Vector2(480, 270)
 
-[node name="CenterContainer" type="CenterContainer" parent="."]
+[node name="CenterContainer" type="CenterContainer" parent="." unique_id=578005354]
 layout_mode = 2
 
-[node name="PanelContainer" type="PanelContainer" parent="CenterContainer"]
+[node name="PanelContainer" type="PanelContainer" parent="CenterContainer" unique_id=1409592257]
 custom_minimum_size = Vector2(473, 400)
 layout_mode = 2
 theme_override_styles/panel = ExtResource("2_qooff")
 
-[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer"]
+[node name="MarginContainer" type="MarginContainer" parent="CenterContainer/PanelContainer" unique_id=406128633]
 layout_mode = 2
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer" unique_id=1581157214]
 layout_mode = 2
 
-[node name="label_name" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="label_name" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=463702209]
 layout_mode = 2
 text = "BIOMANT SIMULATOR"
 label_settings = SubResource("LabelSettings_5tirf")
 horizontal_alignment = 1
 
-[node name="filler" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="filler" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=95217119]
 custom_minimum_size = Vector2(0, 150)
 layout_mode = 2
 
-[node name="buttons" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="buttons" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1526815246]
 custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 4
 theme_override_constants/separation = 30
 
-[node name="play_button" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/buttons"]
+[node name="play_button" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/buttons" unique_id=1132632038]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
@@ -85,7 +85,7 @@ theme_override_styles/hover_pressed = ExtResource("4_np0fa")
 theme_override_styles/disabled = ExtResource("5_qooff")
 text = "ИГРАТЬ"
 
-[node name="options_button" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/buttons"]
+[node name="options_button" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/buttons" unique_id=260088164]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
@@ -105,7 +105,7 @@ theme_override_styles/hover_pressed = ExtResource("4_np0fa")
 theme_override_styles/disabled = ExtResource("5_qooff")
 text = "НАСТРОЙКИ"
 
-[node name="exit_button" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/buttons"]
+[node name="exit_button" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/buttons" unique_id=1467537712]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
@@ -125,23 +125,23 @@ theme_override_styles/hover_pressed = ExtResource("4_np0fa")
 theme_override_styles/disabled = ExtResource("5_qooff")
 text = "ВЫХОД"
 
-[node name="confirmed_container" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/buttons"]
+[node name="confirmed_container" type="VBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/buttons" unique_id=1929249249]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="label_confirmed" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/buttons/confirmed_container"]
+[node name="label_confirmed" type="Label" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/buttons/confirmed_container" unique_id=263321191]
 layout_mode = 2
 text = "UI_STARTCONFIRMED_NAME"
 label_settings = SubResource("LabelSettings_2tv7h")
 horizontal_alignment = 1
 autowrap_mode = 2
 
-[node name="hb" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/buttons/confirmed_container"]
+[node name="hb" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/buttons/confirmed_container" unique_id=635429206]
 layout_mode = 2
 
-[node name="yes_button" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/buttons/confirmed_container/hb"]
+[node name="yes_button" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/buttons/confirmed_container/hb" unique_id=1138103920]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
@@ -155,11 +155,11 @@ theme_override_fonts/font = ExtResource("3_qooff")
 theme_override_font_sizes/font_size = 5
 text = "UI_BTNYES_NAME"
 
-[node name="filler" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/buttons/confirmed_container/hb"]
+[node name="filler" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/buttons/confirmed_container/hb" unique_id=430269291]
 layout_mode = 2
 size_flags_horizontal = 3
 
-[node name="no_button" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/buttons/confirmed_container/hb"]
+[node name="no_button" type="Button" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/buttons/confirmed_container/hb" unique_id=1104369585]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
@@ -173,24 +173,24 @@ theme_override_fonts/font = ExtResource("3_qooff")
 theme_override_font_sizes/font_size = 5
 text = "UI_BTNNO_NAME"
 
-[node name="filler2" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="filler2" type="Control" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=74675056]
 layout_mode = 2
 size_flags_vertical = 3
 mouse_filter = 2
 
-[node name="locale_buttons_cont" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer"]
+[node name="locale_buttons_cont" type="HBoxContainer" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer" unique_id=1653741808]
 layout_mode = 2
 alignment = 1
 
-[node name="rus_locale_btn" type="TextureButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/locale_buttons_cont"]
+[node name="rus_locale_btn" type="TextureButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/locale_buttons_cont" unique_id=1352736335]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="eng_locale_btn" type="TextureButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/locale_buttons_cont"]
+[node name="eng_locale_btn" type="TextureButton" parent="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/locale_buttons_cont" unique_id=1705245719]
 layout_mode = 2
 mouse_default_cursor_shape = 2
 
-[node name="ShaderLayer" parent="." instance=ExtResource("22_2tv7h")]
+[node name="ShaderLayer" parent="." unique_id=219654111 instance=ExtResource("22_2tv7h")]
 
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/buttons/play_button" to="." method="_on_play_button_pressed"]
 [connection signal="pressed" from="CenterContainer/PanelContainer/MarginContainer/VBoxContainer/buttons/options_button" to="." method="_on_options_button_pressed"]

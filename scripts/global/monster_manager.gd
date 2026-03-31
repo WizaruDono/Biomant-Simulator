@@ -71,7 +71,7 @@ func create_monster_by_parts(parts : Array[PartRes]):
 		total_damage += part.actor_damage
 	var new_res : MonsterRes = MonsterRes.new()
 	# Словарик для быстрого распределения частей
-	var parts_dict = {}
+	var _parts_dict = {}
 	new_res.actor_damage = total_damage
 	new_res.actor_health = total_health
 	new_res.monster_families.append(families.pick_random())
@@ -100,23 +100,23 @@ func create_monster_by_parts(parts : Array[PartRes]):
 
 
 func create_monster_by_monsters(monsters : Array[CardActorMonster]):
-	var perc : DataManager.PercType
+	var _perc : DataManager.PercType
 	monsters.shuffle()
 	for monster in monsters:
 		if monster.monster_perc != DataManager.PercType.NONE:
-			perc = monster.monster_perc
+			_perc = monster.monster_perc
 			break
 	var aggregate_parts : Array[PartRes]
 	for monster in monsters:
 		aggregate_parts.append_array(monster.monster_parts)
 	aggregate_parts.shuffle()
 	var final_part_reses : Array[PartRes]
-	var body_res : PartRes
-	var head_res : PartRes
-	var l_arm_res : PartRes
-	var r_arm_res : PartRes
-	var l_leg_res : PartRes
-	var r_leg_res : PartRes
+	var _body_res : PartRes
+	var _head_res : PartRes
+	var _l_arm_res : PartRes
+	var _r_arm_res : PartRes
+	var _l_leg_res : PartRes
+	var _r_leg_res : PartRes
 
 	
 	var is_already_has_body : bool

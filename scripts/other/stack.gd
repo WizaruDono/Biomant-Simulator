@@ -237,7 +237,7 @@ func start_getting_reward():
 	order_card.start_rewarding()
 
 
-func check_possible_digging(card : Card):
+func check_possible_digging(_card : Card):
 	var content_cards : Array[Card] = cards.slice(1)
 	if content_cards.size() == 1 and content_cards[0].card_type == DataManager.CardType.MONSTER:
 		return true
@@ -252,10 +252,10 @@ func align_ordering():
 
 
 func align_cards():
-	var offset : Vector2 = Vector2.ZERO
+	var card_offset : Vector2 = Vector2.ZERO
 	for card in cards:
-		card.position = offset
-		offset += Vector2(0, DataManager.card_header_size)
+		card.position = card_offset
+		card_offset += Vector2(0, DataManager.card_header_size)
 
 
 func change_collision():

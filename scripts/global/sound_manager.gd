@@ -58,7 +58,7 @@ func play_asmr_sfx(stream: AudioStream, vol_db: float = 0.0):
 	
 	sfx.play()
 
-func play(source : Node, stream : AudioStream):
+func play(_source: Node, stream: AudioStream):
 	#if sound and sound.playing:
 		#sound.stop()
 	print(played_streams.size())
@@ -89,7 +89,7 @@ func play_local(sound_local : AudioStreamPlayer2D, stream : AudioStream):
 		sound_local.play()
 
 
-func play_ui(source : Node, stream : AudioStream):
+func play_ui(_source : Node, stream : AudioStream):
 	var sound_temp = AudioStreamPlayer.new()
 	sound_temp.process_mode = Node.PROCESS_MODE_ALWAYS
 	add_child(sound_temp)
@@ -102,7 +102,7 @@ func play_ui(source : Node, stream : AudioStream):
 	sound_temp.play()
 
 
-func play_peaceful_music(current_delay : int = 0):
+func play_peaceful_music(_current_delay : int = 0):
 	#if sound and sound.playing:
 		#sound.stop()
 	if music:
@@ -122,7 +122,7 @@ func play_peaceful_music(current_delay : int = 0):
 	#get_tree().create_timer(current_delay).timeout.connect(music.play)
 
 
-func play_martial_music(current_delay : int = 0):
+func play_martial_music(_current_delay : int = 0):
 	#if sound and sound.playing:
 		#sound.stop()
 	if music:

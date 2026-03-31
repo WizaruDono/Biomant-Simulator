@@ -8,7 +8,7 @@ func create_random_location():
 	pass
 
 
-func create_location_by_type_and_grade(location_type : DataManager.LocationType, location_grade : DataManager.EntityGrade):
+func create_location_by_type_and_grade(_location_type : DataManager.LocationType, _location_grade : DataManager.EntityGrade):
 	pass
 
 

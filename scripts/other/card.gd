@@ -160,7 +160,7 @@ func enter_to_stack():
 		stack.add_card(self)
 
 
-func _on_anim_card_animation_finished(anim_name: StringName) -> void:
+func _on_anim_card_animation_finished(_anim_name: StringName) -> void:
 	pass
 	#match anim_name:
 		#'appears':

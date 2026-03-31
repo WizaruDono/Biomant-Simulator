@@ -3,7 +3,7 @@ extends Camera2D
 # Настройки зума
 var zoom_speed = 0.1
 var min_zoom = 0.8
-var max_zoom = 1.2
+var max_zoom = 10
 var zoom_duration = 0.2
 @onready var target_zoom = zoom
 

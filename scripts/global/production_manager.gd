@@ -12,7 +12,7 @@ func create_random_production():
 	pass
 
 
-func create_location_by_type_and_grade(production : DataManager.ProductionType, production_grade : DataManager.EntityGrade):
+func create_location_by_type_and_grade(_production : DataManager.ProductionType, _production_grade : DataManager.EntityGrade):
 	pass
 
 
