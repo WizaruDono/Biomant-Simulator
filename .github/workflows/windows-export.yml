@@ -1,5 +1,7 @@
 name: "Export Windows Build"
 on: [push]
+permissions:
+  contents: write
 
 jobs:
   export-windows:
@@ -11,7 +13,20 @@ jobs:
         with:
           lfs: true
 
-      - name: Download Godot 4.6.1
+      - name: Cache Godot Files
+        id: cache-godot
+        uses: actions/cache@v4
+        with:
+          # Paths to the engine and the template folder
+          path: |
+            ./godot.exe
+            ~/AppData/Roaming/Godot/export_templates/4.6.1.stable
+          # Unique key based on the version; if 4.6.1 changes, the cache resets
+          key: ${{ runner.os }}-godot-4.6.1-stable
+
+      - name: Download Godot 4.6.1 & Templates
+        # Only run this if the cache was NOT found
+        if: steps.cache-godot.outputs.cache-hit != 'true'
         shell: powershell
         run: |
           # Download Godot Engine 4.6.1 Stable for Windows
@@ -46,14 +61,20 @@ jobs:
           name: windows-build
           path: build/windows/
 
+      - name: Rename File with Version
+        shell: powershell
+        run: |
+          # Matches the export path you set in Godot
+          Rename-Item -Path "build/windows/monster-lab.exe" -NewName "monster-lab-v0.${{ github.run_number }}.exe"
+
       - name: Create Automated Release
         uses: softprops/action-gh-release@v2
         with:
           # This creates tags like 'build-1', 'build-2', etc.
           tag_name: "build-${{ github.run_number }}"
-          release_name: "Build v0.${{ github.run_number }}"
+          name: "MonsterLab v0.${{ github.run_number }}"
           body: "Automated build from commit ${{ github.sha }}"
-          files: build/windows/monster-lab.exe
+          files: build/windows/monster-lab-v0.${{ github.run_number }}.exe
           draft: false
           prerelease: false
         env:
