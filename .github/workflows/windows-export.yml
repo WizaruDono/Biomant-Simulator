@@ -55,7 +55,7 @@ jobs:
           mkdir build -ErrorAction SilentlyContinue
           mkdir build/windows -ErrorAction SilentlyContinue
           # Ensure "Windows Desktop" matches your preset name in Godot exactly
-          .\godot.exe --headless --verbose --path . --export-release "Windows Desktop" build/windows/monster-lab.exe
+          .\godot.exe --headless --display-driver headless --verbose --path . --export-release "Windows Desktop" build/windows/monster-lab.exe
 
       - name: Upload Artifact
         uses: actions/upload-artifact@v4
