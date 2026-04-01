@@ -37,12 +37,16 @@ OrderManager="*res://scripts/global/order_manager.gd"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/stretch/mode="canvas_items"
-window/stretch/scale_mode="integer"
+window/vsync/vsync_mode=2
 
 [editor]
 
 version_control/plugin_name="GitPlugin"
 version_control/autoload_on_startup=true
+
+[gui]
+
+theme/custom_font="uid://dfkdu4lr5lbl2"
 
 [input]
 

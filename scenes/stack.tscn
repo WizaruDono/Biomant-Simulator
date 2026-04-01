@@ -1,16 +1,16 @@
-[gd_scene load_steps=4 format=3 uid="uid://k15y2y2mejvy"]
+[gd_scene format=3 uid="uid://k15y2y2mejvy"]
 
 [ext_resource type="Script" uid="uid://d1eg6s3tqhq5v" path="res://scripts/other/stack.gd" id="1_tpkvb"]
 [ext_resource type="StyleBox" uid="uid://c85uuv5k61xpl" path="res://styles/bar_not_fill.tres" id="2_4rw1r"]
 [ext_resource type="StyleBox" uid="uid://dvhj56spl7rhs" path="res://styles/bar_fill_purple.tres" id="3_p7cx4"]
 
-[node name="Stack" type="Area2D"]
+[node name="Stack" type="Area2D" unique_id=1997933901]
 script = ExtResource("1_tpkvb")
 
-[node name="collision_stack" type="CollisionShape2D" parent="."]
+[node name="collision_stack" type="CollisionShape2D" parent="." unique_id=17986545]
 unique_name_in_owner = true
 
-[node name="activation_progress" type="ProgressBar" parent="."]
+[node name="activation_progress" type="ProgressBar" parent="." unique_id=1033400302]
 unique_name_in_owner = true
 visible = false
 offset_top = -18.0
@@ -20,12 +20,12 @@ theme_override_styles/fill = ExtResource("2_4rw1r")
 value = 15.0
 show_percentage = false
 
-[node name="stack_area" type="Area2D" parent="."]
+[node name="stack_area" type="Area2D" parent="." unique_id=797551771]
 unique_name_in_owner = true
 collision_layer = 0
 collision_mask = 0
 
-[node name="stack_to_card_collision" type="CollisionShape2D" parent="stack_area"]
+[node name="stack_to_card_collision" type="CollisionShape2D" parent="stack_area" unique_id=1428347745]
 unique_name_in_owner = true
 visible = false
 z_index = 1000

@@ -255,7 +255,7 @@ func align_cards():
 	var card_offset : Vector2 = Vector2.ZERO
 	for card in cards:
 		card.position = card_offset
-		card_offset += Vector2(0, DataManager.card_header_size)
+		card_offset += Vector2(0, card.label_header.size.y)
 
 
 func change_collision():

@@ -20,7 +20,6 @@ unique_name_in_owner = true
 position = Vector2(1, 1)
 
 [node name="player_loot" type="Node2D" parent="." unique_id=1347123232]
-unique_name_in_owner = true
 
 [node name="player_locations" type="Node2D" parent="." unique_id=80435689]
 unique_name_in_owner = true
@@ -31,6 +30,7 @@ unique_name_in_owner = true
 [node name="Ui" parent="." unique_id=1878790953 instance=ExtResource("5_ppgk2")]
 
 [node name="ShaderLayer" parent="." unique_id=1988482799 instance=ExtResource("3_w8frs")]
+visible = false
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1627754645]
 position = Vector2(960, 540)

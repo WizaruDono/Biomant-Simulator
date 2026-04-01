@@ -1,9 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://caoqrrojhtbwk"]
+[gd_scene format=3 uid="uid://caoqrrojhtbwk"]
 
 [ext_resource type="PackedScene" uid="uid://coec2fnqd70g0" path="res://scenes/card.tscn" id="1_fdhnq"]
 [ext_resource type="Script" uid="uid://db52akys0e1yw" path="res://scripts/other/card_upgrade.gd" id="2_5aucg"]
 
-[node name="CardUpgrade" instance=ExtResource("1_fdhnq")]
+[node name="CardUpgrade" unique_id=1022250956 instance=ExtResource("1_fdhnq")]
 script = ExtResource("2_5aucg")
 upgrade_res = null
 stack_scene = null

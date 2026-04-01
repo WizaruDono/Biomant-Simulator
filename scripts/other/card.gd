@@ -39,11 +39,11 @@ func setup_tooltip():
 			
 		var new_theme = Theme.new()
 		var sb = stylebox_tooltip.duplicate()
-		sb.set_content_margin_all(10)
+		sb.set_content_margin_all(8)
 		new_theme.set_stylebox('panel', 'TooltipPanel', sb)
 		new_theme.set_font('font', 'TooltipLabel', font_tooltip)
-		new_theme.set_font_size('font_size', 'TooltipLabel', 8)
-		new_theme.set_color('font_color', 'TooltipLabel', Color8(52, 28, 39, 255))
+		new_theme.set_font_size('font_size', 'TooltipLabel', 12)
+		new_theme.set_color('font_color', 'TooltipLabel', Color(0.125, 0.18, 0.216, 1.0))
 		#var stylebox = new_theme.get_theme_stylebox('normal')
 		panel_back.theme = new_theme
 
