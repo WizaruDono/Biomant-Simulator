@@ -17,7 +17,7 @@ func _ready():
 	finished.connect(_on_track_finished)
 	play_current_track()
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if Input.is_action_just_pressed("next_song"):
 		current_track_index = wrapi(current_track_index + 1, 0, playlist.size())
 		play_current_track()
