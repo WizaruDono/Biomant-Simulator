@@ -1,6 +1,10 @@
 extends Node
 
 
+enum TestEnum {
+	TEST
+}
+
 enum CardState {
 	APPEARS, ON_FIELD, DRAGGED, HOVER_STACK, ENTER_STACK, IN_STACK, EXIT_STACK, DESTROYED
 }
