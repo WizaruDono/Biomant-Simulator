@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PartRes" load_steps=3 format=3 uid="uid://bugp7hh8r6io1"]
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://bugp7hh8r6io1"]
 
 [ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_lq6ja"]
 [ext_resource type="Texture2D" uid="uid://d3ud3e41qaa2m" path="res://img/zombie_R_arm.png" id="1_mbi83"]
@@ -8,7 +8,7 @@ script = ExtResource("1_lq6ja")
 part_type = 3
 actor_health = 3
 actor_damage = 4
-card_name = "Гнилая Рука (П) LvL1"
+card_name = "Гнилая Рука (R) LvL1"
 card_desc = "Царапка"
 card_texture = ExtResource("1_mbi83")
 card_type = 2

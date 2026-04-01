@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PartRes" load_steps=3 format=3 uid="uid://dyb12dmlr80q0"]
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://dyb12dmlr80q0"]
 
 [ext_resource type="Texture2D" uid="uid://b2aitkftcpbce" path="res://img/skeletR_R_leg.png" id="1_3ffqi"]
 [ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_vma7j"]
@@ -8,7 +8,7 @@ script = ExtResource("1_vma7j")
 part_type = 5
 actor_health = 4
 actor_damage = 1
-card_name = "Кости Ноги (П) LvL2"
+card_name = "Кости Ноги (R) LvL2"
 card_desc = "Уверенный Хрусть-Хрусть"
 card_grade = 1
 card_texture = ExtResource("1_3ffqi")
