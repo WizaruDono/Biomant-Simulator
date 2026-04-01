@@ -54,6 +54,8 @@ jobs:
           # Create the directory structure properly for Windows
           mkdir build -ErrorAction SilentlyContinue
           mkdir build/windows -ErrorAction SilentlyContinue
+          # 1. Pre-warm the project (Initializes .godot and imports assets)
+          .\godot.exe --headless --path . --editor --quit-after 2
           # Ensure "Windows Desktop" matches your preset name in Godot exactly
           .\godot.exe --headless --display-driver headless --verbose --path . --export-release "Windows Desktop" build/windows/monster-lab.exe
 
