@@ -3,7 +3,7 @@ extends Node
 
 var r = 1
 
-var money = 0
+var money = 100
 
 
 enum CardState {
