@@ -31,5 +31,7 @@ visible = false
 z_index = 1000
 
 [connection signal="input_event" from="." to="." method="_on_input_event"]
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
 [connection signal="area_entered" from="stack_area" to="." method="_on_stack_area_area_entered"]
 [connection signal="area_exited" from="stack_area" to="." method="_on_stack_area_area_exited"]

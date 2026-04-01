@@ -24,4 +24,3 @@ func _ready() -> void:
 	#var btn = btn_scene.instantiate()
 	#add_child(btn)
 	#btn.global_position = Vector2(500, 100) # Позиция рядом с заказами
-	

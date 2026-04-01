@@ -8,6 +8,11 @@ extends Node
 var main_menu_UI : MainMenuUI
 var options_UI : OptionsMenu
 
+## Помогает определить, что курсор находится над картой.
+## Это нужно для использования левой кнопки мыши одновременно
+## для перетаскивания карты и для перемещения камеры.
+## Если мы над картой, то камера стоит на месте.
+var is_hovering_card := false
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS

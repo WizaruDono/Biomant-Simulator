@@ -30,6 +30,12 @@ class_name Stack
 @onready var stack_area: Area2D = %stack_area
 
 
+func _on_mouse_entered() -> void:
+	GameManager.is_hovering_card = true
+
+func _on_mouse_exited() -> void:
+	GameManager.is_hovering_card = false
+
 func create_collision():
 	#var rect_coll : CollisionShape2D = CollisionShape2D.new()
 	var shape = RectangleShape2D.new()

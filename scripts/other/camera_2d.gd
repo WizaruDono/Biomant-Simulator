@@ -6,23 +6,29 @@ var zoom_speed = 0.2
 var is_dragging = false
 
 func _unhandled_input(event):
+	_process_zoom(event)
+	_process_camera_movement(event)
+
+func _process_zoom(event):
 	if event.is_action_pressed("zoom_out"):
 		modify_zoom(-zoom_speed)
 	elif event.is_action_pressed("zoom_in"):
 		modify_zoom(zoom_speed)
-	
-	# Логика НАЖАТИЯ колесика (MMB)
+
+## Временно сохранил перемещение по нажатию колёсика, потому что
+## прям не всё гладко с перемещением по левой кнопки мыши.
+func _process_camera_movement(event):
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_MIDDLE:
 		is_dragging = event.pressed
-		# Скрываем/показываем курсор при перетаскивании (по желанию)
-		# Input.mouse_mode = Input.MOUSE_MODE_CAPTURED if is_dragging else Input.MOUSE_MODE_VISIBLE
+	elif event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		is_dragging = event.pressed && not GameManager.is_hovering_card
 
-	# Логика ДВИЖЕНИЯ мыши
 	if event is InputEventMouseMotion and is_dragging:
 		# С коэффициентом 1.1 оно работает лучше
 		position -= event.screen_relative / zoom * 1.1
+	pass
 
-## Zoom'ится в курсор мыши
+## Zoom'имся в курсор мыши
 func modify_zoom(delta: float) -> void:
 	var mouse_pos := get_global_mouse_position()
 	zoom += Vector2(delta, delta)

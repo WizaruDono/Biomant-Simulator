@@ -162,28 +162,6 @@ func enter_to_stack():
 
 func _on_anim_card_animation_finished(_anim_name: StringName) -> void:
 	pass
-	#match anim_name:
-		#'appears':
-			#change_state(DataManager.CardState.ON_FIELD)
-
-
-#func _on_input_event(viewport: Node, event: InputEvent, shape_idx: int) -> void:
-	#if card_state == DataManager.CardState.APPEARS or card_state == DataManager.CardState.ENTER_STACK:
-		#return
-	## Проверяем, нажата ли левая кнопка мыши
-	#if event is InputEventMouseButton:
-		#if event.button_index == MOUSE_BUTTON_LEFT and event.pressed:
-			#print('dragged')
-			#is_dragging = event.pressed
-			#if not is_dragging:
-				#check_drop()
-			#else:
-				#change_state(DataManager.CardState.DRAGGED)
-	#
-	## Если мышь движется и мы "тащим" карту
-	#elif event is InputEventMouseMotion and is_dragging:
-		## Перемещаем карту на величину движения мыши
-		#position += event.relative
 
 func _on_input_event(_viewport, event, _shape_idx):
 	if card_owner_type != DataManager.OwnerType.PLAYER:
@@ -238,7 +216,6 @@ func create_stack():
 	intersected_areas.clear()
 	intersected_card = null
 
-
 func merge_stacks():
 	# значит у нас уже стек
 	# если у карты пересечения есть стек
@@ -247,19 +224,18 @@ func merge_stacks():
 		intersected_card.stack.add_card(card)
 	copy_stack.queue_free()
 
-
-
 func get_size():
 	return collision_card.shape.size
-
-
+	
 func _on_mouse_entered() -> void:
+	GameManager.is_hovering_card = true
 	if card_state == DataManager.CardState.ON_FIELD:
 		var tween : Tween = create_tween().set_parallel()
+		# TODO: сделать, чтобы scale был от центра
 		tween.tween_property(self, "scale",  Vector2(1.05, 1.05), 0.1)
 		#tween.tween_callback(_on_mouse_exited).set_delay(3)
 
-
 func _on_mouse_exited() -> void:
+	GameManager.is_hovering_card = false
 	var tween : Tween = create_tween().set_parallel()
 	tween.tween_property(self, "scale",  Vector2(1, 1), 0.1)

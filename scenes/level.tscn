@@ -12,10 +12,19 @@
 [node name="Level" type="Node2D" unique_id=894589167]
 script = ExtResource("1_w8frs")
 
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1627754645]
+position = Vector2(960, 540)
+script = ExtResource("4_mx8sn")
+
+[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=113369683]
+process_mode = 3
+bus = &"Music"
+script = ExtResource("6_2r41h")
+
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1944505725]
 layer = -1
 
-[node name="TextureRect" type="TextureRect" parent="CanvasLayer" unique_id=76446664]
+[node name="Background" type="TextureRect" parent="CanvasLayer" unique_id=76446664]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -47,14 +56,5 @@ one_shot = true
 [node name="Ui" parent="." unique_id=1878790953 instance=ExtResource("5_ppgk2")]
 
 [node name="ShaderLayer" parent="." unique_id=1988482799 instance=ExtResource("3_w8frs")]
-
-[node name="Camera2D" type="Camera2D" parent="." unique_id=1627754645]
-position = Vector2(960, 540)
-script = ExtResource("4_mx8sn")
-
-[node name="MusicPlayer" type="AudioStreamPlayer" parent="." unique_id=113369683]
-process_mode = 3
-bus = &"Music"
-script = ExtResource("6_2r41h")
 
 [connection signal="timeout" from="order_manager/order_spawn_timer" to="order_manager" method="_on_order_spawn_timer_timeout"]
