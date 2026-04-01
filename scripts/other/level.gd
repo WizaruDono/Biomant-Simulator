@@ -5,7 +5,7 @@ class_name Level
 #@onready var player_loot: Node2D = %player_loot
 @onready var player_locations: Node2D = %player_locations
 @onready var player_productions: Node2D = %player_productions
-@onready var player_loot: Node2D = $player_loot
+@onready var player_loot: Node2D = %player_loot
 
 func _ready() -> void:
 	GameManager.level = self
@@ -17,7 +17,7 @@ func _ready() -> void:
 	ProductionManager.create_changeshop()
 	NpcManager.create_trader()		# торговец
 	#NpcManager.create_order_trader()		# спавн торгаша заказов заменили на спавн самих заказов
-	OrderManager.spawn_3_random_orders()	# заказы
+	#OrderManager.spawn_3_random_orders()	# заказы
 	
 	# Кнопкка ReRoll - можно удалить
 	#var btn_scene = preload("res://scenes/reroll_button.tscn")

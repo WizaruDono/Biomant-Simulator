@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="PossibleOrders" format=3 uid="uid://3jm8wfhy1ka7"]
+
+[ext_resource type="Script" uid="uid://c1tk4d5hutmfr" path="res://resources/res_scripts/order_res.gd" id="1_am43i"]
+[ext_resource type="Resource" uid="uid://b5rm0307svbid" path="res://resources/orders/order_sceleton_head.tres" id="2_0ixk1"]
+[ext_resource type="Resource" uid="uid://bjkab4y45ujnd" path="res://resources/orders/order_sceleton_zombie_head.tres" id="3_4dtd6"]
+[ext_resource type="Script" uid="uid://bjwg2xc8bbm7j" path="res://resources/orders/possible_orders.gd" id="4_56b2w"]
+
+[resource]
+script = ExtResource("4_56b2w")
+orders = Array[ExtResource("1_am43i")]([ExtResource("2_0ixk1"), ExtResource("3_4dtd6"), ExtResource("2_0ixk1"), ExtResource("3_4dtd6"), ExtResource("3_4dtd6"), ExtResource("3_4dtd6"), ExtResource("2_0ixk1")])
+metadata/_custom_type_script = "uid://bjwg2xc8bbm7j"

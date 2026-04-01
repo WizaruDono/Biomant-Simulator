@@ -49,5 +49,5 @@ func create_rewards():
 	PlayerManager.add_gold(reward_amount)
 	stack.remove_card(self)
 	
-	OrderManager.on_order_completed(self)	# ВЫЗЫВАЕМ МЕНЕДЖЕР
+	#OrderManager.on_order_completed(self)	# ВЫЗЫВАЕМ МЕНЕДЖЕР
 	queue_free()

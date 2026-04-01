@@ -30,7 +30,6 @@ MonsterManager="*res://scripts/global/monster_manager.gd"
 LocationManager="*res://scripts/global/location_manager.gd"
 ProductionManager="*res://scripts/global/production_manager.gd"
 NpcManager="*res://scripts/global/NPC_manager.gd"
-OrderManager="*res://scripts/global/order_manager.gd"
 
 [display]
 

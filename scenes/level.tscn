@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bq6p8atu7x0hc" path="res://scripts/other/level.gd" id="1_w8frs"]
 [ext_resource type="Texture2D" uid="uid://bhw2veuy7pdox" path="res://img/Фон БиоЛаборатории.png" id="2_mx8sn"]
+[ext_resource type="Script" uid="uid://d1vi2lq44rplc" path="res://scripts/global/order_manager.gd" id="3_klq6b"]
 [ext_resource type="PackedScene" uid="uid://ve34uetygn4f" path="res://scenes/shader_layer.tscn" id="3_w8frs"]
+[ext_resource type="Resource" uid="uid://cf5meepahclrb" path="res://resources/orders/base_possible_orders_by_rate.tres" id="4_b121j"]
 [ext_resource type="Script" uid="uid://yak5r71e21rc" path="res://scripts/other/camera_2d.gd" id="4_mx8sn"]
 [ext_resource type="PackedScene" uid="uid://8x708lihjj8n" path="res://scenes/UI.tscn" id="5_ppgk2"]
 [ext_resource type="Script" uid="uid://celh7vt4kjiua" path="res://scripts/other/music_lvl.gd" id="6_2r41h"]
@@ -20,12 +22,21 @@ unique_name_in_owner = true
 position = Vector2(1, 1)
 
 [node name="player_loot" type="Node2D" parent="." unique_id=1347123232]
+unique_name_in_owner = true
 
 [node name="player_locations" type="Node2D" parent="." unique_id=80435689]
 unique_name_in_owner = true
 
 [node name="player_productions" type="Node2D" parent="." unique_id=1160234424]
 unique_name_in_owner = true
+
+[node name="order_manager" type="Node" parent="." unique_id=906228072]
+script = ExtResource("3_klq6b")
+main_possible_orders_by_rate = ExtResource("4_b121j")
+
+[node name="order_spawn_timer" type="Timer" parent="order_manager" unique_id=2014018518]
+unique_name_in_owner = true
+one_shot = true
 
 [node name="Ui" parent="." unique_id=1878790953 instance=ExtResource("5_ppgk2")]
 
@@ -39,3 +50,5 @@ script = ExtResource("4_mx8sn")
 process_mode = 3
 bus = &"Music"
 script = ExtResource("6_2r41h")
+
+[connection signal="timeout" from="order_manager/order_spawn_timer" to="order_manager" method="_on_order_spawn_timer_timeout"]

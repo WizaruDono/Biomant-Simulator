@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="PossibleOrdersByRate" format=3 uid="uid://cf5meepahclrb"]
+
+[ext_resource type="Script" uid="uid://bjwg2xc8bbm7j" path="res://resources/orders/possible_orders.gd" id="1_5fymq"]
+[ext_resource type="Script" uid="uid://lghsycdmd7w6" path="res://resources/orders/possible_orders_by_rate.gd" id="1_06c2y"]
+[ext_resource type="Resource" uid="uid://3jm8wfhy1ka7" path="res://resources/orders/1_possible_orders.tres" id="2_6ofy7"]
+
+[resource]
+script = ExtResource("1_06c2y")
+orders_by_rate = Array[ExtResource("1_5fymq")]([ExtResource("2_6ofy7")])
+metadata/_custom_type_script = "uid://lghsycdmd7w6"
