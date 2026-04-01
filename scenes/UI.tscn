@@ -1,8 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://8x708lihjj8n"]
+[gd_scene format=3 uid="uid://8x708lihjj8n"]
 
 [ext_resource type="Script" uid="uid://b01gi4qdv2ehp" path="res://scripts/other/ui_gold_label.gd" id="1_dj8aq"]
 
-[node name="Ui" type="Control"]
+[node name="Ui" type="Control" unique_id=1223898235]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,13 +10,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=564160136]
 offset = Vector2(20, 20)
 transform = Transform2D(1, 0, 0, 1, 20, 20)
 
-[node name="GoldLabel" type="Label" parent="CanvasLayer"]
+[node name="GoldLabel" type="Label" parent="CanvasLayer" unique_id=1643183324]
 offset_right = 40.0
 offset_bottom = 23.0
 tooltip_text = "Hi"
-theme_override_font_sizes/font_size = 20
+theme_override_font_sizes/font_size = 128
+text = "$1000"
 script = ExtResource("1_dj8aq")
