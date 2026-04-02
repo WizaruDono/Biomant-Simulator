@@ -80,19 +80,22 @@ unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 192)
 offset_right = 128.0
 offset_bottom = 192.0
-mouse_filter = 2
+pivot_offset_ratio = Vector2(0.5, 0.5)
 mouse_default_cursor_shape = 2
 theme_override_styles/panel = ExtResource("2_6u4wf")
 
 [node name="container_content" type="VBoxContainer" parent="panel_back" unique_id=1648399696]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
 theme_override_constants/separation = 5
 
 [node name="label_header" type="Label" parent="panel_back/container_content" unique_id=1183138432]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(118, 13)
 layout_mode = 2
+mouse_behavior_recursive = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_sy11y")
 text = "SOME HEAD"
 label_settings = ExtResource("4_kg30u")
@@ -104,6 +107,8 @@ uppercase = true
 [node name="rect_main_img" type="TextureRect" parent="panel_back/container_content" unique_id=665974388]
 unique_name_in_owner = true
 layout_mode = 2
+mouse_filter = 2
+mouse_behavior_recursive = 1
 stretch_mode = 3
 
 [node name="collision_card" type="CollisionShape2D" parent="." unique_id=2046268927]
@@ -124,4 +129,7 @@ wait_time = 5.0
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
+[connection signal="gui_input" from="panel_back" to="." method="_on_panel_back_gui_input"]
+[connection signal="mouse_entered" from="panel_back" to="." method="_on_panel_back_mouse_entered"]
+[connection signal="mouse_exited" from="panel_back" to="." method="_on_panel_back_mouse_exited"]
 [connection signal="animation_finished" from="anim_card" to="." method="_on_anim_card_animation_finished"]

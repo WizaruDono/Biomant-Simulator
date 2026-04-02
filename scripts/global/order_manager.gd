@@ -66,8 +66,8 @@ func create_order() -> void:
 	GameManager.level.player_loot.add_child(order_node)
 	order_node.initialize()
 	
-	# Фиксированная позиция слева
-	set_orders_pos()
+	# Ставим заказ на позицию в коллоде
+	set_order_pos(order_node)
 	
 	active_orders.append(order_node)
 	
@@ -81,10 +81,22 @@ func set_orders_pos() -> void:
 	var pos: Vector2 = start_position
 	for loot in GameManager.level.player_loot.get_children():
 		if loot is CardOrder:
+			if loot.position != Vector2.ZERO: continue
 			loot.global_position = start_position
 			var tween: Tween = create_tween()
 			tween.tween_property(loot, "global_position", pos, 0.2)
 			pos.y += loot.panel_back.size.y / 1.5
+
+func set_order_pos(order: CardOrder) -> void:
+	var pos_y_offset: float = 0.0
+	var index: int = 0
+	for loot in GameManager.level.player_loot.get_children():
+		if loot is CardOrder:
+			if loot != self:
+				pos_y_offset += loot.panel_back.size.y + 8.0 * index
+			index += 1
+	var tween: Tween = create_tween()
+	tween.tween_property(order, "position", Vector2(0.0, pos_y_offset), 0.2)
 
 # Спавнит 3 случайных заказа из пула
 func spawn_3_random_orders():

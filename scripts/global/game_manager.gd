@@ -13,6 +13,7 @@ var options_UI : OptionsMenu
 ## для перетаскивания карты и для перемещения камеры.
 ## Если мы над картой, то камера стоит на месте.
 var is_hovering_card := false
+var hovered_card: Card = null
 
 func _ready() -> void:
 	process_mode = Node.PROCESS_MODE_ALWAYS

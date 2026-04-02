@@ -188,6 +188,31 @@ func _on_input_event(_viewport, event, _shape_idx):
 				drop_card()
 
 
+func _on_panel_back_gui_input(event: InputEvent) -> void:
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+		# === ЗАПРЕТ НА ПЕРЕТАСКИВАНИЕ ДЛЯ КАРТ ЗАКАЗОВ ===
+			if card_type == DataManager.CardType.ORDER:
+				return # раскомментируй две строки если хочешь активировать запрет
+			if card_type == DataManager.CardType.UPGRADE:
+				return # раскомментируй две строки если хочешь активировать запрет
+			if card_type == DataManager.CardType.LOCATION:
+				return # раскомментируй две строки если хочешь активировать запрет
+		# ==========================
+			# Начинаем перетаскивание и запоминаем смещение мыши относительно центра
+			GameManager.is_captured = true
+			change_state(DataManager.CardState.DRAGGED)
+			is_dragging = true
+			offset = global_position - get_global_mouse_position()
+		else:
+			# Отпускаем объект
+			if card_state == DataManager.CardState.DRAGGED or card_state == DataManager.CardState.HOVER_STACK:
+				print(self.name + ' dropped')
+				is_dragging = false
+				GameManager.is_captured = false
+				drop_card()
+
+
 func _input(event):
 	if is_dragging and event is InputEventMouseMotion:
 		# Обновляем позицию объекта с учетом смещения
@@ -227,15 +252,32 @@ func merge_stacks():
 func get_size():
 	return collision_card.shape.size
 	
-func _on_mouse_entered() -> void:
+#func _on_mouse_entered() -> void:
+	#GameManager.hovered_card = self
+	#GameManager.is_hovering_card = true
+	#if card_state == DataManager.CardState.ON_FIELD:
+		#var tween : Tween = create_tween().set_parallel()
+		## TODO: сделать, чтобы scale был от центра
+		#tween.tween_property(self, "scale",  Vector2(1.05, 1.05), 0.1)
+		##tween.tween_callback(_on_mouse_exited).set_delay(3)
+#
+#func _on_mouse_exited() -> void:
+	#if GameManager.hovered_card != self: return
+	#GameManager.hovered_card = null
+	#GameManager.is_hovering_card = false
+	#var tween : Tween = create_tween().set_parallel()
+	#tween.tween_property(self, "scale",  Vector2(1, 1), 0.1)
+
+
+func _on_panel_back_mouse_entered() -> void:
+	GameManager.hovered_card = self
 	GameManager.is_hovering_card = true
 	if card_state == DataManager.CardState.ON_FIELD:
 		var tween : Tween = create_tween().set_parallel()
-		# TODO: сделать, чтобы scale был от центра
 		tween.tween_property(self, "scale",  Vector2(1.05, 1.05), 0.1)
-		#tween.tween_callback(_on_mouse_exited).set_delay(3)
 
-func _on_mouse_exited() -> void:
+func _on_panel_back_mouse_exited() -> void:
+	GameManager.hovered_card = null
 	GameManager.is_hovering_card = false
 	var tween : Tween = create_tween().set_parallel()
 	tween.tween_property(self, "scale",  Vector2(1, 1), 0.1)
