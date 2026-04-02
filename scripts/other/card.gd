@@ -168,35 +168,35 @@ func _on_input_event(_viewport, event, _shape_idx):
 		return
 	if GameManager.is_captured:
 		return
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-		# === ЗАПРЕТ НА ПЕРЕТАСКИВАНИЕ ДЛЯ КАРТ ЗАКАЗОВ ===
-			if card_type == DataManager.CardType.ORDER:
-				return # раскомментируй две строки если хочешь активировать запрет
-		# ==========================
-			# Начинаем перетаскивание и запоминаем смещение мыши относительно центра
-			GameManager.is_captured = true
-			change_state(DataManager.CardState.DRAGGED)
-			is_dragging = true
-			offset = global_position - get_global_mouse_position()
-		else:
-			# Отпускаем объект
-			if card_state == DataManager.CardState.DRAGGED or card_state == DataManager.CardState.HOVER_STACK:
-				print(self.name + ' dropped')
-				is_dragging = false
-				GameManager.is_captured = false
-				drop_card()
+	#if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		#if event.pressed:
+		## === ЗАПРЕТ НА ПЕРЕТАСКИВАНИЕ ДЛЯ КАРТ ЗАКАЗОВ ===
+			#if card_type == DataManager.CardType.ORDER:
+				#return # раскомментируй две строки если хочешь активировать запрет
+		## ==========================
+			## Начинаем перетаскивание и запоминаем смещение мыши относительно центра
+			#GameManager.is_captured = true
+			#change_state(DataManager.CardState.DRAGGED)
+			#is_dragging = true
+			#offset = global_position - get_global_mouse_position()
+		#else:
+			## Отпускаем объект
+			#if card_state == DataManager.CardState.DRAGGED or card_state == DataManager.CardState.HOVER_STACK:
+				#print(self.name + ' dropped')
+				#is_dragging = false
+				#GameManager.is_captured = false
+				#drop_card()
 
 
 func _on_panel_back_gui_input(event: InputEvent) -> void:
+	if card_owner_type != DataManager.OwnerType.PLAYER:
+		return
 	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
 		if event.pressed:
 		# === ЗАПРЕТ НА ПЕРЕТАСКИВАНИЕ ДЛЯ КАРТ ЗАКАЗОВ ===
 			if card_type == DataManager.CardType.ORDER:
 				return # раскомментируй две строки если хочешь активировать запрет
-			if card_type == DataManager.CardType.UPGRADE:
-				return # раскомментируй две строки если хочешь активировать запрет
-			if card_type == DataManager.CardType.LOCATION:
+				
 				return # раскомментируй две строки если хочешь активировать запрет
 		# ==========================
 			# Начинаем перетаскивание и запоминаем смещение мыши относительно центра
