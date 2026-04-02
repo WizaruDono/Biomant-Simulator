@@ -140,10 +140,7 @@ func create():
 			var pos : Vector2 = global_position + Vector2(randi_range(80, 100), randi_range(80, 100)) if randf() < 0.5 else global_position + Vector2(randi_range(-80, -100), randi_range(-80, -100))
 			monster.global_position = pos 
 		DataManager.ProductionType.PART_MERGER:
-			var part_reses : Array[PartRes]
-			for part in parts:
-				part_reses.append(part.part_res)
-			var part_res : PartRes = MonsterManager.create_grade_up_part(part_reses)		# ОШИБКА при объединении 5 конечностей
+			var part_res : PartRes = MonsterManager.create_grade_up_part(parts[0].part_res)
 			var part_scene : PackedScene = EntityManager.create_entity_scene(part_res)
 			var part : CardActorPart = part_scene.instantiate()
 			GameManager.level.player_actors.add_child(part)

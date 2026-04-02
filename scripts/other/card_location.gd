@@ -140,6 +140,16 @@ func destroy():
 func check_and_refill_queue():
 	if loot_queue.is_empty():
 		generate_next_set()
+		#generate_next_set_debug()
+	pass
+
+## Позволяет быстро сгенерировать одни и те же части тел
+func generate_next_set_debug():
+	for i in range(5):
+		for k in range(5):
+			loot_queue.append(location_loot[i])
+	
+	pass
 
 func generate_next_set():
 	var types = [
@@ -185,7 +195,6 @@ func generate_next_set():
 	loot_queue.append_array(new_set)
 
 
-
 func get_loot():
 	# Если очередь внезапно кончилась, пробуем пополнить (на случай лимита использования локации > 12)
 	check_and_refill_queue()
@@ -210,29 +219,3 @@ func get_loot():
 	if randf() < 0.5: pos_offset *= -1
 	loot.global_position = global_position + pos_offset
 	loot.change_state(DataManager.CardState.ON_FIELD)
-
-
-
-# Старая функция, можно удалить, если ничего из неё не нужно будет.
-'''
-func get_loot():
-	if location_loot.size() == 0:
-		print('loot is empty')
-		return
-	var rand : float = randf()
-	var loot_res : Resource
-	#if rand <= DataManager.chances_dict[DataManager.EntityGrade.T1]:
-		#loot_res = location_loot[0]
-	#elif rand <= DataManager.chances_dict[DataManager.EntityGrade.T2]:
-		#loot_res = location_loot[1]
-	#elif rand <= DataManager.chances_dict[DataManager.EntityGrade.T3]:
-		#loot_res = location_loot.slice(2).pick_random()
-	loot_res = location_loot.pick_random()
-	var loot_scene : PackedScene = EntityManager.create_entity_scene(loot_res)
-	var loot : Card = loot_scene.instantiate()
-	GameManager.level.player_loot.add_child(loot)
-	loot.initialize()
-	var pos : Vector2 = global_position + Vector2(randi_range(80, 100), randi_range(80, 100)) if randf() < 0.5 else global_position + Vector2(randi_range(-80, -100), randi_range(-80, -100))
-	loot.global_position += pos 
-	loot.change_state(DataManager.CardState.ON_FIELD)
-'''
