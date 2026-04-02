@@ -40,8 +40,7 @@ func start_rewarding():
 
 func create_rewards():
 	if special_reward:
-		var special_reward_scene : PackedScene = EntityManager.create_entity_scene(special_reward)
-		var reward : Card = special_reward_scene.instantiate()
+		var reward : Card = EntityManager.create_entity_scene(special_reward)
 		GameManager.level.add_child(reward)
 		reward.initialize()
 		var pos : Vector2 = global_position + Vector2(randi_range(80, 100), randi_range(80, 100)) if randf() < 0.5 else global_position + Vector2(randi_range(-80, -100), randi_range(-80, -100))

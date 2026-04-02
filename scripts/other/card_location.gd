@@ -207,8 +207,7 @@ func get_loot():
 	var loot_res = loot_queue.pop_front()
 
 	# Спавн сущности
-	var loot_scene : PackedScene = EntityManager.create_entity_scene(loot_res)
-	var loot : Card = loot_scene.instantiate()
+	var loot: Card = EntityManager.create_entity_scene(loot_res)
 	GameManager.level.player_loot.add_child(loot)
 	loot.initialize()
 	

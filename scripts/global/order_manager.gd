@@ -60,9 +60,7 @@ func create_order() -> void:
 	var order_res = draw_pile.pop_front().duplicate(true)
 	order_res.card_owner_type = DataManager.OwnerType.PLAYER
 	
-	var scene : PackedScene = EntityManager.create_entity_scene(order_res)
-	var order_node : Card = scene.instantiate()
-	print(GameManager.level.player_loot)
+	var order_node: Card = EntityManager.create_entity_scene(order_res)
 	GameManager.level.player_loot.add_child(order_node)
 	order_node.initialize()
 	
@@ -111,9 +109,7 @@ func spawn_3_random_orders():
 		var order_res = pool[i].duplicate(true)
 		order_res.card_owner_type = DataManager.OwnerType.PLAYER
 		
-		var scene : PackedScene = EntityManager.create_entity_scene(order_res)
-		var order_node : Card = scene.instantiate()
-		
+		var order_node: Card = EntityManager.create_entity_scene(order_res)
 		GameManager.level.player_loot.add_child(order_node)
 		order_node.initialize()
 		
