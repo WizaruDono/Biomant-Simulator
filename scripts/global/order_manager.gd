@@ -20,12 +20,6 @@ var deck: Array[OrderRes]: set = _on_deck_set
 var draw_pile: Array[OrderRes]: set = _on_draw_pile_set
 var discard_pile: Array[OrderRes]
 
-func _ready() -> void:
-	if not GameManager.level.is_node_ready():
-		await GameManager.level.ready
-	
-	create_deck()
-
 func _on_rate_set(value: int) -> void:
 	rate = value
 	
