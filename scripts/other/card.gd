@@ -220,37 +220,53 @@ func _on_panel_back_button_up() -> void:
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_released("left_mouse"):
-		if card_state == DataManager.CardState.DRAGGED:
-			if GameManager.dragged_card != self:
-				return
-			
-			GameManager.dragged_card = null
-			
-			print(self.name + ' dropped')
-			GameManager.is_captured = false
-				
-			# Отпускаем объект
-			card_state = DataManager.CardState.ON_FIELD
-	
+		_process_released_left_mouse()
 	elif event.is_action_pressed("left_mouse"):
-		if card_owner_type != DataManager.OwnerType.PLAYER:
+		_process_pressed_left_mouse()
+	elif event.is_action_pressed("right_mouse"):
+		_process_pressed_right_mouse()
+
+func _process_released_left_mouse():
+	if card_state == DataManager.CardState.DRAGGED:
+		if GameManager.dragged_card != self:
 			return
+		
+		GameManager.dragged_card = null
+		
+		print(self.name + ' dropped')
+		GameManager.is_captured = false
+			
+		# Отпускаем объект
+		card_state = DataManager.CardState.ON_FIELD
+	pass
+
+func _process_pressed_left_mouse():
+	if card_owner_type != DataManager.OwnerType.PLAYER:
+		return
+
+	if GameManager.is_captured:
+		return
 	
-		if GameManager.is_captured:
-			return
-		
-		if GameManager.hovered_card != self or GameManager.dragged_card:
-			return
-		
-	# === ЗАПРЕТ НА ПЕРЕТАСКИВАНИЕ ДЛЯ КАРТ ЗАКАЗОВ ===
-		if card_type == DataManager.CardType.ORDER:
-			return # раскомментируй две строки если хочешь активировать запрет
-	# ==========================
-		
-		# Начинаем перетаскивание и запоминаем смещение мыши относительно центра
-		GameManager.is_captured = true
-		card_state = DataManager.CardState.DRAGGED
-		drag_offset = global_position - get_global_mouse_position()
+	if GameManager.hovered_card != self or GameManager.dragged_card:
+		return
+	
+# === ЗАПРЕТ НА ПЕРЕТАСКИВАНИЕ ДЛЯ КАРТ ЗАКАЗОВ ===
+	if card_type == DataManager.CardType.ORDER:
+		return # раскомментируй две строки если хочешь активировать запрет
+# ==========================
+	
+	# Начинаем перетаскивание и запоминаем смещение мыши относительно центра
+	GameManager.is_captured = true
+	card_state = DataManager.CardState.DRAGGED
+	drag_offset = global_position - get_global_mouse_position()
+	pass
+
+## Центрироваться на карте
+func _process_pressed_right_mouse():
+	if GameManager.hovered_card != self: return
+	## Anchor на картах стоит в левом верхнем углу, поэтому вычисляем центр карты
+	SignalManager.card_focused.emit(global_position + container_content.size / 2)
+	pass
 
 func _on_panel_back_mouse_entered() -> void:
 	GameManager.hovered_card = self
