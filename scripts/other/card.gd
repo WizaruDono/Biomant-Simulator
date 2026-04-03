@@ -157,6 +157,8 @@ func reparent_to_level() -> void:
 	reparent(_level)
 	await get_tree().process_frame
 	old_parrent_card._check_is_stack()
+	if old_parrent_card.main_card:
+		old_parrent_card.main_card.perform_is_stack_action()
 
 func add_card_to_stack(card: Card) -> void:
 	if card == null or card == self:
@@ -288,9 +290,7 @@ func _find_best_target() -> Card:
 #region Parts
 
 func check_order_consistency() -> bool:
-		
 	var submitted_card = card_container.get_child(0)
-	# ИСПРАВЛЕНИЕ: берем order_res, а не monster_res
 	var order : OrderRes = order_card.order_res 
 	
 # ==========================================
@@ -394,6 +394,7 @@ func check_order_consistency() -> bool:
 
 #region Продукция
 
+# Получить все карты в стаке
 func get_all_nested_cards_recursive() -> Array[Card]:
 	var result: Array[Card] = []
 	if card_container == null: return []
@@ -405,6 +406,7 @@ func get_all_nested_cards_recursive() -> Array[Card]:
 	
 	return result	
 
+# Получить все карты в стаке, которые являются Частями Тела
 func get_all_nested_cards_actor_part() -> Array[CardActorPart]:
 	var cards: Array[Card] = get_all_nested_cards_recursive()
 	var result: Array[CardActorPart] = []
@@ -415,6 +417,7 @@ func get_all_nested_cards_actor_part() -> Array[CardActorPart]:
 	
 	return result
 
+#Получить все части тела
 func get_all_nested_parts() -> Array[PartRes]:
 	var cards: Array[Card] = get_all_nested_cards_recursive()
 	var result: Array[PartRes] = []
@@ -423,35 +426,6 @@ func get_all_nested_parts() -> Array[PartRes]:
 		result.append(card.part_res)
 	
 	return result
-
-#func start_production():
-#
-	#if production_card and not production_card.is_product_in_progress:
-		#activation_progress.show()
-		##match production_card.production_type:
-			##DataManager.ProductionType.PART_CREATOR:
-				##production_card.set_parts(parts)
-			##DataManager.ProductionType.MONSTER_CREATOR:
-				##var monster_cards : Array[CardActorMonster]
-				##for card in cards.slice(1):
-					##monster_cards.append(card)
-				##production_card.set_monsters(monster_cards)
-			##DataManager.ProductionType.PART_MERGER:
-				##for card in cards.slice(1):
-					##var part : CardActorPart = card
-					##parts.append(part)
-				##production_card.set_parts(parts)
-		#production_card.product()
-
-#func stop_production():
-	#if production_card and production_card.is_product_in_progress:
-		#production_card.stop_product()
-#
-#
-#func continue_production():
-	#activation_progress.show()
-	#if production_card:
-		#production_card.continue_product()
 
 func update_progress_bar(new_value : float):
 	activation_progress.value = new_value

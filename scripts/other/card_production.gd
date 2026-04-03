@@ -55,6 +55,8 @@ func perform_is_stack_action() -> void:
 	if is_stack:
 		if check_possible_production():
 			product()
+		else:
+			stop_product()
 	else:
 		stop_product()
 
@@ -141,6 +143,7 @@ func check_possible_production() -> bool:
 							has_r_leg = true
 							part_reses.append(card.part_res)
 							stapler_cards.append(card)
+					
 			throw_out_trach_cards()
 			
 			if part_reses.size() == DataManager.parts_size \
@@ -287,7 +290,6 @@ func throw_out_trach_cards() -> void:
 			outside_cards.append(card)
 	
 	if outside_cards.size() > 0:
-		
 		var _main_card: Card = outside_cards[0]
 		_main_card.reparent_to_level()
 		
