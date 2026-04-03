@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://b214h44el3pxm"]
 
-[ext_resource type="PackedScene" uid="uid://coec2fnqd70g0" path="res://scenes/card.tscn" id="1_d8x6x"]
+[ext_resource type="PackedScene" uid="uid://coec2fnqd70g0" path="res://scenes/card_holder.tscn" id="1_d8x6x"]
 [ext_resource type="Script" uid="uid://cuiwwce02mbjl" path="res://scripts/other/card_location.gd" id="2_uo0cj"]
 [ext_resource type="LabelSettings" uid="uid://b3j50fkpgbe26" path="res://styles/label_card_damage.tres" id="3_o4kyp"]
 [ext_resource type="Texture2D" uid="uid://31o05l6qch3w" path="res://img/ui_shovel.png" id="4_r5tm2"]

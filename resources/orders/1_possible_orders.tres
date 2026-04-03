@@ -7,5 +7,5 @@
 
 [resource]
 script = ExtResource("4_56b2w")
-orders = Array[ExtResource("1_am43i")]([ExtResource("2_0ixk1"), ExtResource("3_4dtd6")])
+orders = Array[ExtResource("1_am43i")]([ExtResource("2_0ixk1"), ExtResource("3_4dtd6"), ExtResource("3_4dtd6"), ExtResource("2_0ixk1"), ExtResource("3_4dtd6"), ExtResource("2_0ixk1")])
 metadata/_custom_type_script = "uid://bjwg2xc8bbm7j"

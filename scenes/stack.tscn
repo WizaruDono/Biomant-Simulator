@@ -4,8 +4,76 @@
 [ext_resource type="StyleBox" uid="uid://c85uuv5k61xpl" path="res://styles/bar_not_fill.tres" id="2_4rw1r"]
 [ext_resource type="StyleBox" uid="uid://dvhj56spl7rhs" path="res://styles/bar_fill_purple.tres" id="3_p7cx4"]
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_p7cx4"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0, 0.7666669, 1, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_px32j"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 0.7666667, 0, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4rw1r"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(1, 0, 0.6999998, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+
 [node name="Stack" type="Area2D" unique_id=1997933901]
 script = ExtResource("1_tpkvb")
+
+[node name="PanelContainer" type="Panel" parent="." unique_id=1936532729]
+clip_contents = true
+offset_right = 64.0
+offset_bottom = 64.0
+
+[node name="Panel" type="Panel" parent="PanelContainer" unique_id=1872939307]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_p7cx4")
+
+[node name="Panel2" type="Panel" parent="PanelContainer" unique_id=1587647180]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_px32j")
+
+[node name="Panel3" type="Panel" parent="PanelContainer" unique_id=886593332]
+custom_minimum_size = Vector2(64, 64)
+layout_mode = 0
+offset_right = 64.0
+offset_bottom = 64.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_styles/panel = SubResource("StyleBoxFlat_4rw1r")
 
 [node name="collision_stack" type="CollisionShape2D" parent="." unique_id=17986545]
 unique_name_in_owner = true

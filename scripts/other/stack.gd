@@ -29,6 +29,23 @@ class_name Stack
 @onready var stack_to_card_collision: CollisionShape2D = %stack_to_card_collision
 @onready var stack_area: Area2D = %stack_area
 
+@onready var panel_container: Panel = $PanelContainer
+@onready var panel_1: Panel = $PanelContainer/Panel
+@onready var panel_2: Panel = $PanelContainer/Panel2
+
+func _ready() -> void:
+	var pos_y_offset: float = 0.0
+	var new_size: Vector2
+	var last_pos_y_offset: float = 0.0
+	for panel in panel_container.get_children():
+		if panel is Panel:
+			panel.position.y = pos_y_offset
+			pos_y_offset += 32.0
+			last_pos_y_offset = 32.0
+			new_size = panel.size
+	
+	panel_container.size.y = new_size.y + pos_y_offset - last_pos_y_offset
+
 
 func _on_mouse_entered() -> void:
 	GameManager.is_hovering_card = true

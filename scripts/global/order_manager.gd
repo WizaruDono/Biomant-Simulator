@@ -5,8 +5,9 @@ extends Node
 @export var base_number_of_orders: int = 3
 
 var active_orders : Array[Card] = []
-var start_position = Vector2(20, 20) 
+var start_position = Vector2(640, 32) 
 var offset_y = 192 # ВЗЯТЬ ПОТОМ ПРОГРАММНО высоту карты 
+var offset_x = 192 # ВЗЯТЬ ПОТОМ ПРОГРАММНО высоту карты 
 
 var reroll_btn_scene = preload("res://scenes/reroll_button.tscn")
 var current_reroll_btn : Node2D = null
@@ -88,15 +89,31 @@ func set_orders_pos() -> void:
 			pos.y += loot.panel_back.size.y / 1.5
 
 func set_order_pos(order: CardOrder) -> void:
-	var pos_y_offset: float = 0.0
-	var index: int = 0
-	for loot in GameManager.level.player_loot.get_children():
-		if loot is CardOrder:
-			if loot != self:
-				pos_y_offset += loot.panel_back.size.y + 8.0 * index
-			index += 1
-	var tween: Tween = create_tween()
-	tween.tween_property(order, "position", Vector2(0.0, pos_y_offset), 0.2)
+	# Собираем все карты заказов в контейнере
+	var orders: Array[CardOrder] = []
+	for child in GameManager.level.player_loot.get_children():
+		if child is CardOrder:
+			orders.append(child as CardOrder)
+			
+	if orders.is_empty(): return
+	
+	var spacing = 8.0
+	var total_width = 0.0
+	for card in orders:
+		total_width += card.panel_back.size.x
+	total_width += spacing * max(0, orders.size() - 1)
+	
+	# Находим стартовую X, чтобы вся группа была строго по центру
+	var center_x = 1920.0 / 2.0
+	var current_x = center_x - total_width / 2.0
+	var base_y = orders[0].position.y # Сохраняем общую Y-координату
+	
+	# Анимируем ВСЕ карты одновременно
+	var tween = create_tween().set_parallel()
+	for card in orders:
+		var target_pos = Vector2(current_x, base_y)
+		tween.tween_property(card, "position", target_pos, 0.2)
+		current_x += card.panel_back.size.x + spacing
 
 # Спавнит 3 случайных заказа из пула
 func spawn_3_random_orders():

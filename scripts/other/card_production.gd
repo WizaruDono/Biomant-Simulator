@@ -1,6 +1,5 @@
-extends Card
-
 class_name CardProduction
+extends Card
 # ПРОИЗВОДСТВО
 
 @export var production_res : ProductionRes
@@ -11,11 +10,20 @@ class_name CardProduction
 @export var product_count : int
 @export var remaining_product_count : int
 @export var is_product_in_progress : bool
-@export var parts : Array[CardActorPart]
 @export var monsters : Array[CardActorMonster]
 
 
 @onready var label_uses: Label = %label_uses
+
+var stapler_cards: Array[Card]
+var part_reses: Array[PartRes]
+
+var has_body: bool = false
+var has_head: bool = false
+var has_l_arm: bool = false
+var has_r_arm: bool = false
+var has_l_leg: bool = false
+var has_r_leg: bool = false
 
 
 func initialize():
@@ -40,42 +48,158 @@ func initialize():
 	update_res_count_ui()
 
 
-func _process(_delta: float) -> void:
-	if stack:
-		stack.update_progress_bar(activate_timer.wait_time - activate_timer.time_left)
-
-
 func update_res_count_ui():
 	label_uses.text = '%s/%s' % [remaining_product_count, product_count]
 
+func perform_is_stack_action() -> void:
+	if is_stack:
+		if check_possible_production():
+			product()
+	else:
+		stop_product()
+
+#region Product
 
 func product():
-	activate_timer.paused = false
 	activate_timer.wait_time = product_speed
-	stack.activation_progress.max_value = activate_timer.wait_time
-	activate_timer.start()
+	activation_progress.max_value = activate_timer.wait_time
+	
+	if activate_timer.is_stopped():
+		activate_timer.start()
+		activate_timer.paused = false
+	elif activate_timer.paused:
+		activate_timer.paused = false
+	else:
+		activate_timer.start()
+		activate_timer.paused = false
+	
 	is_product_in_progress = true
-
 
 func stop_product():
 	activate_timer.paused = true
-
+	part_reses.clear()
 
 func continue_product():
 	stack.activation_progress.max_value = activate_timer.wait_time
 	activate_timer.paused = false
 
-
 func _on_activate_timer_timeout() -> void:
-	activate_timer.stop()
 	remaining_product_count -= 1
 	update_res_count_ui()
-	stack.activation_progress.hide()
 	create()
 	destroy()
 	if remaining_product_count == 0:
 		var tween = create_tween()
 		tween.tween_callback(queue_free).set_delay(0.3)
+	activate_timer.stop()
+
+func check_possible_production() -> bool:
+	var content_cards: Array[Card] = get_all_nested_cards_recursive()
+	var result: bool = false
+	match production_type:
+		DataManager.ProductionType.PART_CREATOR:
+			var content_cards_actor_part: Array[CardActorPart] = get_all_nested_cards_actor_part()
+			part_reses.clear()
+			stapler_cards.clear()
+			
+			has_body = false
+			has_head = false
+			has_l_arm = false
+			has_r_arm = false
+			has_l_leg = false
+			has_r_leg = false
+			
+			for card in content_cards_actor_part:
+				match card.part_type:
+					DataManager.MonsterPartType.BODY:
+						if not has_body:
+							has_body = true
+							part_reses.append(card.part_res)
+							stapler_cards.append(card)
+					DataManager.MonsterPartType.HEAD:
+						if not has_head:
+							has_head = true
+							part_reses.append(card.part_res)
+							stapler_cards.append(card)
+					DataManager.MonsterPartType.L_ARM:
+						if not has_l_arm:
+							has_l_arm = true
+							part_reses.append(card.part_res)
+							stapler_cards.append(card)
+					DataManager.MonsterPartType.R_ARM:
+						if not has_r_arm:
+							has_r_arm = true
+							part_reses.append(card.part_res)
+							stapler_cards.append(card)
+					DataManager.MonsterPartType.L_LEG:
+						if not has_l_leg:
+							has_l_leg = true
+							part_reses.append(card.part_res)
+							stapler_cards.append(card)
+					DataManager.MonsterPartType.R_LEG:
+						if not has_r_leg:
+							has_r_leg = true
+							part_reses.append(card.part_res)
+							stapler_cards.append(card)
+			throw_out_trach_cards()
+			
+			if part_reses.size() == DataManager.parts_size \
+			and get_all_nested_cards_recursive().size() == DataManager.parts_size:
+				result = true
+		
+		DataManager.ProductionType.MONSTER_CREATOR:
+			if content_cards.size() != DataManager.monster_love_size:
+				result = false
+			
+			for content_card in content_cards:
+				if content_card.card_type != DataManager.CardType.MONSTER:
+					result = false
+				else:
+					if not content_card.is_can_love:
+						result = false
+			
+			result = true
+		
+		DataManager.ProductionType.MONSTER_MERGER:
+			pass
+		
+		DataManager.ProductionType.RES_CREATOR:
+			pass
+		
+		DataManager.ProductionType.PART_MERGER:
+			if content_cards.size() != DataManager.parts_merger_count:
+				result = false
+			if content_cards[0].card_type != DataManager.CardType.MONSTER_PART:
+				result = false
+			var same_part_type : DataManager.MonsterPartType = content_cards[0].part_type
+			for content_card in content_cards:
+				if content_card.card_type != DataManager.CardType.MONSTER_PART:
+					result = false
+				else:
+					if same_part_type != content_card.part_type:
+						result = false
+			
+			result = true
+	
+	return result
+
+func check_necessary_cards(card_part_res: PartRes) -> bool:
+	var result: bool = false
+	match card_part_res:
+		DataManager.MonsterPartType.BODY:
+			if not has_body: result = true
+		DataManager.MonsterPartType.HEAD:
+			if not has_head: result = true
+		DataManager.MonsterPartType.L_ARM:
+			if not has_l_arm: result = true
+		DataManager.MonsterPartType.R_ARM:
+			if not has_r_arm: result = true
+		DataManager.MonsterPartType.L_LEG:
+			if not has_l_leg: result = true
+		DataManager.MonsterPartType.R_LEG:
+			if not has_r_leg: result = true
+	return result
+#endregion
 
 
 func set_parts(new_parts : Array[CardActorPart]):
@@ -89,10 +213,18 @@ func set_monsters(new_monsters : Array[CardActorMonster]):
 func destroy():
 	match production_type:
 		DataManager.ProductionType.PART_CREATOR:
-			for part in parts:
-				stack.remove_card(part)
-				part.queue_free()
-			parts.clear()
+			throw_out_trach_cards()
+			
+			await get_tree().process_frame
+			
+			# Удаляем карты степлера
+			for card in stapler_cards:
+				card.queue_free()
+			
+			stapler_cards.clear()
+			is_stack = false
+			perform_is_stack_action()
+		
 		DataManager.ProductionType.MONSTER_CREATOR:
 			var old_gp : Vector2 = global_position
 			for monster in monsters:
@@ -103,23 +235,19 @@ func destroy():
 				var pos : Vector2 = old_gp + Vector2(randi_range(80, 100), randi_range(80, 100)) if randf() < 0.5 else global_position + Vector2(randi_range(-80, -100), randi_range(-80, -100))
 				monster.global_position = pos 
 			monsters.clear()
+		
 		DataManager.ProductionType.PART_MERGER:
 			for part in parts:
 				stack.remove_card(part)
 				part.queue_free()
 			parts.clear()
-	stack.production_card = null
-	#if stack and is_instance_valid(stack):
-		#stack.remove_card(self)
+	
 	is_product_in_progress = false
 
 
 func create():
 	match production_type:
 		DataManager.ProductionType.PART_CREATOR:
-			var part_reses : Array[PartRes]
-			for part in parts:
-				part_reses.append(part.part_res)
 			var monster_res : MonsterRes = MonsterManager.create_monster_by_parts(part_reses)
 			var monster_scene : PackedScene = EntityManager.create_entity_scene(monster_res)
 			var monster : CardActorMonster = monster_scene.instantiate()
@@ -128,7 +256,8 @@ func create():
 			SoundManager.play_asmr_sfx(SoundManager.SND_SPAWN, -19.0)
 			
 			var pos : Vector2 = global_position + Vector2(randi_range(80, 100), randi_range(80, 100)) if randf() < 0.5 else global_position + Vector2(randi_range(-80, -100), randi_range(-80, -100))
-			monster.global_position += pos 
+			monster.global_position += pos
+		
 		DataManager.ProductionType.MONSTER_CREATOR:
 			var monster_res : MonsterRes = MonsterManager.create_monster_by_monsters(monsters)
 			var monster_scene : PackedScene = EntityManager.create_entity_scene(monster_res)
@@ -139,6 +268,7 @@ func create():
 			
 			var pos : Vector2 = global_position + Vector2(randi_range(80, 100), randi_range(80, 100)) if randf() < 0.5 else global_position + Vector2(randi_range(-80, -100), randi_range(-80, -100))
 			monster.global_position = pos 
+		
 		DataManager.ProductionType.PART_MERGER:
 			var part_reses : Array[PartRes]
 			for part in parts:
@@ -152,3 +282,25 @@ func create():
 			
 			var pos : Vector2 = global_position + Vector2(randi_range(80, 100), randi_range(80, 100)) if randf() < 0.5 else global_position + Vector2(randi_range(-80, -100), randi_range(-80, -100))
 			part.global_position += pos 
+
+
+func throw_out_trach_cards() -> void:
+	var all_cards := get_all_nested_cards_recursive()
+	var outside_cards = []
+	
+	for card in all_cards:
+		if not stapler_cards.has(card):
+			outside_cards.append(card)
+	
+	if outside_cards.size() > 0:
+		
+		var _main_card: Card = outside_cards[0]
+		_main_card.reparent_to_level()
+		
+		# Стек остальных карт без ручного erase
+		for i in range(1, outside_cards.size()):
+			_main_card.add_card_to_stack(outside_cards[i])
+	
+		var tween: Tween = create_tween()
+		var target_pos: Vector2 = _main_card.global_position + Vector2(128 * randf_range(0.5, 1.0), 128 * randf_range(0.5, 1.0))
+		tween.tween_property(_main_card, "global_position", target_pos, 0.3).set_trans(Tween.TRANS_BACK)

@@ -13,11 +13,9 @@ actor_name = null
 actor_desc = null
 actor_health = null
 actor_damage = null
-is_dragging = null
-is_in_stack = null
 card_state = null
 prev_state = null
-offset = null
+is_dragging = null
 prev_z_index = null
 card_type = null
 card_grade = null
@@ -76,5 +74,5 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="HBoxContainer" parent="panel_back/container_content/MarginContainer" index="0"]
+[node name="HBoxContainer" parent="panel_back/container_content/MarginContainer" parent_id_path=PackedInt32Array(1460528313) index="0" unique_id=26702382]
 size_flags_horizontal = 4

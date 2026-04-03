@@ -89,3 +89,5 @@ func initialize():
 				var limb_base = limb_part.part_base
 				sprite.offset = -DataManager.get_joint_pos(limb_base, p_type)
 	# ==============================================================
+	
+	initialized.emit()

@@ -1,6 +1,7 @@
 extends Card
 class_name CardOrder
 
+
 @export var order_res : OrderRes
 @export var order_name : String
 @export var order_desc : String

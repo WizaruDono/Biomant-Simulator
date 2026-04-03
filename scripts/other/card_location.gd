@@ -53,26 +53,72 @@ func initialize():
 	update_res_count_ui()
 
 
-
-
-
-func _process(_delta: float) -> void:
-	if stack:
-		stack.update_progress_bar(activate_timer.wait_time - activate_timer.time_left)
-
-
 func update_res_count_ui():
 	label_uses.text = '%s/%s' % [remaining_res_count, res_count]
 
+func add_card_to_stack(card: Card) -> void:
+	if not card is CardActorMonster:
+		return
+	
+	super.add_card_to_stack(card)
+
+func _on_is_stack_set(value: bool) -> void:
+	super._on_is_stack_set(value)
+	
+	if value:
+		var _digger = card_container.get_child(0)
+		print("DIGGER: ",_digger)
+		set_digger(_digger)
+	else:
+		stop_digging()
+
+#region Dig
 
 func set_digger(new_digger : CardActorMonster):
 	digger = new_digger
 	check_digger_type()
+	
+	if digger:
+		start_digging()
+
+
+func start_digging():
+	digg()
+
+func stop_digging():
+	digger = null
+	stop_digg()
+
+
+# Используем её при старте копания
+func digg():
+	# Обновляем время таймера прямо перед запуском!
+	check_digger_type()
+	
+	activation_progress.max_value = activate_timer.wait_time
+	
+	if activate_timer.is_stopped():
+		activate_timer.start()
+	elif activate_timer.paused:
+		activate_timer.paused = false
+	else:
+		activate_timer.start()
+	
+	is_digg_in_progress = true
+
+# При остановке копания
+func stop_digg():
+	# Обновляем время таймера прямо перед запуском!
+	check_digger_type()
+	
+	activation_progress.max_value = activate_timer.wait_time
+	activate_timer.paused = true
+	is_digg_in_progress = false
 
 
 func check_digger_type():
 # Начинаем с базы, умноженной на лопату
-	var final_speed = digg_speed * PlayerManager.dig_speed_multiplier
+	var final_speed = get_actual_dig_speed()
 	# Если это монстр-копатель, ускоряем еще на 20% (умножаем на 0.8)
 	if digger is CardActorMonster and digger.monster_perc == DataManager.PercType.DIGGER:
 		final_speed *= 0.8
@@ -86,31 +132,9 @@ func get_actual_dig_speed() -> float:
 	# Умножаем на глобальный апгрейд игрока (лопату)
 	speed *= PlayerManager.dig_speed_multiplier
 	
-	# Проверяем, есть ли копатель и есть ли у него перк
-	if digger and digger is CardActorMonster:
-		if digger.monster_perc == DataManager.PercType.DIGGER:
-			speed *= 0.8 # Дополнительное ускорение от монстра
 	return speed
 
-# 2. используем её (см 1.) при старте копания
-func digg():
-	# Обновляем время таймера прямо перед запуском!
-	activate_timer.wait_time = get_actual_dig_speed()
-	
-	stack.activation_progress.max_value = activate_timer.wait_time
-	activate_timer.start()
-	is_digg_in_progress = true
-
-# 3. И в продолжении (см 1. и 2.) (если ты отлепил карту и прилепил обратно)
-func continue_digg():
-	# Тоже обновляем, на случай если лопата была куплена пока копание стояло на паузе
-	activate_timer.wait_time = get_actual_dig_speed()
-	stack.activation_progress.max_value = activate_timer.wait_time
-	activate_timer.paused = false
-
-
-func stop_digg():
-	activate_timer.paused = true
+#endregion
 
 
 # Чуть изменил, чтоб очереди рандомного лута работали нормально
@@ -209,7 +233,7 @@ func get_loot():
 	var pos_offset = Vector2(randi_range(80, 100), randi_range(80, 100))
 	if randf() < 0.5: pos_offset *= -1
 	loot.global_position = global_position + pos_offset
-	loot.change_state(DataManager.CardState.ON_FIELD)
+	loot.card_state = DataManager.CardState.ON_FIELD
 
 
 

@@ -1,15 +1,16 @@
-extends Area2D
 class_name Card
+extends Area2D
 
-@export var stack_scene : PackedScene
-@export var is_dragging : bool
-@export var stack : Stack
+signal initialized
+
 @export var intersected_card : Card
-@export var is_in_stack : bool
-@export var card_state : DataManager.CardState
+
+@export var card_state : DataManager.CardState: set = _on_state_set
 @export var prev_state : DataManager.CardState
-@export var offset : Vector2 = Vector2.ZERO
-@export var prev_z_index : int
+@export var stack: Stack
+
+@export var is_dragging : bool
+
 @export var card_type : DataManager.CardType
 @export var card_grade : DataManager.EntityGrade
 @export var card_cost : int
@@ -17,7 +18,14 @@ class_name Card
 @export var card_owner_type : DataManager.OwnerType
 @export var stylebox_tooltip : StyleBoxFlat
 @export var font_tooltip : Font
-@export var intersected_areas : Array[Card]
+
+@export var parts : Array[CardActorPart]
+@export var production_card: CardProduction
+@export var location_card : CardLocation
+@export var order_card : CardOrder
+@export var is_can_product : bool
+@export var is_can_digg : bool
+@export var is_can_get_reward : bool
 
 @onready var collision_card: CollisionShape2D = %collision_card
 @onready var anim_card: AnimationPlayer = %anim_card
@@ -25,11 +33,43 @@ class_name Card
 @onready var rect_main_img: TextureRect = %rect_main_img
 @onready var label_header: Label = %label_header
 @onready var panel_back: PanelContainer = %panel_back
+@onready var card_container: Node2D = %CardContainer
+@onready var activation_progress: ProgressBar = %activation_progress
 
+var intersected_card_areas: Array[Card]
+var is_stack: bool = false: set = _on_is_stack_set
+var main_card: Card
+
+var drag_offset: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
-	change_state(DataManager.CardState.APPEARS)
+	card_state = DataManager.CardState.ON_FIELD
+	# Вызываем один раз после полной инициализации узла
+	call_deferred("set_collision_size")
+	
+	initialized.connect(_on_initialized)
+	panel_back.resized.connect(set_collision_size)
 
+func _on_initialized() -> void:
+	set_collision_size()
+
+func set_collision_size() -> void:
+	if collision_card.shape == null or panel_back.size == Vector2.ZERO: return
+	if collision_card.shape.size == panel_back.size: return
+	
+	collision_card.shape.size = panel_back.size
+	collision_card.position = panel_back.size / 2
+
+func _process(_delta: float) -> void:
+	if not activate_timer.is_stopped() and not activate_timer.paused:
+		update_progress_bar(activate_timer.wait_time - activate_timer.time_left)
+		if not activation_progress.visible:
+			activation_progress.show()
+	else:
+		if activation_progress.visible:
+			activation_progress.hide()
+	
+	queue_redraw()
 
 func setup_tooltip():
 	# 🛡️ ЗАЩИТА: Если ресурс не назначен в инспекторе, мы просто выходим!
@@ -47,237 +87,373 @@ func setup_tooltip():
 		#var stylebox = new_theme.get_theme_stylebox('normal')
 		panel_back.theme = new_theme
 
-func change_state(new_state : DataManager.CardState):
-	prev_state = card_state
-	card_state = new_state
+func _on_state_set(value: DataManager.CardState) -> void:
+	if value == card_state: return
+	var old_state = card_state
+	card_state = value
+	_exit_state(old_state)
+	_enter_state()
+
+func _enter_state() -> void:
 	match card_state:
 		DataManager.CardState.APPEARS:
-			anim_card.play('appears')
+			anim_card.play("appears")
+		
 		DataManager.CardState.ON_FIELD:
-			change_collision_to_stacked_state()
-			input_pickable = true
+			collision_card.disabled = false
+			z_index = 0
+			if GameManager.dragged_card == self:
+				GameManager.dragged_card = null
+		
 		DataManager.CardState.DRAGGED:
-			if prev_state == DataManager.CardState.IN_STACK and not (stack and stack.is_dragging):
-				if stack and is_instance_valid(stack):
-					stack.remove_card(self)
-					#stack.calculate()
-					is_in_stack = false
-			change_collision_to_dragged_state()
-			z_index = 100
+			intersected_card_areas.clear()
+			collision_card.disabled = true
+			collision_card.disabled = false
+			z_index = 1000
+			GameManager.dragged_card = self
+		
 		DataManager.CardState.HOVER_STACK:
-			pass
+			z_index = 1000
+		
 		DataManager.CardState.ENTER_STACK:
-			if prev_state == DataManager.CardState.HOVER_STACK:
-				intersected_card = get_closest_card(intersected_areas)
-				stack = intersected_card.stack
-			change_collision_to_stacked_state()
-			enter_to_stack()
-		DataManager.CardState.IN_STACK:
-			is_in_stack = true
-			change_collision_to_invisible_state()
-			stack.calculate()
-		DataManager.CardState.EXIT_STACK:
-			pass
+			if intersected_card:
+				intersected_card.add_card_to_stack(self)
+		
+		DataManager.CardState.IN_STACK, \
+		DataManager.CardState.EXIT_STACK, \
 		DataManager.CardState.DESTROYED:
 			pass
-	print(DataManager.CardState.keys()[card_state] + ' ' + self.name)
 
+	print("%s %s" % [DataManager.CardState.keys()[card_state], name])
 
-func get_closest_card(cards : Array[Card]):
-	if cards.size() == 0:
-		return null
-	if cards.size() == 1:
-		return cards[0]
-	cards.sort_custom(func(a: Card, b: Card): return global_position.distance_to(a.global_position) < global_position.distance_to(b.global_position))
-	return cards[0]
+func _exit_state(old_state: DataManager.CardState) -> void:
+	match old_state:
+		DataManager.CardState.IN_STACK:
+			if get_parent() != GameManager.level:
+				call_deferred("reparent_to_level")
+		DataManager.CardState.DRAGGED:
+			if GameManager.dragged_card == self:
+				GameManager.dragged_card = null
+			
+			if intersected_card:
+				card_state = DataManager.CardState.ENTER_STACK
+			
+			# Очищаем пересечения
+			intersected_card_areas.clear()
+			intersected_card = null
+		
+		_ : pass
 
+	print("Выход из состояния: %s %s" % [DataManager.CardState.keys()[old_state], name])
 
-func drop_card():
-	if card_state == DataManager.CardState.HOVER_STACK:
-		change_state(DataManager.CardState.ENTER_STACK)
-	else:
-		change_state(DataManager.CardState.ON_FIELD)
-		z_index = DataManager.default_z_index
+func _draw() -> void:
+	var font = preload("uid://co45erws16hd7")
+	draw_string(font, Vector2.ZERO, str(is_stack), HORIZONTAL_ALIGNMENT_CENTER)
 
+func reparent_to_level() -> void:
+	var _level: Level = GameManager.level
+	var old_parrent_card: Card = get_parent().get_parent()
+	main_card = null
+	reparent(_level)
+	await get_tree().process_frame
+	old_parrent_card._check_is_stack()
 
-func _on_area_entered(area: Area2D) -> void:
-	# здесь добавить чек на стак, если будут баги
-	if card_state != DataManager.CardState.HOVER_STACK and card_state != DataManager.CardState.DRAGGED:
+func add_card_to_stack(card: Card) -> void:
+	if card == null or card == self:
+		print("Отмена стака: ", card.name, " и ", name, " не валидная карта")
 		return
-	var card : Card = area
-	if card.card_owner_type != DataManager.OwnerType.PLAYER:
-		return
-	if not intersected_areas.has(card):
-		intersected_areas.append(card)
-	change_state(DataManager.CardState.HOVER_STACK)
-	#if not stack:
-		#stack = card.stack
-
-
-func _on_area_exited(area: Area2D) -> void:
-	if card_state == DataManager.CardState.ENTER_STACK:
-		return
-	var card : Card = area
-	if intersected_areas.has(card):
-		intersected_areas.erase(card)
-	# здесь ошибка
-	if not is_in_stack:
-		stack = null
-	if intersected_areas.size() == 0:
-		change_state(DataManager.CardState.DRAGGED)
-
-
-func make_card_stacked():
-	is_in_stack = true
-	change_collision_to_stacked_state()
-
-
-func make_card_unstacked():
-	is_in_stack = false
-	change_collision_to_dragged_state()
-
-
-func change_collision_to_stacked_state():
-	# кто проверяет?
-	set_collision_layer_value(2, true)
-	set_collision_mask_value(2, false)
-
-
-func change_collision_to_dragged_state():
-	set_collision_layer_value(2, false)
-	set_collision_mask_value(2, true)
-
-
-func change_collision_to_invisible_state():
-	set_collision_layer_value(2, false)
-	set_collision_mask_value(2, false)
 	
+	# Защита от циклической зависимости (карта не может стать родителем своего родителя/потомка)
+	if card.is_ancestor_of(self) or self.is_ancestor_of(card):
+		print("Отмена стака: ", card.name, " и ", name, " уже в одной иерархии")
+		return
+		
+	if not card_container.get_children().is_empty():
+		print("Отмена стака: ", card.name, " и ", name, " в контейнере уже есть карта")
+		return
 	
-func enter_to_stack():
-	if not stack or not is_instance_valid(stack):
-		create_stack()
+	card.reparent(card_container)
+	card.position = Vector2(0, label_header.size.y)
+	card.card_state = DataManager.CardState.IN_STACK
+	card._check_is_stack()
+	
+	await get_tree().process_frame
+	
+	if main_card:
+		card.main_card = main_card
+		main_card.perform_is_stack_action()
 	else:
-		stack.add_card(self)
+		card.main_card = self
+	
+	card.z_index = card.get_index()
+	is_stack = true
 
+func _check_is_stack() -> void:
+	is_stack = !card_container.get_children().is_empty()
 
-func _on_anim_card_animation_finished(_anim_name: StringName) -> void:
+func _on_is_stack_set(value: bool) -> void:
+	is_stack = value
+	perform_is_stack_action()
+
+func perform_is_stack_action() -> void:
 	pass
 
-func _on_input_event(_viewport, event, _shape_idx):
-	if card_owner_type != DataManager.OwnerType.PLAYER:
-		return
-	if GameManager.is_captured:
-		return
-	#if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		#if event.pressed:
-		## === ЗАПРЕТ НА ПЕРЕТАСКИВАНИЕ ДЛЯ КАРТ ЗАКАЗОВ ===
-			#if card_type == DataManager.CardType.ORDER:
-				#return # раскомментируй две строки если хочешь активировать запрет
-		## ==========================
-			## Начинаем перетаскивание и запоминаем смещение мыши относительно центра
-			#GameManager.is_captured = true
-			#change_state(DataManager.CardState.DRAGGED)
-			#is_dragging = true
-			#offset = global_position - get_global_mouse_position()
-		#else:
-			## Отпускаем объект
-			#if card_state == DataManager.CardState.DRAGGED or card_state == DataManager.CardState.HOVER_STACK:
-				#print(self.name + ' dropped')
-				#is_dragging = false
-				#GameManager.is_captured = false
-				#drop_card()
+func _physics_process(delta: float) -> void:
+	if card_state == DataManager.CardState.DRAGGED:
+		global_position = get_global_mouse_position() + drag_offset
 
-
-func _on_panel_back_gui_input(event: InputEvent) -> void:
-	if card_owner_type != DataManager.OwnerType.PLAYER:
-		return
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
-		if event.pressed:
-		# === ЗАПРЕТ НА ПЕРЕТАСКИВАНИЕ ДЛЯ КАРТ ЗАКАЗОВ ===
-			if card_type == DataManager.CardType.ORDER:
-				return # раскомментируй две строки если хочешь активировать запрет
-				
-				return # раскомментируй две строки если хочешь активировать запрет
-		# ==========================
-			# Начинаем перетаскивание и запоминаем смещение мыши относительно центра
-			GameManager.is_captured = true
-			change_state(DataManager.CardState.DRAGGED)
-			is_dragging = true
-			offset = global_position - get_global_mouse_position()
-		else:
-			# Отпускаем объект
-			if card_state == DataManager.CardState.DRAGGED or card_state == DataManager.CardState.HOVER_STACK:
-				print(self.name + ' dropped')
-				is_dragging = false
-				GameManager.is_captured = false
-				drop_card()
-
-
-func _input(event):
-	if is_dragging and event is InputEventMouseMotion:
-		# Обновляем позицию объекта с учетом смещения
-		global_position = get_global_mouse_position() + offset
-	
-	# Страховка: если кнопка мыши отпущена за пределами Area2D
-	# здесь багованная история
-	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT and not event.pressed:
-		if card_state == DataManager.CardState.DRAGGED or card_state == DataManager.CardState.HOVER_STACK:
-			is_dragging = false
+func _input(event: InputEvent) -> void:
+	if event.is_action_released("left_mouse"):
+		if card_state == DataManager.CardState.DRAGGED:
+			if GameManager.dragged_card != self:
+				return
+			
+			GameManager.dragged_card = null
+			
+			print(self.name + ' dropped')
 			GameManager.is_captured = false
-			#drop_card()
-
-
-func create_stack():
-	print('create stack working')
-	stack = stack_scene.instantiate()
-	GameManager.level.add_child(stack)
-	stack.global_position = intersected_card.global_position
-	intersected_card.input_pickable = false
-	self.input_pickable = false
-	intersected_card.stack = stack
-	# здесь цимес
-	intersected_card.change_state(DataManager.CardState.ENTER_STACK)
-	stack.add_card(self)
-	intersected_areas.clear()
-	intersected_card = null
-
-func merge_stacks():
-	# значит у нас уже стек
-	# если у карты пересечения есть стек
-	var copy_stack : Stack = stack
-	for card in stack.cards: 
-		intersected_card.stack.add_card(card)
-	copy_stack.queue_free()
-
-func get_size():
-	return collision_card.shape.size
+				
+			# Отпускаем объект
+			card_state = DataManager.CardState.ON_FIELD
 	
-#func _on_mouse_entered() -> void:
-	#GameManager.hovered_card = self
-	#GameManager.is_hovering_card = true
-	#if card_state == DataManager.CardState.ON_FIELD:
-		#var tween : Tween = create_tween().set_parallel()
-		## TODO: сделать, чтобы scale был от центра
-		#tween.tween_property(self, "scale",  Vector2(1.05, 1.05), 0.1)
-		##tween.tween_callback(_on_mouse_exited).set_delay(3)
-#
-#func _on_mouse_exited() -> void:
-	#if GameManager.hovered_card != self: return
-	#GameManager.hovered_card = null
-	#GameManager.is_hovering_card = false
-	#var tween : Tween = create_tween().set_parallel()
-	#tween.tween_property(self, "scale",  Vector2(1, 1), 0.1)
-
+	elif event.is_action_pressed("left_mouse"):
+		if card_owner_type != DataManager.OwnerType.PLAYER:
+			return
+	
+		if GameManager.is_captured:
+			return
+		
+		if GameManager.hovered_card != self or GameManager.dragged_card:
+			return
+		
+	# === ЗАПРЕТ НА ПЕРЕТАСКИВАНИЕ ДЛЯ КАРТ ЗАКАЗОВ ===
+		if card_type == DataManager.CardType.ORDER:
+			return # раскомментируй две строки если хочешь активировать запрет
+	# ==========================
+		
+		# Начинаем перетаскивание и запоминаем смещение мыши относительно центра
+		GameManager.is_captured = true
+		card_state = DataManager.CardState.DRAGGED
+		drag_offset = global_position - get_global_mouse_position()
 
 func _on_panel_back_mouse_entered() -> void:
 	GameManager.hovered_card = self
 	GameManager.is_hovering_card = true
-	if card_state == DataManager.CardState.ON_FIELD:
-		var tween : Tween = create_tween().set_parallel()
-		tween.tween_property(self, "scale",  Vector2(1.05, 1.05), 0.1)
+	var tween : Tween = create_tween().set_parallel()
+	tween.tween_property(self, "scale",  Vector2(1.05, 1.05), 0.1)
 
 func _on_panel_back_mouse_exited() -> void:
 	GameManager.hovered_card = null
 	GameManager.is_hovering_card = false
 	var tween : Tween = create_tween().set_parallel()
 	tween.tween_property(self, "scale",  Vector2(1, 1), 0.1)
+
+func _on_area_entered(area: Area2D) -> void:
+	if not area is Card: return
+	if card_state != DataManager.CardState.DRAGGED: return
+	
+	# Защита от дубликатов и от карт внутри нашего же стака
+	if card_container.get_children().has(area): return
+	if intersected_card_areas.has(area): return
+	
+	intersected_card_areas.append(area)
+	intersected_card = _find_best_target()
+
+func _on_area_exited(area: Area2D) -> void:
+	if not area is Card: return
+	
+	intersected_card_areas.erase(area)
+	intersected_card = _find_best_target()
+
+func _find_best_target() -> Card:
+	if intersected_card_areas.size() == 1: return intersected_card_areas[0]
+		
+	var best_card: Card = null
+	var min_dist: float = INF
+		
+	for card in intersected_card_areas:
+		# Пропускаем карты, которые уже являются нашими предками или потомками
+		if card.is_ancestor_of(self) or self.is_ancestor_of(card): continue
+		
+		#Пропускаем карты, которые уже собраны в стак (если не хотите стак в стак)
+		if card.is_stack: continue
+		
+		var dist = global_position.distance_to(card.global_position)
+		if dist < min_dist:
+			min_dist = dist
+			best_card = card
+				
+	return best_card
+
+#region Parts
+
+func check_order_consistency() -> bool:
+		
+	var submitted_card = card_container.get_child(0)
+	# ИСПРАВЛЕНИЕ: берем order_res, а не monster_res
+	var order : OrderRes = order_card.order_res 
+	
+# ==========================================
+	# ЛОГИКА 1: ЗАКАЗ НА КОНКРЕТНУЮ ЧАСТЬ ТЕЛА
+	# ==========================================
+	if order.order_type == DataManager.CardType.MONSTER_PART:
+		# Если подсунули не часть тела — отказ
+		if submitted_card.card_type != DataManager.CardType.MONSTER_PART:
+			return false
+			
+		var part = submitted_card as CardActorPart
+		
+		# 1. Проверяем тип конечности (например, Голова)
+		if order.quest_part_conditions.size() > 0:
+			if part.part_type != order.quest_part_conditions[0]:
+				return false
+				
+		# 2. Проверяем базу (например, Скелет)
+		# Сначала ищем в массиве баз:
+		if order.quest_base_conditions.size() > 0:
+			if part.part_res.part_base != order.quest_base_conditions[0]:
+				return false
+		# Если массив пуст, проверяем одиночную переменную базы:
+		elif order.check_base_condition != null:
+			if part.part_res.part_base != order.check_base_condition:
+				return false
+				
+		# 3. Проверяем уровень, только если галочка "строгий уровень" включена
+		if order.check_entire_monster_grade:
+			if part.card_grade != order.quest_grade_conditions:
+				return false
+				
+		return true
+
+# ==========================================
+	# ЛОГИКА 2: ЗАКАЗ НА ЦЕЛОГО МОНСТРА (или Франкенштейна)
+	# ==========================================
+	elif order.order_type == DataManager.CardType.MONSTER:
+		# Если подсунули не монстра — отказ
+		if submitted_card.card_type != DataManager.CardType.MONSTER:
+			return false
+			
+		var monster = submitted_card
+		if monster.monster_parts.size() == 0:
+			return false
+			
+		# 1. Проверка Уровня ВСЕГО монстра (если галочка включена)
+		if order.check_entire_monster_grade:
+			if monster.card_grade < order.quest_grade_conditions:
+				return false
+				
+		# 2. Собираем особые требования по частям тела в словарь
+		# Ключ: Тип конечности (HEAD, L_ARM), Значение: Требуемая база (SKELETON, ZOMBIE)
+		var special_parts = {}
+		for i in range(order.quest_part_conditions.size()):
+			var req_part = order.quest_part_conditions[i]
+			var req_base = order.quest_base_conditions[i] # Берем базу из нового массива
+			special_parts[req_part] = req_base
+			
+		# 3. Список всех возможных слотов для проверки
+		# Убедись, что тут перечислены все твои части тела из DataManager.MonsterPartType
+		var all_part_types = [
+			DataManager.MonsterPartType.HEAD,
+			DataManager.MonsterPartType.BODY, 
+			DataManager.MonsterPartType.L_ARM,
+			DataManager.MonsterPartType.R_ARM,
+			DataManager.MonsterPartType.L_LEG,
+			DataManager.MonsterPartType.R_LEG
+		]
+		
+		# 4. Жесткая проверка каждой конечности
+		for part_type in all_part_types:
+			var monster_part = monster.get_part_res(part_type)
+			
+			# Сценарий А: Заказчик выставил специфическое требование на эту часть
+			if special_parts.has(part_type):
+				if not monster_part:
+					return false # Запрошенной части нет на теле
+				
+				if monster_part.part_base != special_parts[part_type]:
+					return false # Пришита деталь не той базы (например, ждали руку зомби, а тут скелет)
+					
+			# Сценарий Б: Спец-требований нет, проверяем по основной базе монстра
+# Сценарий Б: Спец-требований нет, проверяем по основной базе монстра
+			else:
+				# Если у заказа есть основная база (например, нужен Зомби)
+				if order.check_base_condition != null: 
+					if not monster_part:
+						return false # Не хватает конечности, монстр собран не полностью
+						
+					if monster_part.part_base != order.check_base_condition:
+						return false # Эта часть от другой базы, и спец-заказа на нее не было
+						
+		return true
+
+	# === ДОБАВЬ ВОТ ЭТУ СТРОКУ ===
+	# Срабатывает, если order_type вообще не опознан (страховка от багов)
+	return false
+
+#endregion
+
+#region Продукция
+
+func get_all_nested_cards_recursive() -> Array[Card]:
+	var result: Array[Card] = []
+	if card_container == null: return []
+	
+	for child in card_container.get_children():
+		if child is Card:
+			result.append(child)
+			result.append_array(child.get_all_nested_cards_recursive())
+	
+	return result	
+
+func get_all_nested_cards_actor_part() -> Array[CardActorPart]:
+	var cards: Array[Card] = get_all_nested_cards_recursive()
+	var result: Array[CardActorPart] = []
+	
+	for card in cards:
+		if card is CardActorPart:
+			result.append(card)
+	
+	return result
+
+func get_all_nested_parts() -> Array[PartRes]:
+	var cards: Array[Card] = get_all_nested_cards_recursive()
+	var result: Array[PartRes] = []
+	
+	for card in cards:
+		result.append(card.part_res)
+	
+	return result
+
+#func start_production():
+#
+	#if production_card and not production_card.is_product_in_progress:
+		#activation_progress.show()
+		##match production_card.production_type:
+			##DataManager.ProductionType.PART_CREATOR:
+				##production_card.set_parts(parts)
+			##DataManager.ProductionType.MONSTER_CREATOR:
+				##var monster_cards : Array[CardActorMonster]
+				##for card in cards.slice(1):
+					##monster_cards.append(card)
+				##production_card.set_monsters(monster_cards)
+			##DataManager.ProductionType.PART_MERGER:
+				##for card in cards.slice(1):
+					##var part : CardActorPart = card
+					##parts.append(part)
+				##production_card.set_parts(parts)
+		#production_card.product()
+
+#func stop_production():
+	#if production_card and production_card.is_product_in_progress:
+		#production_card.stop_product()
+#
+#
+#func continue_production():
+	#activation_progress.show()
+	#if production_card:
+		#production_card.continue_product()
+
+func update_progress_bar(new_value : float):
+	activation_progress.value = new_value
+
+#endregion

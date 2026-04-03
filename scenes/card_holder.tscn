@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://coec2fnqd70g0"]
 
-[ext_resource type="Script" uid="uid://c7xcd6biaogee" path="res://scripts/other/card.gd" id="1_d81rb"]
-[ext_resource type="StyleBox" uid="uid://cwov70q3x6lmv" path="res://styles/card_back.tres" id="2_6u4wf"]
-[ext_resource type="PackedScene" uid="uid://k15y2y2mejvy" path="res://scenes/stack.tscn" id="2_sy11y"]
-[ext_resource type="LabelSettings" uid="uid://3uwccgdeeovy" path="res://styles/label_header.tres" id="4_kg30u"]
-[ext_resource type="FontFile" uid="uid://co45erws16hd7" path="res://styles/DigitalPixelV124-Regular.otf" id="4_sy11y"]
+[ext_resource type="Script" uid="uid://c7xcd6biaogee" path="res://scripts/other/card.gd" id="1_p1g5y"]
+[ext_resource type="StyleBox" uid="uid://cwov70q3x6lmv" path="res://styles/card_back.tres" id="3_wo4x0"]
+[ext_resource type="FontFile" uid="uid://co45erws16hd7" path="res://styles/DigitalPixelV124-Regular.otf" id="4_uvamn"]
+[ext_resource type="StyleBox" uid="uid://dvhj56spl7rhs" path="res://styles/bar_fill_purple.tres" id="5_nhct7"]
+[ext_resource type="LabelSettings" uid="uid://3uwccgdeeovy" path="res://styles/label_header.tres" id="5_uem75"]
+[ext_resource type="StyleBox" uid="uid://c85uuv5k61xpl" path="res://styles/bar_not_fill.tres" id="6_wo4x0"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sy11y"]
 content_margin_left = 2.0
@@ -12,9 +13,13 @@ content_margin_top = 2.0
 content_margin_right = 2.0
 content_margin_bottom = 4.0
 bg_color = Color(0.1254902, 0.18039216, 0.21568628, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_detail = 20
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kg30u"]
-size = Vector2(128, 191.99219)
+resource_local_to_scene = true
+size = Vector2(128, 192)
 
 [sub_resource type="Animation" id="Animation_sy11y"]
 length = 0.001
@@ -68,21 +73,22 @@ _data = {
 &"appears": SubResource("Animation_kg30u")
 }
 
-[node name="Card" type="Area2D" unique_id=1783802623]
-collision_mask = 0
-script = ExtResource("1_d81rb")
-stack_scene = ExtResource("2_sy11y")
-stylebox_tooltip = ExtResource("2_6u4wf")
-font_tooltip = ExtResource("4_sy11y")
+[node name="CardHolder" type="Area2D" unique_id=1783802623]
+collision_mask = 3
+script = ExtResource("1_p1g5y")
+stylebox_tooltip = ExtResource("3_wo4x0")
+font_tooltip = ExtResource("4_uvamn")
 
-[node name="panel_back" type="PanelContainer" parent="." unique_id=1622366662]
+[node name="panel_back" type="PanelContainer" parent="." unique_id=1073906119]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(128, 192)
 offset_right = 128.0
 offset_bottom = 192.0
 pivot_offset_ratio = Vector2(0.5, 0.5)
+mouse_filter = 1
+mouse_behavior_recursive = 2
 mouse_default_cursor_shape = 2
-theme_override_styles/panel = ExtResource("2_6u4wf")
+theme_override_styles/panel = ExtResource("3_wo4x0")
 
 [node name="container_content" type="VBoxContainer" parent="panel_back" unique_id=1648399696]
 unique_name_in_owner = true
@@ -98,11 +104,25 @@ layout_mode = 2
 mouse_behavior_recursive = 1
 theme_override_styles/normal = SubResource("StyleBoxFlat_sy11y")
 text = "SOME HEAD"
-label_settings = ExtResource("4_kg30u")
+label_settings = ExtResource("5_uem75")
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 uppercase = true
+
+[node name="activation_progress" type="ProgressBar" parent="panel_back/container_content/label_header" unique_id=785111382]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 16)
+layout_mode = 0
+offset_top = -24.0
+offset_right = 128.0
+offset_bottom = 8.0
+mouse_filter = 2
+mouse_behavior_recursive = 1
+theme_override_styles/background = ExtResource("5_nhct7")
+theme_override_styles/fill = ExtResource("6_wo4x0")
+value = 15.0
+show_percentage = false
 
 [node name="rect_main_img" type="TextureRect" parent="panel_back/container_content" unique_id=665974388]
 unique_name_in_owner = true
@@ -113,6 +133,7 @@ stretch_mode = 3
 
 [node name="collision_card" type="CollisionShape2D" parent="." unique_id=2046268927]
 unique_name_in_owner = true
+visible = false
 position = Vector2(64, 96)
 shape = SubResource("RectangleShape2D_kg30u")
 
@@ -124,12 +145,14 @@ libraries/ = SubResource("AnimationLibrary_6ligt")
 unique_name_in_owner = true
 wait_time = 5.0
 
+[node name="CardContainer" type="Node2D" parent="." unique_id=335094649]
+unique_name_in_owner = true
+
 [connection signal="area_entered" from="." to="." method="_on_area_entered"]
 [connection signal="area_exited" from="." to="." method="_on_area_exited"]
 [connection signal="input_event" from="." to="." method="_on_input_event"]
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
-[connection signal="gui_input" from="panel_back" to="." method="_on_panel_back_gui_input"]
 [connection signal="mouse_entered" from="panel_back" to="." method="_on_panel_back_mouse_entered"]
 [connection signal="mouse_exited" from="panel_back" to="." method="_on_panel_back_mouse_exited"]
 [connection signal="animation_finished" from="anim_card" to="." method="_on_anim_card_animation_finished"]

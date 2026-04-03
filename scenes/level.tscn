@@ -10,6 +10,7 @@
 [ext_resource type="Script" uid="uid://celh7vt4kjiua" path="res://scripts/other/music_lvl.gd" id="6_2r41h"]
 
 [node name="Level" type="Node2D" unique_id=894589167]
+z_as_relative = false
 script = ExtResource("1_w8frs")
 
 [node name="Camera2D" type="Camera2D" parent="." unique_id=1627754645]
@@ -34,10 +35,12 @@ texture = ExtResource("2_mx8sn")
 
 [node name="player_actors" type="Node2D" parent="." unique_id=945480212]
 unique_name_in_owner = true
+z_as_relative = false
 position = Vector2(1, 1)
 
 [node name="player_loot" type="Node2D" parent="." unique_id=1347123232]
 unique_name_in_owner = true
+y_sort_enabled = true
 
 [node name="player_locations" type="Node2D" parent="." unique_id=80435689]
 unique_name_in_owner = true
