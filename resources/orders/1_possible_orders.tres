@@ -1,11 +1,22 @@
 [gd_resource type="Resource" script_class="PossibleOrders" format=3 uid="uid://3jm8wfhy1ka7"]
 
 [ext_resource type="Script" uid="uid://c1tk4d5hutmfr" path="res://resources/res_scripts/order_res.gd" id="1_am43i"]
-[ext_resource type="Resource" uid="uid://b5rm0307svbid" path="res://resources/orders/order_sceleton_head.tres" id="2_0ixk1"]
 [ext_resource type="Resource" uid="uid://bjkab4y45ujnd" path="res://resources/orders/order_sceleton_zombie_head.tres" id="3_4dtd6"]
+[ext_resource type="Resource" uid="uid://b47lu56e8rdi0" path="res://resources/orders/sceleton/order_sceleton_body.tres" id="3_76nnt"]
 [ext_resource type="Script" uid="uid://bjwg2xc8bbm7j" path="res://resources/orders/possible_orders.gd" id="4_56b2w"]
+[ext_resource type="Resource" uid="uid://dwf6u0dcanrl0" path="res://resources/orders/sceleton/order_sceleton_body_t2.tres" id="4_i60wa"]
+[ext_resource type="Resource" uid="uid://b5rm0307svbid" path="res://resources/orders/sceleton/order_sceleton_head.tres" id="5_28tyb"]
+[ext_resource type="Resource" uid="uid://eoyl5cotn8y8" path="res://resources/orders/sceleton/order_sceleton_head_t2.tres" id="6_cv8p7"]
+[ext_resource type="Resource" uid="uid://ynq88st0rgj8" path="res://resources/orders/sceleton/order_sceleton_l_arm.tres" id="7_1hw13"]
+[ext_resource type="Resource" uid="uid://dtppni3j730mo" path="res://resources/orders/sceleton/order_sceleton_l_arm_t2.tres" id="8_f33tb"]
+[ext_resource type="Resource" uid="uid://bokheeaj81nb5" path="res://resources/orders/sceleton/order_sceleton_l_leg.tres" id="9_l54sn"]
+[ext_resource type="Resource" uid="uid://dxf5q1vc82iav" path="res://resources/orders/sceleton/order_sceleton_l_leg_t2.tres" id="10_4rhut"]
+[ext_resource type="Resource" uid="uid://6igypi12fh22" path="res://resources/orders/sceleton/order_sceleton_r_arm.tres" id="11_y26gi"]
+[ext_resource type="Resource" uid="uid://drdqst2d0teq7" path="res://resources/orders/sceleton/order_sceleton_r_arm_t2.tres" id="12_4fmps"]
+[ext_resource type="Resource" uid="uid://drp6mgnk5ty5t" path="res://resources/orders/sceleton/order_sceleton_r_leg.tres" id="13_as7vp"]
+[ext_resource type="Resource" uid="uid://1ykyecv6d1gd" path="res://resources/orders/sceleton/order_sceleton_r_leg_t2.tres" id="14_d7qmf"]
 
 [resource]
 script = ExtResource("4_56b2w")
-orders = Array[ExtResource("1_am43i")]([ExtResource("2_0ixk1"), ExtResource("3_4dtd6")])
+orders = Array[ExtResource("1_am43i")]([ExtResource("3_4dtd6"), ExtResource("3_76nnt"), ExtResource("4_i60wa"), ExtResource("5_28tyb"), ExtResource("6_cv8p7"), ExtResource("7_1hw13"), ExtResource("8_f33tb"), ExtResource("9_l54sn"), ExtResource("10_4rhut"), ExtResource("11_y26gi"), ExtResource("12_4fmps"), ExtResource("13_as7vp"), ExtResource("14_d7qmf")])
 metadata/_custom_type_script = "uid://bjwg2xc8bbm7j"

@@ -86,16 +86,6 @@ var chances_dict : Dictionary[EntityGrade, float] = {
 	EntityGrade.T3 : 1
 }
 
-# Все возможные заказы в игре
-@export var all_possible_orders : Array[OrderRes] = [
-			#preload("res://resources/orders/order_zombie_hand.tres"),
-			#preload("res://resources/orders/order_skeleton_head.tres"),
-			preload("res://resources/orders/order_sceleton_zombie_head.tres"),
-			preload("res://resources/orders/order_sceleton_zombie_head.tres"),
-			preload("res://resources/orders/order_sceleton_head.tres"),
-		]
-
-
 
 
 # Все возможные товары в магазине (Лопаты, рецепты, локации и т.д.)

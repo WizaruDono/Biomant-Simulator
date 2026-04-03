@@ -47,9 +47,20 @@ func start_rewarding():
 
 func perform_is_stack_action() -> void:
 	var is_order_consistency: bool = check_order_consistency()
-	print(is_order_consistency)
 	if is_order_consistency:
+		var order_card: Card = card_container.get_child(0)
+		
+		if not order_card.card_container.get_children().is_empty():
+			var outside_card: Card = order_card.card_container.get_child(0)
+			outside_card.reparent_to_level()
+			var tween: Tween = create_tween()
+			var target_pos: Vector2 = outside_card.global_position + Vector2(128 * randf_range(0.5, 1.0), 128 * randf_range(0.5, 1.0))
+			tween.tween_property(outside_card, "global_position", target_pos, 0.3).set_trans(Tween.TRANS_BACK)
+			
+			await get_tree().process_frame
+			
 		card_container.get_child(0).queue_free()
+		queue_free()
 
 
 func create_rewards():
@@ -87,6 +98,9 @@ func check_order_consistency() -> bool:
 		# Монстр
 		DataManager.CardType.MONSTER:
 			if submitted_card is CardActorMonster:
+				if submitted_card.monster_parts.size() < 6:
+					return false
+				
 				# Проверка по частям тела
 				var available_parts: Array[PartRes] = submitted_card.monster_parts
 				var real_available_parts: Array[PartRes] = [null,null,null,null,null,null]
@@ -96,9 +110,6 @@ func check_order_consistency() -> bool:
 				
 				for i in range(real_available_parts.size()):
 					var part: PartRes = real_available_parts[i]
-					
-					print(quest_part_conditions[i])
-					print(part.part_type)
 					
 					if part.part_type != quest_part_conditions[i]:
 						return false
@@ -111,9 +122,6 @@ func check_order_consistency() -> bool:
 		# Часть тела
 		DataManager.CardType.MONSTER_PART:
 			if submitted_card is CardActorPart:
-				print(quest_base_conditions[0])
-				print()
-				
 				if quest_part_conditions[0] != submitted_card.part_res.part_type:
 					return false
 				

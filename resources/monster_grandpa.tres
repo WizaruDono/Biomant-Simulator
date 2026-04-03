@@ -30,6 +30,7 @@ monster_R_leg_texture = ExtResource("5_pjlsd")
 actor_health = 20
 card_name = "Дед-Скелет"
 card_desc = "Роет все что движется и не движется. Перетащите его на кладбище. Обязательно что-нибудь найдет."
+card_grade = 1
 card_texture = ExtResource("1_upita")
 card_type = 3
 metadata/_custom_type_script = "uid://bhngpc4lsyt3f"
