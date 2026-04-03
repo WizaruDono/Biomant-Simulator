@@ -241,7 +241,6 @@ func get_loot():
 	var pos_offset = Vector2(randi_range(80, 100), randi_range(80, 100))
 	if randf() < 0.5: pos_offset *= -1
 	loot.global_position = global_position + pos_offset
-<<<<<<< HEAD
 	loot.card_state = DataManager.CardState.ON_FIELD
 
 
@@ -268,7 +267,8 @@ func get_loot():
 	var pos : Vector2 = global_position + Vector2(randi_range(80, 100), randi_range(80, 100)) if randf() < 0.5 else global_position + Vector2(randi_range(-80, -100), randi_range(-80, -100))
 	loot.global_position += pos 
 	loot.change_state(DataManager.CardState.ON_FIELD)
-'''
+
 =======
 	loot.change_state(DataManager.CardState.ON_FIELD)
 >>>>>>> ed96fc68bfd620fe55a21f233d0d5eb87928c62d
+'''
