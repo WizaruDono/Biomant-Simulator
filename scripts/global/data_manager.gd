@@ -95,22 +95,28 @@ var chances_dict : Dictionary[EntityGrade, float] = {
 const BASE_JOINTS = {
 	MonsterBase.ZOMBIE: {
 		MonsterPartType.HEAD:  Vector2(3.0,		-49.0),
-		MonsterPartType.L_ARM: Vector2(-7.0,	-41.0),
-		MonsterPartType.R_ARM: Vector2(12.0,	-41.0),
-		MonsterPartType.L_LEG: Vector2(-7.0,	-9.0),
+		MonsterPartType.L_ARM: Vector2(-7.0,		-41.0),
+		MonsterPartType.R_ARM: Vector2(12.0,		-41.0),
+		MonsterPartType.L_LEG: Vector2(-7.0,		-9.0),
 		MonsterPartType.R_LEG: Vector2(6.0,		-9.0)
 	},
 	MonsterBase.SKELETON: {
 		MonsterPartType.HEAD:  Vector2(5.0,		-49.0),
-		MonsterPartType.L_ARM: Vector2(-7.0,	-41.0),
-		MonsterPartType.R_ARM: Vector2(12.0,	-41.0),
-		MonsterPartType.L_LEG: Vector2(-7.0,	-14.0),
+		MonsterPartType.L_ARM: Vector2(-7.0,		-41.0),
+		MonsterPartType.R_ARM: Vector2(12.0,		-41.0),
+		MonsterPartType.L_LEG: Vector2(-7.0,	-	14.0),
 		MonsterPartType.R_LEG: Vector2(6.0,		-15.0)
+	},
+	MonsterBase.COCK: {
+		MonsterPartType.HEAD:  Vector2(-65.0,	-50.0),
+		MonsterPartType.L_ARM: Vector2(-54.0,	-59.0),
+		MonsterPartType.R_ARM: Vector2(-76.0,	-59.0),
+		MonsterPartType.L_LEG: Vector2(-59.0,	-85.0),
+		MonsterPartType.R_LEG: Vector2(-69.0,	-85.0)
 	},
 	# Добавляем сюда новые виды по мере их отрисовки
 	# можно не добавлять апгрейднутых существ, если их размеры тела одинаковы
-	
-	#MonsterRace.SKELETON: {
+	#MonsterBase.SKELETON: {
 		#MonsterPartType.HEAD:  Vector2(,	),
 		#MonsterPartType.L_ARM: Vector2(,	),
 		#MonsterPartType.R_ARM: Vector2(,	),
