@@ -8,6 +8,8 @@ class_name CardOrder
 @export var quest_part_conditions : Array[DataManager.MonsterPartType]
 @export var quest_grade_conditions : DataManager.EntityGrade
 @export var quest_family_conditions : Array[DataManager.MonsterFamily]
+@export var quest_base_conditions: Array[DataManager.MonsterBase]
+@export var quest_perc_conditions: DataManager.PercType
 @export var order_type : DataManager.CardType
 @export var reward_amount : int
 @export var special_reward : CardRes
@@ -28,6 +30,7 @@ func initialize():
 	quest_part_conditions = order_res.quest_part_conditions
 	quest_grade_conditions = order_res.quest_grade_conditions
 	quest_family_conditions = order_res.quest_family_conditions
+	quest_base_conditions = order_res.quest_base_conditions
 	check_entire_monster_grade = order_res.check_entire_monster_grade
 	order_type = order_res.order_type
 	reward_amount = order_res.reward_amount
@@ -75,14 +78,55 @@ func check_order_consistency() -> bool:
 		submitted_card.reparent_to_level()
 		return false
 	
+	# Проверка по уровню
+	if check_entire_monster_grade:
+		if submitted_card.card_grade < quest_grade_conditions:
+			return false
+	
 	match order_type:
 		# Монстр
 		DataManager.CardType.MONSTER:
-			
-			# Проверка по уровню
-			if check_entire_monster_grade:
-				if submitted_card.card_grade < quest_grade_conditions:
+			if submitted_card is CardActorMonster:
+				# Проверка по частям тела
+				var available_parts: Array[PartRes] = submitted_card.monster_parts
+				var real_available_parts: Array[PartRes] = [null,null,null,null,null,null]
+				
+				for part in available_parts:
+					real_available_parts[part.part_type] = part
+				
+				for i in range(real_available_parts.size()):
+					var part: PartRes = real_available_parts[i]
+					
+					print(quest_part_conditions[i])
+					print(part.part_type)
+					
+					if part.part_type != quest_part_conditions[i]:
+						return false
+					
+					if part.part_base != quest_base_conditions[i]:
+						return false
+			else:
+				return false
+		
+		# Часть тела
+		DataManager.CardType.MONSTER_PART:
+			if submitted_card is CardActorPart:
+				print(quest_base_conditions[0])
+				print()
+				
+				if quest_part_conditions[0] != submitted_card.part_res.part_type:
 					return false
+				
+				if quest_base_conditions[0] != submitted_card.part_res.part_base:
+					return false
+				
+				if quest_family_conditions[0] != submitted_card.part_res.part_family:
+					return false
+				
+				if quest_perc_conditions != submitted_card.part_res.part_perc:
+					return false
+			else:
+				return false
 	
 	return true
 

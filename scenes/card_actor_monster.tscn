@@ -2,25 +2,28 @@
 
 [ext_resource type="PackedScene" uid="uid://dv1lj8l5ryf51" path="res://scenes/card_actor.tscn" id="1_gkcy4"]
 [ext_resource type="Script" uid="uid://cfnbmna8drwsc" path="res://scripts/other/card_actor_monster.gd" id="2_87efw"]
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="3_rkygk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_rkygk"]
+resource_local_to_scene = true
+size = Vector2(128, 192)
 
 [node name="CardActorMonster" unique_id=310193723 instance=ExtResource("1_gkcy4")]
 script = ExtResource("2_87efw")
 monster_res = null
-monster_perc = null
-monster_parts = null
-is_can_love = null
-actor_name = null
-actor_desc = null
-actor_health = null
-actor_damage = null
-card_state = null
-prev_state = null
-is_dragging = null
-prev_z_index = null
-card_type = null
-card_grade = null
-card_cost = null
-card_owner_type = null
+monster_perc = 0
+monster_parts = Array[ExtResource("3_rkygk")]([])
+is_can_love = true
+
+[node name="activation_progress" parent="." index="0" unique_id=785111382]
+offset_right = 128.0
+offset_bottom = 0.0
+
+[node name="panel_back" parent="." index="1" unique_id=967893501]
+custom_minimum_size = Vector2(128, 192)
+offset_top = 0.0
+mouse_filter = 0
+mouse_behavior_recursive = 2
 
 [node name="rect_main_img" parent="panel_back/container_content" parent_id_path=PackedInt32Array(1648399696) index="1" unique_id=665974388]
 custom_minimum_size = Vector2(64, 64)
@@ -76,3 +79,6 @@ size_flags_vertical = 4
 
 [node name="HBoxContainer" parent="panel_back/container_content/MarginContainer" parent_id_path=PackedInt32Array(1460528313) index="0" unique_id=26702382]
 size_flags_horizontal = 4
+
+[node name="collision_card" parent="." index="2" unique_id=2046268927]
+shape = SubResource("RectangleShape2D_rkygk")

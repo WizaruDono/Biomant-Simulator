@@ -4,9 +4,8 @@ class_name OrderRes
 @export var quest_part_conditions : Array[DataManager.MonsterPartType]
 @export var quest_grade_conditions : DataManager.EntityGrade
 @export var quest_family_conditions : Array[DataManager.MonsterFamily]
-
-# === НОВОЕ ДЛЯ ГИБКОСТИ ===
 @export var quest_base_conditions : Array[DataManager.MonsterBase]
+@export var quest_perc_conditions: DataManager.PercType
 @export var check_base_condition : DataManager.MonsterBase # Нужен именно Зомби или Скелет, или ...
 @export var check_entire_monster_grade : bool = false # Проверять тир ВСЕГО монстра, а не только частей
 # ==========================

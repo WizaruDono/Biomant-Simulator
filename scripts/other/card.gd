@@ -32,9 +32,10 @@ signal initialized
 @onready var activate_timer: Timer = %activate_timer
 @onready var rect_main_img: TextureRect = %rect_main_img
 @onready var label_header: Label = %label_header
-@onready var panel_back: PanelContainer = %panel_back
+@onready var panel_back: Button = %panel_back
 @onready var card_container: Node2D = %CardContainer
 @onready var activation_progress: ProgressBar = %activation_progress
+@onready var container_content: VBoxContainer = %container_content
 
 var intersected_card_areas: Array[Card]
 var is_stack: bool = false: set = _on_is_stack_set
@@ -183,9 +184,6 @@ func add_card_to_stack(card: Card) -> void:
 	card.position = Vector2(0, label_header.size.y)
 	card.card_state = DataManager.CardState.IN_STACK
 	
-	#card._check_is_stack()
-	#_check_is_stack()
-	
 	if main_card:
 		card.main_card = main_card
 	else:
@@ -193,8 +191,10 @@ func add_card_to_stack(card: Card) -> void:
 	
 	card.main_card._check_is_stack()
 	
+	if card.main_card != self:
+		_check_is_stack()
+	
 	card.z_index = card.get_index()
-	is_stack = true
 
 func _check_is_stack() -> void:
 	is_stack = !card_container.get_children().is_empty()
@@ -211,6 +211,12 @@ func perform_is_stack_action() -> void:
 func _physics_process(delta: float) -> void:
 	if card_state == DataManager.CardState.DRAGGED:
 		global_position = get_global_mouse_position() + drag_offset
+
+func _on_panel_back_button_down() -> void:
+	pass # Replace with function body.
+
+func _on_panel_back_button_up() -> void:
+	pass # Replace with function body.
 
 func _input(event: InputEvent) -> void:
 	if event.is_action_released("left_mouse"):
@@ -340,3 +346,6 @@ func update_progress_bar(new_value : float):
 	activation_progress.value = new_value
 
 #endregion
+
+func _on_container_content_resized() -> void:
+	panel_back.size.y = container_content.size.y

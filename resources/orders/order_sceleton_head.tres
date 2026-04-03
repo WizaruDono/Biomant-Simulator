@@ -6,7 +6,6 @@
 [resource]
 script = ExtResource("1_8vifb")
 quest_part_conditions = Array[int]([1])
-quest_grade_conditions = 1
 quest_family_conditions = Array[int]([0])
 quest_base_conditions = Array[int]([0])
 order_type = 2
