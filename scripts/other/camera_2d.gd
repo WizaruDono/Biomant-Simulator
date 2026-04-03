@@ -5,6 +5,10 @@ var zoom_speed = 0.2
 # Состояние перетаскивания
 var is_dragging = false
 
+
+func _ready() -> void:
+	SignalManager.card_focused.connect(_on_camera_focused)
+
 func _unhandled_input(event):
 	_process_zoom(event)
 	_process_camera_movement(event)
@@ -35,3 +39,9 @@ func modify_zoom(delta: float) -> void:
 
 	var new_mouse_pos := get_global_mouse_position()
 	position += mouse_pos - new_mouse_pos
+
+
+func _on_camera_focused(target_position: Vector2):
+	var tween = create_tween()
+	tween.tween_property(self, "position", target_position, 0.1)
+	pass
