@@ -3,21 +3,15 @@
 [ext_resource type="Script" uid="uid://bhngpc4lsyt3f" path="res://resources/res_scripts/monster_res.gd" id="1_8wnl7"]
 [ext_resource type="Texture2D" uid="uid://c5c4rr6ad056a" path="res://img/m_grandpa_digger.png" id="1_upita"]
 [ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="2_30cyi"]
-[ext_resource type="Resource" uid="uid://x4yamldlethv" path="res://resources/skelet_2/part_skeletR_body.tres" id="3_cl1r8"]
-[ext_resource type="Resource" uid="uid://dokfgl66o7agf" path="res://resources/zombie_1/part_zombie_head.tres" id="4_cl1r8"]
-[ext_resource type="Resource" uid="uid://6hxff1j5jkpd" path="res://resources/skelet_2/part_skeletR_L_arm.tres" id="5_f6m6p"]
-[ext_resource type="Resource" uid="uid://bop3452jbqiv6" path="res://resources/skelet_2/part_skeletR_L_leg.tres" id="6_qdvja"]
-[ext_resource type="Resource" uid="uid://0cavgys33bod" path="res://resources/skelet_2/part_skeletR_R_arm.tres" id="7_wadb1"]
-[ext_resource type="Resource" uid="uid://dyb12dmlr80q0" path="res://resources/skelet_2/part_skeletR_R_leg.tres" id="8_wgcpb"]
 
 [resource]
 script = ExtResource("1_8wnl7")
 monster_perc = 1
 monster_families = Array[int]([2])
-monster_parts = Array[ExtResource("2_30cyi")]([ExtResource("5_f6m6p"), ExtResource("8_wgcpb"), ExtResource("6_qdvja"), ExtResource("4_cl1r8"), ExtResource("7_wadb1"), ExtResource("3_cl1r8")])
 actor_health = 100
 card_name = "Дед-Скелет"
 card_desc = "Роет все что движется и не движется. Перетащите его на кладбище. Обязательно что-нибудь найдет."
+card_grade = 1
 card_texture = ExtResource("1_upita")
 card_type = 3
 metadata/_custom_type_script = "uid://bhngpc4lsyt3f"

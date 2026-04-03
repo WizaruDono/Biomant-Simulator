@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="OrderRes" format=3 uid="uid://drp6mgnk5ty5t"]
+
+[ext_resource type="Texture2D" uid="uid://h0egv71gh5j" path="res://img/t_test.png" id="1_y7rrk"]
+[ext_resource type="Script" uid="uid://c1tk4d5hutmfr" path="res://resources/res_scripts/order_res.gd" id="2_nmbso"]
+
+[resource]
+script = ExtResource("2_nmbso")
+quest_part_conditions = Array[int]([5])
+quest_family_conditions = Array[int]([0])
+quest_base_conditions = Array[int]([0])
+order_type = 2
+card_name = "заказ"
+card_desc = "Правая нога скелета"
+activate_speed = 5.0
+use_count = 1
+card_texture = ExtResource("1_y7rrk")
+card_type = 9
+metadata/_custom_type_script = "uid://c1tk4d5hutmfr"

@@ -31,7 +31,7 @@ func _process_camera_movement(event):
 ## Zoom'имся в курсор мыши
 func modify_zoom(delta: float) -> void:
 	var mouse_pos := get_global_mouse_position()
-	zoom += Vector2(delta, delta)
+	zoom = Vector2(clampf(zoom.x + delta, 0.5, 3.0), clampf(zoom.y + delta, 0.5, 3.0))
 
 	var new_mouse_pos := get_global_mouse_position()
 	position += mouse_pos - new_mouse_pos
