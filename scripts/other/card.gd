@@ -118,6 +118,8 @@ func _enter_state() -> void:
 		DataManager.CardState.ENTER_STACK:
 			if intersected_card:
 				intersected_card.add_card_to_stack(self)
+			else:
+				card_state = DataManager.CardState.ON_FIELD
 		
 		DataManager.CardState.IN_STACK, \
 		DataManager.CardState.EXIT_STACK, \
@@ -148,7 +150,7 @@ func _exit_state(old_state: DataManager.CardState) -> void:
 
 func _draw() -> void:
 	var font = preload("uid://co45erws16hd7")
-	draw_string(font, Vector2.ZERO, str(is_stack), HORIZONTAL_ALIGNMENT_CENTER)
+	draw_string(font, Vector2.ZERO, str("state: ",card_state), HORIZONTAL_ALIGNMENT_CENTER)
 
 func reparent_to_level() -> void:
 	var _level: Level = GameManager.level
@@ -158,7 +160,7 @@ func reparent_to_level() -> void:
 	await get_tree().process_frame
 	old_parrent_card._check_is_stack()
 	if old_parrent_card.main_card:
-		old_parrent_card.main_card.perform_is_stack_action()
+		old_parrent_card.main_card._check_is_stack()
 
 func add_card_to_stack(card: Card) -> void:
 	if card == null or card == self:
@@ -175,17 +177,21 @@ func add_card_to_stack(card: Card) -> void:
 		return
 	
 	card.reparent(card_container)
-	card.position = Vector2(0, label_header.size.y)
-	card.card_state = DataManager.CardState.IN_STACK
-	card._check_is_stack()
 	
 	await get_tree().process_frame
 	
+	card.position = Vector2(0, label_header.size.y)
+	card.card_state = DataManager.CardState.IN_STACK
+	
+	#card._check_is_stack()
+	#_check_is_stack()
+	
 	if main_card:
 		card.main_card = main_card
-		main_card.perform_is_stack_action()
 	else:
 		card.main_card = self
+	
+	card.main_card._check_is_stack()
 	
 	card.z_index = card.get_index()
 	is_stack = true
@@ -195,8 +201,10 @@ func _check_is_stack() -> void:
 
 func _on_is_stack_set(value: bool) -> void:
 	is_stack = value
+	await get_tree().process_frame
 	perform_is_stack_action()
 
+# Виртуальный метод, выполняется, чтобы выполнить действия после склеивания / отклеивания карт
 func perform_is_stack_action() -> void:
 	pass
 
@@ -287,108 +295,9 @@ func _find_best_target() -> Card:
 				
 	return best_card
 
-#region Parts
+#region Заказы
 
-func check_order_consistency() -> bool:
-	var submitted_card = card_container.get_child(0)
-	var order : OrderRes = order_card.order_res 
-	
-# ==========================================
-	# ЛОГИКА 1: ЗАКАЗ НА КОНКРЕТНУЮ ЧАСТЬ ТЕЛА
-	# ==========================================
-	if order.order_type == DataManager.CardType.MONSTER_PART:
-		# Если подсунули не часть тела — отказ
-		if submitted_card.card_type != DataManager.CardType.MONSTER_PART:
-			return false
-			
-		var part = submitted_card as CardActorPart
-		
-		# 1. Проверяем тип конечности (например, Голова)
-		if order.quest_part_conditions.size() > 0:
-			if part.part_type != order.quest_part_conditions[0]:
-				return false
-				
-		# 2. Проверяем базу (например, Скелет)
-		# Сначала ищем в массиве баз:
-		if order.quest_base_conditions.size() > 0:
-			if part.part_res.part_base != order.quest_base_conditions[0]:
-				return false
-		# Если массив пуст, проверяем одиночную переменную базы:
-		elif order.check_base_condition != null:
-			if part.part_res.part_base != order.check_base_condition:
-				return false
-				
-		# 3. Проверяем уровень, только если галочка "строгий уровень" включена
-		if order.check_entire_monster_grade:
-			if part.card_grade != order.quest_grade_conditions:
-				return false
-				
-		return true
 
-# ==========================================
-	# ЛОГИКА 2: ЗАКАЗ НА ЦЕЛОГО МОНСТРА (или Франкенштейна)
-	# ==========================================
-	elif order.order_type == DataManager.CardType.MONSTER:
-		# Если подсунули не монстра — отказ
-		if submitted_card.card_type != DataManager.CardType.MONSTER:
-			return false
-			
-		var monster = submitted_card
-		if monster.monster_parts.size() == 0:
-			return false
-			
-		# 1. Проверка Уровня ВСЕГО монстра (если галочка включена)
-		if order.check_entire_monster_grade:
-			if monster.card_grade < order.quest_grade_conditions:
-				return false
-				
-		# 2. Собираем особые требования по частям тела в словарь
-		# Ключ: Тип конечности (HEAD, L_ARM), Значение: Требуемая база (SKELETON, ZOMBIE)
-		var special_parts = {}
-		for i in range(order.quest_part_conditions.size()):
-			var req_part = order.quest_part_conditions[i]
-			var req_base = order.quest_base_conditions[i] # Берем базу из нового массива
-			special_parts[req_part] = req_base
-			
-		# 3. Список всех возможных слотов для проверки
-		# Убедись, что тут перечислены все твои части тела из DataManager.MonsterPartType
-		var all_part_types = [
-			DataManager.MonsterPartType.HEAD,
-			DataManager.MonsterPartType.BODY, 
-			DataManager.MonsterPartType.L_ARM,
-			DataManager.MonsterPartType.R_ARM,
-			DataManager.MonsterPartType.L_LEG,
-			DataManager.MonsterPartType.R_LEG
-		]
-		
-		# 4. Жесткая проверка каждой конечности
-		for part_type in all_part_types:
-			var monster_part = monster.get_part_res(part_type)
-			
-			# Сценарий А: Заказчик выставил специфическое требование на эту часть
-			if special_parts.has(part_type):
-				if not monster_part:
-					return false # Запрошенной части нет на теле
-				
-				if monster_part.part_base != special_parts[part_type]:
-					return false # Пришита деталь не той базы (например, ждали руку зомби, а тут скелет)
-					
-			# Сценарий Б: Спец-требований нет, проверяем по основной базе монстра
-# Сценарий Б: Спец-требований нет, проверяем по основной базе монстра
-			else:
-				# Если у заказа есть основная база (например, нужен Зомби)
-				if order.check_base_condition != null: 
-					if not monster_part:
-						return false # Не хватает конечности, монстр собран не полностью
-						
-					if monster_part.part_base != order.check_base_condition:
-						return false # Эта часть от другой базы, и спец-заказа на нее не было
-						
-		return true
-
-	# === ДОБАВЬ ВОТ ЭТУ СТРОКУ ===
-	# Срабатывает, если order_type вообще не опознан (страховка от багов)
-	return false
 
 #endregion
 

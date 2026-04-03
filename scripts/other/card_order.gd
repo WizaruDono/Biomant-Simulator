@@ -13,6 +13,9 @@ class_name CardOrder
 @export var special_reward : CardRes
 
 
+var check_entire_monster_grade: bool = false
+
+
 func initialize():
 	await get_tree().process_frame
 	card_type = order_res.card_type
@@ -25,6 +28,7 @@ func initialize():
 	quest_part_conditions = order_res.quest_part_conditions
 	quest_grade_conditions = order_res.quest_grade_conditions
 	quest_family_conditions = order_res.quest_family_conditions
+	check_entire_monster_grade = order_res.check_entire_monster_grade
 	order_type = order_res.order_type
 	reward_amount = order_res.reward_amount
 	special_reward = order_res.special_reward
@@ -37,6 +41,12 @@ func initialize():
 
 func start_rewarding():
 	create_rewards()
+
+func perform_is_stack_action() -> void:
+	var is_order_consistency: bool = check_order_consistency()
+	print(is_order_consistency)
+	if is_order_consistency:
+		card_container.get_child(0).queue_free()
 
 
 func create_rewards():
@@ -51,3 +61,130 @@ func create_rewards():
 	
 	#OrderManager.on_order_completed(self)	# ВЫЗЫВАЕМ МЕНЕДЖЕР
 	queue_free()
+
+func _draw() -> void:
+	var font = preload("uid://co45erws16hd7")
+	#draw_string(font, Vector2.ZERO, str(card_container.get_children().is_empty()), HORIZONTAL_ALIGNMENT_CENTER)
+
+func check_order_consistency() -> bool:
+	if card_container.get_children().is_empty(): return false
+	
+	var submitted_card: Card = card_container.get_child(0)
+	
+	if order_type != submitted_card.card_type:
+		submitted_card.reparent_to_level()
+		return false
+	
+	match order_type:
+		# Монстр
+		DataManager.CardType.MONSTER:
+			
+			# Проверка по уровню
+			if check_entire_monster_grade:
+				if submitted_card.card_grade < quest_grade_conditions:
+					return false
+	
+	return true
+
+#func check_order_consistency() -> bool:
+	#var submitted_card: Card = card_container.get_child(0)
+	#
+	#if order_type != submitted_card.card_type:
+		#submitted_card.reparent_to_level()
+		#return false
+## ==========================================
+	## ЛОГИКА 1: ЗАКАЗ НА КОНКРЕТНУЮ ЧАСТЬ ТЕЛА
+	## ==========================================
+	#if order_type == DataManager.CardType.MONSTER_PART:
+		## Если подсунули не часть тела — отказ
+		#if submitted_card.card_type != DataManager.CardType.MONSTER_PART:
+			#return false
+		#
+		#var part = submitted_card as CardActorPart
+		#
+		## 1. Проверяем тип конечности (например, Голова)
+		#if quest_part_conditions.size() > 0:
+			#if part.part_type != quest_part_conditions[0]:
+				#return false
+				#
+		## 2. Проверяем базу (например, Скелет)
+		## Сначала ищем в массиве баз:
+		#if order.quest_base_conditions.size() > 0:
+			#if part.part_res.part_base != order.quest_base_conditions[0]:
+				#return false
+		## Если массив пуст, проверяем одиночную переменную базы:
+		#elif order.check_base_condition != null:
+			#if part.part_res.part_base != order.check_base_condition:
+				#return false
+				#
+		## 3. Проверяем уровень, только если галочка "строгий уровень" включена
+		#if order.check_entire_monster_grade:
+			#if part.card_grade != order.quest_grade_conditions:
+				#return false
+				#
+		#return true
+#
+## ==========================================
+	## ЛОГИКА 2: ЗАКАЗ НА ЦЕЛОГО МОНСТРА (или Франкенштейна)
+	## ==========================================
+	#elif order.order_type == DataManager.CardType.MONSTER:
+		## Если подсунули не монстра — отказ
+		#if submitted_card.card_type != DataManager.CardType.MONSTER:
+			#return false
+			#
+		#var monster = submitted_card
+		#if monster.monster_parts.size() == 0:
+			#return false
+			#
+		## 1. Проверка Уровня ВСЕГО монстра (если галочка включена)
+		#if order.check_entire_monster_grade:
+			#if monster.card_grade < order.quest_grade_conditions:
+				#return false
+				#
+		## 2. Собираем особые требования по частям тела в словарь
+		## Ключ: Тип конечности (HEAD, L_ARM), Значение: Требуемая база (SKELETON, ZOMBIE)
+		#var special_parts = {}
+		#for i in range(order.quest_part_conditions.size()):
+			#var req_part = order.quest_part_conditions[i]
+			#var req_base = order.quest_base_conditions[i] # Берем базу из нового массива
+			#special_parts[req_part] = req_base
+			#
+		## 3. Список всех возможных слотов для проверки
+		## Убедись, что тут перечислены все твои части тела из DataManager.MonsterPartType
+		#var all_part_types = [
+			#DataManager.MonsterPartType.HEAD,
+			#DataManager.MonsterPartType.BODY, 
+			#DataManager.MonsterPartType.L_ARM,
+			#DataManager.MonsterPartType.R_ARM,
+			#DataManager.MonsterPartType.L_LEG,
+			#DataManager.MonsterPartType.R_LEG
+		#]
+		#
+		## 4. Жесткая проверка каждой конечности
+		#for part_type in all_part_types:
+			#var monster_part = monster.get_part_res(part_type)
+			#
+			## Сценарий А: Заказчик выставил специфическое требование на эту часть
+			#if special_parts.has(part_type):
+				#if not monster_part:
+					#return false # Запрошенной части нет на теле
+				#
+				#if monster_part.part_base != special_parts[part_type]:
+					#return false # Пришита деталь не той базы (например, ждали руку зомби, а тут скелет)
+					#
+			## Сценарий Б: Спец-требований нет, проверяем по основной базе монстра
+## Сценарий Б: Спец-требований нет, проверяем по основной базе монстра
+			#else:
+				## Если у заказа есть основная база (например, нужен Зомби)
+				#if order.check_base_condition != null: 
+					#if not monster_part:
+						#return false # Не хватает конечности, монстр собран не полностью
+						#
+					#if monster_part.part_base != order.check_base_condition:
+						#return false # Эта часть от другой базы, и спец-заказа на нее не было
+						#
+		#return true
+#
+	## === ДОБАВЬ ВОТ ЭТУ СТРОКУ ===
+	## Срабатывает, если order_type вообще не опознан (страховка от багов)
+	#return false

@@ -44,7 +44,6 @@ func create_deck() -> void:
 	
 	var _possible_orders: PossibleOrders = _get_possible_orders_to_rate(rate, main_possible_orders_by_rate)
 	deck = _possible_orders.orders
-	print(deck)
 
 func _get_possible_orders_to_rate(_rate: int, _possible_orders_by_rate: PossibleOrdersByRate) -> PossibleOrders:
 	var target_rate: int = clampi(_rate, 0, _possible_orders_by_rate.orders_by_rate.size())
