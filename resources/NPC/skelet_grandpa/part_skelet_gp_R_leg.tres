@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://cxyiaw0tcb6xq"]
+
+[ext_resource type="Texture2D" uid="uid://olvlb5wdgyab" path="res://img/monsters/skelet_3/skelet_3_R_leg.png" id="1_g7gje"]
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="2_x5hvl"]
+
+[resource]
+script = ExtResource("2_x5hvl")
+part_type = 5
+actor_health = 1
+actor_damage = 1
+card_name = "Нога Старика (R)"
+card_desc = "Старческий Хрусть-Хрусть"
+card_texture = ExtResource("1_g7gje")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

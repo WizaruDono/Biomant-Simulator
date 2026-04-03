@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://23t6f6ycnb1"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_v2wri"]
+[ext_resource type="Texture2D" uid="uid://olvlb5wdgyab" path="res://img/monsters/skelet_3/skelet_3_R_leg.png" id="1_vd360"]
+
+[resource]
+script = ExtResource("1_v2wri")
+part_type = 5
+actor_health = 6
+actor_damage = 2
+card_name = "Кости Ноги (R) LvL3"
+card_desc = "Тяжёлый Хрусть-Хрусть"
+card_grade = 2
+card_texture = ExtResource("1_vd360")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

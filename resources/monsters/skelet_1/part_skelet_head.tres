@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://1xiwwnhxasqw"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_aaj6c"]
+[ext_resource type="Texture2D" uid="uid://cb7ox7fu6wkc5" path="res://img/monsters/skelet_1/skelet_head.png" id="1_oldoa"]
+
+[resource]
+script = ExtResource("1_aaj6c")
+part_type = 1
+actor_health = 6
+actor_damage = 3
+card_name = "Череп LvL1"
+card_desc = "Внушает ужас"
+card_texture = ExtResource("1_oldoa")
+card_type = 2
+card_cost = 5
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

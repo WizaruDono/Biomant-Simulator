@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://cxcb2c81h5r3o"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_ky1t6"]
+[ext_resource type="Texture2D" uid="uid://dbf0g1r5dvxs" path="res://img/monsters/zombie_2/zombie_2_R_leg.png" id="1_mktp7"]
+
+[resource]
+script = ExtResource("1_ky1t6")
+part_type = 5
+part_base = 1
+actor_health = 6
+card_name = "Гнилая Нога (R) LvL2"
+card_desc = "Шлёп-Шлуп"
+card_grade = 1
+card_texture = ExtResource("1_mktp7")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

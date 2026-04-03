@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://crlxu8a5q16hj"]
+
+[ext_resource type="Texture2D" uid="uid://b43rwtcqje37x" path="res://img/monsters/cock_1/cock_1_L_leg.png" id="1_ewms7"]
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_fftk1"]
+
+[resource]
+script = ExtResource("1_fftk1")
+part_family = 1
+part_type = 4
+part_base = 2
+actor_health = 1
+actor_damage = 3
+card_name = "Ножка (L) LvL1"
+card_desc = "Натереть специями, добавить масло, чеснок и оставить мариноваться..."
+card_texture = ExtResource("1_ewms7")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

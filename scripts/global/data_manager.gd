@@ -39,7 +39,7 @@ enum ProductionType {
 }
 
 enum LocationType {
-	GRAVEYARD, DARK_FARM, MYCELIUM
+	GRAVEYARD, FARM, 
 }
 
 enum PercType {
@@ -52,6 +52,7 @@ enum MonsterFamily {
 
 enum MonsterBase {
 	SKELETON, ZOMBIE, 
+	COCK, 
 }
 
 enum UpgradeType {

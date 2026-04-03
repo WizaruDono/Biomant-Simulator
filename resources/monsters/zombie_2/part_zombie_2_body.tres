@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://beosfqgwt20tq"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_7klag"]
+[ext_resource type="Texture2D" uid="uid://dpxqidhdcxqem" path="res://img/monsters/zombie_2/zombie_2_body.png" id="1_cebhv"]
+
+[resource]
+script = ExtResource("1_7klag")
+part_base = 1
+actor_health = 9
+card_name = "Гниплое Тельце LvL2"
+card_desc = "Неплохой костюмчик"
+card_grade = 1
+card_texture = ExtResource("1_cebhv")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

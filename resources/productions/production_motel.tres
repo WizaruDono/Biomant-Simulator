@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="ProductionRes" format=3 uid="uid://bhfftbyys414k"]
+
+[ext_resource type="Texture2D" uid="uid://co8uyofv060ng" path="res://img/productions/pr_motel.png" id="1_4lqhm"]
+[ext_resource type="Script" uid="uid://5u61dwi0xnps" path="res://resources/res_scripts/production_res.gd" id="1_o7hbj"]
+
+[resource]
+script = ExtResource("1_o7hbj")
+production_type = 2
+card_name = "Любовное Гнёздышко"
+card_desc = "Даже монстры хотят нежности. Перетащите парочку, чтобы получить малыша"
+activate_speed = 10.0
+use_count = 300
+card_texture = ExtResource("1_4lqhm")
+metadata/_custom_type_script = "uid://5u61dwi0xnps"

@@ -2,9 +2,10 @@ extends Node
 
 
 @export var production_scene : PackedScene = preload("res://scenes/card_production.tscn")
-@export var stapler_res : ProductionRes = preload("res://resources/production/production_stapler.tres")
-@export var motel_res : ProductionRes = preload("res://resources/production/production_motel.tres")
-@export var changeshop_res : ProductionRes = preload("res://resources/production/production_changeshop.tres")
+@export var stapler_res : ProductionRes = preload("res://resources/productions/production_stapler.tres")
+@export var motel_res : ProductionRes = preload("res://resources/productions/production_motel.tres")
+@export var changeshop_res : ProductionRes = preload("res://resources/productions/production_changeshop.tres")
+
 
 
 

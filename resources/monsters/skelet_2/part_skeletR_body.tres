@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://x4yamldlethv"]
+
+[ext_resource type="Texture2D" uid="uid://b5hwl8qimtsb6" path="res://img/monsters/skelet_2/skeletR_body.png" id="1_isfte"]
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_trb8j"]
+
+[resource]
+script = ExtResource("1_trb8j")
+actor_health = 5
+card_name = "Костяное Тело LvL2"
+card_desc = "И как он дышит?"
+card_grade = 1
+card_texture = ExtResource("1_isfte")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://cju1d6olwrp6m"]
+
+[ext_resource type="Texture2D" uid="uid://qiiutxgek7ir" path="res://img/monsters/skelet_3/skelet_3_R_arm.png" id="1_apj2s"]
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_qbxth"]
+
+[resource]
+script = ExtResource("1_qbxth")
+part_type = 3
+actor_health = 7
+actor_damage = 10
+card_name = "Кости Руки (R) LvL3"
+card_desc = "У кого шип больше - тот и прав"
+card_grade = 2
+card_texture = ExtResource("1_apj2s")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

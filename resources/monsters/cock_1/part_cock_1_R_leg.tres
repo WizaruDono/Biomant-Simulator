@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://cupy61ea5qgp7"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_ahwaw"]
+[ext_resource type="Texture2D" uid="uid://byfkp82l8jwsf" path="res://img/monsters/cock_1/cock_1_R_leg.png" id="1_fx4b4"]
+
+[resource]
+script = ExtResource("1_ahwaw")
+part_family = 1
+part_type = 5
+part_base = 2
+actor_health = 1
+actor_damage = 3
+card_name = "Ножка (R) LvL1"
+card_desc = "Маленькая, да сытненькая"
+card_texture = ExtResource("1_fx4b4")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://d1n8wvumege68"]
+
+[ext_resource type="Texture2D" uid="uid://b22md2oyexrwg" path="res://img/monsters/cock_2/cock_2_R_arm.png" id="1_2o5h5"]
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_nhxud"]
+
+[resource]
+script = ExtResource("1_nhxud")
+part_family = 1
+part_type = 3
+part_base = 2
+actor_health = 4
+actor_damage = 5
+card_name = "Крылышко (R) LvL2"
+card_desc = "Правой - бульённый!"
+card_grade = 1
+card_texture = ExtResource("1_2o5h5")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

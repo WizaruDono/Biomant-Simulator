@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://ce2dok7uf2kow"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_m4rah"]
+[ext_resource type="Texture2D" uid="uid://dxcafy78rshch" path="res://img/monsters/cock_2/cock_2_body.png" id="1_tb23p"]
+
+[resource]
+script = ExtResource("1_m4rah")
+part_family = 1
+part_base = 2
+actor_health = 4
+card_name = "Грудка LvL2"
+card_desc = "Пылкое сердечко разгоняет по перьям кровь. Кровь врагов!"
+card_grade = 1
+card_texture = ExtResource("1_tb23p")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

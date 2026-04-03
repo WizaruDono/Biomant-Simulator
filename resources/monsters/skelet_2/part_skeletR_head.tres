@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://ycom3edhvn0w"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_5ngww"]
+[ext_resource type="Texture2D" uid="uid://chttefo72rtou" path="res://img/monsters/skelet_2/skeletR_head.png" id="1_j5fuq"]
+
+[resource]
+script = ExtResource("1_5ngww")
+part_type = 1
+actor_health = 7
+actor_damage = 4
+card_name = "Череп LvL2"
+card_desc = "Делает ехидный щёлк-щёлк"
+card_grade = 1
+card_texture = ExtResource("1_j5fuq")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

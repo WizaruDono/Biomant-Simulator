@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://b66blm64iebww"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_glgyd"]
+[ext_resource type="Texture2D" uid="uid://bv3jlxds5sv0l" path="res://img/monsters/zombie_2/zombie_2_head.png" id="1_x24rt"]
+
+[resource]
+script = ExtResource("1_glgyd")
+part_type = 1
+part_base = 1
+actor_health = 4
+actor_damage = 5
+card_name = "Гнилая Башка LvL2"
+card_desc = "Дрынь-ты-тынь-тынь"
+card_grade = 1
+card_texture = ExtResource("1_x24rt")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

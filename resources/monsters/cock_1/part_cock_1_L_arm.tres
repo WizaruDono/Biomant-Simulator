@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://dvfw7grphs324"]
+
+[ext_resource type="Texture2D" uid="uid://ohh7d3cydey" path="res://img/monsters/cock_1/cock_1_L_arm.png" id="1_mcj4b"]
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_xsman"]
+
+[resource]
+script = ExtResource("1_xsman")
+part_family = 1
+part_type = 2
+part_base = 2
+actor_health = 3
+actor_damage = 3
+card_name = "Крылышко (L) LvL1"
+card_desc = "Промыть, обсушить, разрезать по суставам..."
+card_texture = ExtResource("1_mcj4b")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

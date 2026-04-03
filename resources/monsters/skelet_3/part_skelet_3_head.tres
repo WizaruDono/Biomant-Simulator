@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://ctjmnkclgievc"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_grifm"]
+[ext_resource type="Texture2D" uid="uid://6hivam62ewia" path="res://img/monsters/skelet_3/skelet_3_head.png" id="1_hg4qe"]
+
+[resource]
+script = ExtResource("1_grifm")
+part_type = 1
+actor_health = 9
+actor_damage = 7
+card_name = "Череп LvL3"
+card_desc = "Самому меткому лучнику не нужны глаза"
+card_grade = 2
+card_texture = ExtResource("1_hg4qe")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://bxmqhge3ei5wm"]
+
+[ext_resource type="Texture2D" uid="uid://qpgjdqkmm4u3" path="res://img/monsters/skelet_1/skelet_R_leg.png" id="1_0q1by"]
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_o6ti0"]
+
+[resource]
+script = ExtResource("1_o6ti0")
+part_type = 5
+actor_health = 2
+actor_damage = 1
+card_name = "Кости Ноги (R) LvL1"
+card_desc = "Хрусть-Хрусть"
+card_texture = ExtResource("1_0q1by")
+card_type = 2
+card_cost = 5
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

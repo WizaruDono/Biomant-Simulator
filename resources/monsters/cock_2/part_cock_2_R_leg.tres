@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://cjxt5xjv55djr"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_nk45y"]
+[ext_resource type="Texture2D" uid="uid://dd0e4nfgh5d0e" path="res://img/monsters/cock_2/cock_2_R_leg.png" id="1_x4epv"]
+
+[resource]
+script = ExtResource("1_nk45y")
+part_family = 1
+part_type = 5
+part_base = 2
+actor_health = 2
+actor_damage = 4
+card_name = "Ножка (R) LvL2"
+card_desc = "Думаешь, я действительно расскажу тебе рецепт?"
+card_grade = 1
+card_texture = ExtResource("1_x4epv")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

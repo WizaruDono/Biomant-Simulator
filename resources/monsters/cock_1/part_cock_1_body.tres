@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://lnwgc25ecawo"]
+
+[ext_resource type="Texture2D" uid="uid://cejrulnqi5xyl" path="res://img/monsters/cock_1/cock_1_body.png" id="1_8nbm1"]
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_db8gr"]
+
+[resource]
+script = ExtResource("1_db8gr")
+part_family = 1
+part_base = 2
+actor_health = 2
+card_name = "Грудка LvL1"
+card_desc = "Кладете в кипящий бульон и на среднем огне доводите до кипения..."
+card_texture = ExtResource("1_8nbm1")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

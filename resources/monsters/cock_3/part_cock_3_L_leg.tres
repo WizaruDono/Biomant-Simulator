@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://bue6eufcqo620"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_d2ijo"]
+
+[resource]
+script = ExtResource("1_d2ijo")
+part_family = 1
+part_type = 4
+part_base = 2
+actor_health = 5
+actor_damage = 7
+card_name = "Ножка (L) LvL3"
+card_desc = "Ненавидит быть сваренной. Особенно по понедельникам."
+card_grade = 2
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

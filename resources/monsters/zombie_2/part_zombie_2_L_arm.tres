@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://0dcr0cho5o3d"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_3hge3"]
+[ext_resource type="Texture2D" uid="uid://dchtkhyeuv3vm" path="res://img/monsters/zombie_2/zombie_2_L_arm.png" id="1_nvdyl"]
+
+[resource]
+script = ExtResource("1_3hge3")
+part_type = 2
+part_base = 1
+actor_health = 5
+actor_damage = 5
+card_name = "Гнилая Рука (L) LvL2"
+card_desc = "Расчесалка"
+card_grade = 1
+card_texture = ExtResource("1_nvdyl")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

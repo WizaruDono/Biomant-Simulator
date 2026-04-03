@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://cwesoe6y4w6un"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_mb6l7"]
+[ext_resource type="Texture2D" uid="uid://dvc4m2fn1clg4" path="res://img/monsters/skelet_3/skelet_3_L_arm.png" id="1_tyfg8"]
+
+[resource]
+script = ExtResource("1_mb6l7")
+part_type = 2
+actor_health = 3
+actor_damage = 8
+card_name = "Кости Руки (L) LvL3"
+card_desc = "Может разбить(ся)"
+card_grade = 2
+card_texture = ExtResource("1_tyfg8")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

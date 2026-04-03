@@ -1,7 +1,8 @@
 extends Node
 
 @export var location_scene : PackedScene = preload("res://scenes/card_location.tscn")
-@export var graveyard_res : LocationRes = preload("res://resources/location_graveyard.tres")
+@export var graveyard_res : LocationRes = preload("res://resources/locations/location_graveyard.tres")
+
 
 
 func create_random_location():

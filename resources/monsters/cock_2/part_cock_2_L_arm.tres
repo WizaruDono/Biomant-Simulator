@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://dxsuva5tci4kq"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_1ucch"]
+[ext_resource type="Texture2D" uid="uid://oix14a8thsr8" path="res://img/monsters/cock_2/cock_2_L_arm.png" id="1_eeeap"]
+
+[resource]
+script = ExtResource("1_1ucch")
+part_family = 1
+part_type = 2
+part_base = 2
+actor_health = 4
+actor_damage = 5
+card_name = "Крылышко (L) LvL2"
+card_desc = "Левой - коронный!"
+card_grade = 1
+card_texture = ExtResource("1_eeeap")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

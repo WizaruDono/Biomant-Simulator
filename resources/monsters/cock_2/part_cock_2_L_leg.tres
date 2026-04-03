@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://crurmpklj351o"]
+
+[ext_resource type="Texture2D" uid="uid://4ytd4ff8lm45" path="res://img/monsters/cock_2/cock_2_L_leg.png" id="1_biblt"]
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_ifxkj"]
+
+[resource]
+script = ExtResource("1_ifxkj")
+part_family = 1
+part_type = 4
+part_base = 2
+actor_health = 2
+actor_damage = 4
+card_name = "Ножка (L) LvL2"
+card_desc = "На территории \"Фермы\" готовить Куррино запрещено. Не верите? Спросите об этом Эль-Куррино!"
+card_grade = 1
+card_texture = ExtResource("1_biblt")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

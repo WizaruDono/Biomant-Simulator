@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://dhmcjbtqvu51d"]
+
+[ext_resource type="Texture2D" uid="uid://iyt0xj80j3l4" path="res://img/monsters/skelet_3/skelet_3_body.png" id="1_7hanl"]
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="2_gfavc"]
+
+[resource]
+script = ExtResource("2_gfavc")
+actor_health = 2
+card_name = "Дряхлое Тело"
+card_desc = "Внутри давно ничего не бьётся"
+card_texture = ExtResource("1_7hanl")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

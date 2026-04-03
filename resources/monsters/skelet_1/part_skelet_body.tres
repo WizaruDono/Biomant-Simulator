@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://dl1ftel3ug3tq"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_4kwrh"]
+[ext_resource type="Texture2D" uid="uid://bo2y5yr13k3tb" path="res://img/monsters/skelet_1/skelet_body.png" id="1_14li6"]
+
+[resource]
+script = ExtResource("1_4kwrh")
+actor_health = 3
+card_name = "Костяное Тело LvL1"
+card_desc = "Грудная клетка почему то вздымается"
+card_texture = ExtResource("1_14li6")
+card_type = 2
+card_cost = 5
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

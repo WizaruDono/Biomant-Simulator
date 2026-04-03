@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="LocationRes" format=3 uid="uid://cbhyt3hyw4ab"]
+
+[ext_resource type="Script" uid="uid://ycs334vjj71c" path="res://resources/res_scripts/location_res.gd" id="1_5em7w"]
+[ext_resource type="Texture2D" uid="uid://dihsxq4k36x55" path="res://img/locations/l_farm.png" id="1_aiqsm"]
+[ext_resource type="Resource" uid="uid://lnwgc25ecawo" path="res://resources/monsters/cock_1/part_cock_1_body.tres" id="2_j6tji"]
+[ext_resource type="Resource" uid="uid://c754cnu7l5awj" path="res://resources/monsters/cock_1/part_cock_1_head.tres" id="3_iwpja"]
+[ext_resource type="Resource" uid="uid://dvfw7grphs324" path="res://resources/monsters/cock_1/part_cock_1_L_arm.tres" id="4_x84sa"]
+[ext_resource type="Resource" uid="uid://crlxu8a5q16hj" path="res://resources/monsters/cock_1/part_cock_1_L_leg.tres" id="5_t5q65"]
+[ext_resource type="Resource" uid="uid://2v4jvodwcm24" path="res://resources/monsters/cock_1/part_cock_1_R_arm.tres" id="6_tm38e"]
+[ext_resource type="Resource" uid="uid://cupy61ea5qgp7" path="res://resources/monsters/cock_1/part_cock_1_R_leg.tres" id="7_a16wx"]
+[ext_resource type="Resource" uid="uid://ce2dok7uf2kow" path="res://resources/monsters/cock_2/part_cock_2_body.tres" id="8_a16wx"]
+[ext_resource type="Resource" uid="uid://cq4vl1mdfh5f2" path="res://resources/monsters/cock_2/part_cock_2_head.tres" id="9_qxsbe"]
+[ext_resource type="Resource" uid="uid://dxsuva5tci4kq" path="res://resources/monsters/cock_2/part_cock_2_L_arm.tres" id="10_hm6no"]
+[ext_resource type="Resource" uid="uid://crurmpklj351o" path="res://resources/monsters/cock_2/part_cock_2_L_leg.tres" id="11_g1n42"]
+[ext_resource type="Resource" uid="uid://d1n8wvumege68" path="res://resources/monsters/cock_2/part_cock_2_R_arm.tres" id="12_njth6"]
+[ext_resource type="Resource" uid="uid://cjxt5xjv55djr" path="res://resources/monsters/cock_2/part_cock_2_R_leg.tres" id="13_ln3ed"]
+
+[resource]
+script = ExtResource("1_5em7w")
+loot_pool = Array[Resource]([ExtResource("2_j6tji"), ExtResource("3_iwpja"), ExtResource("4_x84sa"), ExtResource("5_t5q65"), ExtResource("6_tm38e"), ExtResource("7_a16wx"), ExtResource("8_a16wx"), ExtResource("9_qxsbe"), ExtResource("10_hm6no"), ExtResource("11_g1n42"), ExtResource("12_njth6"), ExtResource("13_ln3ed")])
+card_name = "Ферма"
+card_desc = "Можно отправить в неё монстра, вдруг принесёт яички?"
+activate_speed = 6.0
+use_count = 30
+card_texture = ExtResource("1_aiqsm")
+card_type = 1
+card_cost = 55
+metadata/_custom_type_script = "uid://ycs334vjj71c"

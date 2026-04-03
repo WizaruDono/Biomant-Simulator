@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://cbw5ysykki2lj"]
+
+[ext_resource type="Texture2D" uid="uid://qiiutxgek7ir" path="res://img/monsters/skelet_3/skelet_3_R_arm.png" id="1_2bura"]
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="2_vevds"]
+
+[resource]
+script = ExtResource("2_vevds")
+part_type = 3
+actor_health = 1
+actor_damage = 4
+card_name = "Рука Старика (R)"
+card_desc = "Рука настоящего работяги"
+card_texture = ExtResource("1_2bura")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

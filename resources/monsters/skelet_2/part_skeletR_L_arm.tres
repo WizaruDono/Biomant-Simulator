@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://6hxff1j5jkpd"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_alsys"]
+[ext_resource type="Texture2D" uid="uid://bx34frbnvh8bp" path="res://img/monsters/skelet_2/skeletR_L_arm.png" id="1_o6sjf"]
+
+[resource]
+script = ExtResource("1_alsys")
+part_type = 2
+actor_health = 2
+actor_damage = 6
+card_name = "Кости Руки (L) LvL2"
+card_desc = "Жаль, скелеты не чешутся"
+card_grade = 1
+card_texture = ExtResource("1_o6sjf")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

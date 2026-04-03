@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://cq4vl1mdfh5f2"]
+
+[ext_resource type="Texture2D" uid="uid://pacqxp40l78b" path="res://img/monsters/cock_2/cock_2_head.png" id="1_enxfj"]
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="2_ejyao"]
+
+[resource]
+script = ExtResource("2_ejyao")
+part_family = 1
+part_type = 1
+part_base = 2
+actor_health = 5
+actor_damage = 5
+card_name = "Ку-куриная Голова LvL2"
+card_desc = "Голова Эль-Куррино: Я СКАЗАЛ КУ-КА-РЕ-КУ!!!"
+card_grade = 1
+card_texture = ExtResource("1_enxfj")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

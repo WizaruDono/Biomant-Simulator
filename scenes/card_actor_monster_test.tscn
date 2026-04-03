@@ -1,84 +1,91 @@
-[gd_scene load_steps=10 format=3 uid="uid://dfmsnk83f8nyy"]
+[gd_scene format=3 uid="uid://dfmsnk83f8nyy"]
 
 [ext_resource type="PackedScene" uid="uid://dv1lj8l5ryf51" path="res://scenes/card_actor.tscn" id="1_cm3gg"]
 [ext_resource type="Script" uid="uid://cfnbmna8drwsc" path="res://scripts/other/card_actor_monster.gd" id="2_f2hky"]
-[ext_resource type="Texture2D" uid="uid://cyrl1aj8lbqgg" path="res://img/zombie_body.png" id="3_byrgt"]
 [ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="3_ctklt"]
-[ext_resource type="Texture2D" uid="uid://ctxy5huqnpkw8" path="res://img/skelet_L_arm.png" id="4_ctklt"]
-[ext_resource type="Texture2D" uid="uid://drgvk8tcujvor" path="res://img/skelet_L_leg.png" id="5_m1wyt"]
-[ext_resource type="Texture2D" uid="uid://w1835vp4sh5h" path="res://img/zombie_R_leg.png" id="6_ycn3u"]
-[ext_resource type="Texture2D" uid="uid://c1w8itk7fup6l" path="res://img/zombie_head.png" id="7_5nmjs"]
-[ext_resource type="Texture2D" uid="uid://d3ud3e41qaa2m" path="res://img/zombie_R_arm.png" id="8_q6r85"]
+[ext_resource type="Texture2D" uid="uid://dxcafy78rshch" path="res://img/monsters/cock_2/cock_2_body.png" id="4_ctklt"]
+[ext_resource type="Texture2D" uid="uid://oix14a8thsr8" path="res://img/monsters/cock_2/cock_2_L_arm.png" id="5_m1wyt"]
+[ext_resource type="Texture2D" uid="uid://4ytd4ff8lm45" path="res://img/monsters/cock_2/cock_2_L_leg.png" id="6_ycn3u"]
+[ext_resource type="Texture2D" uid="uid://byfkp82l8jwsf" path="res://img/monsters/cock_1/cock_1_R_leg.png" id="7_5nmjs"]
+[ext_resource type="Texture2D" uid="uid://b0v8ma8y0uxyw" path="res://img/monsters/cock_1/cock_1_head.png" id="8_q6r85"]
+[ext_resource type="Texture2D" uid="uid://b22md2oyexrwg" path="res://img/monsters/cock_2/cock_2_R_arm.png" id="9_8bc5a"]
 
-[node name="CardActorMonster" instance=ExtResource("1_cm3gg")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nd5j0"]
+resource_local_to_scene = true
+size = Vector2(128, 192)
+
+[node name="CardActorMonster" unique_id=274527441 instance=ExtResource("1_cm3gg")]
 script = ExtResource("2_f2hky")
 monster_res = null
 monster_perc = 0
 monster_parts = Array[ExtResource("3_ctklt")]([])
 is_can_love = true
 
-[node name="rect_main_img" parent="panel_back/container_content" index="1"]
+[node name="rect_main_img" parent="panel_back/container_content" parent_id_path=PackedInt32Array(1648399696) index="1" unique_id=665974388]
 custom_minimum_size = Vector2(64, 64)
 
-[node name="sprite_container" type="Node2D" parent="panel_back/container_content" index="2"]
+[node name="sprite_container" type="Node2D" parent="panel_back/container_content" parent_id_path=PackedInt32Array(1648399696) index="2" unique_id=1875055445]
 unique_name_in_owner = true
 position = Vector2(0, 23)
 
-[node name="sprite_body" type="Sprite2D" parent="panel_back/container_content/sprite_container" index="0"]
+[node name="sprite_body" type="Sprite2D" parent="panel_back/container_content/sprite_container" index="0" unique_id=778434471]
 unique_name_in_owner = true
 z_index = 1
-texture = ExtResource("3_byrgt")
-centered = false
-
-[node name="Join_L_Arm" type="Marker2D" parent="panel_back/container_content/sprite_container/sprite_body" index="0"]
-
-[node name="sprite_l_arm" type="Sprite2D" parent="panel_back/container_content/sprite_container/sprite_body/Join_L_Arm" index="0"]
-unique_name_in_owner = true
-z_index = -1
 texture = ExtResource("4_ctklt")
 centered = false
 
-[node name="Join_L_Leg" type="Marker2D" parent="panel_back/container_content/sprite_container/sprite_body" index="1"]
+[node name="Join_L_Arm" type="Marker2D" parent="panel_back/container_content/sprite_container/sprite_body" index="0" unique_id=559112655]
 
-[node name="sprite_l_leg" type="Sprite2D" parent="panel_back/container_content/sprite_container/sprite_body/Join_L_Leg" index="0"]
+[node name="sprite_l_arm" type="Sprite2D" parent="panel_back/container_content/sprite_container/sprite_body/Join_L_Arm" index="0" unique_id=2081671432]
 unique_name_in_owner = true
 z_index = -1
 texture = ExtResource("5_m1wyt")
 centered = false
 
-[node name="Join_R_Leg" type="Marker2D" parent="panel_back/container_content/sprite_container/sprite_body" index="2"]
+[node name="Join_L_Leg" type="Marker2D" parent="panel_back/container_content/sprite_container/sprite_body" index="1" unique_id=861072801]
 
-[node name="sprite_r_leg" type="Sprite2D" parent="panel_back/container_content/sprite_container/sprite_body/Join_R_Leg" index="0"]
+[node name="sprite_l_leg" type="Sprite2D" parent="panel_back/container_content/sprite_container/sprite_body/Join_L_Leg" index="0" unique_id=654853942]
 unique_name_in_owner = true
 z_index = -1
 texture = ExtResource("6_ycn3u")
 centered = false
 
-[node name="Join_Head" type="Marker2D" parent="panel_back/container_content/sprite_container/sprite_body" index="3"]
+[node name="Join_R_Leg" type="Marker2D" parent="panel_back/container_content/sprite_container/sprite_body" index="2" unique_id=137999298]
 
-[node name="sprite_head" type="Sprite2D" parent="panel_back/container_content/sprite_container/sprite_body/Join_Head" index="0"]
+[node name="sprite_r_leg" type="Sprite2D" parent="panel_back/container_content/sprite_container/sprite_body/Join_R_Leg" index="0" unique_id=1518017441]
 unique_name_in_owner = true
+z_index = -1
 texture = ExtResource("7_5nmjs")
 centered = false
 
-[node name="Join_R_Arm" type="Marker2D" parent="panel_back/container_content/sprite_container/sprite_body" index="4"]
+[node name="Join_Head" type="Marker2D" parent="panel_back/container_content/sprite_container/sprite_body" index="3" unique_id=1554802201]
 
-[node name="sprite_r_arm" type="Sprite2D" parent="panel_back/container_content/sprite_container/sprite_body/Join_R_Arm" index="0"]
+[node name="sprite_head" type="Sprite2D" parent="panel_back/container_content/sprite_container/sprite_body/Join_Head" index="0" unique_id=620543499]
 unique_name_in_owner = true
 texture = ExtResource("8_q6r85")
 centered = false
 
-[node name="Control" type="Control" parent="panel_back/container_content" index="3"]
+[node name="Join_R_Arm" type="Marker2D" parent="panel_back/container_content/sprite_container/sprite_body" index="4" unique_id=1803914024]
+
+[node name="sprite_r_arm" type="Sprite2D" parent="panel_back/container_content/sprite_container/sprite_body/Join_R_Arm" index="0" unique_id=1694184602]
+unique_name_in_owner = true
+texture = ExtResource("9_8bc5a")
+centered = false
+
+[node name="Control" type="Control" parent="panel_back/container_content" parent_id_path=PackedInt32Array(1648399696) index="3" unique_id=918621342]
 visible = false
 custom_minimum_size = Vector2(128, 192)
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="HBoxContainer" parent="panel_back/container_content/MarginContainer" index="0"]
+[node name="HBoxContainer" parent="panel_back/container_content/MarginContainer" parent_id_path=PackedInt32Array(1460528313) index="0" unique_id=26702382]
 size_flags_horizontal = 4
 
-[node name="Sprite2D" type="Sprite2D" parent="." index="4"]
+[node name="collision_card" parent="." index="2" unique_id=2046268927]
+shape = SubResource("RectangleShape2D_nd5j0")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="4" unique_id=525657234]
 z_index = 10
 position = Vector2(64, 90)
 scale = Vector2(2.109375, 2.203125)

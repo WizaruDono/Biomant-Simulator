@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://c2jd3nrocpjcn"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_0b4n7"]
+[ext_resource type="Texture2D" uid="uid://ctxy5huqnpkw8" path="res://img/monsters/skelet_1/skelet_L_arm.png" id="1_p8ggn"]
+
+[resource]
+script = ExtResource("1_0b4n7")
+part_type = 2
+actor_health = 1
+actor_damage = 4
+card_name = "Кости Руки (L) LvL1"
+card_desc = "Разве что лук держать способна"
+card_texture = ExtResource("1_p8ggn")
+card_type = 2
+card_cost = 5
+metadata/_custom_type_script = "uid://bll44gw1l0di2"
