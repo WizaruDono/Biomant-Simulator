@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_4e70t")
 part_type = 2
+part_base = 1
 actor_health = 3
 actor_damage = 4
 card_name = "Гнилая Рука (L) LvL1"

@@ -106,12 +106,11 @@ func create_shop():
 		var copy_res : CardRes = selected_res.duplicate(true)
 		copy_res.card_owner_type = DataManager.OwnerType.NEUTRAL
 		
-		var content_scene : PackedScene = EntityManager.create_entity_scene(copy_res)
-		
-		if content_scene == null:
-			content_scene = load("res://scenes/card_upgrade.tscn") 
-			
-		var lot : Card = content_scene.instantiate()
+		var lot: Card = EntityManager.create_entity_scene(copy_res)
+		if lot == null:
+			var card_scene = load("res://scenes/card_upgrade.tscn") 
+			lot = card_scene.instantiate()
+
 		GameManager.level.add_child(lot)
 		lot.initialize()
 		lots.append(lot)

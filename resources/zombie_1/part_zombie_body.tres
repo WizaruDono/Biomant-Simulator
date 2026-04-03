@@ -5,6 +5,7 @@
 
 [resource]
 script = ExtResource("1_sjv5j")
+part_base = 1
 actor_health = 7
 card_name = "Гниплое Тельце LvL1"
 card_desc = "Внутри что-то булькает"

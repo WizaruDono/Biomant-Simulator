@@ -7,34 +7,21 @@ var order_scene : PackedScene = load("res://scenes/card_order.tscn")
 var upgrade_scene : PackedScene = load("res://scenes/card_upgrade.tscn")
 
 func create_entity_scene(res : CardRes):
+	var instance: Node
 	match res.card_type:
 		DataManager.CardType.LOCATION:
-			var location : CardLocation = location_scene.instantiate()
-			location.location_res = res
-			var scene : PackedScene = PackedScene.new()
-			scene.pack(location)
-			return scene
+			instance = location_scene.instantiate()
+			instance.location_res = res
 		DataManager.CardType.MONSTER:
-			var monster : CardActorMonster = monster_scene.instantiate()
-			monster.monster_res = res
-			var scene : PackedScene = PackedScene.new()
-			scene.pack(monster)
-			return scene
+			instance = monster_scene.instantiate()
+			instance.monster_res = res
 		DataManager.CardType.MONSTER_PART:
-			var part : CardActorPart = part_scene.instantiate()
-			part.part_res = res
-			var scene : PackedScene = PackedScene.new()
-			scene.pack(part)
-			return scene
+			instance = part_scene.instantiate()
+			instance.part_res = res
 		DataManager.CardType.ORDER:
-			var order : CardOrder = order_scene.instantiate()
-			order.order_res = res
-			var scene : PackedScene = PackedScene.new()
-			scene.pack(order)
-			return scene
+			instance = order_scene.instantiate()
+			instance.order_res = res
 		DataManager.CardType.UPGRADE: 
-			var upgrade : CardUpgrade = upgrade_scene.instantiate()
-			upgrade.upgrade_res = res
-			var scene : PackedScene = PackedScene.new()
-			scene.pack(upgrade)
-			return scene
+			instance = upgrade_scene.instantiate()
+			instance.upgrade_res = res
+	return instance

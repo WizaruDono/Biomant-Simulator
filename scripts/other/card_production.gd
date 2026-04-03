@@ -249,8 +249,7 @@ func create():
 	match production_type:
 		DataManager.ProductionType.PART_CREATOR:
 			var monster_res : MonsterRes = MonsterManager.create_monster_by_parts(part_reses)
-			var monster_scene : PackedScene = EntityManager.create_entity_scene(monster_res)
-			var monster : CardActorMonster = monster_scene.instantiate()
+			var monster : CardActorMonster = EntityManager.create_entity_scene(monster_res)
 			GameManager.level.player_actors.add_child(monster)
 			monster.initialize()
 			SoundManager.play_asmr_sfx(SoundManager.SND_SPAWN, -19.0)
@@ -260,8 +259,7 @@ func create():
 		
 		DataManager.ProductionType.MONSTER_CREATOR:
 			var monster_res : MonsterRes = MonsterManager.create_monster_by_monsters(monsters)
-			var monster_scene : PackedScene = EntityManager.create_entity_scene(monster_res)
-			var monster : CardActorMonster = monster_scene.instantiate()
+			var monster: CardActorMonster = EntityManager.create_entity_scene(monster_res)
 			GameManager.level.player_actors.add_child(monster)
 			monster.initialize()
 			SoundManager.play_asmr_sfx(SoundManager.SND_SPAWN, -19.0)
@@ -270,12 +268,8 @@ func create():
 			monster.global_position = pos 
 		
 		DataManager.ProductionType.PART_MERGER:
-			var part_reses : Array[PartRes]
-			for part in parts:
-				part_reses.append(part.part_res)
-			var part_res : PartRes = MonsterManager.create_grade_up_part(part_reses)		# ОШИБКА при объединении 5 конечностей
-			var part_scene : PackedScene = EntityManager.create_entity_scene(part_res)
-			var part : CardActorPart = part_scene.instantiate()
+			var part_res : PartRes = MonsterManager.create_grade_up_part(parts[0].part_res)
+			var part: CardActorPart = EntityManager.create_entity_scene(part_res)
 			GameManager.level.player_actors.add_child(part)
 			part.initialize()
 			SoundManager.play_asmr_sfx(SoundManager.SND_SPAWN, -19.0)

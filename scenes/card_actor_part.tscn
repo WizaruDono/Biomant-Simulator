@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dv1lj8l5ryf51" path="res://scenes/card_actor.tscn" id="1_d5j1h"]
 [ext_resource type="Script" uid="uid://wpggfbj05y2w" path="res://scripts/other/card_actor_part.gd" id="2_4qxx0"]
 
-[node name="CardActorPart" unique_id=1739889152 instance=ExtResource("1_d5j1h")]
+[node name="CardActorPart" unique_id=1669806118 instance=ExtResource("1_d5j1h")]
 script = ExtResource("2_4qxx0")
 part_res = null
 part_perc = 0

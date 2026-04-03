@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_jkhpf")
 part_type = 4
+part_base = 1
 actor_health = 4
 card_name = "Гнилая Нога (L) LvL1"
 card_desc = "Хлюп-Хлюп"
