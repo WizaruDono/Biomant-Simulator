@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="LocationRes" load_steps=21 format=3 uid="uid://bde2idpoq2fwl"]
+[gd_resource type="Resource" script_class="LocationRes" format=3 uid="uid://bde2idpoq2fwl"]
 
 [ext_resource type="Script" uid="uid://ycs334vjj71c" path="res://resources/res_scripts/location_res.gd" id="1_132ef"]
 [ext_resource type="Texture2D" uid="uid://cawdugoxsldpv" path="res://img/l_graveyard.png" id="1_sai12"]

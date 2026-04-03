@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="PartRes" load_steps=3 format=3 uid="uid://dokfgl66o7agf"]
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://dokfgl66o7agf"]
 
 [ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_8vatu"]
 [ext_resource type="Texture2D" uid="uid://c1w8itk7fup6l" path="res://img/zombie_head.png" id="1_v7hlv"]
