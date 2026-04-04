@@ -1,13 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://d06c1qay34ipo"]
+[gd_scene format=3 uid="uid://d06c1qay34ipo"]
 
 [ext_resource type="Script" uid="uid://046aunmhh21a" path="res://scripts/other/reroll.gd" id="1_pmi8m"]
 
-[node name="RerollButton" type="Node2D"]
+[node name="RerollButton" type="Node2D" unique_id=733373232]
 script = ExtResource("1_pmi8m")
 
-[node name="Button" type="Button" parent="."]
-offset_right = 19.0
-offset_bottom = 8.0
+[node name="Button" type="Button" parent="." unique_id=729302974]
+offset_right = 128.0
+offset_bottom = 48.0
+theme_override_font_sizes/font_size = 24
 text = "Обновить"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

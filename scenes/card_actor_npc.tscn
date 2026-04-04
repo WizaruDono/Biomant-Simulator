@@ -2,10 +2,16 @@
 
 [ext_resource type="PackedScene" uid="uid://dv1lj8l5ryf51" path="res://scenes/card_actor.tscn" id="1_1th0d"]
 [ext_resource type="Script" uid="uid://maeamy8altuc" path="res://scripts/other/card_actor_npc.gd" id="2_i0fe0"]
+[ext_resource type="PackedScene" uid="uid://caoqrrojhtbwk" path="res://scenes/card_upgrade.tscn" id="3_b252n"]
 [ext_resource type="PackedScene" uid="uid://pig5inkb3apw" path="res://scenes/shop_lot.tscn" id="3_bco72"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s4cw1"]
+resource_local_to_scene = true
+size = Vector2(128, 192)
 
 [node name="CardActorNPC" unique_id=1655249897 node_paths=PackedStringArray("lots") instance=ExtResource("1_1th0d")]
 script = ExtResource("2_i0fe0")
+card_upgrade_scene = ExtResource("3_b252n")
 lot_scene = ExtResource("3_bco72")
 npc_res = null
 npc_type = 0
@@ -21,3 +27,9 @@ npc_mood = 0
 npc_wait_timer = 0.0
 lots = Array[String]([])
 lots_offset = 20.0
+
+[node name="activation_progress" parent="." index="0" unique_id=785111382]
+pivot_offset_ratio = Vector2(0, 0)
+
+[node name="collision_card" parent="." index="2" unique_id=2046268927]
+shape = SubResource("RectangleShape2D_s4cw1")

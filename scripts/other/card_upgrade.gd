@@ -3,6 +3,8 @@ class_name CardUpgrade
 
 @export var upgrade_res : CardRes
 
+var is_active: bool = false
+
 func initialize():
 	await get_tree().process_frame
 	card_type = upgrade_res.card_type

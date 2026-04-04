@@ -16,7 +16,7 @@ func _ready() -> void:
 	ProductionManager.create_stapler()
 	#ProductionManager.create_motel()
 	#ProductionManager.create_changeshop()
-	#NpcManager.create_trader()		# торговец
+	NpcManager.create_trader()		# торговец
 	#NpcManager.create_order_trader()		# спавн торгаша заказов заменили на спавн самих заказов
 	order_manager.create_deck() # заказы
 	

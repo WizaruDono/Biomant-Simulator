@@ -40,6 +40,8 @@ var intersected_card_areas: Array[Card]
 var is_stack: bool = false: set = _on_is_stack_set
 var main_card: Card
 
+var possibility_stack: bool = true
+
 var drag_offset: Vector2 = Vector2.ZERO
 
 func _ready() -> void:
@@ -117,9 +119,11 @@ func _enter_state() -> void:
 		
 		DataManager.CardState.ENTER_STACK:
 			if intersected_card:
-				intersected_card.add_card_to_stack(self)
-			else:
-				card_state = DataManager.CardState.ON_FIELD
+				if intersected_card.possibility_stack and intersected_card.card_owner_type == DataManager.OwnerType.PLAYER:
+					intersected_card.add_card_to_stack(self)
+				else:
+					card_state = DataManager.CardState.ON_FIELD
+					_move_card_away(self)
 		
 		DataManager.CardState.IN_STACK, \
 		DataManager.CardState.EXIT_STACK, \
@@ -140,7 +144,11 @@ func _exit_state(old_state: DataManager.CardState) -> void:
 				GameManager.dragged_card = null
 			
 			if intersected_card:
-				card_state = DataManager.CardState.ENTER_STACK
+				if intersected_card.possibility_stack and intersected_card.card_owner_type == DataManager.OwnerType.PLAYER:
+					card_state = DataManager.CardState.ENTER_STACK
+				else:
+					_move_card_away(self)
+				
 			
 			# Очищаем пересечения
 			intersected_card_areas.clear()
@@ -167,6 +175,9 @@ func reparent_to_level() -> void:
 		old_parrent_card.main_card._check_is_stack()
 
 func add_card_to_stack(card: Card) -> void:
+	if not possibility_stack:
+		return
+	
 	if not CardRuleManager.can_stack(self, card): 
 		_move_card_away(card)
 		return

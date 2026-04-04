@@ -1,4 +1,4 @@
-[gd_scene load_steps=6 format=3 uid="uid://pig5inkb3apw"]
+[gd_scene format=3 uid="uid://pig5inkb3apw"]
 
 [ext_resource type="Script" uid="uid://d2afmrgqoityf" path="res://scripts/other/shop_lot.gd" id="1_jatp3"]
 [ext_resource type="FontFile" uid="uid://co45erws16hd7" path="res://styles/DigitalPixelV124-Regular.otf" id="2_7a03j"]
@@ -6,13 +6,14 @@
 [ext_resource type="StyleBox" uid="uid://c2l5lxiiuxjda" path="res://styles/button_shrink_with_padding_hover.tres" id="3_7a03j"]
 [ext_resource type="StyleBox" uid="uid://dp7ny512jagrj" path="res://styles/button_shrink_with_padding_disable.tres" id="4_ocnrv"]
 
-[node name="ShopLot" type="Area2D"]
+[node name="ShopLot" type="Area2D" unique_id=2028657153]
 script = ExtResource("1_jatp3")
 
-[node name="button_buy" type="Button" parent="."]
+[node name="button_buy" type="Button" parent="." unique_id=673383287]
 unique_name_in_owner = true
-offset_right = 8.0
-offset_bottom = 8.0
+custom_minimum_size = Vector2(128, 0)
+offset_right = 128.0
+offset_bottom = 30.0
 focus_mode = 0
 mouse_default_cursor_shape = 2
 theme_override_colors/font_color = Color(0.9098039, 0.75686276, 0.4392157, 1)
@@ -22,7 +23,7 @@ theme_override_colors/font_hover_color = Color(0.9098039, 0.75686276, 0.4392157,
 theme_override_colors/font_hover_pressed_color = Color(0.9098039, 0.75686276, 0.4392157, 1)
 theme_override_colors/font_disabled_color = Color(0.9098039, 0.75686276, 0.4392157, 1)
 theme_override_fonts/font = ExtResource("2_7a03j")
-theme_override_font_sizes/font_size = 8
+theme_override_font_sizes/font_size = 16
 theme_override_styles/normal = ExtResource("2_i310n")
 theme_override_styles/pressed = ExtResource("3_7a03j")
 theme_override_styles/hover = ExtResource("3_7a03j")

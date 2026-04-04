@@ -14,12 +14,17 @@ func create_trader_by_type(_trader_type : DataManager.CardType):
 
 # ТОРГОВЕЦ
 func create_trader():
-	var npc : CardActorNPC = npc_scene.instantiate()
-	npc.npc_res = npc_trader_location_res
-	GameManager.level.player_actors.add_child(npc)
-	npc.initialize()
+	var trader: CardActorNPC = npc_scene.instantiate()
+	GameManager.level.player_actors.add_child(trader)
+	
+	if not trader.is_node_ready():
+		await trader.ready
+	
+	trader.npc_res = npc_trader_location_res
+	trader.initialize()
+	
 	# Конкретные координаты (X, Y)
-	npc.global_position = Vector2(1400, -150) # чем меньше Y - тем выше
+	trader.global_position = Vector2(1400, 360) # чем меньше Y - тем выше
 	# Рандомная позиция
 	#npc.global_position = Vector2(600 + randi_range(-150, 150), randf_range(DataManager.npc_positions[0], DataManager.npc_positions[1]))
 	

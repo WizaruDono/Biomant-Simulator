@@ -3,6 +3,7 @@ extends CardActor
 class_name CardActorNPC
 
 
+@export var card_upgrade_scene: PackedScene = preload("uid://caoqrrojhtbwk")
 @export var lot_scene : PackedScene = preload("res://scenes/shop_lot.tscn")
 @export var npc_res : NPCRes
 @export var npc_type : DataManager.NPCType
@@ -67,6 +68,7 @@ func create_shop():
 	for lot in lots:
 		if is_instance_valid(lot): lot.queue_free()
 	lots.clear()
+	
 	# Очищаем старые кнопки ценников
 	for btn in active_buttons:
 		if is_instance_valid(btn): btn.queue_free()
@@ -100,19 +102,19 @@ func create_shop():
 		if selected_res == null: 
 			continue
 			
-		# 🔥 МЫ УБРАЛИ pool.erase()! 
-		# Теперь карты МОГУТ дублироваться. Если в пуле всего 1 карта, она займет все 3 слота.
-			
 		var copy_res : CardRes = selected_res.duplicate(true)
 		copy_res.card_owner_type = DataManager.OwnerType.NEUTRAL
 		
 		var lot: Card = EntityManager.create_entity_scene(copy_res)
+		
 		if lot == null:
-			var card_scene = load("res://scenes/card_upgrade.tscn") 
-			lot = card_scene.instantiate()
-
+			lot = card_upgrade_scene.instantiate()
+		
 		GameManager.level.add_child(lot)
+		lot.possibility_stack = false
+		
 		lot.initialize()
+		
 		lots.append(lot)
 		
 	align_lots()
@@ -120,14 +122,15 @@ func create_shop():
 
 func align_lots():
 	if lots.is_empty(): return
-		
-	var card_width = lots[0].get_size().x
+	
+	var lot: Card = lots[0]
+	var card_width = lot.panel_back.size.x
 	var start_x = global_position.x - ((lots.size() - 1) * (card_width + lots_offset)) / 2
 	var start_y = global_position.y + 270 
 	
 	for i in range(lots.size()):
 		# код позиционирования товаров
-		var lot = lots[i]
+		lot = lots[i]
 		# Фиксированная позиция для каждого товара в ряд
 		lot.global_position = Vector2(start_x + i * (card_width + lots_offset), start_y)
 		
@@ -137,9 +140,10 @@ func align_lots():
 		shop_lot.set_lot(lot)
 		shop_lot.initialize()
 		
-		active_buttons.append(shop_lot)	# заносим кнопки в массив для дальнейшего удаления
+		# Заносим кнопки в массив для дальнейшего удаления
+		active_buttons.append(shop_lot)
 		
-	# === СПАВНИМ КНОПКУ РЯДОМ С ТОВАРАМИ ===
+	# Кнопка обновления товаров
 	if current_reroll_btn == null or not is_instance_valid(current_reroll_btn):
 		current_reroll_btn = reroll_btn_scene.instantiate()
 		GameManager.level.add_child(current_reroll_btn)
@@ -148,14 +152,13 @@ func align_lots():
 	# Ставим кнопку чуть правее последнего товара
 	current_reroll_btn.global_position = Vector2(start_x + lots.size() * (card_width + lots_offset), start_y)
 
-		
-		
 
 func buy_lot(lot : Card):
 	if npc_type != DataManager.NPCType.TRADER: return
 	if not lots.has(lot): return
 
 	lot.card_owner_type = DataManager.OwnerType.PLAYER
+	lot.possibility_stack = true
 	lots.erase(lot)
 	
 	# Если товары кончились:
@@ -165,5 +168,6 @@ func buy_lot(lot : Card):
 			print(actor_name + ": " + random_replic) # Вывод реплики в консоль
 		else:
 			print(actor_name + ": Спасибо за покупки!")
+		
 		create_shop()	# === АВТООБНОВЛЕНИЕ ТОВАРОВ ===
 		# queue_free() УДАЛЕН. Торговец остается стоять на месте.
