@@ -27,6 +27,7 @@ anchor_bottom = 0.0
 grow_vertical = 1
 
 [node name="rect_main_img" parent="panel_back/container_content" index="1" unique_id=665974388]
+modulate = Color(0.40862015, 0.40862015, 0.40862015, 1)
 custom_minimum_size = Vector2(0, 160)
 size_flags_horizontal = 4
 size_flags_vertical = 4
