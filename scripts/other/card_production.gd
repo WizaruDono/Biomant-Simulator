@@ -153,7 +153,6 @@ func check_possible_production() -> bool:
 		DataManager.ProductionType.MONSTER_CREATOR:
 			if content_cards.size() != DataManager.monster_love_size:
 				result = false
-			
 			for content_card in content_cards:
 				if content_card.card_type != DataManager.CardType.MONSTER:
 					result = false
@@ -170,19 +169,24 @@ func check_possible_production() -> bool:
 			pass
 		
 		DataManager.ProductionType.PART_MERGER:
-			if content_cards.size() != DataManager.parts_merger_count:
-				result = false
-			if content_cards[0].card_type != DataManager.CardType.MONSTER_PART:
-				result = false
-			var same_part_type : DataManager.MonsterPartType = content_cards[0].part_type
-			for content_card in content_cards:
-				if content_card.card_type != DataManager.CardType.MONSTER_PART:
-					result = false
-				else:
-					if same_part_type != content_card.part_type:
-						result = false
+			var actor_parts = get_all_nested_cards_actor_part()
+			if actor_parts.size() != DataManager.parts_merger_count: return false
+			if actor_parts[0].card_type != DataManager.CardType.MONSTER_PART: return false
+
+			var first_card = actor_parts[0]
+			var template = first_card.part_res
+			for current_card in actor_parts:
+				var current_res = current_card.part_res
+				if current_res.part_family != template.part_family or \
+				   current_res.part_perc   != template.part_perc   or \
+				   current_res.part_type   != template.part_type   or \
+				   current_res.part_base   != template.part_base   or \
+				   current_res.card_grade  != template.card_grade  or \
+				   current_card.card_type  != first_card.card_type:
+					return false
 			
-			result = true
+			# Если все проверки выше прошли, значит, можно менять части тел
+			return true
 	
 	return result
 
@@ -271,14 +275,16 @@ func create():
 			monster.global_position = pos 
 		
 		DataManager.ProductionType.PART_MERGER:
-			var part_res : PartRes = MonsterManager.create_grade_up_part(parts[0].part_res)
-			var part: CardActorPart = EntityManager.create_entity_scene(part_res)
-			GameManager.level.player_actors.add_child(part)
-			part.initialize()
+			## Не хватает проверки входящих частей тел
+			var exchanging_parts = get_all_nested_cards_actor_part()
+			var part_res : PartRes = MonsterManager.create_grade_up_part(exchanging_parts[0].part_res)
+			var exchanged_part: CardActorPart = EntityManager.create_entity_scene(part_res)
+			GameManager.level.player_actors.add_child(exchanged_part)
+			exchanged_part.initialize()
+			exchanged_part.global_position = global_position
 			SoundManager.play_asmr_sfx(SoundManager.SND_SPAWN, 0.0)
-			
-			var pos : Vector2 = global_position + Vector2(randi_range(80, 100), randi_range(80, 100)) if randf() < 0.5 else global_position + Vector2(randi_range(-80, -100), randi_range(-80, -100))
-			part.global_position += pos 
+			_move_card_away(exchanged_part)
+			for p in exchanging_parts: p.queue_free()
 
 
 func throw_out_trach_cards() -> void:

@@ -7,11 +7,9 @@ extends Node
 func create_grade_up_part(part: PartRes):
 	var part_grade : DataManager.EntityGrade = part.card_grade
 
-	if part_grade >= DataManager.max_grade:
-		# Пока просто дублируем карту и возвращаем её, чтобы
-		# как-то работало. В целом, получается, что мы забрали
-		# у пользователя всё, и отдали взамен только одну такую
-		# же карту.
+	if part_grade >= DataManager.MAX_GRADES[part.part_base]:
+		# Если новых грейдов нет, просто возвращаем одну 
+		# карту вместо уложенных
 		return part.duplicate(true)
 
 	var new_part

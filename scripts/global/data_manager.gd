@@ -69,12 +69,15 @@ var parts_size : int = 6
 
 var monster_love_size : int = 2
 
-var parts_merger_count: int = 5
+var parts_merger_count: int = 2
 
-## Максимальный грейд здесь означает индекс массива EntityGrade. 
-## Прямо сейчас у нас только 2 грейда, т.е. значения 0 и 1. 
-## Временно уменьшил здесь максимальный грейд
-var max_grade: int = 1
+## Максимальный грейд для типа монстра
+var MAX_GRADES = {
+	MonsterBase.COCK: 2,
+	MonsterBase.SKELETON: 2, 
+	MonsterBase.ZOMBIE: 1, 
+	MonsterBase.SHEEP: 1
+}
 
 # ЦЕНЫ
 @export var order_reroll_cost : int = 0  # Заказы меняем бесплатно
