@@ -296,7 +296,6 @@ func throw_out_trach_cards() -> void:
 		# Стек остальных карт без ручного erase
 		for i in range(1, outside_cards.size()):
 			_main_card.add_card_to_stack(outside_cards[i])
-	
-		var tween: Tween = create_tween()
-		var target_pos: Vector2 = _main_card.global_position + Vector2(128 * randf_range(0.5, 1.0), 128 * randf_range(0.5, 1.0))
-		tween.tween_property(_main_card, "global_position", target_pos, 0.3).set_trans(Tween.TRANS_BACK)
+		
+		_move_card_away(_main_card)
+	pass

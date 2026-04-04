@@ -164,6 +164,10 @@ func reparent_to_level() -> void:
 		old_parrent_card.main_card._check_is_stack()
 
 func add_card_to_stack(card: Card) -> void:
+	if not CardRuleManager.can_stack(self, card): 
+		_move_card_away(card)
+		return
+
 	if card == null or card == self:
 		print("Отмена стака: ", card.name, " и ", name, " не валидная карта")
 		return
@@ -241,19 +245,10 @@ func _process_released_left_mouse():
 	pass
 
 func _process_pressed_left_mouse():
-	if card_owner_type != DataManager.OwnerType.PLAYER:
-		return
-
-	if GameManager.is_captured:
-		return
-	
-	if GameManager.hovered_card != self or GameManager.dragged_card:
-		return
-	
-# === ЗАПРЕТ НА ПЕРЕТАСКИВАНИЕ ДЛЯ КАРТ ЗАКАЗОВ ===
-	if card_type == DataManager.CardType.ORDER:
-		return # раскомментируй две строки если хочешь активировать запрет
-# ==========================
+	if card_owner_type != DataManager.OwnerType.PLAYER: return
+	if GameManager.is_captured: return
+	if GameManager.hovered_card != self or GameManager.dragged_card: 	return
+	if CardRuleManager.forbidden_to_be_moved(self): return
 	
 	# Начинаем перетаскивание и запоминаем смещение мыши относительно центра
 	GameManager.is_captured = true
@@ -365,3 +360,18 @@ func update_progress_bar(new_value : float):
 
 func _on_container_content_resized() -> void:
 	panel_back.size.y = container_content.size.y
+
+
+func _move_card_away(moving_card: Card):
+	var jump_distance: float = 164.0
+	var random_direction = Vector2.from_angle(randf() * TAU)
+	var target_pos: Vector2 = moving_card.global_position + (random_direction * jump_distance)
+
+	# Было бы супер повернуть откидываемую карту вокруг своей оси, но пивот у неё в углу, 
+	# и это выглядит ужасно. Поправить у меня не получилось.
+	#var target_rotation = moving_card.rotation + TAU
+
+	var tween: Tween = create_tween().set_parallel()
+	tween.tween_property(moving_card, "global_position", target_pos, 0.3).set_trans(Tween.TRANS_BACK)
+	#tween.tween_property(moving_card, "rotation", target_rotation, 0.3).set_trans(Tween.TRANS_SINE)
+	pass

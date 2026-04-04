@@ -16,14 +16,7 @@ monster_parts = Array[ExtResource("3_rkygk")]([])
 is_can_love = true
 
 [node name="activation_progress" parent="." index="0" unique_id=785111382]
-offset_right = 128.0
 offset_bottom = 0.0
-
-[node name="panel_back" parent="." index="1" unique_id=967893501]
-custom_minimum_size = Vector2(128, 192)
-offset_top = 0.0
-mouse_filter = 0
-mouse_behavior_recursive = 2
 
 [node name="rect_main_img" parent="panel_back/container_content" parent_id_path=PackedInt32Array(1648399696) index="1" unique_id=665974388]
 custom_minimum_size = Vector2(64, 64)

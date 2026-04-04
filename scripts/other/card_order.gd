@@ -53,10 +53,7 @@ func perform_is_stack_action() -> void:
 		if not order_card.card_container.get_children().is_empty():
 			var outside_card: Card = order_card.card_container.get_child(0)
 			outside_card.reparent_to_level()
-			var tween: Tween = create_tween()
-			var target_pos: Vector2 = outside_card.global_position + Vector2(128 * randf_range(0.5, 1.0), 128 * randf_range(0.5, 1.0))
-			tween.tween_property(outside_card, "global_position", target_pos, 0.3).set_trans(Tween.TRANS_BACK)
-			
+			_move_card_away(outside_card)
 			await get_tree().process_frame
 			
 		card_container.get_child(0).queue_free()
