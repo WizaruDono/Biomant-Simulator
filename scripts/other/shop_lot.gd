@@ -18,7 +18,7 @@ func set_lot(new_lot : Card):
 
 func _on_button_buy_pressed() -> void:
 	if PlayerManager.check_gold(lot_cost):
-		SoundManager.play_asmr_sfx(SoundManager.SND_BUY, -18.0) # ЗВУК ПОКУПКИ (Слегка громкий, это же награда!)
+		SoundManager.play_asmr_sfx(SoundManager.SND_BUY, -8.0) # ЗВУК ПОКУПКИ (Слегка громкий, это же награда!)
 		button_buy.disabled = true
 		SignalManager.on_spend_gold.emit(lot_cost)
 		

@@ -235,7 +235,7 @@ func get_loot():
 	GameManager.level.player_loot.add_child(loot)
 	loot.initialize()
 	
-	SoundManager.play_asmr_sfx(SoundManager.SND_SPAWN, -20.0)	# ЗВУК ПОЯВЛЕНИЯ ЧАСТИ ТЕЛА
+	SoundManager.play_asmr_sfx(SoundManager.SND_SPAWN, -8.0)	# ЗВУК ПОЯВЛЕНИЯ ЧАСТИ ТЕЛА
 	
 	# Рандомная позиция вылета
 	var pos_offset = Vector2(randi_range(80, 100), randi_range(80, 100))

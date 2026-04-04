@@ -14,7 +14,7 @@ func setup(price: int, action: Callable):
 
 func _on_button_pressed():
 	if PlayerManager.check_gold(cost):
-		SoundManager.play_asmr_sfx(SoundManager.SND_REROLL, -20.0)	# ЗВУК ПЕРЕТАСОВКИ
+		SoundManager.play_asmr_sfx(SoundManager.SND_REROLL, -8.0)	# ЗВУК ПЕРЕТАСОВКИ
 		SignalManager.on_spend_gold.emit(cost)
 		if action_callable.is_valid():
 			action_callable.call()

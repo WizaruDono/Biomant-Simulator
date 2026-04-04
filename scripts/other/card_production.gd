@@ -255,7 +255,7 @@ func create():
 			var monster : CardActorMonster = EntityManager.create_entity_scene(monster_res)
 			GameManager.level.player_actors.add_child(monster)
 			monster.initialize()
-			SoundManager.play_asmr_sfx(SoundManager.SND_SPAWN, -19.0)
+			SoundManager.play_asmr_sfx(SoundManager.SND_SPAWN, -8.0)
 			
 			var pos : Vector2 = global_position + Vector2(randi_range(80, 100), randi_range(80, 100)) if randf() < 0.5 else global_position + Vector2(randi_range(-80, -100), randi_range(-80, -100))
 			monster.global_position += pos
@@ -265,7 +265,7 @@ func create():
 			var monster: CardActorMonster = EntityManager.create_entity_scene(monster_res)
 			GameManager.level.player_actors.add_child(monster)
 			monster.initialize()
-			SoundManager.play_asmr_sfx(SoundManager.SND_SPAWN, -19.0)
+			SoundManager.play_asmr_sfx(SoundManager.SND_SPAWN, 0.0)
 			
 			var pos : Vector2 = global_position + Vector2(randi_range(80, 100), randi_range(80, 100)) if randf() < 0.5 else global_position + Vector2(randi_range(-80, -100), randi_range(-80, -100))
 			monster.global_position = pos 
@@ -275,7 +275,7 @@ func create():
 			var part: CardActorPart = EntityManager.create_entity_scene(part_res)
 			GameManager.level.player_actors.add_child(part)
 			part.initialize()
-			SoundManager.play_asmr_sfx(SoundManager.SND_SPAWN, -19.0)
+			SoundManager.play_asmr_sfx(SoundManager.SND_SPAWN, 0.0)
 			
 			var pos : Vector2 = global_position + Vector2(randi_range(80, 100), randi_range(80, 100)) if randf() < 0.5 else global_position + Vector2(randi_range(-80, -100), randi_range(-80, -100))
 			part.global_position += pos 
