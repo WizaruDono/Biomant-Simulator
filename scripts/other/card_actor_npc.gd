@@ -156,7 +156,8 @@ func align_lots():
 func buy_lot(lot : Card):
 	if npc_type != DataManager.NPCType.TRADER: return
 	if not lots.has(lot): return
-
+	
+	lot._move_card_away(lot)
 	lot.card_owner_type = DataManager.OwnerType.PLAYER
 	lot.possibility_stack = true
 	lots.erase(lot)

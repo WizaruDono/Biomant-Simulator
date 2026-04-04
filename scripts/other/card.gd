@@ -191,7 +191,7 @@ func _exit_state(old_state: DataManager.CardState) -> void:
 				if intersected_card.possibility_stack and intersected_card.card_owner_type == DataManager.OwnerType.PLAYER:
 					card_state = DataManager.CardState.ENTER_STACK
 				else:
-					_move_card_away(self)
+					_move_card_away(intersected_card)
 			else:
 				SoundManager.play_asmr_sfx(SoundManager.FLESH_POP, -20.0)
 				
