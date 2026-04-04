@@ -96,8 +96,6 @@ func _on_activate_timer_timeout() -> void:
 	activate_timer.stop()
 
 func check_possible_production() -> bool:
-	var content_cards: Array[Card] = get_all_nested_cards_recursive()
-	var result: bool = false
 	match production_type:
 		DataManager.ProductionType.PART_CREATOR:
 			var content_cards_actor_part: Array[CardActorPart] = get_all_nested_cards_actor_part()
@@ -148,25 +146,27 @@ func check_possible_production() -> bool:
 			
 			if part_reses.size() == DataManager.parts_size \
 			and get_all_nested_cards_recursive().size() == DataManager.parts_size:
-				result = true
+				return true
+			
+			return false
 		
 		DataManager.ProductionType.MONSTER_CREATOR:
-			if content_cards.size() != DataManager.monster_love_size:
-				result = false
+			var content_cards: Array[Card] = get_all_nested_cards_recursive()
+			if content_cards.size() != DataManager.monster_love_size: 
+				return false
 			for content_card in content_cards:
 				if content_card.card_type != DataManager.CardType.MONSTER:
-					result = false
+					return false
 				else:
 					if not content_card.is_can_love:
-						result = false
-			
-			result = true
+						return false
+			return true
 		
 		DataManager.ProductionType.MONSTER_MERGER:
-			pass
+			return true
 		
 		DataManager.ProductionType.RES_CREATOR:
-			pass
+			return true
 		
 		DataManager.ProductionType.PART_MERGER:
 			var actor_parts = get_all_nested_cards_actor_part()
@@ -188,7 +188,8 @@ func check_possible_production() -> bool:
 			# Если все проверки выше прошли, значит, можно менять части тел
 			return true
 	
-	return result
+	print_rich("[color=orange]DEBUG: Не должно здесь вылетать[/color]")
+	return false
 
 func check_necessary_cards(card_part_res: PartRes) -> bool:
 	var result: bool = false
