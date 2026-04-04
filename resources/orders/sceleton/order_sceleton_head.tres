@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="OrderRes" format=3 uid="uid://b5rm0307svbid"]
 
 [ext_resource type="Script" uid="uid://c1tk4d5hutmfr" path="res://resources/res_scripts/order_res.gd" id="1_8vifb"]
-[ext_resource type="Texture2D" uid="uid://h0egv71gh5j" path="res://img/t_test.png" id="1_d1yfm"]
+[ext_resource type="Texture2D" uid="uid://cb7ox7fu6wkc5" path="res://img/monsters/skelet_1/skelet_head.png" id="1_0382r"]
 
 [resource]
 script = ExtResource("1_8vifb")
@@ -14,6 +14,6 @@ card_name = "заказ"
 card_desc = "Голова скелета"
 activate_speed = 5.0
 use_count = 1
-card_texture = ExtResource("1_d1yfm")
+card_texture = ExtResource("1_0382r")
 card_type = 9
 metadata/_custom_type_script = "uid://c1tk4d5hutmfr"

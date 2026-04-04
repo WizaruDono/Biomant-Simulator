@@ -156,7 +156,7 @@ func _enter_state() -> void:
 			z_index = 1000
 			GameManager.dragged_card = self
 			
-			SoundManager.play_asmr_sfx(SoundManager.FLESH_POP, -16.0)
+			SoundManager.play_asmr_sfx(SoundManager.FLESH_POP, -20.0)
 		
 		DataManager.CardState.HOVER_STACK:
 			z_index = 1000
@@ -193,7 +193,7 @@ func _exit_state(old_state: DataManager.CardState) -> void:
 				else:
 					_move_card_away(self)
 			else:
-				SoundManager.play_asmr_sfx(SoundManager.FLESH_POP, -16.0)
+				SoundManager.play_asmr_sfx(SoundManager.FLESH_POP, -20.0)
 				
 			
 			# Очищаем пересечения
@@ -243,6 +243,8 @@ func add_card_to_stack(card: Card) -> void:
 	
 	card.reparent(card_container)
 	
+	SoundManager.play_asmr_sfx(SoundManager.SND_STACK, -12.0)	# ЗВУК СТАКА
+	
 	await get_tree().process_frame
 	
 	card.position = Vector2(0, label_header.size.y)
@@ -265,9 +267,6 @@ func _check_is_stack() -> void:
 
 func _on_is_stack_set(value: bool) -> void:
 	is_stack = value
-	
-	if value:
-		SoundManager.play_asmr_sfx(SoundManager.SND_STACK, -8.0)	# ЗВУК СТАКА
 	
 	await get_tree().process_frame
 	perform_is_stack_action()

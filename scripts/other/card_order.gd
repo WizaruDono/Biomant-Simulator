@@ -13,9 +13,23 @@ class_name CardOrder
 @export var reward_amount : int
 @export var special_reward : CardRes
 
+var wait_time: float: set = _on_wait_time_set
+func _on_wait_time_set(value: float) -> void:
+	if not is_node_ready(): await ready
+	wait_time = value
+	activate_timer.start(value)
+	activate_timer.one_shot = true
+	activation_progress.max_value = value
+	activation_progress.value = value
 
-var check_entire_monster_grade: bool = false
-
+func _process(_delta: float) -> void:
+	if not activate_timer.is_stopped():
+		activation_progress.value = activate_timer.time_left
+		if not activation_progress.visible:
+			activation_progress.show()
+	else:
+		if activation_progress.visible:
+			activation_progress.hide()
 
 func initialize():
 	await get_tree().process_frame
@@ -66,9 +80,13 @@ func create_rewards():
 		reward.global_position += pos
 	
 	PlayerManager.add_gold(reward_amount)
-	SoundManager.play_asmr_sfx(SoundManager.FLESH_POP, 0.0)
+	OrderManager.on_order_completed(self)
 	
-	#OrderManager.on_order_completed(self)	# ВЫЗЫВАЕМ МЕНЕДЖЕР
+	destroy()
+
+func destroy() -> void:
+	OrderManager.on_order_destroyed(self)
+	SoundManager.play_asmr_sfx(SoundManager.FLESH_POP, -8.0)
 	queue_free()
 
 func _draw() -> void:
@@ -235,3 +253,6 @@ func check_order_consistency() -> bool:
 	## === ДОБАВЬ ВОТ ЭТУ СТРОКУ ===
 	## Срабатывает, если order_type вообще не опознан (страховка от багов)
 	#return false
+
+func _on_activate_timer_timeout() -> void:
+	destroy()

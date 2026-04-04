@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="OrderRes" format=3 uid="uid://drdqst2d0teq7"]
 
-[ext_resource type="Texture2D" uid="uid://h0egv71gh5j" path="res://img/t_test.png" id="1_8f7vh"]
+[ext_resource type="Texture2D" uid="uid://d32to3bpgmwt0" path="res://img/monsters/skelet_2/skeletR_R_arm.png" id="1_ndn4r"]
 [ext_resource type="Script" uid="uid://c1tk4d5hutmfr" path="res://resources/res_scripts/order_res.gd" id="2_dkx3m"]
 
 [resource]
@@ -15,6 +15,6 @@ card_desc = "Правая рука скелета 2 уровня"
 card_grade = 1
 activate_speed = 5.0
 use_count = 1
-card_texture = ExtResource("1_8f7vh")
+card_texture = ExtResource("1_ndn4r")
 card_type = 9
 metadata/_custom_type_script = "uid://c1tk4d5hutmfr"

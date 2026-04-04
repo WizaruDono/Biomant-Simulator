@@ -2,6 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://coec2fnqd70g0" path="res://scenes/card_holder.tscn" id="1_g7usf"]
 [ext_resource type="Script" uid="uid://c6436xcaulev7" path="res://scripts/other/card_order.gd" id="2_81uub"]
+[ext_resource type="Texture2D" uid="uid://ctxy5huqnpkw8" path="res://img/monsters/skelet_1/skelet_L_arm.png" id="3_6ww67"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ww67"]
+resource_local_to_scene = true
+size = Vector2(128, 192)
 
 [node name="CardOrder" unique_id=297682173 instance=ExtResource("1_g7usf")]
 script = ExtResource("2_81uub")
@@ -9,8 +14,26 @@ order_res = null
 order_name = ""
 order_desc = ""
 quest_part_conditions = Array[int]([])
-quest_grade_conditions = 0
 quest_family_conditions = Array[int]([])
+quest_base_conditions = Array[int]([])
+quest_perc_conditions = 0
 order_type = 0
 reward_amount = 0
 special_reward = null
+
+[node name="container_content" parent="panel_back" parent_id_path=PackedInt32Array(967893501) index="0" unique_id=1648399696]
+anchors_preset = 10
+anchor_bottom = 0.0
+grow_vertical = 1
+
+[node name="rect_main_img" parent="panel_back/container_content" index="1" unique_id=665974388]
+custom_minimum_size = Vector2(0, 160)
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("3_6ww67")
+expand_mode = 1
+
+[node name="collision_card" parent="." index="2" unique_id=2046268927]
+shape = SubResource("RectangleShape2D_6ww67")
+
+[connection signal="timeout" from="activate_timer" to="." method="_on_activate_timer_timeout"]

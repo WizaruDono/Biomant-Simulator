@@ -30,6 +30,7 @@ MonsterManager="*res://scripts/global/monster_manager.gd"
 LocationManager="*res://scripts/global/location_manager.gd"
 ProductionManager="*res://scripts/global/production_manager.gd"
 NpcManager="*res://scripts/global/NPC_manager.gd"
+OrderManager="*uid://d1vi2lq44rplc"
 
 [display]
 
@@ -94,5 +95,6 @@ right_mouse={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 textures/default_filters/use_nearest_mipmap_filter=true
 2d/snap/snap_2d_vertices_to_pixel=true

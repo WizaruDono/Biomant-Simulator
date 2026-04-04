@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="OrderRes" format=3 uid="uid://dwf6u0dcanrl0"]
 
-[ext_resource type="Texture2D" uid="uid://h0egv71gh5j" path="res://img/t_test.png" id="1_epcii"]
+[ext_resource type="Texture2D" uid="uid://b5hwl8qimtsb6" path="res://img/monsters/skelet_2/skeletR_body.png" id="1_c20ns"]
 [ext_resource type="Script" uid="uid://c1tk4d5hutmfr" path="res://resources/res_scripts/order_res.gd" id="2_sg73c"]
 
 [resource]
@@ -15,6 +15,6 @@ card_desc = "Тело скелета 2 уровня"
 card_grade = 1
 activate_speed = 5.0
 use_count = 1
-card_texture = ExtResource("1_epcii")
+card_texture = ExtResource("1_c20ns")
 card_type = 9
 metadata/_custom_type_script = "uid://c1tk4d5hutmfr"
