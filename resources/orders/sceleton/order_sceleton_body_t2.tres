@@ -9,6 +9,7 @@ quest_part_conditions = Array[int]([0])
 quest_family_conditions = Array[int]([0])
 quest_base_conditions = Array[int]([0])
 order_type = 2
+reward_amount = 8
 card_name = "заказ"
 card_desc = "Тело скелета 2 уровня"
 card_grade = 1

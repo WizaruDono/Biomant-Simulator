@@ -7,7 +7,7 @@
 script = ExtResource("1_aaj6c")
 part_type = 1
 actor_health = 6
-actor_damage = 3
+actor_damage = 2
 card_name = "Череп LvL1"
 card_desc = "Внушает ужас"
 card_texture = ExtResource("1_oldoa")

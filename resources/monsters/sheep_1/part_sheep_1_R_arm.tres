@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://b8x24n0oqdc1a"]
+
+[ext_resource type="Texture2D" uid="uid://c2ahb7xwd71aw" path="res://img/monsters/sheep_1/sheep_1_R_arm.png" id="1_ruyfv"]
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_y04ob"]
+
+[resource]
+script = ExtResource("1_y04ob")
+part_family = 1
+part_type = 1
+part_base = 3
+actor_damage = 6
+card_name = "Овечья рука (R)"
+card_texture = ExtResource("1_ruyfv")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_5ngww")
 part_type = 1
-actor_health = 7
+actor_health = 6
 actor_damage = 4
 card_name = "Череп LvL2"
 card_desc = "Делает ехидный щёлк-щёлк"

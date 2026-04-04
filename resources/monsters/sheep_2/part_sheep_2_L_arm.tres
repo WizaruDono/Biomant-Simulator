@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://wrpsft7u3hro"]
+
+[ext_resource type="Texture2D" uid="uid://dxlh7a14lqbkj" path="res://img/monsters/sheep_2/sheep_2_L_arm.png" id="1_hxova"]
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_qabqs"]
+
+[resource]
+script = ExtResource("1_qabqs")
+part_family = 1
+part_type = 1
+part_base = 3
+actor_health = 2
+actor_damage = 7
+card_name = "Овечья рука (L)"
+card_grade = 1
+card_texture = ExtResource("1_hxova")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

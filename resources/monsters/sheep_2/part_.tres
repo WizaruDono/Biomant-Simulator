@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://c6csxi6487qa3"]
 
-[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_lacx5"]
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_dulm0"]
 
 [resource]
-script = ExtResource("1_lacx5")
+script = ExtResource("1_dulm0")
 part_family = 1
 part_type = 1
-part_base = 2
-card_grade = 2
+part_base = 3
+card_grade = 1
 card_type = 2
 metadata/_custom_type_script = "uid://bll44gw1l0di2"

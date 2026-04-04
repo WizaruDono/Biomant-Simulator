@@ -46,13 +46,15 @@ enum PercType {
 	NONE, DIGGER, FIGHTER
 }
 
+# Раса / Локация существ
 enum MonsterFamily {
 	UNDEAD, ANIMAL, HUMAN
 }
 
+# Существа
 enum MonsterBase {
 	SKELETON, ZOMBIE, 
-	COCK, 
+	COCK, SHEEP
 }
 
 enum UpgradeType {
@@ -113,6 +115,13 @@ const BASE_JOINTS = {
 		MonsterPartType.R_ARM: Vector2(-76.0,	-59.0),
 		MonsterPartType.L_LEG: Vector2(-59.0,	-85.0),
 		MonsterPartType.R_LEG: Vector2(-69.0,	-85.0)
+	},
+	MonsterBase.SHEEP: {
+		#MonsterPartType.HEAD:  Vector2(,	),
+		#MonsterPartType.L_ARM: Vector2(,	),
+		#MonsterPartType.R_ARM: Vector2(,	),
+		#MonsterPartType.L_LEG: Vector2(,	),
+		#MonsterPartType.R_LEG: Vector2(,	)
 	},
 	# Добавляем сюда новые виды по мере их отрисовки
 	# можно не добавлять апгрейднутых существ, если их размеры тела одинаковы

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://cjkha88rygn7u"]
+
+[ext_resource type="Texture2D" uid="uid://bd6jxtbg8aqwk" path="res://img/monsters/sheep_1/sheep_1_body.png" id="1_8kanh"]
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_rlqyx"]
+
+[resource]
+script = ExtResource("1_rlqyx")
+part_family = 1
+part_type = 1
+part_base = 3
+actor_health = 6
+actor_damage = 2
+card_name = "Пушистое Пузо"
+card_texture = ExtResource("1_8kanh")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

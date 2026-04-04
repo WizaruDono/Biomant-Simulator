@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://ddsrbyy50hep2"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_c74f6"]
+[ext_resource type="Texture2D" uid="uid://bb5b3s3hq2uu2" path="res://img/monsters/sheep_1/sheep_1_head.png" id="1_e53sx"]
+
+[resource]
+script = ExtResource("1_c74f6")
+part_family = 1
+part_type = 1
+part_base = 3
+actor_health = 5
+actor_damage = 3
+card_name = "Пушистая Голова "
+card_desc = "О чём думают овцы? О своём, о-о-вечном"
+card_texture = ExtResource("1_e53sx")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

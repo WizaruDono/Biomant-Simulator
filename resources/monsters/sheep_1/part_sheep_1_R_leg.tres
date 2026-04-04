@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://cb3vqxsyox4da"]
+
+[ext_resource type="Texture2D" uid="uid://da20gij074p8p" path="res://img/monsters/sheep_1/sheep_1_R_leg.png" id="1_60kqs"]
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_kujm2"]
+
+[resource]
+script = ExtResource("1_kujm2")
+part_family = 1
+part_type = 1
+part_base = 3
+actor_damage = 3
+card_name = "Овечья нога (R)"
+card_texture = ExtResource("1_60kqs")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"
