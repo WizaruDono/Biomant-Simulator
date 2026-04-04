@@ -22,7 +22,6 @@ signal initialized
 @export var parts : Array[CardActorPart]
 @export var production_card: CardProduction
 @export var location_card : CardLocation
-@export var order_card : CardOrder
 @export var is_can_product : bool
 @export var is_can_digg : bool
 @export var is_can_get_reward : bool
@@ -131,9 +130,11 @@ func _enter_state() -> void:
 
 func _exit_state(old_state: DataManager.CardState) -> void:
 	match old_state:
+		
 		DataManager.CardState.IN_STACK:
 			if get_parent() != GameManager.level:
 				call_deferred("reparent_to_level")
+		
 		DataManager.CardState.DRAGGED:
 			if GameManager.dragged_card == self:
 				GameManager.dragged_card = null
@@ -149,7 +150,9 @@ func _exit_state(old_state: DataManager.CardState) -> void:
 
 	print("Выход из состояния: %s %s" % [DataManager.CardState.keys()[old_state], name])
 
+# Для дебага
 func _draw() -> void:
+	return
 	var font = preload("uid://co45erws16hd7")
 	draw_string(font, Vector2.ZERO, str("state: ",card_state), HORIZONTAL_ALIGNMENT_CENTER)
 
@@ -247,7 +250,7 @@ func _process_released_left_mouse():
 func _process_pressed_left_mouse():
 	if card_owner_type != DataManager.OwnerType.PLAYER: return
 	if GameManager.is_captured: return
-	if GameManager.hovered_card != self or GameManager.dragged_card: 	return
+	if GameManager.hovered_card != self or GameManager.dragged_card: return
 	if CardRuleManager.forbidden_to_be_moved(self): return
 	
 	# Начинаем перетаскивание и запоминаем смещение мыши относительно центра
@@ -266,13 +269,13 @@ func _process_pressed_right_mouse():
 func _on_panel_back_mouse_entered() -> void:
 	GameManager.hovered_card = self
 	GameManager.is_hovering_card = true
-	var tween : Tween = create_tween().set_parallel()
+	var tween : Tween = create_tween()
 	tween.tween_property(self, "scale",  Vector2(1.05, 1.05), 0.1)
 
 func _on_panel_back_mouse_exited() -> void:
 	GameManager.hovered_card = null
 	GameManager.is_hovering_card = false
-	var tween : Tween = create_tween().set_parallel()
+	var tween : Tween = create_tween()
 	tween.tween_property(self, "scale",  Vector2(1, 1), 0.1)
 
 func _on_area_entered(area: Area2D) -> void:

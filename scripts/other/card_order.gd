@@ -6,7 +6,6 @@ class_name CardOrder
 @export var order_name : String
 @export var order_desc : String
 @export var quest_part_conditions : Array[DataManager.MonsterPartType]
-@export var quest_grade_conditions : DataManager.EntityGrade
 @export var quest_family_conditions : Array[DataManager.MonsterFamily]
 @export var quest_base_conditions: Array[DataManager.MonsterBase]
 @export var quest_perc_conditions: DataManager.PercType
@@ -28,10 +27,8 @@ func initialize():
 	order_desc = order_res.card_desc
 	card_owner_type = order_res.card_owner_type
 	quest_part_conditions = order_res.quest_part_conditions
-	quest_grade_conditions = order_res.quest_grade_conditions
 	quest_family_conditions = order_res.quest_family_conditions
 	quest_base_conditions = order_res.quest_base_conditions
-	check_entire_monster_grade = order_res.check_entire_monster_grade
 	order_type = order_res.order_type
 	reward_amount = order_res.reward_amount
 	special_reward = order_res.special_reward
@@ -57,7 +54,7 @@ func perform_is_stack_action() -> void:
 			await get_tree().process_frame
 			
 		card_container.get_child(0).queue_free()
-		queue_free()
+		create_rewards()
 
 
 func create_rewards():
@@ -67,14 +64,16 @@ func create_rewards():
 		reward.initialize()
 		var pos : Vector2 = global_position + Vector2(randi_range(80, 100), randi_range(80, 100)) if randf() < 0.5 else global_position + Vector2(randi_range(-80, -100), randi_range(-80, -100))
 		reward.global_position += pos
+	
 	PlayerManager.add_gold(reward_amount)
-	stack.remove_card(self)
+	SoundManager.play_asmr_sfx(SoundManager.FLESH_POP, 0.0)
 	
 	#OrderManager.on_order_completed(self)	# ВЫЗЫВАЕМ МЕНЕДЖЕР
 	queue_free()
 
 func _draw() -> void:
-	var font = preload("uid://co45erws16hd7")
+	return
+	#var font = preload("uid://co45erws16hd7")
 	#draw_string(font, Vector2.ZERO, str(card_container.get_children().is_empty()), HORIZONTAL_ALIGNMENT_CENTER)
 
 func check_order_consistency() -> bool:
@@ -87,9 +86,8 @@ func check_order_consistency() -> bool:
 		return false
 	
 	# Проверка по уровню
-	if check_entire_monster_grade:
-		if submitted_card.card_grade < quest_grade_conditions:
-			return false
+	if submitted_card.card_grade < card_grade:
+		return false
 	
 	match order_type:
 		# Монстр

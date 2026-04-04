@@ -21,6 +21,7 @@ const SND_BUY = preload("res://sounds/sfx/flesh_pop.ogg")
 const SND_REROLL = preload("res://sounds/sfx/buy_gold_1.wav")	# "res://sounds/sfx/card_slide_3.wav"
 const SND_STACK = preload("res://sounds/sfx/card_slide_1.wav")	# "res://sounds/sfx/flesh_pop.ogg"
 const SND_SPAWN = preload("res://sounds/sfx/flesh_pop.ogg")
+const FLESH_POP = preload("uid://trtdyoaebtk6")
 #"res://sounds/sfx/buy_gold_1.wav"
 #"res://sounds/sfx/buy_gold_2.wav"
 #"res://sounds/sfx/card_slide_1.wav"
