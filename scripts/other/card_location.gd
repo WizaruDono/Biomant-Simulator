@@ -149,10 +149,14 @@ func _on_activate_timer_timeout() -> void:
 
 
 func destroy():
-	if stack and is_instance_valid(stack):
-		stack.remove_card(self)
-	var tween = create_tween()
-	tween.tween_callback(queue_free).set_delay(0.3)
+	if not card_container.get_children().is_empty():
+		var card: Card = card_container.get_child(0)
+		card.reparent_to_level()
+		card._move_card_away(card)
+		
+		await get_tree().process_frame
+	
+	queue_free()
 
 
 # === НОВОЕ: Алгоритм честной очереди ===
