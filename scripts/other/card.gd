@@ -12,7 +12,7 @@ signal initialized
 @export var is_dragging : bool
 
 @export var card_type : DataManager.CardType
-@export var card_grade : DataManager.EntityGrade
+@export var card_grade : DataManager.EntityGrade: set = _on_card_grade_set
 @export var card_cost : int
 @export var card_texture : Texture2D
 @export var card_owner_type : DataManager.OwnerType
@@ -54,6 +54,48 @@ func _ready() -> void:
 
 func _on_initialized() -> void:
 	set_collision_size()
+
+func _on_card_grade_set(value: DataManager.EntityGrade) -> void:
+	if not is_node_ready():
+		await ready
+	
+	card_grade = value
+	
+	match value:
+		DataManager.EntityGrade.T1:
+			set_color_border( Color(0.125, 0.18, 0.216, 1.0), 2)
+		DataManager.EntityGrade.T2:
+			set_color_border( Color(0.16, 0.277, 0.8, 1.0), 2)
+		DataManager.EntityGrade.T3:
+			set_color_border(Color(0.48, 0.0, 0.8, 1.0), 2)
+		_:
+			set_color_border( Color(0.125, 0.18, 0.216, 1.0), 2)
+
+func set_color_border(_color: Color, width: int = 2):
+	# Normal
+	var normal_sb = StyleBoxFlat.new()
+	normal_sb.border_color = _color
+	normal_sb.set_border_width_all(width)
+	normal_sb.corner_radius_bottom_left = 8
+	normal_sb.corner_radius_bottom_right = 8
+	normal_sb.bg_color = Color(0.843, 0.71, 0.58, 1.0)
+	normal_sb.shadow_color = Color(0.129, 0.184, 0.22, 0.588)
+	normal_sb.shadow_size = 4
+	panel_back.add_theme_stylebox_override("normal", normal_sb)
+
+	# Hover
+	var hover_sb = StyleBoxFlat.new()
+	hover_sb.border_color = _color
+	hover_sb.set_border_width_all(width)
+	hover_sb.corner_radius_bottom_left = 8
+	hover_sb.corner_radius_bottom_right = 8
+	hover_sb.bg_color = Color(0.843, 0.71, 0.58, 1.0)
+	hover_sb.shadow_color = Color(0.129, 0.184, 0.22, 0.588)
+	hover_sb.shadow_size = 8
+	panel_back.add_theme_stylebox_override("hover", hover_sb)
+	
+	# Pressed
+	panel_back.add_theme_stylebox_override("pressed", hover_sb)
 
 func set_collision_size() -> void:
 	if collision_card.shape == null or panel_back.size == Vector2.ZERO: return
@@ -381,6 +423,9 @@ func update_progress_bar(new_value : float):
 #endregion
 
 func _on_container_content_resized() -> void:
+	if not is_node_ready():
+		await ready
+	
 	panel_back.size.y = container_content.size.y
 
 
