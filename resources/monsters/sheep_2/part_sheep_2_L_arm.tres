@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_qabqs")
 part_family = 1
-part_type = 1
+part_type = 2
 part_base = 3
 actor_health = 2
 actor_damage = 7

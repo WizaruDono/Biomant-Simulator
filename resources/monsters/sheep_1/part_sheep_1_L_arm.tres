@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_g5u5a")
 part_family = 1
-part_type = 1
+part_type = 2
 part_base = 3
 actor_damage = 6
 card_name = "Овечья рука (L)"

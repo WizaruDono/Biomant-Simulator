@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_xmmoe")
 part_family = 1
-part_type = 1
+part_type = 5
 part_base = 3
 actor_health = 1
 actor_damage = 4

@@ -5,12 +5,13 @@
 [ext_resource type="Resource" uid="uid://bde2idpoq2fwl" path="res://resources/locations/location_graveyard.tres" id="3_dk2vv"]
 [ext_resource type="Resource" uid="uid://b2kgt3x0nd2o5" path="res://resources/upgrades/up_location_speed.tres" id="4_tsmgx"]
 [ext_resource type="Script" uid="uid://dl2tf7lxboat6" path="res://resources/res_scripts/npc_res.gd" id="5_h678b"]
+[ext_resource type="Resource" uid="uid://cbhyt3hyw4ab" path="res://resources/locations/location_farm.tres" id="5_kbf5b"]
 
 [resource]
 script = ExtResource("5_h678b")
 npc_type = 1
 replics = Array[String](["Добрейшего вечерочка! Не хочешь закупиться?", "Не спеши, выбирай с умом."])
-npc_shop_content = Array[ExtResource("2_kbf5b")]([ExtResource("3_dk2vv"), ExtResource("3_dk2vv"), ExtResource("4_tsmgx"), null])
+npc_shop_content = Array[ExtResource("2_kbf5b")]([ExtResource("3_dk2vv"), ExtResource("4_tsmgx"), ExtResource("5_kbf5b")])
 npc_wait_timer = 60.0
 actor_health = 50
 actor_damage = 10

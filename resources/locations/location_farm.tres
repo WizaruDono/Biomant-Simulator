@@ -14,10 +14,22 @@
 [ext_resource type="Resource" uid="uid://crurmpklj351o" path="res://resources/monsters/cock_2/part_cock_2_L_leg.tres" id="11_g1n42"]
 [ext_resource type="Resource" uid="uid://d1n8wvumege68" path="res://resources/monsters/cock_2/part_cock_2_R_arm.tres" id="12_njth6"]
 [ext_resource type="Resource" uid="uid://cjxt5xjv55djr" path="res://resources/monsters/cock_2/part_cock_2_R_leg.tres" id="13_ln3ed"]
+[ext_resource type="Resource" uid="uid://cjkha88rygn7u" path="res://resources/monsters/sheep_1/part_sheep_1_body.tres" id="14_dgjq8"]
+[ext_resource type="Resource" uid="uid://ddsrbyy50hep2" path="res://resources/monsters/sheep_1/part_sheep_1_head.tres" id="15_sib51"]
+[ext_resource type="Resource" uid="uid://ccojax31lebwt" path="res://resources/monsters/sheep_1/part_sheep_1_L_arm.tres" id="16_ubyiw"]
+[ext_resource type="Resource" uid="uid://bke0svgs3ep34" path="res://resources/monsters/sheep_1/part_sheep_1_L_leg.tres" id="17_uoa1u"]
+[ext_resource type="Resource" uid="uid://b8x24n0oqdc1a" path="res://resources/monsters/sheep_1/part_sheep_1_R_arm.tres" id="18_m3o5a"]
+[ext_resource type="Resource" uid="uid://cb3vqxsyox4da" path="res://resources/monsters/sheep_1/part_sheep_1_R_leg.tres" id="19_drsig"]
+[ext_resource type="Resource" uid="uid://coh4j1kxxnwhn" path="res://resources/monsters/sheep_2/part_sheep_2_body.tres" id="20_4mmgd"]
+[ext_resource type="Resource" uid="uid://cihiygtqe5mu1" path="res://resources/monsters/sheep_2/part_sheep_2_head.tres" id="21_dbj0b"]
+[ext_resource type="Resource" uid="uid://wrpsft7u3hro" path="res://resources/monsters/sheep_2/part_sheep_2_L_arm.tres" id="22_t3h00"]
+[ext_resource type="Resource" uid="uid://blxr5hbew7aqw" path="res://resources/monsters/sheep_2/part_sheep_2_L_leg.tres" id="23_70uil"]
+[ext_resource type="Resource" uid="uid://cr4rdkkquhkv4" path="res://resources/monsters/sheep_2/part_sheep_2_R_arm.tres" id="24_81s1v"]
+[ext_resource type="Resource" uid="uid://brunsivjqcve6" path="res://resources/monsters/sheep_2/part_sheep_2_R_leg.tres" id="25_ktwqg"]
 
 [resource]
 script = ExtResource("1_5em7w")
-loot_pool = Array[Resource]([ExtResource("2_j6tji"), ExtResource("3_iwpja"), ExtResource("4_x84sa"), ExtResource("5_t5q65"), ExtResource("6_tm38e"), ExtResource("7_a16wx"), ExtResource("8_a16wx"), ExtResource("9_qxsbe"), ExtResource("10_hm6no"), ExtResource("11_g1n42"), ExtResource("12_njth6"), ExtResource("13_ln3ed")])
+loot_pool = Array[Resource]([ExtResource("2_j6tji"), ExtResource("3_iwpja"), ExtResource("4_x84sa"), ExtResource("5_t5q65"), ExtResource("6_tm38e"), ExtResource("7_a16wx"), ExtResource("8_a16wx"), ExtResource("9_qxsbe"), ExtResource("10_hm6no"), ExtResource("11_g1n42"), ExtResource("12_njth6"), ExtResource("13_ln3ed"), ExtResource("14_dgjq8"), ExtResource("15_sib51"), ExtResource("16_ubyiw"), ExtResource("17_uoa1u"), ExtResource("18_m3o5a"), ExtResource("19_drsig"), ExtResource("20_4mmgd"), ExtResource("21_dbj0b"), ExtResource("22_t3h00"), ExtResource("23_70uil"), ExtResource("24_81s1v"), ExtResource("25_ktwqg")])
 card_name = "Ферма"
 card_desc = "Можно отправить в неё монстра, вдруг принесёт яички?"
 activate_speed = 6.0
