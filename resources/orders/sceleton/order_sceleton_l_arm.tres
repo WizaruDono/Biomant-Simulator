@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="OrderRes" format=3 uid="uid://ynq88st0rgj8"]
 
-[ext_resource type="Texture2D" uid="uid://ctxy5huqnpkw8" path="res://img/monsters/skelet_1/skelet_L_arm.png" id="1_d7clp"]
+[ext_resource type="Texture2D" uid="uid://kuxpb85xe8kl" path="res://img/orders/order_part_arm.png" id="1_d7clp"]
 [ext_resource type="Script" uid="uid://c1tk4d5hutmfr" path="res://resources/res_scripts/order_res.gd" id="2_pxrcg"]
 
 [resource]

@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="OrderRes" format=3 uid="uid://dxf5q1vc82iav"]
 
-[ext_resource type="Texture2D" uid="uid://wj1yfcyryth3" path="res://img/monsters/skelet_2/skeletR_L_leg.png" id="1_gwewd"]
+[ext_resource type="Texture2D" uid="uid://b7mp1uq2vb7r3" path="res://img/orders/order_part_leg.png" id="1_gwewd"]
 [ext_resource type="Script" uid="uid://c1tk4d5hutmfr" path="res://resources/res_scripts/order_res.gd" id="2_cwup8"]
 
 [resource]
@@ -9,7 +9,7 @@ quest_part_conditions = Array[int]([4])
 quest_family_conditions = Array[int]([0])
 quest_base_conditions = Array[int]([0])
 order_type = 2
-reward_amount = 8
+reward_amount = 12
 card_name = "заказ"
 card_desc = "Левая нога скелета скелета 2 уровня"
 card_grade = 1

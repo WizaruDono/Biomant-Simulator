@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="OrderRes" format=3 uid="uid://yne4fhg6enj7"]
+
+[ext_resource type="Script" uid="uid://c1tk4d5hutmfr" path="res://resources/res_scripts/order_res.gd" id="1_qfv68"]
+
+[resource]
+script = ExtResource("1_qfv68")
+quest_part_conditions = Array[int]([0])
+quest_family_conditions = Array[int]([0])
+quest_base_conditions = Array[int]([1])
+check_base_condition = 1
+order_type = 2
+reward_amount = 5
+card_name = "заказ"
+activate_speed = 5.0
+use_count = 1
+card_type = 9
+metadata/_custom_type_script = "uid://c1tk4d5hutmfr"

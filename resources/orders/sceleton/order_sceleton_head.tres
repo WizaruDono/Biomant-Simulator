@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="OrderRes" format=3 uid="uid://b5rm0307svbid"]
 
 [ext_resource type="Script" uid="uid://c1tk4d5hutmfr" path="res://resources/res_scripts/order_res.gd" id="1_8vifb"]
-[ext_resource type="Texture2D" uid="uid://cb7ox7fu6wkc5" path="res://img/monsters/skelet_1/skelet_head.png" id="1_0382r"]
+[ext_resource type="Texture2D" uid="uid://bh2ujmcnu7vgm" path="res://img/orders/order_part_head.png" id="1_0382r"]
 
 [resource]
 script = ExtResource("1_8vifb")

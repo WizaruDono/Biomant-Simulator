@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bb5b3s3hq2uu2" path="res://img/monsters/sheep_1/sheep_1_head.png" id="6_l6jgl"]
 [ext_resource type="Texture2D" uid="uid://c2ahb7xwd71aw" path="res://img/monsters/sheep_1/sheep_1_R_arm.png" id="7_e8phk"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2mwqe"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2k6no"]
 resource_local_to_scene = true
 size = Vector2(128, 192)
 
@@ -60,4 +60,4 @@ visible = false
 visible = false
 
 [node name="collision_card" parent="." index="2" unique_id=2046268927]
-shape = SubResource("RectangleShape2D_2mwqe")
+shape = SubResource("RectangleShape2D_2k6no")
