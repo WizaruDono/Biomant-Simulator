@@ -5,7 +5,11 @@
 [ext_resource type="LabelSettings" uid="uid://b3j50fkpgbe26" path="res://styles/label_card_damage.tres" id="3_agwqa"]
 [ext_resource type="Texture2D" uid="uid://31o05l6qch3w" path="res://img/ui_shovel.png" id="4_kjwa6"]
 
-[node name="CardProduction" unique_id=1677998791 node_paths=PackedStringArray("parts", "monsters") instance=ExtResource("1_816sw")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_agwqa"]
+resource_local_to_scene = true
+size = Vector2(128, 192)
+
+[node name="CardProduction" unique_id=1677998791 node_paths=PackedStringArray("monsters") instance=ExtResource("1_816sw")]
 script = ExtResource("2_xn2ci")
 production_res = null
 production_type = 0
@@ -15,10 +19,9 @@ product_speed = 0.0
 product_count = 0
 remaining_product_count = 0
 is_product_in_progress = false
-parts = []
 monsters = []
 
-[node name="panel_back" parent="." index="0" unique_id=1622366662]
+[node name="panel_back" parent="." index="1" unique_id=967893501]
 self_modulate = Color(0.5882353, 1, 1, 1)
 
 [node name="filler" type="Control" parent="panel_back/container_content" parent_id_path=PackedInt32Array(1648399696) index="2" unique_id=1181198202]
@@ -50,7 +53,10 @@ layout_mode = 2
 texture = ExtResource("4_kjwa6")
 stretch_mode = 4
 
-[node name="activate_timer" parent="." index="3" unique_id=1557460073]
+[node name="collision_card" parent="." index="2" unique_id=2046268927]
+shape = SubResource("RectangleShape2D_agwqa")
+
+[node name="activate_timer" parent="." index="4" unique_id=1557460073]
 one_shot = true
 
 [connection signal="timeout" from="activate_timer" to="." method="_on_activate_timer_timeout"]

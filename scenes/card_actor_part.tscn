@@ -3,6 +3,10 @@
 [ext_resource type="PackedScene" uid="uid://dv1lj8l5ryf51" path="res://scenes/card_actor.tscn" id="1_d5j1h"]
 [ext_resource type="Script" uid="uid://wpggfbj05y2w" path="res://scripts/other/card_actor_part.gd" id="2_4qxx0"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4qxx0"]
+resource_local_to_scene = true
+size = Vector2(128, 192)
+
 [node name="CardActorPart" unique_id=1669806118 instance=ExtResource("1_d5j1h")]
 script = ExtResource("2_4qxx0")
 part_res = null
@@ -10,5 +14,8 @@ part_perc = 0
 part_type = 0
 part_family = 0
 
-[node name="container_content" parent="panel_back" parent_id_path=PackedInt32Array(1622366662) index="0" unique_id=1648399696]
+[node name="container_content" parent="panel_back" parent_id_path=PackedInt32Array(967893501) index="0" unique_id=1648399696]
 size_flags_vertical = 0
+
+[node name="collision_card" parent="." index="2" unique_id=2046268927]
+shape = SubResource("RectangleShape2D_4qxx0")

@@ -38,7 +38,14 @@ signal initialized
 
 var intersected_card_areas: Array[Card]
 var is_stack: bool = false: set = _on_is_stack_set
-var main_card: Card
+var main_card: Card: set = _on_main_card_set
+func _on_main_card_set(value: Card) -> void:
+	main_card = value
+	
+	if not card_container.get_children().is_empty():
+		var child: Card = card_container.get_child(0)
+		if child is Card:
+			child.main_card = value
 
 var possibility_stack: bool = true
 
@@ -191,7 +198,7 @@ func _exit_state(old_state: DataManager.CardState) -> void:
 				if intersected_card.possibility_stack and intersected_card.card_owner_type == DataManager.OwnerType.PLAYER:
 					card_state = DataManager.CardState.ENTER_STACK
 				else:
-					_move_card_away(intersected_card)
+					_move_card_away(self)
 			else:
 				SoundManager.play_asmr_sfx(SoundManager.FLESH_POP, -20.0)
 				
@@ -206,9 +213,8 @@ func _exit_state(old_state: DataManager.CardState) -> void:
 
 # Для дебага
 func _draw() -> void:
-	return
 	var font = preload("uid://co45erws16hd7")
-	draw_string(font, Vector2.ZERO, str("state: ",card_state), HORIZONTAL_ALIGNMENT_CENTER)
+	draw_string(font, Vector2.ZERO, str("maincard: ",main_card), HORIZONTAL_ALIGNMENT_CENTER)
 
 func reparent_to_level() -> void:
 	var _level: Level = GameManager.level
@@ -374,12 +380,6 @@ func _find_best_target() -> Card:
 			best_card = card
 				
 	return best_card
-
-#region Заказы
-
-
-
-#endregion
 
 #region Продукция
 
