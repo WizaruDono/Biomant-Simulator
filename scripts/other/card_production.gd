@@ -155,14 +155,29 @@ func check_possible_production() -> bool:
 		
 		DataManager.ProductionType.MONSTER_CREATOR:
 			var content_cards: Array[Card] = get_all_nested_cards_recursive()
-			if content_cards.size() != DataManager.monster_love_size: 
+			if content_cards.is_empty():
 				return false
-			for content_card in content_cards:
-				if content_card.card_type != DataManager.CardType.MONSTER:
-					return false
-				else:
-					if not content_card.is_can_love:
-						return false
+			
+			var first_card: Card = content_cards[0]
+			if not first_card is CardActorMonster:
+				first_card.reparent_to_level()
+				_move_card_away(first_card)
+				return false
+			
+			if content_cards.size() < DataManager.parts_merger_count: 
+				return false
+			
+			var second_card: Card = content_cards[1]
+			if not second_card is CardActorMonster:
+				first_card.reparent_to_level()
+				_move_card_away(second_card)
+				return false
+			
+			if content_cards.size() > DataManager.parts_merger_count:
+				var outside_card: Card = content_cards[DataManager.parts_merger_count - 1]
+				outside_card.reparent_to_level()
+				_move_card_away(outside_card)
+			
 			return true
 		
 		DataManager.ProductionType.MONSTER_MERGER:
@@ -203,18 +218,6 @@ func check_possible_production() -> bool:
 					cards[2].reparent_to_level()
 					_move_card_away(cards[2])
 			
-			#var template = first_card_actor.part_res
-			#for current_card in actor_parts:
-				#var current_res = current_card.part_res
-				#if current_res.part_family != template.part_family or \
-				   #current_res.part_perc   != template.part_perc   or \
-				   #current_res.part_type   != template.part_type   or \
-				   #current_res.part_base   != template.part_base   or \
-				   #current_res.card_grade  != template.card_grade  or \
-				   #current_card.card_type  != first_card.card_type:
-					#return false
-			
-			# Если все проверки выше прошли, значит, можно менять части тел
 			return true
 	
 	print_rich("[color=orange]DEBUG: Не должно здесь вылетать[/color]")

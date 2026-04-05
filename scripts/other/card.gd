@@ -213,6 +213,7 @@ func _exit_state(old_state: DataManager.CardState) -> void:
 
 # Для дебага
 func _draw() -> void:
+	return
 	var font = preload("uid://co45erws16hd7")
 	draw_string(font, Vector2.ZERO, str("maincard: ",main_card), HORIZONTAL_ALIGNMENT_CENTER)
 
