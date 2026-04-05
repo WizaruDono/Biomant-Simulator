@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="PossibleOrders" format=3 uid="uid://b7ehppssk110s"]
+
+[ext_resource type="Script" uid="uid://c1tk4d5hutmfr" path="res://resources/res_scripts/order_res.gd" id="1_hsema"]
+[ext_resource type="Resource" uid="uid://dqi31ygmc6s75" path="res://resources/orders/zombie/order_zombie_1_body.tres" id="2_hsema"]
+[ext_resource type="Resource" uid="uid://b47lu56e8rdi0" path="res://resources/orders/sceleton/order_sceleton_body.tres" id="2_xl3mb"]
+[ext_resource type="Resource" uid="uid://dwf6u0dcanrl0" path="res://resources/orders/sceleton/order_sceleton_body_t2.tres" id="3_ktil6"]
+[ext_resource type="Resource" uid="uid://nk15ck8n2ptp" path="res://resources/orders/zombie/order_zombie_1_head.tres" id="3_xl3mb"]
+[ext_resource type="Resource" uid="uid://b5rm0307svbid" path="res://resources/orders/sceleton/order_sceleton_head.tres" id="4_835nu"]
+[ext_resource type="Resource" uid="uid://cjrhnx2v368x0" path="res://resources/orders/zombie/order_zombie_1_l_arm.tres" id="4_ktil6"]
+[ext_resource type="Resource" uid="uid://b5f7vctfh8m5n" path="res://resources/orders/zombie/order_zombie_1_l_leg.tres" id="5_835nu"]
+[ext_resource type="Resource" uid="uid://eoyl5cotn8y8" path="res://resources/orders/sceleton/order_sceleton_head_t2.tres" id="5_iem2t"]
+[ext_resource type="Resource" uid="uid://dx6chl3kd5nqq" path="res://resources/orders/zombie/order_zombie_1_r_arm.tres" id="6_iem2t"]
+[ext_resource type="Resource" uid="uid://ynq88st0rgj8" path="res://resources/orders/sceleton/order_sceleton_l_arm.tres" id="6_xvl2g"]
+[ext_resource type="Resource" uid="uid://dtppni3j730mo" path="res://resources/orders/sceleton/order_sceleton_l_arm_t2.tres" id="7_jukcd"]
+[ext_resource type="Resource" uid="uid://ddttepuq8xoc6" path="res://resources/orders/zombie/order_zombie_1_r_leg.tres" id="7_xvl2g"]
+[ext_resource type="Resource" uid="uid://c1bru2enk6eim" path="res://resources/orders/zombie/order_zombie_2_body.tres" id="8_jukcd"]
+[ext_resource type="Resource" uid="uid://bokheeaj81nb5" path="res://resources/orders/sceleton/order_sceleton_l_leg.tres" id="8_suthl"]
+[ext_resource type="Resource" uid="uid://dxf5q1vc82iav" path="res://resources/orders/sceleton/order_sceleton_l_leg_t2.tres" id="9_om1t0"]
+[ext_resource type="Resource" uid="uid://dr68wieocjs56" path="res://resources/orders/zombie/order_zombie_2_head.tres" id="9_suthl"]
+[ext_resource type="Resource" uid="uid://de1to8iu1pi21" path="res://resources/orders/zombie/order_zombie_2_l_arm.tres" id="10_om1t0"]
+[ext_resource type="Resource" uid="uid://6igypi12fh22" path="res://resources/orders/sceleton/order_sceleton_r_arm.tres" id="10_p2orp"]
+[ext_resource type="Resource" uid="uid://bt8h28vtwq5wr" path="res://resources/orders/zombie/order_zombie_2_l_leg.tres" id="11_p2orp"]
+[ext_resource type="Resource" uid="uid://drdqst2d0teq7" path="res://resources/orders/sceleton/order_sceleton_r_arm_t2.tres" id="11_qhth0"]
+[ext_resource type="Resource" uid="uid://drp6mgnk5ty5t" path="res://resources/orders/sceleton/order_sceleton_r_leg.tres" id="12_jsl07"]
+[ext_resource type="Resource" uid="uid://baj1t3ip6jh2w" path="res://resources/orders/zombie/order_zombie_2_r_arm.tres" id="12_qhth0"]
+[ext_resource type="Resource" uid="uid://1ykyecv6d1gd" path="res://resources/orders/sceleton/order_sceleton_r_leg_t2.tres" id="13_cipcj"]
+[ext_resource type="Resource" uid="uid://dgtqk25elt4y0" path="res://resources/orders/zombie/order_zombie_2_r_leg.tres" id="13_jsl07"]
+[ext_resource type="Script" uid="uid://bjwg2xc8bbm7j" path="res://resources/orders/possible_orders.gd" id="14_m4s8c"]
+
+[resource]
+script = ExtResource("14_m4s8c")
+orders = Array[ExtResource("1_hsema")]([ExtResource("2_xl3mb"), ExtResource("3_ktil6"), ExtResource("4_835nu"), ExtResource("5_iem2t"), ExtResource("6_xvl2g"), ExtResource("7_jukcd"), ExtResource("8_suthl"), ExtResource("9_om1t0"), ExtResource("10_p2orp"), ExtResource("11_qhth0"), ExtResource("12_jsl07"), ExtResource("13_cipcj"), ExtResource("2_hsema"), ExtResource("3_xl3mb"), ExtResource("4_ktil6"), ExtResource("5_835nu"), ExtResource("6_iem2t"), ExtResource("7_xvl2g"), ExtResource("8_jukcd"), ExtResource("9_suthl"), ExtResource("10_om1t0"), ExtResource("11_p2orp"), ExtResource("12_qhth0"), ExtResource("13_jsl07")])
+metadata/_custom_type_script = "uid://bjwg2xc8bbm7j"

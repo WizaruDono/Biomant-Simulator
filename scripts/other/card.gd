@@ -214,7 +214,7 @@ func _exit_state(old_state: DataManager.CardState) -> void:
 # Для дебага
 func _draw() -> void:
 	var font = preload("uid://co45erws16hd7")
-	draw_string(font, Vector2.ZERO, str("isstack: ",is_stack), HORIZONTAL_ALIGNMENT_CENTER)
+	#draw_string(font, Vector2.ZERO, str("isstack: ",is_stack), HORIZONTAL_ALIGNMENT_CENTER)
 
 func reparent_to_level() -> void:
 	var _level: Level = GameManager.level
