@@ -250,7 +250,6 @@ func destroy():
 			
 			stapler_cards.clear()
 			is_stack = false
-			perform_is_stack_action()
 		
 		DataManager.ProductionType.MONSTER_CREATOR:
 			var old_gp : Vector2 = global_position
@@ -262,10 +261,8 @@ func destroy():
 			monsters.clear()
 		
 		DataManager.ProductionType.PART_MERGER:
-			for part in parts:
-				stack.remove_card(part)
-				part.queue_free()
-			parts.clear()
+			merged_cards.clear()
+			is_stack = false
 	
 	is_product_in_progress = false
 
