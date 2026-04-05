@@ -95,42 +95,42 @@ var chances_dict : Dictionary[EntityGrade, float] = {
 
 # Словарь координат: Семейство -> Точки крепления на ТЕЛЕ
 const BASE_JOINTS = {
-	MonsterBase.ZOMBIE: {
-		MonsterPartType.HEAD:  Vector2(3.0,		-49.0),
-		MonsterPartType.L_ARM: Vector2(-7.0,		-41.0),
-		MonsterPartType.R_ARM: Vector2(12.0,		-41.0),
-		MonsterPartType.L_LEG: Vector2(-7.0,		-9.0),
-		MonsterPartType.R_LEG: Vector2(6.0,		-9.0)
+		MonsterBase.ZOMBIE: {
+		MonsterPartType.HEAD:  Vector2(67.0,	47.0),
+		MonsterPartType.L_ARM: Vector2(57.0,	56.0),
+		MonsterPartType.R_ARM: Vector2(76.0,	56.0),
+		MonsterPartType.L_LEG: Vector2(56.0,	87.0),
+		MonsterPartType.R_LEG: Vector2(70.0,	87.0)
 	},
 	MonsterBase.SKELETON: {
-		MonsterPartType.HEAD:  Vector2(5.0,		-49.0),
-		MonsterPartType.L_ARM: Vector2(-7.0,		-41.0),
-		MonsterPartType.R_ARM: Vector2(12.0,		-41.0),
-		MonsterPartType.L_LEG: Vector2(-7.0,	-	14.0),
-		MonsterPartType.R_LEG: Vector2(6.0,		-15.0)
+		MonsterPartType.HEAD:  Vector2(66.0,	47.0),
+		MonsterPartType.L_ARM: Vector2(59.0,	55.0),
+		MonsterPartType.R_ARM: Vector2(76.0,	55.0),
+		MonsterPartType.L_LEG: Vector2(57.0,	83.0),
+		MonsterPartType.R_LEG: Vector2(70.0,	83.0)
 	},
 	MonsterBase.COCK: {
-		MonsterPartType.HEAD:  Vector2(-65.0,	-50.0),
-		MonsterPartType.L_ARM: Vector2(-54.0,	-59.0),
-		MonsterPartType.R_ARM: Vector2(-76.0,	-59.0),
-		MonsterPartType.L_LEG: Vector2(-59.0,	-85.0),
-		MonsterPartType.R_LEG: Vector2(-69.0,	-85.0)
+		MonsterPartType.HEAD:  Vector2(65.0,	50.0),
+		MonsterPartType.L_ARM: Vector2(55.0,	59.0),
+		MonsterPartType.R_ARM: Vector2(76.0,	59.0),
+		MonsterPartType.L_LEG: Vector2(59.0,	84.0),
+		MonsterPartType.R_LEG: Vector2(69.0,	83.0)
 	},
 	MonsterBase.SHEEP: {
-		#MonsterPartType.HEAD:  Vector2(,	),
-		#MonsterPartType.L_ARM: Vector2(,	),
-		#MonsterPartType.R_ARM: Vector2(,	),
-		#MonsterPartType.L_LEG: Vector2(,	),
-		#MonsterPartType.R_LEG: Vector2(,	)
+		MonsterPartType.HEAD:  Vector2(61.0,	47.0),
+		MonsterPartType.L_ARM: Vector2(51.0,	65.0),
+		MonsterPartType.R_ARM: Vector2(78.0,	65.0),
+		MonsterPartType.L_LEG: Vector2(57.0,	85.0),
+		MonsterPartType.R_LEG: Vector2(73.0,	85.0)
 	},
 	# Добавляем сюда новые виды по мере их отрисовки
 	# можно не добавлять апгрейднутых существ, если их размеры тела одинаковы
 	#MonsterBase.SKELETON: {
-		#MonsterPartType.HEAD:  Vector2(,	),
-		#MonsterPartType.L_ARM: Vector2(,	),
-		#MonsterPartType.R_ARM: Vector2(,	),
-		#MonsterPartType.L_LEG: Vector2(,	),
-		#MonsterPartType.R_LEG: Vector2(,	)
+		#MonsterPartType.HEAD:  Vector2(,	),	# 1 вниз, 	1 вправо (от центра шеи)
+		#MonsterPartType.L_ARM: Vector2(,	),	# 4 вниз, 	1 вправо
+		#MonsterPartType.R_ARM: Vector2(,	),	# 4 вниз, 	2 влево
+		#MonsterPartType.L_LEG: Vector2(,	),	# 1 вверх, 	2 вправо
+		#MonsterPartType.R_LEG: Vector2(,	)	# 1 вверх, 	2 влево
 	#},
 	
 }

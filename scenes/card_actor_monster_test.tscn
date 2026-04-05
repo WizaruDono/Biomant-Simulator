@@ -74,10 +74,11 @@ centered = false
 offset = Vector2(-65, -50)
 
 [node name="Join_R_Arm" type="Marker2D" parent="panel_back/container_content/sprite_container/sprite_body" index="4" unique_id=1803914024]
-position = Vector2(76, 59)
+position = Vector2(77, 59)
 
 [node name="sprite_r_arm" type="Sprite2D" parent="panel_back/container_content/sprite_container/sprite_body/Join_R_Arm" index="0" unique_id=1694184602]
 unique_name_in_owner = true
+visible = false
 texture = ExtResource("9_8bc5a")
 centered = false
 offset = Vector2(-76, -59)

@@ -1,0 +1,63 @@
+[gd_scene format=3 uid="uid://bsdiylyudmat3"]
+
+[ext_resource type="PackedScene" uid="uid://22qo63jqb87q" path="res://scenes/card_actor_monster.tscn" id="1_2k6no"]
+[ext_resource type="Texture2D" uid="uid://bd6jxtbg8aqwk" path="res://img/monsters/sheep_1/sheep_1_body.png" id="2_420r5"]
+[ext_resource type="Texture2D" uid="uid://djnmp6vm210tu" path="res://img/monsters/sheep_1/sheep_1_L_arm.png" id="3_naotc"]
+[ext_resource type="Texture2D" uid="uid://dwgba36of472s" path="res://img/monsters/sheep_1/sheep_1_L_leg.png" id="4_ka54d"]
+[ext_resource type="Texture2D" uid="uid://da20gij074p8p" path="res://img/monsters/sheep_1/sheep_1_R_leg.png" id="5_7jb16"]
+[ext_resource type="Texture2D" uid="uid://bb5b3s3hq2uu2" path="res://img/monsters/sheep_1/sheep_1_head.png" id="6_l6jgl"]
+[ext_resource type="Texture2D" uid="uid://c2ahb7xwd71aw" path="res://img/monsters/sheep_1/sheep_1_R_arm.png" id="7_e8phk"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_2mwqe"]
+resource_local_to_scene = true
+size = Vector2(128, 192)
+
+[node name="CardActorMonster" unique_id=310193723 instance=ExtResource("1_2k6no")]
+
+[node name="sprite_body" parent="panel_back/container_content/sprite_container" parent_id_path=PackedInt32Array(963749112) index="0" unique_id=1490343699]
+texture = ExtResource("2_420r5")
+
+[node name="Join_L_Arm" parent="panel_back/container_content/sprite_container/sprite_body" index="0" unique_id=1110911689]
+position = Vector2(51, 65)
+
+[node name="sprite_l_arm" parent="panel_back/container_content/sprite_container/sprite_body/Join_L_Arm" index="0" unique_id=1480330216]
+texture = ExtResource("3_naotc")
+offset = Vector2(-51, -65)
+
+[node name="Join_L_Leg" parent="panel_back/container_content/sprite_container/sprite_body" index="1" unique_id=631267588]
+position = Vector2(57, 85)
+
+[node name="sprite_l_leg" parent="panel_back/container_content/sprite_container/sprite_body/Join_L_Leg" index="0" unique_id=322164526]
+texture = ExtResource("4_ka54d")
+offset = Vector2(-57, -85)
+
+[node name="Join_R_Leg" parent="panel_back/container_content/sprite_container/sprite_body" index="2" unique_id=271486882]
+position = Vector2(73, 85)
+
+[node name="sprite_r_leg" parent="panel_back/container_content/sprite_container/sprite_body/Join_R_Leg" index="0" unique_id=1475415015]
+texture = ExtResource("5_7jb16")
+offset = Vector2(-73, -85)
+
+[node name="Join_Head" parent="panel_back/container_content/sprite_container/sprite_body" index="3" unique_id=1975854292]
+position = Vector2(61, 47)
+
+[node name="sprite_head" parent="panel_back/container_content/sprite_container/sprite_body/Join_Head" index="0" unique_id=889135993]
+position = Vector2(-1, 0)
+texture = ExtResource("6_l6jgl")
+offset = Vector2(-60, -47)
+
+[node name="Join_R_Arm" parent="panel_back/container_content/sprite_container/sprite_body" index="4" unique_id=1637342063]
+position = Vector2(78, 65)
+
+[node name="sprite_r_arm" parent="panel_back/container_content/sprite_container/sprite_body/Join_R_Arm" index="0" unique_id=1330503048]
+texture = ExtResource("7_e8phk")
+offset = Vector2(-78, -65)
+
+[node name="filler" parent="panel_back/container_content" parent_id_path=PackedInt32Array(1648399696) index="4" unique_id=1501631219]
+visible = false
+
+[node name="MarginContainer" parent="panel_back/container_content" parent_id_path=PackedInt32Array(1648399696) index="5" unique_id=1460528313]
+visible = false
+
+[node name="collision_card" parent="." index="2" unique_id=2046268927]
+shape = SubResource("RectangleShape2D_2mwqe")
