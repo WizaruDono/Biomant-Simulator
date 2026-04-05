@@ -10,8 +10,14 @@ class_name CardOrder
 @export var quest_base_conditions: Array[DataManager.MonsterBase]
 @export var quest_perc_conditions: DataManager.PercType
 @export var order_type : DataManager.CardType
-@export var reward_amount : int
+@export var reward_amount : int: set = _on_reward_amount_set
+func _on_reward_amount_set(value: int) -> void:
+	if not is_node_ready(): await ready
+	reward_amount = value
+	reward_label.text = str("[wave]", value, "$")
 @export var special_reward : CardRes
+
+@onready var reward_label: RichTextLabel = %RewardLabel
 
 var wait_time: float: set = _on_wait_time_set
 func _on_wait_time_set(value: float) -> void:
