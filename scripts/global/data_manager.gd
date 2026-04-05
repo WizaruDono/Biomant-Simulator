@@ -69,7 +69,7 @@ var parts_size : int = 6
 
 var monster_love_size : int = 2
 
-var parts_merger_count: int = 2
+var parts_merger_count: int = 3
 
 ## Максимальный грейд для типа монстра
 var MAX_GRADES = {

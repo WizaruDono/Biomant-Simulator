@@ -191,32 +191,19 @@ func check_possible_production() -> bool:
 			if cards.is_empty():
 				return false
 			
-			var first_card: Card = cards[0]
-			if not first_card is CardActorPart:
-				first_card.reparent_to_level()
-				_move_card_away(first_card)
+			for card in cards:
+				if not card is CardActorPart:
+					card.reparent_to_level()
+					_move_card_away(card)
+					return false
+			
+			if cards.size() < DataManager.parts_merger_count: 
 				return false
 			
-			if cards.size() < 2: 
-				return false
-			
-			var first_card_actor: CardActorPart = cards[0]
-			
-			var second_card: Card = cards[1]
-			if not second_card is CardActorPart:
-				first_card.reparent_to_level()
-				_move_card_away(second_card)
-				return false
-			
-			var second_card_actor: CardActorPart = second_card
-			if first_card_actor.part_res == second_card_actor.part_res:
-				_move_card_away(second_card_actor)
-				return false
-			
-			if cards.size() > 2:
-				if cards[2]:
-					cards[2].reparent_to_level()
-					_move_card_away(cards[2])
+			if cards.size() > DataManager.parts_merger_count:
+				var outside_card: Card = cards[DataManager.parts_merger_count - 1]
+				outside_card.reparent_to_level()
+				_move_card_away(outside_card)
 			
 			return true
 	
