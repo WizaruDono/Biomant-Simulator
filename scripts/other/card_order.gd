@@ -11,10 +11,6 @@ class_name CardOrder
 @export var quest_perc_conditions: DataManager.PercType
 @export var order_type : DataManager.CardType
 @export var reward_amount : int: set = _on_reward_amount_set
-func _on_reward_amount_set(value: int) -> void:
-	if not is_node_ready(): await ready
-	reward_amount = value
-	reward_label.text = str("[wave]", value, "$")
 @export var special_reward : CardRes
 
 @onready var reward_label: RichTextLabel = %RewardLabel
@@ -58,6 +54,10 @@ func initialize():
 	label_header.text = order_name
 	rect_main_img.texture = card_texture
 
+func _on_reward_amount_set(value: int) -> void:
+	if not is_node_ready(): await ready
+	reward_amount = value
+	reward_label.text = str("[wave]", value, "$")
 
 func start_rewarding():
 	create_rewards()
@@ -141,17 +141,34 @@ func check_order_consistency() -> bool:
 		# Часть тела
 		DataManager.CardType.MONSTER_PART:
 			if submitted_card is CardActorPart:
-				if quest_part_conditions[0] != submitted_card.part_res.part_type:
-					return false
+				if order_res.is_check_part_side:
+					if quest_part_conditions[0] != submitted_card.part_res.part_type:
+						return false
+				else:
+					if quest_part_conditions[0] == DataManager.MonsterPartType.L_ARM or quest_part_conditions[0] == DataManager.MonsterPartType.R_ARM:
+						if submitted_card.part_res.part_type != DataManager.MonsterPartType.L_ARM and submitted_card.part_res.part_type != DataManager.MonsterPartType.R_ARM:
+							return false
+					
+					if quest_part_conditions[0] == DataManager.MonsterPartType.L_LEG or quest_part_conditions[0] == DataManager.MonsterPartType.R_LEG:
+						if submitted_card.part_res.part_type != DataManager.MonsterPartType.L_LEG and submitted_card.part_res.part_type != DataManager.MonsterPartType.R_LEG:
+							return false
+					
+					if quest_part_conditions[0] != DataManager.MonsterPartType.L_ARM and quest_part_conditions[0] != DataManager.MonsterPartType.R_ARM \
+					and quest_part_conditions[0] != DataManager.MonsterPartType.L_LEG and quest_part_conditions[0] != DataManager.MonsterPartType.R_LEG:
+						if quest_part_conditions[0] != submitted_card.part_res.part_type:
+							return false
 				
-				if quest_base_conditions[0] != submitted_card.part_res.part_base:
-					return false
+				if order_res.is_check_base_conditions:
+					if quest_base_conditions[0] != submitted_card.part_res.part_base:
+						return false
 				
-				if quest_family_conditions[0] != submitted_card.part_res.part_family:
-					return false
+				if order_res.is_check_family_conditions:
+					if quest_family_conditions[0] != submitted_card.part_res.part_family:
+						return false
 				
-				if quest_perc_conditions != submitted_card.part_res.part_perc:
-					return false
+				if order_res.is_check_perc_conditions:
+					if quest_perc_conditions != submitted_card.part_res.part_perc:
+						return false
 			else:
 				return false
 	

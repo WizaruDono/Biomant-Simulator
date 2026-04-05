@@ -8,6 +8,7 @@ script = ExtResource("1_8vifb")
 quest_part_conditions = Array[int]([1])
 quest_family_conditions = Array[int]([0])
 quest_base_conditions = Array[int]([0])
+check_base_condition = 1
 order_type = 2
 reward_amount = 5
 card_name = "заказ"

@@ -1,0 +1,69 @@
+[gd_resource type="Resource" script_class="PossibleOrders" format=3 uid="uid://djcfpdx0hirbu"]
+
+[ext_resource type="Script" uid="uid://c1tk4d5hutmfr" path="res://resources/res_scripts/order_res.gd" id="1_t8g8b"]
+[ext_resource type="Texture2D" uid="uid://bo2y5yr13k3tb" path="res://img/monsters/skelet_1/skelet_body.png" id="2_n5quh"]
+[ext_resource type="Texture2D" uid="uid://bx34frbnvh8bp" path="res://img/monsters/skelet_2/skeletR_L_arm.png" id="3_31i64"]
+[ext_resource type="Texture2D" uid="uid://wj1yfcyryth3" path="res://img/monsters/skelet_2/skeletR_L_leg.png" id="4_nldbu"]
+[ext_resource type="Script" uid="uid://bjwg2xc8bbm7j" path="res://resources/orders/possible_orders.gd" id="8_3h3h8"]
+
+[sub_resource type="Resource" id="Resource_n5quh"]
+script = ExtResource("1_t8g8b")
+is_check_part_side = false
+quest_part_conditions = Array[int]([0])
+is_check_family_conditions = false
+quest_family_conditions = Array[int]([0])
+is_check_base_conditions = false
+quest_base_conditions = Array[int]([0])
+is_check_perc_conditions = false
+order_type = 2
+reward_amount = 5
+card_name = "заказ"
+card_desc = "Тело"
+activate_speed = 5.0
+use_count = 1
+card_texture = ExtResource("2_n5quh")
+card_type = 9
+metadata/_custom_type_script = "uid://c1tk4d5hutmfr"
+
+[sub_resource type="Resource" id="Resource_31i64"]
+script = ExtResource("1_t8g8b")
+is_check_part_side = false
+quest_part_conditions = Array[int]([2])
+is_check_family_conditions = false
+quest_family_conditions = Array[int]([0])
+is_check_base_conditions = false
+quest_base_conditions = Array[int]([0])
+is_check_perc_conditions = false
+order_type = 2
+reward_amount = 8
+card_name = "заказ"
+card_desc = "рука"
+activate_speed = 5.0
+use_count = 1
+card_texture = ExtResource("3_31i64")
+card_type = 9
+metadata/_custom_type_script = "uid://c1tk4d5hutmfr"
+
+[sub_resource type="Resource" id="Resource_nldbu"]
+script = ExtResource("1_t8g8b")
+is_check_part_side = false
+quest_part_conditions = Array[int]([4])
+is_check_family_conditions = false
+quest_family_conditions = Array[int]([0])
+is_check_base_conditions = false
+quest_base_conditions = Array[int]([0])
+is_check_perc_conditions = false
+order_type = 2
+reward_amount = 8
+card_name = "заказ"
+card_desc = " нога"
+activate_speed = 5.0
+use_count = 1
+card_texture = ExtResource("4_nldbu")
+card_type = 9
+metadata/_custom_type_script = "uid://c1tk4d5hutmfr"
+
+[resource]
+script = ExtResource("8_3h3h8")
+orders = Array[ExtResource("1_t8g8b")]([SubResource("Resource_n5quh"), SubResource("Resource_31i64"), SubResource("Resource_nldbu")])
+metadata/_custom_type_script = "uid://bjwg2xc8bbm7j"

@@ -54,7 +54,10 @@ enum MonsterFamily {
 # Существа
 enum MonsterBase {
 	SKELETON, ZOMBIE, 
-	COCK, SHEEP
+	COCK, SHEEP,
+	
+	# Поставил в конец, чтобы настройки не сбились
+	ANYONE,
 }
 
 enum UpgradeType {
