@@ -16,6 +16,7 @@ extends Card
 @onready var label_uses: Label = %label_uses
 
 var stapler_cards: Array[Card]
+var merged_cards: Array[Card]
 var part_reses: Array[PartRes]
 
 var has_body: bool = false
@@ -53,11 +54,13 @@ func update_res_count_ui():
 
 func perform_is_stack_action() -> void:
 	if is_stack:
+		await get_tree().process_frame
 		if check_possible_production():
 			product()
 		else:
 			stop_product()
 	else:
+		activate_timer.stop()
 		stop_product()
 
 #region Product
@@ -72,7 +75,6 @@ func product():
 	elif activate_timer.paused:
 		activate_timer.paused = false
 	else:
-		activate_timer.start()
 		activate_timer.paused = false
 	
 	is_product_in_progress = true
@@ -99,6 +101,7 @@ func check_possible_production() -> bool:
 	match production_type:
 		DataManager.ProductionType.PART_CREATOR:
 			var content_cards_actor_part: Array[CardActorPart] = get_all_nested_cards_actor_part()
+			
 			part_reses.clear()
 			stapler_cards.clear()
 			
@@ -169,21 +172,47 @@ func check_possible_production() -> bool:
 			return true
 		
 		DataManager.ProductionType.PART_MERGER:
-			var actor_parts = get_all_nested_cards_actor_part()
-			if actor_parts.size() != DataManager.parts_merger_count: return false
-			if actor_parts[0].card_type != DataManager.CardType.MONSTER_PART: return false
-
-			var first_card = actor_parts[0]
-			var template = first_card.part_res
-			for current_card in actor_parts:
-				var current_res = current_card.part_res
-				if current_res.part_family != template.part_family or \
-				   current_res.part_perc   != template.part_perc   or \
-				   current_res.part_type   != template.part_type   or \
-				   current_res.part_base   != template.part_base   or \
-				   current_res.card_grade  != template.card_grade  or \
-				   current_card.card_type  != first_card.card_type:
-					return false
+			var cards: Array[Card] = get_all_nested_cards_recursive()
+			if cards.is_empty():
+				return false
+			
+			var first_card: Card = cards[0]
+			if not first_card is CardActorPart:
+				first_card.reparent_to_level()
+				_move_card_away(first_card)
+				return false
+			
+			if cards.size() < 2: 
+				return false
+			
+			var first_card_actor: CardActorPart = cards[0]
+			
+			var second_card: Card = cards[1]
+			if not second_card is CardActorPart:
+				first_card.reparent_to_level()
+				_move_card_away(second_card)
+				return false
+			
+			var second_card_actor: CardActorPart = second_card
+			if first_card_actor.part_res == second_card_actor.part_res:
+				_move_card_away(second_card_actor)
+				return false
+			
+			if cards.size() > 2:
+				if cards[2]:
+					cards[2].reparent_to_level()
+					_move_card_away(cards[2])
+			
+			#var template = first_card_actor.part_res
+			#for current_card in actor_parts:
+				#var current_res = current_card.part_res
+				#if current_res.part_family != template.part_family or \
+				   #current_res.part_perc   != template.part_perc   or \
+				   #current_res.part_type   != template.part_type   or \
+				   #current_res.part_base   != template.part_base   or \
+				   #current_res.card_grade  != template.card_grade  or \
+				   #current_card.card_type  != first_card.card_type:
+					#return false
 			
 			# Если все проверки выше прошли, значит, можно менять части тел
 			return true
@@ -238,8 +267,6 @@ func destroy():
 			for monster in monsters:
 				monster.is_can_love = false
 				stack.remove_card(monster)
-				print(global_position)
-				print(monster.global_position)
 				var pos : Vector2 = old_gp + Vector2(randi_range(80, 100), randi_range(80, 100)) if randf() < 0.5 else global_position + Vector2(randi_range(-80, -100), randi_range(-80, -100))
 				monster.global_position = pos 
 			monsters.clear()
