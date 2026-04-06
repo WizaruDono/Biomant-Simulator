@@ -4,8 +4,12 @@
 [ext_resource type="Script" uid="uid://lghsycdmd7w6" path="res://resources/orders/possible_orders_by_rate.gd" id="1_06c2y"]
 [ext_resource type="Resource" uid="uid://3jm8wfhy1ka7" path="res://resources/orders/1_possible_orders.tres" id="2_6ofy7"]
 [ext_resource type="Resource" uid="uid://c7fm53xke81a7" path="res://resources/orders/2_possible_orders.tres" id="3_6ofy7"]
+[ext_resource type="Resource" uid="uid://b7ehppssk110s" path="res://resources/orders/3_possible_orders.tres" id="4_b6tsm"]
+[ext_resource type="Resource" uid="uid://wjbqak28j8jx" path="res://resources/orders/4_possible_orders.tres" id="5_g0v0e"]
+[ext_resource type="Resource" uid="uid://bryk3a2hw0wx0" path="res://resources/orders/5_possible_orders.tres" id="6_arbyk"]
+[ext_resource type="Resource" uid="uid://o6kw6h86a1mt" path="res://resources/orders/6_possible_orders.tres" id="7_jg76s"]
 
 [resource]
 script = ExtResource("1_06c2y")
-orders_by_rate = Array[ExtResource("1_5fymq")]([ExtResource("2_6ofy7"), ExtResource("3_6ofy7")])
+orders_by_rate = Array[ExtResource("1_5fymq")]([ExtResource("2_6ofy7"), ExtResource("3_6ofy7"), ExtResource("4_b6tsm"), ExtResource("5_g0v0e"), ExtResource("6_arbyk"), ExtResource("7_jg76s")])
 metadata/_custom_type_script = "uid://lghsycdmd7w6"
