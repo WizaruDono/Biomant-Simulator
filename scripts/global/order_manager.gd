@@ -56,7 +56,7 @@ func create_order() -> void:
 	GameManager.level.player_loot.add_child(order_node)
 	order_node.position.x = get_viewport().get_visible_rect().size.x
 	order_node.initialize()
-	order_node.wait_time = 60.0
+	order_node.wait_time = 90.0	# перенести в датаменеджер, увеличить время для монстров
 	
 	order_node.scale = Vector2.ZERO
 	var tween: Tween = create_tween()
