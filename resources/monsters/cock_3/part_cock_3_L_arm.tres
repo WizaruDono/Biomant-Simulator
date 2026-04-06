@@ -1,5 +1,6 @@
 [gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://dm3qm2euvqjgg"]
 
+[ext_resource type="Texture2D" uid="uid://iddklml35dte" path="res://img/monsters/cock_3/cock_3_L_arm.png" id="1_ikhr2"]
 [ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_s3bki"]
 
 [resource]
@@ -12,5 +13,6 @@ actor_damage = 7
 card_name = "Крылышко (L) LvL3"
 card_desc = "Решил подраться с Петушидзе? - иделаьный плана-на"
 card_grade = 2
+card_texture = ExtResource("1_ikhr2")
 card_type = 2
 metadata/_custom_type_script = "uid://bll44gw1l0di2"

@@ -157,25 +157,43 @@ func check_possible_production() -> bool:
 		DataManager.ProductionType.RES_CREATOR:
 			return true
 		
+		# код для обменника
 		DataManager.ProductionType.PART_MERGER:
 			var cards: Array[Card] = get_all_nested_cards_recursive()
 			if cards.is_empty():
 				return false
 			
+			# Отсеиваем всё, что не является частями тела
 			for card in cards:
 				if not card is CardActorPart:
 					card.reparent_to_level()
 					_move_card_away(card)
 					return false
 			
+			# Если карт меньше нужного — ждем
 			if cards.size() < DataManager.parts_merger_count: 
 				return false
 			
+			# Если карт БОЛЬШЕ нужного — аккуратно скидываем все лишние с верха стопки
 			if cards.size() > DataManager.parts_merger_count:
-				var outside_card: Card = cards[DataManager.parts_merger_count - 1]
-				outside_card.reparent_to_level()
-				_move_card_away(outside_card)
-			
+				for i in range(DataManager.parts_merger_count, cards.size()):
+					var outside_card: Card = cards[i]
+					outside_card.reparent_to_level()
+					_move_card_away(outside_card)
+					
+			# ПРОВЕРКА НА ИДЕНТИЧНОСТЬ ТРЕХ КАРТ
+			var base_card = cards[0]
+			for i in range(1, DataManager.parts_merger_count):
+				var compare_card = cards[i]
+				
+				var same_base = base_card.part_res.part_base == compare_card.part_res.part_base
+				var same_type = base_card.part_res.part_type == compare_card.part_res.part_type
+				var same_grade = base_card.part_res.card_grade == compare_card.part_res.card_grade
+				
+				# Если хотя бы одна карта отличается, обменник не срабатывает
+				if not (same_base and same_type and same_grade):
+					return false
+					
 			return true
 	
 	print_rich("[color=orange]DEBUG: Не должно здесь вылетать[/color]")

@@ -1,30 +1,67 @@
 extends Node
 
 @export var monster_scene : PackedScene = preload("res://scenes/card_actor_monster.tscn")
-@export var grandpa_res : MonsterRes = preload("res://resources/monster_grandpa.tres")
+@export var grandpa_res : MonsterRes = preload("res://resources/NPC/monster_grandpa.tres")
 
 
+
+# Для обменника. Основная логика с шансами
 func create_grade_up_part(part: PartRes):
-	var part_grade : DataManager.EntityGrade = part.card_grade
+	var part_grade : int = part.card_grade
+	var max_grade : int = DataManager.MAX_GRADES.get(part.part_base, 0)
+	var all_parts_pool := LocationManager.all_res.loot_pool
+	var new_part = null
 
-	if part_grade >= DataManager.MAX_GRADES[part.part_base]:
-		# Если новых грейдов нет, просто возвращаем одну 
-		# карту вместо уложенных
-		return part.duplicate(true)
+	# Определяем шанс успеха в зависимости от текущего уровня
+	var success_chance: float = 0.0
+	if part_grade == 0:
+		success_chance = DataManager.chance_changeshop_to_grade_2	# 50%
+	elif part_grade == 1:
+		success_chance = DataManager.chance_changeshop_to_grade_3	# 30%
+		
+	# Бросаем кубик на успех
+	var is_success = randf() <= success_chance
 
-	var new_part
-	for item in LocationManager.graveyard_res.loot_pool:
-		var family_matches = part.part_family == item.part_family
-		var type_matches = part.part_type == item.part_type
-		var base_matches = part.part_base == item.part_base
-		var grade_matches = (part_grade + 1) == item.card_grade
-		if family_matches && type_matches && base_matches && grade_matches:
-			new_part = item
-			break
+	# ШАГ 1: Если кубик прокнул — пытаемся найти деталь уровнем выше
+	if is_success and part_grade < max_grade:
+		for item in all_parts_pool:
+			if item == null: continue
+			
+			var family_matches = part.part_family == item.part_family
+			var type_matches = part.part_type == item.part_type
+			var base_matches = part.part_base == item.part_base
+			var grade_matches = (part_grade + 1) == item.card_grade
+			
+			if family_matches && type_matches && base_matches && grade_matches:
+				new_part = item
+				break
+
+	# Если успех сработал и деталь нашлась — возвращаем её!
+	if new_part != null: 
+		return new_part
+
+	# ШАГ 2: ФОЛБЭК (Если кубик НЕ прокнул, не нашли уровень выше, или достигли лимита)
+	var fallback_options = []
 	
-	# У нас зомби только одного уровня, поэтому
-	if new_part != null: return new_part
-	if new_part == null: return part.duplicate(true)
+	for item in all_parts_pool:
+		if item == null: continue
+		
+		var family_matches = part.part_family == item.part_family
+		var grade_matches = part_grade == item.card_grade # Уровень СОХРАНЯЕТСЯ
+		
+		# Убедимся, что мы выдаем другую деталь (проверяем type или base)
+		var is_different_part = (part.part_type != item.part_type or part.part_base != item.part_base)
+		
+		if family_matches && grade_matches && is_different_part:
+			fallback_options.append(item)
+			
+	# Если нашлись другие запчасти этого же уровня из этой семьи — берем случайную
+	if fallback_options.size() > 0:
+		return fallback_options.pick_random()
+		
+	# Если вообще ничего не нашлось (запасной код), отдаем копию старой детали
+	return part.duplicate(true)
+	
 
 func create_monster_by_parts(parts : Array[PartRes]):
 	var body_res : PartRes
@@ -146,5 +183,6 @@ func create_grandpa():
 	grandpa.monster_res = grandpa_res
 	GameManager.level.player_actors.add_child(grandpa)
 	grandpa.initialize()
-	grandpa.global_position = Vector2(200 + randi_range(-150, 150), 200 + randi_range(-150, 150))
+	grandpa.global_position = Vector2(300, 250)
+	#grandpa.global_position = Vector2(200 + randi_range(-150, 150), 200 + randi_range(-150, 150))
 	

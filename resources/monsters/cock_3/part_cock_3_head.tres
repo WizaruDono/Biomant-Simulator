@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://dlbxniwbo6aud"]
 
 [ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_3anw1"]
+[ext_resource type="Texture2D" uid="uid://ddscqvxg8beq6" path="res://img/monsters/cock_3/cock_3_head.png" id="1_alvbd"]
 
 [resource]
 script = ExtResource("1_3anw1")
@@ -12,5 +13,6 @@ actor_damage = 8
 card_name = "Ку-куриная Голова LvL3"
 card_desc = "Магма течёт в её жилах, раскаляя перья!"
 card_grade = 2
+card_texture = ExtResource("1_alvbd")
 card_type = 2
 metadata/_custom_type_script = "uid://bll44gw1l0di2"

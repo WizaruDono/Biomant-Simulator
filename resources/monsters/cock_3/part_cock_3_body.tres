@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://fyxnxc522wp3"]
 
 [ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_u8r83"]
+[ext_resource type="Texture2D" uid="uid://dfv505a4pt4c7" path="res://img/monsters/cock_3/cock_3_body.png" id="1_uvv37"]
 
 [resource]
 script = ExtResource("1_u8r83")
@@ -10,5 +11,6 @@ actor_health = 12
 card_name = "Грудка LvL3"
 card_desc = "Ты гонишь на самого Петушидзе?!"
 card_grade = 2
+card_texture = ExtResource("1_uvv37")
 card_type = 2
 metadata/_custom_type_script = "uid://bll44gw1l0di2"

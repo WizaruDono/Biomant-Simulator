@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="NPCRes" format=3 uid="uid://bl7a4crtya6vd"]
+
+[ext_resource type="Texture2D" uid="uid://h01wlbak5max" path="res://img/npc_location_trader.png" id="1_iagjc"]
+[ext_resource type="Script" uid="uid://d3723m4sa384o" path="res://resources/res_scripts/card_res_script.gd" id="2_i7lth"]
+[ext_resource type="Resource" uid="uid://bde2idpoq2fwl" path="res://resources/locations/location_graveyard.tres" id="3_pxd5d"]
+[ext_resource type="Resource" uid="uid://b2kgt3x0nd2o5" path="res://resources/upgrades/up_location_speed.tres" id="4_1yuns"]
+[ext_resource type="Resource" uid="uid://cbhyt3hyw4ab" path="res://resources/locations/location_farm.tres" id="5_f6tdp"]
+[ext_resource type="Resource" uid="uid://dpndkp2oli2lh" path="res://resources/productions/production_changeshop.tres" id="6_hpw2u"]
+[ext_resource type="Resource" uid="uid://bcc056dvqheht" path="res://resources/productions/production_stapler.tres" id="7_arrkt"]
+[ext_resource type="Resource" uid="uid://bhfftbyys414k" path="res://resources/productions/production_motel.tres" id="8_i7lth"]
+[ext_resource type="Script" uid="uid://dl2tf7lxboat6" path="res://resources/res_scripts/npc_res.gd" id="8_rdcnc"]
+
+[resource]
+script = ExtResource("8_rdcnc")
+npc_type = 1
+replics = Array[String](["Добрейшего вечерочка! Не хочешь закупиться?", "Не спеши, выбирай с умом."])
+npc_shop_content = Array[ExtResource("2_i7lth")]([ExtResource("3_pxd5d"), ExtResource("4_1yuns"), ExtResource("5_f6tdp"), ExtResource("6_hpw2u"), ExtResource("7_arrkt"), ExtResource("8_i7lth")])
+npc_wait_timer = 60.0
+actor_health = 50
+actor_damage = 10
+card_name = "Ветошь"
+card_desc = "Торговец локациями"
+card_texture = ExtResource("1_iagjc")
+card_type = 8
+card_cost = 10
+card_owner_type = 2
+metadata/_custom_type_script = "uid://dl2tf7lxboat6"

@@ -76,10 +76,10 @@ var parts_merger_count: int = 3
 
 ## Максимальный грейд для типа монстра
 var MAX_GRADES = {
-	MonsterBase.COCK: 2,
-	MonsterBase.SKELETON: 2, 
-	MonsterBase.ZOMBIE: 1, 
-	MonsterBase.SHEEP: 1
+	MonsterBase.COCK: 3,
+	MonsterBase.SKELETON: 3, 
+	MonsterBase.ZOMBIE: 2, 
+	MonsterBase.SHEEP: 2
 }
 
 # ЦЕНЫ
@@ -94,6 +94,9 @@ var chances_dict : Dictionary[EntityGrade, float] = {
 	EntityGrade.T3 : 1
 }
 
+
+# UPGRADE потенциальный
+
 # Шансы на разный тип дропа у торгаша, в сумме по хорошему должно быть меньше 1.
 var chance_location_from_trader		: float = 0.25	# 0.25 = 25%
 var chance_production_from_trader	: float = 0.1
@@ -101,6 +104,11 @@ var chance_production_from_trader	: float = 0.1
 # Шанс на двойню и тройню. Работают независимо
 var chacne_double_child : float = 0.25	# 0.25 = 25%
 var chacne_triple_child : float = 0.05
+
+# Шансы для обменника (PART_MERGER)
+var chance_changeshop_to_grade_2 : float = 0.50 # 50% шанс апнуть с 1 на 2 уровень
+var chance_changeshop_to_grade_3 : float = 0.30 # 30% шанс апнуть с 2 на 3 уровень
+
 # Все возможные товары в магазине (Лопаты, рецепты, локации и т.д.)
 #@export var all_shop_items : Array[CardRes] = []
 

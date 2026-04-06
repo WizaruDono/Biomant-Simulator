@@ -1,6 +1,7 @@
 [gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://b3ghsryibx312"]
 
 [ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_0lar5"]
+[ext_resource type="Texture2D" uid="uid://d0nmh4ielc4e1" path="res://img/monsters/cock_3/cock_3_R_arm.png" id="1_xufp2"]
 
 [resource]
 script = ExtResource("1_0lar5")
@@ -12,5 +13,6 @@ actor_damage = 7
 card_name = "Крылышко (R) LvL3"
 card_desc = "Любопытство - штука излечимая"
 card_grade = 2
+card_texture = ExtResource("1_xufp2")
 card_type = 2
 metadata/_custom_type_script = "uid://bll44gw1l0di2"

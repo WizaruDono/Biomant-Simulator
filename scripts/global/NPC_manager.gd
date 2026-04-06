@@ -1,8 +1,9 @@
 extends Node
 
 @export var npc_scene : PackedScene = preload("res://scenes/card_actor_npc.tscn")
-@export var npc_trader_location_res : NPCRes = preload("res://resources/NPC_trader.tres")
-@export var npc_trader_order_res : NPCRes = preload("res://resources/NPC_order_trader.tres")
+@export var npc_trader_location_res : NPCRes = preload("res://resources/NPC/NPC_trader.tres")
+@export var npc_trader_order_res : NPCRes = preload("res://resources/NPC/NPC_trader.tres")
+
 
 
 func create_random_trader():
