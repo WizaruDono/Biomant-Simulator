@@ -94,8 +94,13 @@ var chances_dict : Dictionary[EntityGrade, float] = {
 	EntityGrade.T3 : 1
 }
 
+# Шансы на разный тип дропа у торгаша, в сумме по хорошему должно быть меньше 1.
+var chance_location_from_trader		: float = 0.25	# 0.25 = 25%
+var chance_production_from_trader	: float = 0.1
 
-
+# Шанс на двойню и тройню. Работают независимо
+var chacne_double_child : float = 0.25	# 0.25 = 25%
+var chacne_triple_child : float = 0.05
 # Все возможные товары в магазине (Лопаты, рецепты, локации и т.д.)
 #@export var all_shop_items : Array[CardRes] = []
 

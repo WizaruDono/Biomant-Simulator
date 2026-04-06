@@ -97,86 +97,57 @@ func _on_activate_timer_timeout() -> void:
 		tween.tween_callback(queue_free).set_delay(0.3)
 	activate_timer.stop()
 
+
 func check_possible_production() -> bool:
 	match production_type:
+		# код для сшивателя частей
 		DataManager.ProductionType.PART_CREATOR:
 			var content_cards_actor_part: Array[CardActorPart] = get_all_nested_cards_actor_part()
-			
 			part_reses.clear()
 			stapler_cards.clear()
 			
-			has_body = false
-			has_head = false
-			has_l_arm = false
-			has_r_arm = false
-			has_l_leg = false
-			has_r_leg = false
+			has_body = false; has_head = false; has_l_arm = false; has_r_arm = false; has_l_leg = false; has_r_leg = false
 			
 			for card in content_cards_actor_part:
 				match card.part_type:
-					DataManager.MonsterPartType.BODY:
-						if not has_body:
-							has_body = true
-							part_reses.append(card.part_res)
-							stapler_cards.append(card)
-					DataManager.MonsterPartType.HEAD:
-						if not has_head:
-							has_head = true
-							part_reses.append(card.part_res)
-							stapler_cards.append(card)
-					DataManager.MonsterPartType.L_ARM:
-						if not has_l_arm:
-							has_l_arm = true
-							part_reses.append(card.part_res)
-							stapler_cards.append(card)
-					DataManager.MonsterPartType.R_ARM:
-						if not has_r_arm:
-							has_r_arm = true
-							part_reses.append(card.part_res)
-							stapler_cards.append(card)
-					DataManager.MonsterPartType.L_LEG:
-						if not has_l_leg:
-							has_l_leg = true
-							part_reses.append(card.part_res)
-							stapler_cards.append(card)
-					DataManager.MonsterPartType.R_LEG:
-						if not has_r_leg:
-							has_r_leg = true
-							part_reses.append(card.part_res)
-							stapler_cards.append(card)
-					
+					DataManager.MonsterPartType.BODY: if not has_body: has_body = true; part_reses.append(card.part_res); stapler_cards.append(card)
+					DataManager.MonsterPartType.HEAD: if not has_head: has_head = true; part_reses.append(card.part_res); stapler_cards.append(card)
+					DataManager.MonsterPartType.L_ARM: if not has_l_arm: has_l_arm = true; part_reses.append(card.part_res); stapler_cards.append(card)
+					DataManager.MonsterPartType.R_ARM: if not has_r_arm: has_r_arm = true; part_reses.append(card.part_res); stapler_cards.append(card)
+					DataManager.MonsterPartType.L_LEG: if not has_l_leg: has_l_leg = true; part_reses.append(card.part_res); stapler_cards.append(card)
+					DataManager.MonsterPartType.R_LEG: if not has_r_leg: has_r_leg = true; part_reses.append(card.part_res); stapler_cards.append(card)
+			
 			throw_out_trach_cards()
 			
-			if part_reses.size() == DataManager.parts_size \
-			and get_all_nested_cards_recursive().size() == DataManager.parts_size:
+			if part_reses.size() == DataManager.parts_size and get_all_nested_cards_recursive().size() == DataManager.parts_size:
 				return true
-			
 			return false
 		
-		DataManager.ProductionType.MONSTER_CREATOR:
+		# код для любовного гнезда
+		DataManager.ProductionType.MONSTER_CREATOR: 
 			var content_cards: Array[Card] = get_all_nested_cards_recursive()
+			var monster_love_size : int = DataManager.monster_love_size	# ток 2 монстра могут спариваться
 			if content_cards.is_empty():
 				return false
 			
-			var first_card: Card = content_cards[0]
-			if not first_card is CardActorMonster:
-				first_card.reparent_to_level()
-				_move_card_away(first_card)
+			monsters.clear()
+			
+			# 1. Находим ровно двух монстров в стопке
+			for card in content_cards:
+				if card is CardActorMonster:
+					monsters.append(card)
+					if monsters.size() == monster_love_size:
+						break
+			
+			# Если в гнезде нет 2 монстров — работать не будет
+			if monsters.size() < monster_love_size:
 				return false
 			
-			if content_cards.size() < DataManager.parts_merger_count: 
-				return false
-			
-			var second_card: Card = content_cards[1]
-			if not second_card is CardActorMonster:
-				first_card.reparent_to_level()
-				_move_card_away(second_card)
-				return false
-			
-			if content_cards.size() > DataManager.parts_merger_count:
-				var outside_card: Card = content_cards[DataManager.parts_merger_count - 1]
-				outside_card.reparent_to_level()
-				_move_card_away(outside_card)
+			# 2. Выкидываем лишние карты из гнезда (если игрок накидал мусор сверху)
+			for card in content_cards:
+				if not card in monsters:
+					card.reparent_to_level()
+					_move_card_away(card)
 			
 			return true
 		
@@ -246,18 +217,28 @@ func destroy():
 			
 			# Удаляем карты степлера
 			for card in stapler_cards:
-				card.queue_free()
+				if is_instance_valid(card):
+					card.queue_free()
 			
 			stapler_cards.clear()
 			is_stack = false
 		
 		DataManager.ProductionType.MONSTER_CREATOR:
 			var old_gp : Vector2 = global_position
-			for monster in monsters:
-				monster.is_can_love = false
-				stack.remove_card(monster)
-				var pos : Vector2 = old_gp + Vector2(randi_range(80, 100), randi_range(80, 100)) if randf() < 0.5 else global_position + Vector2(randi_range(-80, -100), randi_range(-80, -100))
-				monster.global_position = pos 
+			
+			for i in range(monsters.size()):
+				var monster = monsters[i]
+				if is_instance_valid(monster):
+					monster.is_can_love = false
+					monster.reparent_to_level()
+					
+					# X: Строго влево (-180, -220)
+					# Y: Небольшой разброс по вертикали для каждого родителя
+					var side_offset = Vector2(randi_range(-220, -180), (i * 120) - 60)
+					monster.global_position = global_position + side_offset
+					
+					_move_card_away(monster)
+					
 			monsters.clear()
 		
 		DataManager.ProductionType.PART_MERGER:
@@ -269,7 +250,7 @@ func destroy():
 
 func create():
 	match production_type:
-		DataManager.ProductionType.PART_CREATOR:
+		DataManager.ProductionType.PART_CREATOR:		# Сшиватель?
 			var monster_res : MonsterRes = MonsterManager.create_monster_by_parts(part_reses)
 			var monster : CardActorMonster = EntityManager.create_entity_scene(monster_res)
 			GameManager.level.player_actors.add_child(monster)
@@ -279,17 +260,19 @@ func create():
 			var pos : Vector2 = global_position + Vector2(randi_range(80, 100), randi_range(80, 100)) if randf() < 0.5 else global_position + Vector2(randi_range(-80, -100), randi_range(-80, -100))
 			monster.global_position += pos
 		
-		DataManager.ProductionType.MONSTER_CREATOR:
-			var monster_res : MonsterRes = MonsterManager.create_monster_by_monsters(monsters)
-			var monster: CardActorMonster = EntityManager.create_entity_scene(monster_res)
-			GameManager.level.player_actors.add_child(monster)
-			monster.initialize()
-			SoundManager.play_asmr_sfx(SoundManager.SND_SPAWN, 0.0)
-			
-			var pos : Vector2 = global_position + Vector2(randi_range(80, 100), randi_range(80, 100)) if randf() < 0.5 else global_position + Vector2(randi_range(-80, -100), randi_range(-80, -100))
-			monster.global_position = pos 
+		DataManager.ProductionType.MONSTER_CREATOR: # Любовное гнездо
+			# 1-й ребенок (гарантированно)
+			spawn_child_monster(0)
+			var child_count = 1
+			# 2-й ребенок
+			if randf() <= DataManager.chacne_double_child:
+				spawn_child_monster(child_count)
+				child_count += 1
+			# 3-й ребенок
+			if randf() <= DataManager.chacne_triple_child:
+				spawn_child_monster(child_count)
 		
-		DataManager.ProductionType.PART_MERGER:
+		DataManager.ProductionType.PART_MERGER:		# Объединятель
 			## Не хватает проверки входящих частей тел
 			var exchanging_parts = get_all_nested_cards_actor_part()
 			var part_res : PartRes = MonsterManager.create_grade_up_part(exchanging_parts[0].part_res)
@@ -297,7 +280,7 @@ func create():
 			GameManager.level.player_actors.add_child(exchanged_part)
 			exchanged_part.initialize()
 			exchanged_part.global_position = global_position
-			SoundManager.play_asmr_sfx(SoundManager.SND_SPAWN, 0.0)
+			SoundManager.play_asmr_sfx(SoundManager.SND_SPAWN, -8.0)
 			_move_card_away(exchanged_part)
 			for p in exchanging_parts: p.queue_free()
 
@@ -320,3 +303,21 @@ func throw_out_trach_cards() -> void:
 		
 		_move_card_away(_main_card)
 	pass
+
+
+# Функция спавна ребёнка. Вынес для двойни, тройни
+func spawn_child_monster(index: int) -> void:
+	var monster_res : MonsterRes = MonsterManager.create_monster_by_monsters(monsters)
+	var monster: CardActorMonster = EntityManager.create_entity_scene(monster_res)
+	GameManager.level.player_actors.add_child(monster)
+	monster.initialize()
+	SoundManager.play_asmr_sfx(SoundManager.SND_SPAWN, -8.0)
+	
+	# Позиция: 
+	# X: Сдвигаем вправо на 180-220 пикселей
+	# Y: Сдвигаем вертикально в зависимости от номера (index * 100), чтобы не слипались
+	var target_pos = global_position + Vector2(randi_range(120, 140), (index * 100) - 50)
+	monster.global_position = target_pos
+	
+	# Чтобы они красиво отлетали, а не просто телепортировались
+	#_move_card_away(monster)

@@ -88,14 +88,23 @@ func create_shop():
 	# Спавним ровно 3 товара
 	for i in range(3):
 		var selected_res : CardRes
+		var roll = randf()
 		
-		# Шанс 25% на локацию
-		if randf() <= 0.25:
+		var chance_1: float = DataManager.chance_production_from_trader
+		var chance_2: float = DataManager.chance_location_from_trader
+		# 1. Шанс 10% на продукцию (Обменники)
+		if roll <= chance_1:
+			var productions = pool.filter(func(res): return res.card_type == DataManager.CardType.PRODUCTION)
+			if not productions.is_empty():
+				selected_res = productions.pick_random()
+				
+		# 2. Шанс 25% на локацию (если продукция не выпала)
+		if selected_res == null and roll <= (chance_1 + chance_2): # 0.10 + 0.25 = 0.35
 			var locations = pool.filter(func(res): return res.card_type == DataManager.CardType.LOCATION)
 			if not locations.is_empty():
 				selected_res = locations.pick_random()
 				
-		# Если 25% не выпало или локаций нет — берем рандомный товар
+		# 3. Если ничего по шансам не выпало — берем абсолютно рандомный товар
 		if selected_res == null:
 			selected_res = pool.pick_random()
 			
@@ -109,6 +118,7 @@ func create_shop():
 		
 		if lot == null:
 			lot = card_upgrade_scene.instantiate()
+			#lot.upgrade_res = copy_res 	# ЭТА СТРОЧКА ИСПРАВЛЯЕТ БАГ: если добавлена на продажу карта нового типа игра не должна крашится
 		
 		GameManager.level.add_child(lot)
 		lot.possibility_stack = false
@@ -118,6 +128,9 @@ func create_shop():
 		lots.append(lot)
 		
 	align_lots()
+
+
+
 
 
 func align_lots():

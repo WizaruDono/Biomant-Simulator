@@ -1,10 +1,12 @@
 extends Node
 
 var location_scene : PackedScene = load("res://scenes/card_location.tscn")
+var production_scene : PackedScene = load("res://scenes/card_production.tscn")
 var monster_scene : PackedScene = load("res://scenes/card_actor_monster.tscn")
 var part_scene : PackedScene = load("res://scenes/card_actor_part.tscn")
 var order_scene : PackedScene = load("res://scenes/card_order.tscn")
 var upgrade_scene : PackedScene = load("res://scenes/card_upgrade.tscn")
+
 
 func create_entity_scene(res : CardRes):
 	var instance: Node
@@ -12,6 +14,9 @@ func create_entity_scene(res : CardRes):
 		DataManager.CardType.LOCATION:
 			instance = location_scene.instantiate()
 			instance.location_res = res
+		DataManager.CardType.PRODUCTION: 	# добавил для товаров - productions в магазе
+			instance = production_scene.instantiate()
+			instance.production_res = res
 		DataManager.CardType.MONSTER:
 			instance = monster_scene.instantiate()
 			instance.monster_res = res

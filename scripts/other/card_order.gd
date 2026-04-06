@@ -92,7 +92,7 @@ func create_rewards():
 
 func destroy() -> void:
 	OrderManager.on_order_destroyed(self)
-	SoundManager.play_asmr_sfx(SoundManager.FLESH_POP, -8.0)
+	#SoundManager.play_asmr_sfx(SoundManager.FLESH_POP, -8.0) # временно закоментил, чтоб не издавалось 2 звука одновременно, потом надо поправить
 	queue_free()
 
 func _draw() -> void:

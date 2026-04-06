@@ -1,0 +1,33 @@
+[gd_resource type="Resource" script_class="PossibleOrders" format=3 uid="uid://c7fm53xke81a7"]
+
+[ext_resource type="Script" uid="uid://c1tk4d5hutmfr" path="res://resources/res_scripts/order_res.gd" id="1_2wm68"]
+[ext_resource type="Resource" uid="uid://b47lu56e8rdi0" path="res://resources/orders/sceleton/order_sceleton_body.tres" id="2_p4mo4"]
+[ext_resource type="Resource" uid="uid://dwf6u0dcanrl0" path="res://resources/orders/sceleton/order_sceleton_body_t2.tres" id="3_kkfk0"]
+[ext_resource type="Resource" uid="uid://b5rm0307svbid" path="res://resources/orders/sceleton/order_sceleton_head.tres" id="3_yaels"]
+[ext_resource type="Resource" uid="uid://ynq88st0rgj8" path="res://resources/orders/sceleton/order_sceleton_l_arm.tres" id="4_ti2ki"]
+[ext_resource type="Resource" uid="uid://eoyl5cotn8y8" path="res://resources/orders/sceleton/order_sceleton_head_t2.tres" id="5_g6uyt"]
+[ext_resource type="Resource" uid="uid://bokheeaj81nb5" path="res://resources/orders/sceleton/order_sceleton_l_leg.tres" id="5_ylqe1"]
+[ext_resource type="Resource" uid="uid://6igypi12fh22" path="res://resources/orders/sceleton/order_sceleton_r_arm.tres" id="6_qj6gh"]
+[ext_resource type="Resource" uid="uid://drp6mgnk5ty5t" path="res://resources/orders/sceleton/order_sceleton_r_leg.tres" id="7_kkfk0"]
+[ext_resource type="Resource" uid="uid://dtppni3j730mo" path="res://resources/orders/sceleton/order_sceleton_l_arm_t2.tres" id="7_rplet"]
+[ext_resource type="Script" uid="uid://bjwg2xc8bbm7j" path="res://resources/orders/possible_orders.gd" id="8_g6uyt"]
+[ext_resource type="Resource" uid="uid://dxf5q1vc82iav" path="res://resources/orders/sceleton/order_sceleton_l_leg_t2.tres" id="9_v0ux4"]
+[ext_resource type="Resource" uid="uid://drdqst2d0teq7" path="res://resources/orders/sceleton/order_sceleton_r_arm_t2.tres" id="11_pnxat"]
+[ext_resource type="Resource" uid="uid://1ykyecv6d1gd" path="res://resources/orders/sceleton/order_sceleton_r_leg_t2.tres" id="13_unjwr"]
+[ext_resource type="Resource" uid="uid://dqi31ygmc6s75" path="res://resources/orders/zombie/order_zombie_1_body.tres" id="14_lq27p"]
+[ext_resource type="Resource" uid="uid://nk15ck8n2ptp" path="res://resources/orders/zombie/order_zombie_1_head.tres" id="15_ixkd7"]
+[ext_resource type="Resource" uid="uid://cjrhnx2v368x0" path="res://resources/orders/zombie/order_zombie_1_l_arm.tres" id="16_nl2ux"]
+[ext_resource type="Resource" uid="uid://b5f7vctfh8m5n" path="res://resources/orders/zombie/order_zombie_1_l_leg.tres" id="17_kkpac"]
+[ext_resource type="Resource" uid="uid://dx6chl3kd5nqq" path="res://resources/orders/zombie/order_zombie_1_r_arm.tres" id="18_sy8gh"]
+[ext_resource type="Resource" uid="uid://ddttepuq8xoc6" path="res://resources/orders/zombie/order_zombie_1_r_leg.tres" id="19_tjq0s"]
+[ext_resource type="Resource" uid="uid://c1bru2enk6eim" path="res://resources/orders/zombie/order_zombie_2_body.tres" id="20_rvrwy"]
+[ext_resource type="Resource" uid="uid://dr68wieocjs56" path="res://resources/orders/zombie/order_zombie_2_head.tres" id="21_sjgrr"]
+[ext_resource type="Resource" uid="uid://de1to8iu1pi21" path="res://resources/orders/zombie/order_zombie_2_l_arm.tres" id="22_ntkfn"]
+[ext_resource type="Resource" uid="uid://bt8h28vtwq5wr" path="res://resources/orders/zombie/order_zombie_2_l_leg.tres" id="23_rwn8q"]
+[ext_resource type="Resource" uid="uid://baj1t3ip6jh2w" path="res://resources/orders/zombie/order_zombie_2_r_arm.tres" id="24_mfmx6"]
+[ext_resource type="Resource" uid="uid://dgtqk25elt4y0" path="res://resources/orders/zombie/order_zombie_2_r_leg.tres" id="25_ng7rn"]
+
+[resource]
+script = ExtResource("8_g6uyt")
+orders = Array[ExtResource("1_2wm68")]([ExtResource("2_p4mo4"), ExtResource("3_kkfk0"), ExtResource("3_yaels"), ExtResource("5_g6uyt"), ExtResource("4_ti2ki"), ExtResource("7_rplet"), ExtResource("5_ylqe1"), ExtResource("9_v0ux4"), ExtResource("6_qj6gh"), ExtResource("11_pnxat"), ExtResource("7_kkfk0"), ExtResource("13_unjwr"), ExtResource("14_lq27p"), ExtResource("15_ixkd7"), ExtResource("16_nl2ux"), ExtResource("17_kkpac"), ExtResource("18_sy8gh"), ExtResource("19_tjq0s"), ExtResource("20_rvrwy"), ExtResource("21_sjgrr"), ExtResource("22_ntkfn"), ExtResource("23_rwn8q"), ExtResource("24_mfmx6"), ExtResource("25_ng7rn")])
+metadata/_custom_type_script = "uid://bjwg2xc8bbm7j"

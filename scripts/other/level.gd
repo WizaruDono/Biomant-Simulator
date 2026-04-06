@@ -13,9 +13,9 @@ func _ready() -> void:
 	MonsterManager.create_grandpa()
 	MonsterManager.create_grandpa()
 	LocationManager.create_graveyard()
-	ProductionManager.create_stapler()
-	#ProductionManager.create_motel()
-	ProductionManager.create_changeshop()
+	ProductionManager.create_stapler()		# Сшиватель
+	ProductionManager.create_motel()		# Любовное Гнёздышко
+	ProductionManager.create_changeshop()	# Обменник
 	NpcManager.create_trader()		# торговец
 	#NpcManager.create_order_trader()		# спавн торгаша заказов заменили на спавн самих заказов
 	OrderManager.rate = 0

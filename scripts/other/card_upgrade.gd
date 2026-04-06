@@ -7,6 +7,10 @@ var is_active: bool = false
 
 func initialize():
 	await get_tree().process_frame
+	# Проверка: если ресурса нет, пишем ошибку и выходим из функции
+	#if not upgrade_res:
+		#print("🚨 КРИТИЧЕСКАЯ ОШИБКА: У карты ", name, " отсутствует upgrade_res!")
+		#return
 	card_type = upgrade_res.card_type
 	card_texture = upgrade_res.card_texture
 	card_cost = upgrade_res.card_cost

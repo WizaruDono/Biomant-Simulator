@@ -8,7 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://c1w8itk7fup6l" path="res://img/monsters/zombie_1/zombie_head.png" id="6_epgv1"]
 [ext_resource type="Texture2D" uid="uid://d3ud3e41qaa2m" path="res://img/monsters/zombie_1/zombie_R_arm.png" id="7_o6in2"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_liwo0"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s86ik"]
 resource_local_to_scene = true
 size = Vector2(128, 192)
 
@@ -54,4 +54,4 @@ texture = ExtResource("7_o6in2")
 offset = Vector2(-76, -56)
 
 [node name="collision_card" parent="." index="2" unique_id=2046268927]
-shape = SubResource("RectangleShape2D_liwo0")
+shape = SubResource("RectangleShape2D_s86ik")

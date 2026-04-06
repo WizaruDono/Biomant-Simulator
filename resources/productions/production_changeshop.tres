@@ -7,8 +7,9 @@
 script = ExtResource("1_46gc0")
 production_type = 5
 card_name = "обменник"
-card_desc = "Принесите пять частей одного типа и получите улучшенную"
+card_desc = "Принесите три конечнсоти и получите улучшенную"
 activate_speed = 8.0
 use_count = 10
 card_texture = ExtResource("1_bmmbc")
+card_cost = 22
 metadata/_custom_type_script = "uid://5u61dwi0xnps"
