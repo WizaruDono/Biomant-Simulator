@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="OrderRes" format=3 uid="uid://bwkn3kvmcqesg"]
+
+[ext_resource type="Texture2D" uid="uid://b7mp1uq2vb7r3" path="res://img/orders/order_part_leg.png" id="1_gcmpe"]
+[ext_resource type="Script" uid="uid://c1tk4d5hutmfr" path="res://resources/res_scripts/order_res.gd" id="2_p5jof"]
+
+[resource]
+script = ExtResource("2_p5jof")
+quest_part_conditions = Array[int]([5])
+quest_family_conditions = Array[int]([0])
+quest_base_conditions = Array[int]([0])
+order_type = 2
+reward_amount = 24
+card_name = "заказ"
+card_desc = "Кости Правой Ноги 3 уровня"
+card_grade = 2
+activate_speed = 5.0
+use_count = 1
+card_texture = ExtResource("1_gcmpe")
+card_type = 9
+metadata/_custom_type_script = "uid://c1tk4d5hutmfr"

@@ -6,6 +6,7 @@
 [resource]
 script = ExtResource("1_4kwrh")
 actor_health = 3
+actor_damage = 2
 card_name = "Костяное Тело LvL1"
 card_desc = "Грудная клетка почему то вздымается"
 card_texture = ExtResource("1_14li6")

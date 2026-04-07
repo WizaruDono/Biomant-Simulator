@@ -7,7 +7,8 @@
 script = ExtResource("1_m4rah")
 part_family = 1
 part_base = 2
-actor_health = 4
+actor_health = 5
+actor_damage = 5
 card_name = "Грудка LvL2"
 card_desc = "Пылкое сердечко разгоняет по перьям кровь. Кровь врагов!"
 card_grade = 1

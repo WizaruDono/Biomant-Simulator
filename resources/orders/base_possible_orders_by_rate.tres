@@ -2,14 +2,19 @@
 
 [ext_resource type="Script" uid="uid://bjwg2xc8bbm7j" path="res://resources/orders/possible_orders.gd" id="1_5fymq"]
 [ext_resource type="Script" uid="uid://lghsycdmd7w6" path="res://resources/orders/possible_orders_by_rate.gd" id="1_06c2y"]
-[ext_resource type="Resource" uid="uid://3jm8wfhy1ka7" path="res://resources/orders/zzz possible orders/1_possible_orders.tres" id="2_6ofy7"]
-[ext_resource type="Resource" uid="uid://c7fm53xke81a7" path="res://resources/orders/zzz possible orders/2_possible_orders.tres" id="3_6ofy7"]
-[ext_resource type="Resource" uid="uid://b7ehppssk110s" path="res://resources/orders/zzz possible orders/3_possible_orders.tres" id="4_b6tsm"]
-[ext_resource type="Resource" uid="uid://wjbqak28j8jx" path="res://resources/orders/zzz possible orders/4_possible_orders.tres" id="5_g0v0e"]
-[ext_resource type="Resource" uid="uid://bryk3a2hw0wx0" path="res://resources/orders/zzz possible orders/5_possible_orders.tres" id="6_arbyk"]
-[ext_resource type="Resource" uid="uid://o6kw6h86a1mt" path="res://resources/orders/zzz possible orders/6_possible_orders.tres" id="7_jg76s"]
+[ext_resource type="Resource" uid="uid://3jm8wfhy1ka7" path="res://resources/orders/z possible orders/1_possible_orders.tres" id="2_cysrb"]
+[ext_resource type="Resource" uid="uid://ccu7w76hea64q" path="res://resources/orders/z possible orders/1_possible_orders_monster.tres" id="3_22yck"]
+[ext_resource type="Resource" uid="uid://c7fm53xke81a7" path="res://resources/orders/z possible orders/2_possible_orders.tres" id="4_nxcdp"]
+[ext_resource type="Resource" uid="uid://b7ehppssk110s" path="res://resources/orders/z possible orders/3_possible_orders.tres" id="5_jborg"]
+[ext_resource type="Resource" uid="uid://wjbqak28j8jx" path="res://resources/orders/z possible orders/4_possible_orders.tres" id="6_77h4f"]
+[ext_resource type="Resource" uid="uid://s7l0x2f2hw54" path="res://resources/orders/z possible orders/4_possible_orders_monster.tres" id="7_7d0st"]
+[ext_resource type="Resource" uid="uid://bryk3a2hw0wx0" path="res://resources/orders/z possible orders/5_possible_orders.tres" id="8_dej1j"]
+[ext_resource type="Resource" uid="uid://o6kw6h86a1mt" path="res://resources/orders/z possible orders/6_possible_orders.tres" id="9_n8hss"]
+[ext_resource type="Resource" uid="uid://jlt27t23u0kp" path="res://resources/orders/z possible orders/7_possible_orders_3lvl_parts.tres" id="10_qgsu1"]
+[ext_resource type="Resource" uid="uid://b7r5s68yfcr61" path="res://resources/orders/z possible orders/8_possible_orders_3lvl_parts.tres" id="11_ex7du"]
+[ext_resource type="Resource" uid="uid://bs3b7blkf5f16" path="res://resources/orders/z possible orders/9_possible_orders_monster.tres" id="12_22yck"]
 
 [resource]
 script = ExtResource("1_06c2y")
-orders_by_rate = Array[ExtResource("1_5fymq")]([ExtResource("2_6ofy7"), ExtResource("3_6ofy7"), ExtResource("4_b6tsm"), ExtResource("5_g0v0e"), ExtResource("6_arbyk"), ExtResource("7_jg76s")])
+orders_by_rate = Array[ExtResource("1_5fymq")]([ExtResource("2_cysrb"), ExtResource("3_22yck"), ExtResource("4_nxcdp"), ExtResource("3_22yck"), ExtResource("5_jborg"), ExtResource("3_22yck"), ExtResource("6_77h4f"), ExtResource("7_7d0st"), ExtResource("8_dej1j"), ExtResource("7_7d0st"), ExtResource("9_n8hss"), ExtResource("7_7d0st"), ExtResource("10_qgsu1"), ExtResource("7_7d0st"), ExtResource("11_ex7du"), ExtResource("12_22yck")])
 metadata/_custom_type_script = "uid://lghsycdmd7w6"

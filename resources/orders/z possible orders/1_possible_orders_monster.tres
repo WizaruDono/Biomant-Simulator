@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="PossibleOrders" format=3 uid="uid://ccu7w76hea64q"]
+
+[ext_resource type="Script" uid="uid://c1tk4d5hutmfr" path="res://resources/res_scripts/order_res.gd" id="1_u3lav"]
+[ext_resource type="Resource" uid="uid://b47lu56e8rdi0" path="res://resources/orders/parts_sceleton/order_scelet_1_body.tres" id="2_haj32"]
+[ext_resource type="Resource" uid="uid://b5rm0307svbid" path="res://resources/orders/parts_sceleton/order_scelet_1_head.tres" id="3_eq0yt"]
+[ext_resource type="Resource" uid="uid://ynq88st0rgj8" path="res://resources/orders/parts_sceleton/order_scelet_1_l_arm.tres" id="4_r4mtn"]
+[ext_resource type="Resource" uid="uid://bokheeaj81nb5" path="res://resources/orders/parts_sceleton/order_scelet_1_l_leg.tres" id="5_7eyb1"]
+[ext_resource type="Resource" uid="uid://6igypi12fh22" path="res://resources/orders/parts_sceleton/order_scelet_1_r_arm.tres" id="6_xaq8a"]
+[ext_resource type="Resource" uid="uid://drp6mgnk5ty5t" path="res://resources/orders/parts_sceleton/order_scelet_1_r_leg.tres" id="7_xxh8a"]
+[ext_resource type="Resource" uid="uid://dqi31ygmc6s75" path="res://resources/orders/parts_zombie/order_zombie_1_body.tres" id="8_ns3xg"]
+[ext_resource type="Resource" uid="uid://nk15ck8n2ptp" path="res://resources/orders/parts_zombie/order_zombie_1_head.tres" id="9_m7k4l"]
+[ext_resource type="Resource" uid="uid://cjrhnx2v368x0" path="res://resources/orders/parts_zombie/order_zombie_1_l_arm.tres" id="10_sj3p5"]
+[ext_resource type="Resource" uid="uid://b5f7vctfh8m5n" path="res://resources/orders/parts_zombie/order_zombie_1_l_leg.tres" id="11_5vq44"]
+[ext_resource type="Resource" uid="uid://dx6chl3kd5nqq" path="res://resources/orders/parts_zombie/order_zombie_1_r_arm.tres" id="12_30lmd"]
+[ext_resource type="Resource" uid="uid://ddttepuq8xoc6" path="res://resources/orders/parts_zombie/order_zombie_1_r_leg.tres" id="13_x3j2l"]
+[ext_resource type="Script" uid="uid://bjwg2xc8bbm7j" path="res://resources/orders/possible_orders.gd" id="14_5t7ee"]
+[ext_resource type="Resource" uid="uid://bijluc22wb7si" path="res://resources/orders/monster_full/order_1_full_skelet.tres" id="14_eq0yt"]
+[ext_resource type="Resource" uid="uid://bvrtkt1be2jjh" path="res://resources/orders/monster_full/order_1_full_zombie.tres" id="15_r4mtn"]
+
+[resource]
+script = ExtResource("14_5t7ee")
+orders = Array[ExtResource("1_u3lav")]([ExtResource("2_haj32"), ExtResource("3_eq0yt"), ExtResource("4_r4mtn"), ExtResource("5_7eyb1"), ExtResource("6_xaq8a"), ExtResource("7_xxh8a"), ExtResource("8_ns3xg"), ExtResource("9_m7k4l"), ExtResource("10_sj3p5"), ExtResource("11_5vq44"), ExtResource("12_30lmd"), ExtResource("13_x3j2l"), ExtResource("14_eq0yt"), ExtResource("15_r4mtn"), ExtResource("14_eq0yt"), ExtResource("15_r4mtn")])
+metadata/_custom_type_script = "uid://bjwg2xc8bbm7j"

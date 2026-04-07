@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://crtpi8whdw4p"]
+
+[ext_resource type="Texture2D" uid="uid://bgq11nrnhgckm" path="res://img/monsters/sheep_3/sheep_3_head.png" id="1_iorwo"]
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_p0nhk"]
+
+[resource]
+script = ExtResource("1_p0nhk")
+part_family = 1
+part_type = 1
+part_base = 3
+actor_health = 10
+actor_damage = 5
+card_name = "Пушистая Голова LvL3"
+card_desc = "Стильно"
+card_grade = 2
+card_texture = ExtResource("1_iorwo")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

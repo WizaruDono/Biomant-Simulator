@@ -7,7 +7,8 @@
 script = ExtResource("1_db8gr")
 part_family = 1
 part_base = 2
-actor_health = 2
+actor_health = 3
+actor_damage = 3
 card_name = "Грудка LvL1"
 card_desc = "Кладете в кипящий бульон и на среднем огне доводите до кипения..."
 card_texture = ExtResource("1_8nbm1")

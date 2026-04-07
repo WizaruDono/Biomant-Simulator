@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://kj8lqm7ptgap"]
+
+[ext_resource type="Texture2D" uid="uid://dc1b1figxv77s" path="res://img/monsters/zombie_3/zombie_3_L_leg.png" id="1_55tdl"]
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_qh201"]
+
+[resource]
+script = ExtResource("1_qh201")
+part_type = 4
+part_base = 1
+actor_health = 9
+card_name = "Гнилая Нога (L) LvL3"
+card_grade = 2
+card_texture = ExtResource("1_55tdl")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

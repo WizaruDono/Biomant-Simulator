@@ -130,11 +130,17 @@ func check_order_consistency() -> bool:
 				for i in range(real_available_parts.size()):
 					var part: PartRes = real_available_parts[i]
 					
-					if part.part_type != quest_part_conditions[i]:
-						return false
-					
-					if part.part_base != quest_base_conditions[i]:
-						return false
+					if order_res.is_check_part_side:
+						if part.part_type != quest_part_conditions[i]:
+							return false
+							
+					if order_res.is_check_family_conditions:
+						if part.part_base != quest_family_conditions[i]:
+							return false
+							
+					if order_res.is_check_base_conditions:
+						if part.part_base != quest_base_conditions[i]:
+							return false
 			else:
 				return false
 		

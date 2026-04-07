@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="OrderRes" format=3 uid="uid://cwa86y457hf1k"]
+
+[ext_resource type="Texture2D" uid="uid://blav6nd8rwnml" path="res://img/orders/order_monster.png" id="1_vol30"]
+[ext_resource type="Script" uid="uid://c1tk4d5hutmfr" path="res://resources/res_scripts/order_res.gd" id="2_w0sil"]
+
+[resource]
+script = ExtResource("2_w0sil")
+quest_part_conditions = Array[int]([0, 1, 2, 3, 4, 5])
+is_check_family_conditions = false
+quest_base_conditions = Array[int]([3, 0, 0, 0, 0, 0])
+order_type = 3
+reward_amount = 43
+card_name = "заказ"
+card_desc = "Требуется скелет с телом Пушистика (3 уровень монстра)"
+card_grade = 2
+activate_speed = 15.0
+use_count = 1
+card_texture = ExtResource("1_vol30")
+card_type = 9
+metadata/_custom_type_script = "uid://c1tk4d5hutmfr"

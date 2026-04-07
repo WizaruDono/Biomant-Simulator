@@ -5,7 +5,8 @@
 
 [resource]
 script = ExtResource("1_aarvp")
-actor_health = 8
+actor_health = 10
+actor_damage = 7
 card_name = "Костяное Тело LvL3"
 card_desc = "Внутри давно ничего не бьётся"
 card_grade = 2

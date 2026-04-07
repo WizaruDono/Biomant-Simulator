@@ -7,7 +7,7 @@
 script = ExtResource("1_v2wri")
 part_type = 5
 actor_health = 6
-actor_damage = 2
+actor_damage = 3
 card_name = "Кости Ноги (R) LvL3"
 card_desc = "Тяжёлый Хрусть-Хрусть"
 card_grade = 2

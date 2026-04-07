@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://mfrvtvl34a81"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_5jdv5"]
+[ext_resource type="Texture2D" uid="uid://bavxi5cxaxvhm" path="res://img/monsters/sheep_3/sheep_3_body.png" id="1_btypk"]
+
+[resource]
+script = ExtResource("1_5jdv5")
+part_family = 1
+part_base = 3
+actor_health = 13
+actor_damage = 4
+card_name = "Пушистое Пузо LvL3"
+card_desc = "Элегантно"
+card_grade = 2
+card_texture = ExtResource("1_btypk")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

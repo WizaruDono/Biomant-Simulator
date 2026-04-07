@@ -7,7 +7,7 @@
 script = ExtResource("1_grifm")
 part_type = 1
 actor_health = 9
-actor_damage = 7
+actor_damage = 6
 card_name = "Череп LvL3"
 card_desc = "Самому меткому лучнику не нужны глаза"
 card_grade = 2

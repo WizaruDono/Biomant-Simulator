@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="PartRes" format=3 uid="uid://kqx8dhtsw0w5"]
+
+[ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="1_iktbc"]
+[ext_resource type="Texture2D" uid="uid://ba40jmx5wo0w" path="res://img/monsters/zombie_3/zombie_3_body.png" id="1_p2kvk"]
+
+[resource]
+script = ExtResource("1_iktbc")
+part_base = 1
+actor_health = 17
+card_name = "Гниплое Тельце LvL3"
+card_grade = 2
+card_texture = ExtResource("1_p2kvk")
+card_type = 2
+metadata/_custom_type_script = "uid://bll44gw1l0di2"

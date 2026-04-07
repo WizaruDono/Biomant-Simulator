@@ -7,7 +7,8 @@
 script = ExtResource("1_u8r83")
 part_family = 1
 part_base = 2
-actor_health = 12
+actor_health = 8
+actor_damage = 9
 card_name = "Грудка LvL3"
 card_desc = "Ты гонишь на самого Петушидзе?!"
 card_grade = 2

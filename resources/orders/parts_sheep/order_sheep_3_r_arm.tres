@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="OrderRes" format=3 uid="uid://hny86roh6cj8"]
+
+[ext_resource type="Texture2D" uid="uid://kuxpb85xe8kl" path="res://img/orders/order_part_arm.png" id="1_hvhae"]
+[ext_resource type="Script" uid="uid://c1tk4d5hutmfr" path="res://resources/res_scripts/order_res.gd" id="2_4g25y"]
+
+[resource]
+script = ExtResource("2_4g25y")
+quest_part_conditions = Array[int]([3])
+quest_family_conditions = Array[int]([1])
+quest_base_conditions = Array[int]([3])
+order_type = 2
+reward_amount = 29
+card_name = "заказ"
+card_desc = "Правая Овечья рука 3 уровня"
+card_grade = 2
+activate_speed = 5.0
+use_count = 1
+card_texture = ExtResource("1_hvhae")
+card_type = 9
+metadata/_custom_type_script = "uid://c1tk4d5hutmfr"

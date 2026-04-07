@@ -6,7 +6,7 @@
 [resource]
 script = ExtResource("1_mb6l7")
 part_type = 2
-actor_health = 3
+actor_health = 4
 actor_damage = 8
 card_name = "Кости Руки (L) LvL3"
 card_desc = "Может разбить(ся)"

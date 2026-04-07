@@ -6,8 +6,8 @@
 [resource]
 script = ExtResource("1_qbxth")
 part_type = 3
-actor_health = 7
-actor_damage = 10
+actor_health = 6
+actor_damage = 9
 card_name = "Кости Руки (R) LvL3"
 card_desc = "У кого шип больше - тот и прав"
 card_grade = 2

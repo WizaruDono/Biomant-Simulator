@@ -7,9 +7,9 @@
 script = ExtResource("1_rlqyx")
 part_family = 1
 part_base = 3
-actor_health = 6
-actor_damage = 2
-card_name = "Пушистое Пузо"
+actor_health = 5
+actor_damage = 1
+card_name = "Пушистое Пузо LvL1"
 card_texture = ExtResource("1_8kanh")
 card_type = 2
 metadata/_custom_type_script = "uid://bll44gw1l0di2"
