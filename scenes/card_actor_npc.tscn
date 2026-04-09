@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://caoqrrojhtbwk" path="res://scenes/card_upgrade.tscn" id="3_b252n"]
 [ext_resource type="PackedScene" uid="uid://pig5inkb3apw" path="res://scenes/shop_lot.tscn" id="3_bco72"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_s4cw1"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_b252n"]
 resource_local_to_scene = true
 size = Vector2(128, 192)
 
@@ -31,5 +31,28 @@ lots_offset = 20.0
 [node name="activation_progress" parent="." index="0" unique_id=785111382]
 pivot_offset_ratio = Vector2(0, 0)
 
+[node name="MarginContainer" parent="panel_back/container_content" parent_id_path=PackedInt32Array(1648399696) index="3" unique_id=1460528313]
+mouse_filter = 2
+mouse_behavior_recursive = 1
+
+[node name="HBoxContainer" parent="panel_back/container_content/MarginContainer" index="0" unique_id=26702382]
+mouse_filter = 2
+mouse_behavior_recursive = 1
+
+[node name="label_damage" parent="panel_back/container_content/MarginContainer/HBoxContainer" index="0" unique_id=1288198938]
+mouse_behavior_recursive = 1
+
+[node name="TextureRect" parent="panel_back/container_content/MarginContainer/HBoxContainer" index="1" unique_id=65637245]
+mouse_behavior_recursive = 1
+
+[node name="filler" parent="panel_back/container_content/MarginContainer/HBoxContainer" index="2" unique_id=2018973744]
+mouse_behavior_recursive = 1
+
+[node name="label_health" parent="panel_back/container_content/MarginContainer/HBoxContainer" index="3" unique_id=1497205468]
+mouse_behavior_recursive = 1
+
+[node name="TextureRect2" parent="panel_back/container_content/MarginContainer/HBoxContainer" index="4" unique_id=1582234860]
+mouse_behavior_recursive = 1
+
 [node name="collision_card" parent="." index="2" unique_id=2046268927]
-shape = SubResource("RectangleShape2D_s4cw1")
+shape = SubResource("RectangleShape2D_b252n")

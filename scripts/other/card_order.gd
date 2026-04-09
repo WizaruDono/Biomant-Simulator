@@ -32,6 +32,12 @@ func _process(_delta: float) -> void:
 	else:
 		if activation_progress.visible:
 			activation_progress.hide()
+	
+	if tooltip_label.visible:
+		tooltip_label.global_position = get_global_mouse_position() - tooltip_label.size * tooltip_label.pivot_offset_ratio
+	
+	# Дебаг
+	queue_redraw()
 
 func initialize():
 	await get_tree().process_frame
@@ -48,7 +54,8 @@ func initialize():
 	order_type = order_res.order_type
 	reward_amount = order_res.reward_amount
 	special_reward = order_res.special_reward
-	panel_back.tooltip_text = order_desc
+	#panel_back.tooltip_text = order_desc
+	set_tooltip_text(order_res.card_desc)
 	setup_tooltip()
 	
 	label_header.text = order_name
@@ -75,7 +82,6 @@ func perform_is_stack_action() -> void:
 			
 		card_container.get_child(0).queue_free()
 		create_rewards()
-
 
 func create_rewards():
 	if special_reward:

@@ -66,13 +66,13 @@ enum UpgradeType {
 
 var card_header_size : float = 22
 
-var default_z_index : int = 5
+var default_z_index : int = 0
 
 var parts_size : int = 6
 
 var monster_love_size : int = 2
 
-var parts_merger_count: int = 3
+var parts_merger_count: int = 2
 
 ## Максимальный грейд для типа монстра
 var MAX_GRADES = {

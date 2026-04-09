@@ -23,8 +23,9 @@ func initialize():
 	part_perc = part_res.part_perc
 	part_type = part_res.part_type
 	part_family = part_res.part_family
-	panel_back.tooltip_text = actor_desc
+	#panel_back.tooltip_text = actor_desc
 	setup_tooltip()
+	set_tooltip_text(actor_desc)
 	
 	label_header.text = actor_name
 	var atlas : AtlasTexture = AtlasTexture.new()

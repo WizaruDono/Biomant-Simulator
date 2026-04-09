@@ -50,10 +50,11 @@ func initialize():
 	
 	label_header.text = actor_name
 	rect_main_img.texture = card_texture
-	panel_back.tooltip_text = actor_desc
+	#panel_back.tooltip_text = actor_desc
 	label_damage.text = str(actor_damage)
 	label_health.text = str(actor_health)
 	setup_tooltip()
+	set_tooltip_text(actor_desc)
 	activate()
 
 
@@ -128,10 +129,6 @@ func create_shop():
 		lots.append(lot)
 		
 	align_lots()
-
-
-
-
 
 func align_lots():
 	if lots.is_empty(): return

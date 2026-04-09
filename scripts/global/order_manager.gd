@@ -22,7 +22,7 @@ var discard_pile: Array[OrderRes]
 func _on_rate_set(value: int) -> void:
 	rate = value
 	
-	number_of_orders = roundi(StatCalculator.get_soft_squared_value(base_number_of_orders, value + 1, 0.2))
+	number_of_orders = roundi(StatCalculator.get_soft_squared_value(base_number_of_orders, value + 1, 0.15))
 	
 	create_deck()
 
@@ -56,7 +56,7 @@ func create_order() -> void:
 	GameManager.level.player_loot.add_child(order_node)
 	order_node.position.x = get_viewport().get_visible_rect().size.x
 	order_node.initialize()
-	order_node.wait_time = 90.0	# перенести в датаменеджер, увеличить время для монстров
+	order_node.wait_time = 120.0	# перенести в датаменеджер, увеличить время для монстров
 	
 	order_node.scale = Vector2.ZERO
 	var tween: Tween = create_tween()

@@ -18,5 +18,6 @@ func initialize():
 	
 	label_header.text = upgrade_res.card_name
 	rect_main_img.texture = card_texture
-	panel_back.tooltip_text = upgrade_res.card_desc
+	#panel_back.tooltip_text = upgrade_res.card_desc
 	setup_tooltip()
+	set_tooltip_text(upgrade_res.card_desc)

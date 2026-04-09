@@ -46,8 +46,9 @@ func initialize():
 	# На скорость копания влияет прокачка:
 	activate_timer.wait_time = digg_speed * PlayerManager.dig_speed_multiplier
 	
-	panel_back.tooltip_text = location_desc
+	#panel_back.tooltip_text = location_desc
 	setup_tooltip()
+	set_tooltip_text(location_res.card_desc)
 	label_header.text = location_name
 	rect_main_img.texture = card_texture
 	update_res_count_ui()

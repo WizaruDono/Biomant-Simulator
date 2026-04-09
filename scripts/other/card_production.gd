@@ -40,14 +40,14 @@ func initialize():
 	production_type = production_res.production_type
 	product_count = production_res.use_count
 	activate_timer.wait_time = product_speed
-	panel_back.tooltip_text = production_desc
+	#panel_back.tooltip_text = production_desc
 	setup_tooltip()
+	set_tooltip_text(production_res.card_desc)
 	
 	label_header.text = production_name
 	rect_main_img.texture = card_texture
 	remaining_product_count = product_count
 	update_res_count_ui()
-
 
 func update_res_count_ui():
 	label_uses.text = '%s/%s' % [remaining_product_count, product_count]
@@ -96,7 +96,6 @@ func _on_activate_timer_timeout() -> void:
 		var tween = create_tween()
 		tween.tween_callback(queue_free).set_delay(0.3)
 	activate_timer.stop()
-
 
 func check_possible_production() -> bool:
 	match production_type:
@@ -180,6 +179,7 @@ func check_possible_production() -> bool:
 					var outside_card: Card = cards[i]
 					outside_card.reparent_to_level()
 					_move_card_away(outside_card)
+					break
 					
 			# ПРОВЕРКА НА ИДЕНТИЧНОСТЬ ТРЕХ КАРТ
 			var base_card = cards[0]
@@ -199,32 +199,11 @@ func check_possible_production() -> bool:
 	print_rich("[color=orange]DEBUG: Не должно здесь вылетать[/color]")
 	return false
 
-func check_necessary_cards(card_part_res: PartRes) -> bool:
-	var result: bool = false
-	match card_part_res:
-		DataManager.MonsterPartType.BODY:
-			if not has_body: result = true
-		DataManager.MonsterPartType.HEAD:
-			if not has_head: result = true
-		DataManager.MonsterPartType.L_ARM:
-			if not has_l_arm: result = true
-		DataManager.MonsterPartType.R_ARM:
-			if not has_r_arm: result = true
-		DataManager.MonsterPartType.L_LEG:
-			if not has_l_leg: result = true
-		DataManager.MonsterPartType.R_LEG:
-			if not has_r_leg: result = true
-	return result
-#endregion
-
-
 func set_parts(new_parts : Array[CardActorPart]):
 	parts = new_parts
 
-
 func set_monsters(new_monsters : Array[CardActorMonster]):
 	monsters = new_monsters
-
 
 func destroy():
 	match production_type:
@@ -242,7 +221,7 @@ func destroy():
 			is_stack = false
 		
 		DataManager.ProductionType.MONSTER_CREATOR:
-			var old_gp : Vector2 = global_position
+			#var old_gp : Vector2 = global_position
 			
 			for i in range(monsters.size()):
 				var monster = monsters[i]
@@ -265,10 +244,9 @@ func destroy():
 	
 	is_product_in_progress = false
 
-
 func create():
 	match production_type:
-		DataManager.ProductionType.PART_CREATOR:		# Сшиватель?
+		DataManager.ProductionType.PART_CREATOR:		# Сшиватель
 			var monster_res : MonsterRes = MonsterManager.create_monster_by_parts(part_reses)
 			var monster : CardActorMonster = EntityManager.create_entity_scene(monster_res)
 			GameManager.level.player_actors.add_child(monster)
@@ -302,7 +280,6 @@ func create():
 			_move_card_away(exchanged_part)
 			for p in exchanging_parts: p.queue_free()
 
-
 func throw_out_trach_cards() -> void:
 	var all_cards := get_all_nested_cards_recursive()
 	var outside_cards = []
@@ -321,7 +298,6 @@ func throw_out_trach_cards() -> void:
 		
 		_move_card_away(_main_card)
 	pass
-
 
 # Функция спавна ребёнка. Вынес для двойни, тройни
 func spawn_child_monster(index: int) -> void:

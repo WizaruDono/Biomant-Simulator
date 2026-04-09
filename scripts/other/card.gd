@@ -35,6 +35,7 @@ signal initialized
 @onready var card_container: Node2D = %CardContainer
 @onready var activation_progress: ProgressBar = %activation_progress
 @onready var container_content: VBoxContainer = %container_content
+@onready var tooltip_label: RichTextLabel = %TooltipLabel
 
 var intersected_card_areas: Array[Card]
 var is_stack: bool = false: set = _on_is_stack_set
@@ -120,6 +121,10 @@ func _process(_delta: float) -> void:
 		if activation_progress.visible:
 			activation_progress.hide()
 	
+	if tooltip_label.visible:
+		tooltip_label.global_position = get_global_mouse_position() - tooltip_label.size * tooltip_label.pivot_offset_ratio
+	
+	# Дебаг
 	queue_redraw()
 
 func setup_tooltip():
@@ -137,6 +142,9 @@ func setup_tooltip():
 		new_theme.set_color('font_color', 'TooltipLabel', Color(0.125, 0.18, 0.216, 1.0))
 		#var stylebox = new_theme.get_theme_stylebox('normal')
 		panel_back.theme = new_theme
+
+func set_tooltip_text(text: String) -> void:
+	tooltip_label.text = str(text)
 
 func _on_state_set(value: DataManager.CardState) -> void:
 	if value == card_state: return
@@ -165,9 +173,6 @@ func _enter_state() -> void:
 			
 			#SoundManager.play_asmr_sfx(SoundManager.FLESH_POP, -20.0) # - звук хватания карты не нужен / нужен другой
 		
-		DataManager.CardState.HOVER_STACK:
-			z_index = 1000
-		
 		DataManager.CardState.ENTER_STACK:
 			if intersected_card:
 				if intersected_card.possibility_stack and intersected_card.card_owner_type == DataManager.OwnerType.PLAYER:
@@ -176,6 +181,7 @@ func _enter_state() -> void:
 					card_state = DataManager.CardState.ON_FIELD
 					_move_card_away(self)
 		
+		DataManager.CardState.HOVER_STACK, \
 		DataManager.CardState.IN_STACK, \
 		DataManager.CardState.EXIT_STACK, \
 		DataManager.CardState.DESTROYED:
@@ -201,7 +207,8 @@ func _exit_state(old_state: DataManager.CardState) -> void:
 					_move_card_away(self)
 			#else:
 				#SoundManager.play_asmr_sfx(SoundManager.FLESH_POP, -20.0)	# - звук отпускания карты не нужен / нужен другой
-				
+			
+			z_index = 0
 			
 			# Очищаем пересечения
 			intersected_card_areas.clear()
@@ -213,9 +220,9 @@ func _exit_state(old_state: DataManager.CardState) -> void:
 
 # Для дебага
 func _draw() -> void:
-	pass
-	#var font = preload("uid://co45erws16hd7")
-	#draw_string(font, Vector2.ZERO, str("isstack: ",is_stack), HORIZONTAL_ALIGNMENT_CENTER)
+	return
+	var font = preload("uid://co45erws16hd7")
+	draw_string(font, Vector2.ZERO, str("z_index: ",z_index), HORIZONTAL_ALIGNMENT_CENTER)
 
 func reparent_to_level() -> void:
 	var _level: Level = GameManager.level
@@ -252,8 +259,6 @@ func add_card_to_stack(card: Card) -> void:
 	
 	card.reparent(card_container)
 	
-	
-	
 	await get_tree().process_frame
 	
 	card.position = Vector2(0, label_header.size.y)
@@ -268,8 +273,6 @@ func add_card_to_stack(card: Card) -> void:
 	
 	if card.main_card != self:
 		_check_is_stack()
-	
-	card.z_index = card.get_index()
 
 func _check_is_stack() -> void:
 	is_stack = !card_container.get_children().is_empty()
@@ -340,12 +343,16 @@ func _on_panel_back_mouse_entered() -> void:
 	GameManager.is_hovering_card = true
 	var tween : Tween = create_tween()
 	tween.tween_property(self, "scale",  Vector2(1.05, 1.05), 0.1)
+	
+	tooltip_label.show()
 
 func _on_panel_back_mouse_exited() -> void:
 	GameManager.hovered_card = null
 	GameManager.is_hovering_card = false
 	var tween : Tween = create_tween()
 	tween.tween_property(self, "scale",  Vector2(1, 1), 0.1)
+	
+	tooltip_label.hide()
 
 func _on_area_entered(area: Area2D) -> void:
 	if not area is Card: return

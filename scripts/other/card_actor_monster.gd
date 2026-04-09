@@ -39,8 +39,9 @@ func initialize():
 	card_texture = monster_res.card_texture
 	monster_parts = monster_res.monster_parts
 	monster_perc = monster_res.monster_perc
-	panel_back.tooltip_text = actor_desc
+	#panel_back.tooltip_text = actor_desc
 	setup_tooltip()
+	set_tooltip_text(actor_desc)
 	
 	label_header.text = actor_name
 	rect_main_img.texture = card_texture
