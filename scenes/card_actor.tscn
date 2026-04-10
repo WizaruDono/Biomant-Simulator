@@ -6,6 +6,10 @@
 [ext_resource type="LabelSettings" uid="uid://b3j50fkpgbe26" path="res://styles/label_card_damage.tres" id="4_s5vn8"]
 [ext_resource type="Texture2D" uid="uid://c58w4i6iwxak5" path="res://img/ui_hp.png" id="6_s5vn8"]
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_bys6b"]
+resource_local_to_scene = true
+size = Vector2(128, 192)
+
 [node name="CardActor" unique_id=1726033309 instance=ExtResource("1_x2ujh")]
 script = ExtResource("2_26cfb")
 actor_name = ""
@@ -13,7 +17,7 @@ actor_desc = ""
 actor_health = 0
 actor_damage = 0
 
-[node name="panel_back" parent="." index="0" unique_id=1622366662]
+[node name="panel_back" parent="." index="1" unique_id=967893501]
 offset_right = 80.0
 offset_bottom = 110.0
 
@@ -61,3 +65,6 @@ vertical_alignment = 1
 layout_mode = 2
 texture = ExtResource("6_s5vn8")
 stretch_mode = 4
+
+[node name="collision_card" parent="." index="3" unique_id=2046268927]
+shape = SubResource("RectangleShape2D_bys6b")

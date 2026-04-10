@@ -53,5 +53,5 @@ position = Vector2(76, 56)
 texture = ExtResource("7_o6in2")
 offset = Vector2(-76, -56)
 
-[node name="collision_card" parent="." index="2" unique_id=2046268927]
+[node name="collision_card" parent="." index="3" unique_id=2046268927]
 shape = SubResource("RectangleShape2D_s86ik")

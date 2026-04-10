@@ -36,6 +36,8 @@ signal initialized
 @onready var activation_progress: ProgressBar = %activation_progress
 @onready var container_content: VBoxContainer = %container_content
 @onready var tooltip_label: RichTextLabel = %TooltipLabel
+var _is_mouse_over: bool = false       # Мышка физически над картой
+
 
 var intersected_card_areas: Array[Card]
 var is_stack: bool = false: set = _on_is_stack_set
@@ -165,6 +167,7 @@ func _enter_state() -> void:
 				GameManager.dragged_card = null
 		
 		DataManager.CardState.DRAGGED:
+			tooltip_label.hide()		# Прячем описание сразу при начале таскания
 			intersected_card_areas.clear()
 			collision_card.disabled = true
 			collision_card.disabled = false
@@ -174,6 +177,7 @@ func _enter_state() -> void:
 			#SoundManager.play_asmr_sfx(SoundManager.FLESH_POP, -20.0) # - звук хватания карты не нужен / нужен другой
 		
 		DataManager.CardState.ENTER_STACK:
+			tooltip_label.hide()
 			if intersected_card:
 				if intersected_card.possibility_stack and intersected_card.card_owner_type == DataManager.OwnerType.PLAYER:
 					intersected_card.add_card_to_stack(self)
@@ -339,20 +343,38 @@ func _process_pressed_right_mouse():
 	pass
 
 func _on_panel_back_mouse_entered() -> void:
+# ГЛОБАЛЬНАЯ ПРОВЕРКА: Если мы уже что-то тащим, никакие подсказки не нужны
+	if GameManager.is_captured or GameManager.dragged_card != null:
+		return
+		
+	_is_mouse_over = true
 	GameManager.hovered_card = self
 	GameManager.is_hovering_card = true
-	var tween : Tween = create_tween()
-	tween.tween_property(self, "scale",  Vector2(1.05, 1.05), 0.1)
 	
-	tooltip_label.show()
+	# Визуальный отклик (микровзлет)
+	var tween : Tween = create_tween()
+	tween.tween_property(self, "scale", Vector2(1.05, 1.05), 0.1)
+	
+	# Ждем 0.2 сек перед показом
+	await get_tree().create_timer(0.2).timeout
+	
+	# ПРОВЕРКА ПОСЛЕ ПАУЗЫ: 
+	# Показываем только если мышка всё еще здесь И в игре ничего не начали тащить за это время
+	if _is_mouse_over and not GameManager.is_captured and card_state != DataManager.CardState.DRAGGED:
+		tooltip_label.show()
 
 func _on_panel_back_mouse_exited() -> void:
+	_is_mouse_over = false
 	GameManager.hovered_card = null
 	GameManager.is_hovering_card = false
+	
 	var tween : Tween = create_tween()
-	tween.tween_property(self, "scale",  Vector2(1, 1), 0.1)
+	tween.tween_property(self, "scale", Vector2(1, 1), 0.1)
 	
 	tooltip_label.hide()
+
+
+
 
 func _on_area_entered(area: Area2D) -> void:
 	if not area is Card: return
