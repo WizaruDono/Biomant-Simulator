@@ -68,20 +68,45 @@ func _on_reward_amount_set(value: int) -> void:
 
 func start_rewarding():
 	create_rewards()
-
-func perform_is_stack_action() -> void:
-	var is_order_consistency: bool = check_order_consistency()
-	if is_order_consistency:
-		var order_card: Card = card_container.get_child(0)
+	
+	
+	
+#func perform_is_stack_action() -> void:
+	#var is_order_consistency: bool = check_order_consistency()
+	#if is_order_consistency:
+		#var order_card: Card = card_container.get_child(0)
+		#
+		#if not order_card.card_container.get_children().is_empty():
+			#var outside_card: Card = order_card.card_container.get_child(0)
+			#outside_card.reparent_to_level()
+			#_move_card_away(outside_card)
+			#await get_tree().process_frame
+			#
+		#card_container.get_child(0).queue_free()
+		#create_rewards()
 		
+		
+func perform_is_stack_action() -> void:
+	if card_container.get_children().is_empty():
+		return
+	var order_card: Card = card_container.get_child(0)
+	var is_order_consistency: bool = check_order_consistency()
+
+	if is_order_consistency:
+		# --- УСПЕХ: Первая карта поглощается, остальные отлетают ---
 		if not order_card.card_container.get_children().is_empty():
-			var outside_card: Card = order_card.card_container.get_child(0)
-			outside_card.reparent_to_level()
-			_move_card_away(outside_card)
-			await get_tree().process_frame
-			
-		card_container.get_child(0).queue_free()
+			var outside_card = order_card.card_container.get_child(0)
+			# Отцепляем стак от карты, которая сейчас исчезнет
+			await outside_card.reparent_to_level()
+			outside_card._move_card_away_down(outside_card)
+		# Удаляем карту монстра/детали
+		order_card.queue_free()
 		create_rewards()
+		
+	else:
+		# --- ОТКАЗ: Вся пачка летит вниз ---
+		await order_card.reparent_to_level()
+		order_card._move_card_away_down(order_card)
 
 func create_rewards():
 	if special_reward:
@@ -112,7 +137,7 @@ func check_order_consistency() -> bool:
 	var submitted_card: Card = card_container.get_child(0)
 	
 	if order_type != submitted_card.card_type:
-		submitted_card.reparent_to_level()
+		#submitted_card.reparent_to_level()		# не нужна после добавления откидывания карт
 		return false
 	
 	# Проверка по уровню
@@ -186,6 +211,8 @@ func check_order_consistency() -> bool:
 	
 	return true
 
+
+	
 #func check_order_consistency() -> bool:
 	#var submitted_card: Card = card_container.get_child(0)
 	#

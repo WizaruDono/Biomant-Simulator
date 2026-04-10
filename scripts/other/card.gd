@@ -231,15 +231,26 @@ func _draw() -> void:
 	draw_string(font, Vector2.ZERO, str("z_index: ",z_index), HORIZONTAL_ALIGNMENT_CENTER)
 
 func reparent_to_level() -> void:
-	var _level: Level = GameManager.level
-	var old_parrent_card: Card = get_parent().get_parent()
+	var _level = GameManager.level
+	if not _level: return
+	var parent_container = get_parent()
+	var old_parent_card = null
+	
+	# Проверяем, была ли карта в другом стаке/заказе
+	if parent_container and parent_container.get_parent() is Card:
+		old_parent_card = parent_container.get_parent()
+
 	main_card = null
 	reparent(_level)
+	
 	await get_tree().process_frame
-	old_parrent_card._check_is_stack()
-	if old_parrent_card.main_card:
-		old_parrent_card.main_card._check_is_stack()
-
+	
+	# КРИТИЧЕСКАЯ ПРАВКА: проверяем, жива ли еще старая пачка (без проверки крашится игра, когда выполняем заказ, отправляя на него стак карт, где первая карта - удовлетворяет условиям заказа, из-за чего заказ исчезает )
+	if is_instance_valid(old_parent_card):
+			old_parent_card._check_is_stack()
+			if is_instance_valid(old_parent_card.main_card):
+				old_parent_card.main_card._check_is_stack()
+			
 func add_card_to_stack(card: Card) -> void:
 	SoundManager.play_asmr_sfx(SoundManager.SND_STACK, -12.0)	# ЗВУК СТАКА
 	
@@ -475,3 +486,14 @@ func _move_card_away(moving_card: Card):
 	tween.tween_property(moving_card, "global_position", target_pos, 0.3).set_trans(Tween.TRANS_BACK)
 	#tween.tween_property(moving_card, "rotation", target_rotation, 0.3).set_trans(Tween.TRANS_SINE)
 	pass
+
+# откидывание карт, которые не подходят
+func _move_card_away_down(card: Card) -> void:
+	if not is_instance_valid(card): return
+	# Определяем точку "отлета" — чуть ниже текущей позиции заказа
+	var target_pos = global_position + Vector2(randf_range(-50, 50), 220+randf_range(0, 20)) 
+	
+	var tween = create_tween().set_parallel()
+	tween.tween_property(card, "global_position", target_pos, 0.4)\
+		.set_trans(Tween.TRANS_QUART).set_ease(Tween.EASE_OUT)
+		

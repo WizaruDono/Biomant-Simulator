@@ -99,6 +99,19 @@ func set_order_pos() -> void:
 		tween.tween_property(card, "position", target_pos, 0.2)
 		current_x += card.panel_back.size.x + spacing
 
+# Эту функцию надо вызывать, когда игрок успешно сдает заказ (в card_order.gd)
+func on_order_completed(completed_order: Card):
+	pass
+
+func on_order_destroyed(destroyed_order: Card) -> void:
+	if active_orders.has(destroyed_order):
+		active_orders.erase(destroyed_order)
+	# Если на столе не осталось заказов — обновляем бесплатно!
+	if active_orders.is_empty():
+		rate += 1
+	else:
+		set_order_pos()
+
 
 ## Спавнит 3 случайных заказа из пула
 #func spawn_3_random_orders():
@@ -137,16 +150,3 @@ func set_order_pos() -> void:
 		#if is_instance_valid(order):
 			#order.queue_free()
 	#active_orders.clear()
-
-# Эту функцию надо вызывать, когда игрок успешно сдает заказ (в card_order.gd)
-func on_order_completed(completed_order: Card):
-	pass
-
-func on_order_destroyed(destroyed_order: Card) -> void:
-	if active_orders.has(destroyed_order):
-		active_orders.erase(destroyed_order)
-	# Если на столе не осталось заказов — обновляем бесплатно!
-	if active_orders.is_empty():
-		rate += 1
-	else:
-		set_order_pos()
