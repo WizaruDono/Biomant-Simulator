@@ -162,16 +162,18 @@ func _enter_state() -> void:
 		
 		DataManager.CardState.ON_FIELD:
 			collision_card.disabled = false
-			z_index = 0
+			# Сортируем по Y, чтобы нижние карты перекрывали верхние
+			# Прибавляем целое число, так как z_index — это int
+			z_index = 0 # int(global_position.y)	# было: 0
 			if GameManager.dragged_card == self:
 				GameManager.dragged_card = null
-		
+				
 		DataManager.CardState.DRAGGED:
 			tooltip_label.hide()		# Прячем описание сразу при начале таскания
 			intersected_card_areas.clear()
 			collision_card.disabled = true
 			collision_card.disabled = false
-			z_index = 1000
+			z_index = 2000 #+int(global_position.y)
 			GameManager.dragged_card = self
 			
 			#SoundManager.play_asmr_sfx(SoundManager.FLESH_POP, -20.0) # - звук хватания карты не нужен / нужен другой
@@ -212,7 +214,7 @@ func _exit_state(old_state: DataManager.CardState) -> void:
 			#else:
 				#SoundManager.play_asmr_sfx(SoundManager.FLESH_POP, -20.0)	# - звук отпускания карты не нужен / нужен другой
 			
-			z_index = 0
+			z_index = 0 #2000+int(global_position.y)
 			
 			# Очищаем пересечения
 			intersected_card_areas.clear()

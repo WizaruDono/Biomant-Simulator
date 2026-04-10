@@ -66,7 +66,7 @@ enum UpgradeType {
 
 var card_header_size : float = 22
 
-var default_z_index : int = 0
+var default_z_index : int = 0	# нигде не используется?
 
 var parts_size : int = 6
 

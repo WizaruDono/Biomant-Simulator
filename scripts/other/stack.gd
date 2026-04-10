@@ -268,10 +268,10 @@ func check_possible_digging(_card : Card):
 
 
 func align_ordering():
-	var base_ordering : int = 5
+	var base_ordering : int = 0
 	for card in cards:
 		card.z_index = base_ordering
-		base_ordering += 1
+		base_ordering += 2
 
 
 func align_cards():
@@ -455,7 +455,7 @@ func _on_input_event(_viewport, event, _shape_idx):
 			is_dragging = true
 			offset = global_position - get_global_mouse_position()
 			#cards[cards.size() - 1].change_state(DataManager.CardState.DRAGGED)
-			z_index = 100
+			z_index = 2000
 			for card in cards:
 				card.change_collision_to_invisible_state()
 				card.input_pickable = false
@@ -467,7 +467,7 @@ func _on_input_event(_viewport, event, _shape_idx):
 			if intersected_card:
 				merge_stacks(intersected_card)
 			is_dragging = false
-			z_index = 0
+			z_index = 0 # int(global_position.y) # Динамический индекс по Y, было = 0 - никак баг не исправляет
 			activate_stack_to_card_collision(false)
 			if cards.size() >= 2:
 					cards[cards.size() - 1].input_pickable = true
