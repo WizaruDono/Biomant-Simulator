@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bs2iabl0arhec"
-path="res://.godot/imported/up_location_speed.png-bccc334c85ea1cdfa7aa887b4b2933c4.ctex"
+uid="uid://bf12ci0dwnxps"
+path="res://.godot/imported/up_speed_farm.png-b4b9d286eb9145b2b0d4faeff9414a88.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://img/up_location_speed.png"
-dest_files=["res://.godot/imported/up_location_speed.png-bccc334c85ea1cdfa7aa887b4b2933c4.ctex"]
+source_file="res://img/upgrades/up_speed_farm.png"
+dest_files=["res://.godot/imported/up_speed_farm.png-b4b9d286eb9145b2b0d4faeff9414a88.ctex"]
 
 [params]
 

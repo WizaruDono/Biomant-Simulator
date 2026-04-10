@@ -3,18 +3,29 @@
 [ext_resource type="Texture2D" uid="uid://h01wlbak5max" path="res://img/npc_location_trader.png" id="1_iagjc"]
 [ext_resource type="Script" uid="uid://d3723m4sa384o" path="res://resources/res_scripts/card_res_script.gd" id="2_i7lth"]
 [ext_resource type="Resource" uid="uid://bde2idpoq2fwl" path="res://resources/locations/location_graveyard.tres" id="3_pxd5d"]
-[ext_resource type="Resource" uid="uid://b2kgt3x0nd2o5" path="res://resources/upgrades/up_location_speed.tres" id="4_1yuns"]
 [ext_resource type="Resource" uid="uid://cbhyt3hyw4ab" path="res://resources/locations/location_farm.tres" id="5_f6tdp"]
 [ext_resource type="Resource" uid="uid://dpndkp2oli2lh" path="res://resources/productions/production_changeshop.tres" id="6_hpw2u"]
 [ext_resource type="Resource" uid="uid://bcc056dvqheht" path="res://resources/productions/production_stapler.tres" id="7_arrkt"]
+[ext_resource type="Resource" uid="uid://crrq7ucfuwldy" path="res://resources/upgrades/up_speed_farm_1.tres" id="8_arrkt"]
 [ext_resource type="Resource" uid="uid://bhfftbyys414k" path="res://resources/productions/production_motel.tres" id="8_i7lth"]
 [ext_resource type="Script" uid="uid://dl2tf7lxboat6" path="res://resources/res_scripts/npc_res.gd" id="8_rdcnc"]
+[ext_resource type="Resource" uid="uid://b8txbuwqe3e6p" path="res://resources/upgrades/up_speed_farm_2.tres" id="9_rdcnc"]
+[ext_resource type="Resource" uid="uid://7omcalrp2lmu" path="res://resources/upgrades/up_speed_farm_3.tres" id="10_esvu4"]
+[ext_resource type="Resource" uid="uid://b2kgt3x0nd2o5" path="res://resources/upgrades/up_speed_graveyard_1.tres" id="11_x7avn"]
+[ext_resource type="Resource" uid="uid://s2qs0d2qepoi" path="res://resources/upgrades/up_speed_graveyard_2.tres" id="12_ik3ua"]
+[ext_resource type="Resource" uid="uid://bjtx58qv7blhh" path="res://resources/upgrades/up_speed_graveyard_3.tres" id="13_ia5ir"]
+[ext_resource type="Resource" uid="uid://wtcywbqwa4df" path="res://resources/upgrades/up_motel_double_1.tres" id="14_qb76e"]
+[ext_resource type="Resource" uid="uid://j3weveqxpuc8" path="res://resources/upgrades/up_motel_double_2.tres" id="15_tr76v"]
+[ext_resource type="Resource" uid="uid://cx3p0aalchgs4" path="res://resources/upgrades/up_motel_double_3.tres" id="16_x1ktc"]
+[ext_resource type="Resource" uid="uid://lv77mo30pnqw" path="res://resources/upgrades/up_motel_triple_1.tres" id="17_eaydn"]
+[ext_resource type="Resource" uid="uid://cygtg8u8wmfq4" path="res://resources/upgrades/up_motel_triple_2.tres" id="18_1loqm"]
+[ext_resource type="Resource" uid="uid://bt1lbbu1oxbdf" path="res://resources/upgrades/up_motel_triple_3.tres" id="19_qp1ye"]
 
 [resource]
 script = ExtResource("8_rdcnc")
 npc_type = 1
 replics = Array[String](["Добрейшего вечерочка! Не хочешь закупиться?", "Не спеши, выбирай с умом."])
-npc_shop_content = Array[ExtResource("2_i7lth")]([ExtResource("3_pxd5d"), ExtResource("4_1yuns"), ExtResource("5_f6tdp"), ExtResource("6_hpw2u"), ExtResource("7_arrkt"), ExtResource("8_i7lth")])
+npc_shop_content = Array[ExtResource("2_i7lth")]([ExtResource("3_pxd5d"), ExtResource("5_f6tdp"), ExtResource("6_hpw2u"), ExtResource("7_arrkt"), ExtResource("8_i7lth"), ExtResource("8_arrkt"), ExtResource("9_rdcnc"), ExtResource("10_esvu4"), ExtResource("11_x7avn"), ExtResource("12_ik3ua"), ExtResource("13_ia5ir"), ExtResource("14_qb76e"), ExtResource("15_tr76v"), ExtResource("16_x1ktc"), ExtResource("17_eaydn"), ExtResource("18_1loqm"), ExtResource("19_qp1ye")])
 npc_wait_timer = 60.0
 actor_health = 50
 actor_damage = 10

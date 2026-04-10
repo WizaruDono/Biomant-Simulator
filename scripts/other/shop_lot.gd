@@ -24,8 +24,8 @@ func _on_button_buy_pressed() -> void:
 		
 		# Проверяем, является ли это именно КЛАССИЧЕСКИМ улучшением
 		if lot is CardUpgrade and lot.upgrade_res is UpgradeRes:
-			var up_res = lot.upgrade_res
-			PlayerManager.apply_upgrade(up_res.upgrade_type, up_res.upgrade_value)
+			# Передаем весь ресурс целиком
+			PlayerManager.apply_upgrade(lot.upgrade_res)
 			SignalManager.on_buy_lot.emit(lot)
 			lot.queue_free()
 		else:
@@ -42,7 +42,6 @@ func _on_button_buy_pressed() -> void:
 			if is_instance_valid(button_buy):
 				button_buy.modulate = original_color
 		)
-		# тут была строка на снятие денег, даже если купить не удалось. Что тупо... Баг вызывало (баланс меньше нуля)
 		
 
 		

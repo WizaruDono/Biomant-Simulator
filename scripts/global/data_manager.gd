@@ -26,21 +26,20 @@ enum MonsterPartType {
 	BODY, HEAD, L_ARM, R_ARM, L_LEG, R_LEG
 }
 
-enum EntityGrade {
-	T1, T2, T3
-}
+enum EntityGrade {	T1, T2, T3	}
 
 enum GeneType {
 	TOXIC, FLYING, SPECTER
 }
 
 enum ProductionType {
-	PART_CREATOR, RES_CREATOR, MONSTER_CREATOR, MONSTER_MERGER, PART_MIXER, PART_MERGER
+	PART_CREATOR, RES_CREATOR, MONSTER_CREATOR, MONSTER_MERGER, PART_MIXER, PART_MERGER,	NONE
 }
 
 enum LocationType {
-	GRAVEYARD, FARM, 
+	GRAVEYARD, FARM,	NONE
 }
+# GLOBAL # можно добавить GLOBAL для общих штук
 
 enum PercType {
 	NONE, DIGGER, FIGHTER
@@ -60,9 +59,6 @@ enum MonsterBase {
 	ANYONE,
 }
 
-enum UpgradeType {
-	SPEED, RARE_DROP
-}
 
 var card_header_size : float = 22
 
@@ -78,8 +74,8 @@ var parts_merger_count: int = 2
 var MAX_GRADES = {
 	MonsterBase.COCK: 3,
 	MonsterBase.SKELETON: 3, 
-	MonsterBase.ZOMBIE: 2, 
-	MonsterBase.SHEEP: 2
+	MonsterBase.ZOMBIE: 3, 
+	MonsterBase.SHEEP: 3
 }
 
 # ЦЕНЫ
@@ -96,7 +92,7 @@ var chances_dict : Dictionary[EntityGrade, float] = {
 
 
 # UPGRADE потенциальный
-
+# =======================================================
 # Шансы на разный тип дропа у торгаша, в сумме по хорошему должно быть меньше 1.
 var chance_location_from_trader		: float = 0.25	# 0.25 = 25%
 var chance_production_from_trader	: float = 0.1
@@ -108,14 +104,66 @@ var chacne_triple_child : float = 0.05
 # Шансы для обменника (PART_MERGER)
 var chance_changeshop_to_grade_2 : float = 0.50 # 50% шанс апнуть с 1 на 2 уровень
 var chance_changeshop_to_grade_3 : float = 0.30 # 30% шанс апнуть с 2 на 3 уровень
+# =======================================================
 
-# Все возможные товары в магазине (Лопаты, рецепты, локации и т.д.)
-#@export var all_shop_items : Array[CardRes] = []
+enum UpgradeType { SPEED, RARE_DROP, DOUBLE_CHILD, TRIPLE_CHILD, MERGE_T2, MERGE_T3 }
+
+# =======================================================
+# --- ТАБЛИЦЫ ЗНАЧЕНИЙ (Индекс = уровень апгрейда 0, 1, 2, 3) ---
+# скорость копания в локациях
+const SPEED_LEVELS = {
+	LocationType.GRAVEYARD: [1.0, 0.7, 0.45, 0.25],
+	LocationType.FARM: [1.0, 0.75, 0.50, 0.35]
+}
+# шансы выпадения редких частей в локациях 
+const RARE_DROP_LEVELS = {
+	LocationType.GRAVEYARD: [0.05, 0.15, 0.30, 0.50],
+	LocationType.FARM: [0.02, 0.10, 0.20, 0.40]
+}
+
+const PRODUCTION_UPGRADES = {
+# Шансы для детей в любовном гнёздышке
+	UpgradeType.DOUBLE_CHILD: [0.0, 0.15, 0.30, 0.40], # 0 - это базовый уровень (шанса нет)
+	UpgradeType.TRIPLE_CHILD: [0.0, 0.05, 0.10, 0.20],
+# шанс апнуть с 1 на 2 уровень в обменнике
+	UpgradeType.MERGE_T2: [0.40, 0.55, 0.70, 0.80],
+# шанс апнуть с 2 на 3 уровень в обменнике
+	UpgradeType.MERGE_T3: [0.30, 0.45, 0.60, 0.70]
+}
+
+# --- ТЕКУЩЕЕ СОСТОЯНИЕ УРОВНЕЙ ---
+var current_location_upgrades = {
+	LocationType.GRAVEYARD: { UpgradeType.SPEED: 0, UpgradeType.RARE_DROP: 0 },
+	LocationType.FARM: { UpgradeType.SPEED: 0, UpgradeType.RARE_DROP: 0 }
+}
+
+var current_production_upgrades = {
+	ProductionType.MONSTER_CREATOR: { UpgradeType.DOUBLE_CHILD: 0, UpgradeType.TRIPLE_CHILD: 0 },
+	ProductionType.PART_MERGER: { UpgradeType.MERGE_T2: 0, UpgradeType.MERGE_T3: 0 }
+}
+
+# --- ОБНОВЛЕННЫЕ ХЕЛПЕРЫ ---
+func get_location_upgrade(loc: LocationType, type: UpgradeType) -> float:
+	var level = current_location_upgrades[loc][type]
+	if type == UpgradeType.SPEED: return SPEED_LEVELS[loc][level]
+	if type == UpgradeType.RARE_DROP: return RARE_DROP_LEVELS[loc][level]
+	return 0.0
+
+func get_production_upgrade(prod: ProductionType, type: UpgradeType) -> float:
+	var level = current_production_upgrades[prod][type]
+	return PRODUCTION_UPGRADES[type][level]
+
+
+
+
+
+
+
+
 
 # Словарь координат: Семейство -> Точки крепления на ТЕЛЕ
 const BASE_JOINTS = {
 		MonsterBase.ZOMBIE: {
-		MonsterPartType.BODY:  Vector2(0.0,		0.0),
 		MonsterPartType.HEAD:  Vector2(67.0,	47.0),
 		MonsterPartType.L_ARM: Vector2(57.0,	56.0),
 		MonsterPartType.R_ARM: Vector2(76.0,	56.0),
@@ -123,7 +171,6 @@ const BASE_JOINTS = {
 		MonsterPartType.R_LEG: Vector2(70.0,	87.0)
 	},
 	MonsterBase.SKELETON: {
-		MonsterPartType.BODY:  Vector2(0.0,		0.0),
 		MonsterPartType.HEAD:  Vector2(66.0,	47.0),
 		MonsterPartType.L_ARM: Vector2(59.0,	55.0),
 		MonsterPartType.R_ARM: Vector2(76.0,	55.0),
@@ -131,7 +178,6 @@ const BASE_JOINTS = {
 		MonsterPartType.R_LEG: Vector2(70.0,	83.0)
 	},
 	MonsterBase.COCK: {
-		MonsterPartType.BODY:  Vector2(0.0,		0.0),
 		MonsterPartType.HEAD:  Vector2(65.0,	50.0),
 		MonsterPartType.L_ARM: Vector2(55.0,	59.0),
 		MonsterPartType.R_ARM: Vector2(76.0,	59.0),
@@ -139,7 +185,6 @@ const BASE_JOINTS = {
 		MonsterPartType.R_LEG: Vector2(69.0,	83.0)
 	},
 	MonsterBase.SHEEP: {
-		MonsterPartType.BODY:  Vector2(50.0,		50.0),
 		MonsterPartType.HEAD:  Vector2(61.0,	47.0),
 		MonsterPartType.L_ARM: Vector2(51.0,	65.0),
 		MonsterPartType.R_ARM: Vector2(78.0,	65.0),
@@ -149,7 +194,6 @@ const BASE_JOINTS = {
 	# Добавляем сюда новые виды по мере их отрисовки
 	# можно не добавлять апгрейднутых существ, если их размеры тела одинаковы
 	#MonsterBase.SKELETON: {
-		#MonsterPartType.BODY:  Vector2(0.0,		0.0),
 		#MonsterPartType.HEAD:  Vector2(,	),	# 1 вниз, 	1 вправо (от центра шеи)
 		#MonsterPartType.L_ARM: Vector2(,	),	# 4 вниз, 	1 вправо
 		#MonsterPartType.R_ARM: Vector2(,	),	# 4 вниз, 	2 влево
@@ -163,3 +207,7 @@ func get_joint_pos(base: MonsterBase, type: MonsterPartType) -> Vector2:
 	if BASE_JOINTS.has(base) and BASE_JOINTS[base].has(type):
 		return BASE_JOINTS[base][type]
 	return Vector2.ZERO
+	
+	
+# Все возможные товары в магазине (Лопаты, рецепты, локации и т.д.)
+#@export var all_shop_items : Array[CardRes] = []

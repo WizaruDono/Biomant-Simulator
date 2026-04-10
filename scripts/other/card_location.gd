@@ -128,12 +128,10 @@ func check_digger_type():
 
 # 1. функция расчета актуальной скорости
 func get_actual_dig_speed() -> float:
-	# Берем базовую скорость из ресурса этой локации
-	var speed = location_res.activate_speed
-	# Умножаем на глобальный апгрейд игрока (лопату)
-	speed *= PlayerManager.dig_speed_multiplier
-	
-	return speed
+	var base_speed = location_res.activate_speed
+	# Передаем ТИП этой локации (GRAVEYARD/FARM)
+	var speed_multiplier = DataManager.get_location_upgrade(location_type, DataManager.UpgradeType.SPEED)
+	return base_speed * speed_multiplier
 
 #endregion
 

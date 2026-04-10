@@ -257,18 +257,21 @@ func create():
 			monster.global_position += pos
 		
 		DataManager.ProductionType.MONSTER_CREATOR: # Любовное гнездо
-			# 1-й ребенок (гарантированно)
+			# Получаем актуальные шансы
+			var double_chance = DataManager.get_production_upgrade(production_type, DataManager.UpgradeType.DOUBLE_CHILD)
+			var triple_chance = DataManager.get_production_upgrade(production_type, DataManager.UpgradeType.TRIPLE_CHILD)
+		# 1-й ребенок (гарантированно)
 			spawn_child_monster(0)
 			var child_count = 1
-			# 2-й ребенок
-			if randf() <= DataManager.chacne_double_child:
+		# 2-й ребенок
+			if randf() <= double_chance:
 				spawn_child_monster(child_count)
 				child_count += 1
-			# 3-й ребенок
-			if randf() <= DataManager.chacne_triple_child:
+		# 3-й ребенок
+			if randf() <= triple_chance:
 				spawn_child_monster(child_count)
 		
-		DataManager.ProductionType.PART_MERGER:		# Объединятель
+		DataManager.ProductionType.PART_MERGER:		# Обменник
 			## Не хватает проверки входящих частей тел
 			var exchanging_parts = get_all_nested_cards_actor_part()
 			var part_res : PartRes = MonsterManager.create_grade_up_part(exchanging_parts[0].part_res)

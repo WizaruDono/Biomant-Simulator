@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UpgradeRes" format=3 uid="uid://7omcalrp2lmu"]
+
+[ext_resource type="Texture2D" uid="uid://bf12ci0dwnxps" path="res://img/upgrades/up_speed_farm.png" id="1_8va23"]
+[ext_resource type="Script" uid="uid://b5g6safwfk3s8" path="res://resources/res_scripts/upgrade_res.gd" id="2_5h3bh"]
+
+[resource]
+script = ExtResource("2_5h3bh")
+target_card_type = 1
+target_location = 1
+target_production = 6
+card_name = "корзина LvL3"
+card_desc = "Ускоряет добычу на ферме на 65%"
+card_grade = 2
+card_texture = ExtResource("1_8va23")
+card_type = 10
+card_cost = 85
+metadata/_custom_type_script = "uid://b5g6safwfk3s8"

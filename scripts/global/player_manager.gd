@@ -1,6 +1,6 @@
 extends Node
 
-@export var gold : int = 150
+@export var gold : int = 2000
 @export var current_gold : int
 
 # === НОВОЕ: Глобальные модификаторы ===
@@ -24,15 +24,21 @@ func add_gold(gold_amount : int):
 	current_gold += gold_amount
 	# Опционально: добавить сигнал SignalManager.on_gold_changed.emit(current_gold) для UI
 
-# === Функция применения апгрейдов ===
-func apply_upgrade(upgrade_type: DataManager.UpgradeType, value: float):
-	match upgrade_type:
-		DataManager.UpgradeType.SPEED:
-			# Умножаем время (уменьшаем его). 
-			# Если передали 0.8, то время копания уменьшится на 20%
-			dig_speed_multiplier *= value 
-			print("Скорость раскопок увеличена! Текущий множитель времени: ", dig_speed_multiplier)
-		DataManager.UpgradeType.RARE_DROP:
-			# Тут прибавляем шанс. Если передали 0.15, шанс вырастет на 15%
-			rare_drop_bonus += value
-			print("Шанс редкого дропа увеличен! Бонус: ", rare_drop_bonus)
+# === ПРИМЕНЕНИЕ АПГРЕЙДА (повышает уровень в DataManager) ===
+func apply_upgrade(up_res: UpgradeRes):
+	var u_type = up_res.upgrade_type
+	var new_level = int(up_res.card_grade) + 1 # T1(0) -> 1, T2(1) -> 2, T3(2) -> 3
+
+	# 1. Если грейдим ЛОКАЦИЮ
+	if up_res.target_card_type == DataManager.CardType.LOCATION:
+		var loc = up_res.target_location
+		if new_level > DataManager.current_location_upgrades[loc][u_type]:
+			DataManager.current_location_upgrades[loc][u_type] = new_level
+			print("Локация ", loc, " уровень: ", new_level)
+
+	# 2. Если грейдим ПРОИЗВОДСТВО
+	elif up_res.target_card_type == DataManager.CardType.PRODUCTION:
+		var prod = up_res.target_production
+		if new_level > DataManager.current_production_upgrades[prod][u_type]:
+			DataManager.current_production_upgrades[prod][u_type] = new_level
+			print("Производство ", prod, " уровень: ", new_level)

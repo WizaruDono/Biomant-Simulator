@@ -2,8 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://coec2fnqd70g0" path="res://scenes/card_holder.tscn" id="1_fdhnq"]
 [ext_resource type="Script" uid="uid://db52akys0e1yw" path="res://scripts/other/card_upgrade.gd" id="2_5aucg"]
+[ext_resource type="Texture2D" uid="uid://bdyax7c6aacqv" path="res://img/upgrades/up_speed_graveyard.png" id="3_5aucg"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_fdhnq"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5aucg"]
 resource_local_to_scene = true
 size = Vector2(128, 192)
 
@@ -11,5 +12,20 @@ size = Vector2(128, 192)
 script = ExtResource("2_5aucg")
 upgrade_res = null
 
+[node name="panel_back" parent="." index="1" unique_id=967893501]
+self_modulate = Color(1.2078713, 1.0277375, 0.8363309, 1)
+
+[node name="container_content" parent="panel_back" index="0" unique_id=1648399696]
+offset_bottom = -1.0
+
+[node name="rect_main_img" parent="panel_back/container_content" index="1" unique_id=665974388]
+texture = ExtResource("3_5aucg")
+
+[node name="Panel" type="Panel" parent="panel_back/container_content" index="2" unique_id=1250650595]
+self_modulate = Color(1, 1, 1, 0)
+custom_minimum_size = Vector2(128, 23)
+layout_mode = 2
+size_flags_vertical = 10
+
 [node name="collision_card" parent="." index="3" unique_id=2046268927]
-shape = SubResource("RectangleShape2D_fdhnq")
+shape = SubResource("RectangleShape2D_5aucg")

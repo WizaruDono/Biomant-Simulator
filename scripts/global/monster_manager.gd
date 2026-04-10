@@ -14,11 +14,15 @@ func create_grade_up_part(part: PartRes):
 
 	# Определяем шанс успеха в зависимости от текущего уровня
 	var success_chance: float = 0.0
+	var production_type : DataManager.ProductionType
 	if part_grade == 0:
-		success_chance = DataManager.chance_changeshop_to_grade_2	# 50%
+		# Шанс апнуть с 1 на 2 уровень
+		success_chance = DataManager.get_production_upgrade(production_type, DataManager.UpgradeType.MERGE_T2)
+		#success_chance = DataManager.get_production_upgrade(DataManager.ProductionType.PART_MERGER, DataManager.UpgradeType.MERGE_T2)
 	elif part_grade == 1:
-		success_chance = DataManager.chance_changeshop_to_grade_3	# 30%
-		
+		# Шанс апнуть с 2 на 3 уровень
+		success_chance = DataManager.get_production_upgrade(production_type, DataManager.UpgradeType.MERGE_T3)
+		#success_chance = DataManager.get_production_upgrade(DataManager.ProductionType.PART_MERGER, DataManager.UpgradeType.MERGE_T3)
 	# Бросаем кубик на успех
 	var is_success = randf() <= success_chance
 
