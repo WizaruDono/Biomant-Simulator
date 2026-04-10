@@ -12,5 +12,5 @@ card_name = "Тройня LvL1"
 card_desc = "Получите 5% шанс на рождение трёх монстрят сразу в Любовном Гнёздышке!"
 card_texture = ExtResource("1_i7iy6")
 card_type = 10
-card_cost = 75
+card_cost = 65
 metadata/_custom_type_script = "uid://b5g6safwfk3s8"

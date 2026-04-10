@@ -66,9 +66,9 @@ var default_z_index : int = 0	# нигде не используется?
 
 var parts_size : int = 6
 
-var monster_love_size : int = 2
+var monster_love_size : int = 2		# кол-во монстров для спаривания
 
-var parts_merger_count: int = 2
+var parts_merger_count: int = 3		# кол-во конечностей для обменника
 
 ## Максимальный грейд для типа монстра
 var MAX_GRADES = {
@@ -110,7 +110,7 @@ enum UpgradeType { SPEED, RARE_DROP, DOUBLE_CHILD, TRIPLE_CHILD, MERGE_T2, MERGE
 
 # =======================================================
 # --- ТАБЛИЦЫ ЗНАЧЕНИЙ (Индекс = уровень апгрейда 0, 1, 2, 3) ---
-# скорость копания в локациях
+# скорость копания в локациях +++
 const SPEED_LEVELS = {
 	LocationType.GRAVEYARD: [1.0, 0.7, 0.45, 0.25],
 	LocationType.FARM: [1.0, 0.75, 0.50, 0.35]
@@ -122,7 +122,7 @@ const RARE_DROP_LEVELS = {
 }
 
 const PRODUCTION_UPGRADES = {
-# Шансы для детей в любовном гнёздышке
+# Шансы для детей в любовном гнёздышке +++
 	UpgradeType.DOUBLE_CHILD: [0.0, 0.15, 0.30, 0.40], # 0 - это базовый уровень (шанса нет)
 	UpgradeType.TRIPLE_CHILD: [0.0, 0.05, 0.10, 0.20],
 # шанс апнуть с 1 на 2 уровень в обменнике
@@ -144,16 +144,28 @@ var current_production_upgrades = {
 
 # --- ОБНОВЛЕННЫЕ ХЕЛПЕРЫ ---
 func get_location_upgrade(loc: LocationType, type: UpgradeType) -> float:
-	var level = current_location_upgrades[loc][type]
-	if type == UpgradeType.SPEED: return SPEED_LEVELS[loc][level]
-	if type == UpgradeType.RARE_DROP: return RARE_DROP_LEVELS[loc][level]
-	return 0.0
+	# Ищем локацию, если нет — возвращаем пустой словарь {}
+	var loc_data = current_location_upgrades.get(loc, {})
+	# Ищем уровень апгрейда, если нет — 0 (базовый)
+	var level = loc_data.get(type, 0)
+	
+	if type == UpgradeType.SPEED: 
+		return SPEED_LEVELS[loc][level]
+	if type == UpgradeType.RARE_DROP: 
+		return RARE_DROP_LEVELS[loc][level]
+	return 1.0 # Дефолтный множитель
 
 func get_production_upgrade(prod: ProductionType, type: UpgradeType) -> float:
-	var level = current_production_upgrades[prod][type]
-	return PRODUCTION_UPGRADES[type][level]
-
-
+	# Ищем здание, если нет — {}
+	var prod_data = current_production_upgrades.get(prod, {})
+	# Ищем уровень, если нет — 0
+	var level = prod_data.get(type, 0)
+	
+	# Проверяем, есть ли вообще такая таблица шансов в PRODUCTION_UPGRADES
+	if PRODUCTION_UPGRADES.has(type):
+		return PRODUCTION_UPGRADES[type][level]
+	
+	return 0.0 # Если таблицы нет, значит шанс 0
 
 
 

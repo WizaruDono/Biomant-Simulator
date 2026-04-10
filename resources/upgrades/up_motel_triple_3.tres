@@ -13,5 +13,5 @@ card_desc = "Повысьте шанс на рождение трёх монст
 card_grade = 2
 card_texture = ExtResource("1_ycnwo")
 card_type = 10
-card_cost = 155
+card_cost = 125
 metadata/_custom_type_script = "uid://b5g6safwfk3s8"
