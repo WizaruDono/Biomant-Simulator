@@ -115,6 +115,7 @@ var chance_changeshop_to_grade_3 : float = 0.30 # 30% шанс апнуть с 2
 # Словарь координат: Семейство -> Точки крепления на ТЕЛЕ
 const BASE_JOINTS = {
 		MonsterBase.ZOMBIE: {
+		MonsterPartType.BODY:  Vector2(0.0,		0.0),
 		MonsterPartType.HEAD:  Vector2(67.0,	47.0),
 		MonsterPartType.L_ARM: Vector2(57.0,	56.0),
 		MonsterPartType.R_ARM: Vector2(76.0,	56.0),
@@ -122,6 +123,7 @@ const BASE_JOINTS = {
 		MonsterPartType.R_LEG: Vector2(70.0,	87.0)
 	},
 	MonsterBase.SKELETON: {
+		MonsterPartType.BODY:  Vector2(0.0,		0.0),
 		MonsterPartType.HEAD:  Vector2(66.0,	47.0),
 		MonsterPartType.L_ARM: Vector2(59.0,	55.0),
 		MonsterPartType.R_ARM: Vector2(76.0,	55.0),
@@ -129,6 +131,7 @@ const BASE_JOINTS = {
 		MonsterPartType.R_LEG: Vector2(70.0,	83.0)
 	},
 	MonsterBase.COCK: {
+		MonsterPartType.BODY:  Vector2(0.0,		0.0),
 		MonsterPartType.HEAD:  Vector2(65.0,	50.0),
 		MonsterPartType.L_ARM: Vector2(55.0,	59.0),
 		MonsterPartType.R_ARM: Vector2(76.0,	59.0),
@@ -136,6 +139,7 @@ const BASE_JOINTS = {
 		MonsterPartType.R_LEG: Vector2(69.0,	83.0)
 	},
 	MonsterBase.SHEEP: {
+		MonsterPartType.BODY:  Vector2(50.0,		50.0),
 		MonsterPartType.HEAD:  Vector2(61.0,	47.0),
 		MonsterPartType.L_ARM: Vector2(51.0,	65.0),
 		MonsterPartType.R_ARM: Vector2(78.0,	65.0),
@@ -145,6 +149,7 @@ const BASE_JOINTS = {
 	# Добавляем сюда новые виды по мере их отрисовки
 	# можно не добавлять апгрейднутых существ, если их размеры тела одинаковы
 	#MonsterBase.SKELETON: {
+		#MonsterPartType.BODY:  Vector2(0.0,		0.0),
 		#MonsterPartType.HEAD:  Vector2(,	),	# 1 вниз, 	1 вправо (от центра шеи)
 		#MonsterPartType.L_ARM: Vector2(,	),	# 4 вниз, 	1 вправо
 		#MonsterPartType.R_ARM: Vector2(,	),	# 4 вниз, 	2 влево

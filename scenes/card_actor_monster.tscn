@@ -3,6 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://dv1lj8l5ryf51" path="res://scenes/card_actor.tscn" id="1_gkcy4"]
 [ext_resource type="Script" uid="uid://cfnbmna8drwsc" path="res://scripts/other/card_actor_monster.gd" id="2_87efw"]
 [ext_resource type="Script" uid="uid://bll44gw1l0di2" path="res://resources/res_scripts/part_res.gd" id="3_rkygk"]
+[ext_resource type="Texture2D" uid="uid://cgutair4u8wti" path="res://img/monsters/skelet_grandpa/skelet_grandpa_head.png" id="5_i727q"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_rkygk"]
 resource_local_to_scene = true
@@ -25,41 +26,41 @@ custom_minimum_size = Vector2(64, 64)
 unique_name_in_owner = true
 position = Vector2(0, 23)
 
-[node name="sprite_body" type="Sprite2D" parent="panel_back/container_content/sprite_container" index="0" unique_id=1490343699]
+[node name="sprite_rig" type="Node2D" parent="panel_back/container_content/sprite_container" index="0" unique_id=1326001177]
 unique_name_in_owner = true
-z_index = 1
-centered = false
 
-[node name="Join_L_Arm" type="Marker2D" parent="panel_back/container_content/sprite_container/sprite_body" index="0" unique_id=1110911689]
+[node name="Join_L_Arm" type="Marker2D" parent="panel_back/container_content/sprite_container/sprite_rig" index="0" unique_id=1110911689]
 
-[node name="sprite_l_arm" type="Sprite2D" parent="panel_back/container_content/sprite_container/sprite_body/Join_L_Arm" index="0" unique_id=1480330216]
-unique_name_in_owner = true
-z_index = -1
-centered = false
+[node name="Join_L_Leg" type="Marker2D" parent="panel_back/container_content/sprite_container/sprite_rig" index="1" unique_id=631267588]
 
-[node name="Join_L_Leg" type="Marker2D" parent="panel_back/container_content/sprite_container/sprite_body" index="1" unique_id=631267588]
+[node name="Join_R_Leg" type="Marker2D" parent="panel_back/container_content/sprite_container/sprite_rig" index="2" unique_id=271486882]
 
-[node name="sprite_l_leg" type="Sprite2D" parent="panel_back/container_content/sprite_container/sprite_body/Join_L_Leg" index="0" unique_id=322164526]
-unique_name_in_owner = true
-z_index = -1
-centered = false
+[node name="Join_Head" type="Marker2D" parent="panel_back/container_content/sprite_container/sprite_rig" index="3" unique_id=1975854292]
 
-[node name="Join_R_Leg" type="Marker2D" parent="panel_back/container_content/sprite_container/sprite_body" index="2" unique_id=271486882]
+[node name="Join_R_Arm" type="Marker2D" parent="panel_back/container_content/sprite_container/sprite_rig" index="4" unique_id=1637342063]
 
-[node name="sprite_r_leg" type="Sprite2D" parent="panel_back/container_content/sprite_container/sprite_body/Join_R_Leg" index="0" unique_id=1475415015]
-unique_name_in_owner = true
-z_index = -1
-centered = false
-
-[node name="Join_Head" type="Marker2D" parent="panel_back/container_content/sprite_container/sprite_body" index="3" unique_id=1975854292]
-
-[node name="sprite_head" type="Sprite2D" parent="panel_back/container_content/sprite_container/sprite_body/Join_Head" index="0" unique_id=889135993]
+[node name="sprite_l_arm" type="Sprite2D" parent="panel_back/container_content/sprite_container" index="1" unique_id=1480330216]
 unique_name_in_owner = true
 centered = false
 
-[node name="Join_R_Arm" type="Marker2D" parent="panel_back/container_content/sprite_container/sprite_body" index="4" unique_id=1637342063]
+[node name="sprite_l_leg" type="Sprite2D" parent="panel_back/container_content/sprite_container" index="2" unique_id=322164526]
+unique_name_in_owner = true
+centered = false
 
-[node name="sprite_r_arm" type="Sprite2D" parent="panel_back/container_content/sprite_container/sprite_body/Join_R_Arm" index="0" unique_id=1330503048]
+[node name="sprite_r_leg" type="Sprite2D" parent="panel_back/container_content/sprite_container" index="3" unique_id=1475415015]
+unique_name_in_owner = true
+centered = false
+
+[node name="sprite_body" type="Sprite2D" parent="panel_back/container_content/sprite_container" index="4" unique_id=1688527956]
+unique_name_in_owner = true
+centered = false
+
+[node name="sprite_head" type="Sprite2D" parent="panel_back/container_content/sprite_container" index="5" unique_id=889135993]
+unique_name_in_owner = true
+texture = ExtResource("5_i727q")
+centered = false
+
+[node name="sprite_r_arm" type="Sprite2D" parent="panel_back/container_content/sprite_container" index="6" unique_id=1330503048]
 unique_name_in_owner = true
 centered = false
 
@@ -73,5 +74,5 @@ size_flags_vertical = 4
 [node name="HBoxContainer" parent="panel_back/container_content/MarginContainer" parent_id_path=PackedInt32Array(1460528313) index="0" unique_id=26702382]
 size_flags_horizontal = 4
 
-[node name="collision_card" parent="." index="2" unique_id=2046268927]
+[node name="collision_card" parent="." index="3" unique_id=2046268927]
 shape = SubResource("RectangleShape2D_rkygk")
