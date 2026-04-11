@@ -33,7 +33,7 @@ func initialize():
 	digg_speed = location_res.activate_speed
 	
 
-# === НОВОЕ: Генерируем очередь ===
+# === Генерируем очередь ===
 	# Установка счетчиков
 	res_count = location_res.use_count
 	remaining_res_count = res_count
@@ -44,7 +44,8 @@ func initialize():
 	check_and_refill_queue()
 	
 	# На скорость копания влияет прокачка:
-	activate_timer.wait_time = digg_speed * PlayerManager.dig_speed_multiplier
+	var speed_multiplier = DataManager.get_location_upgrade(location_type, DataManager.UpgradeType.SPEED)
+	activate_timer.wait_time = digg_speed * speed_multiplier
 	
 	#panel_back.tooltip_text = location_desc
 	setup_tooltip()
@@ -158,7 +159,7 @@ func destroy():
 	queue_free()
 
 
-# === НОВОЕ: Алгоритм честной очереди ===
+# === Алгоритм честной очереди ===
 '''
 Гарантированная очередь даёт нам по 2 части каждого вида (голова, тело...) среди 12 частей.
 '''
@@ -190,17 +191,22 @@ func generate_next_set():
 	
 	var new_set : Array[PartRes] = []
 	
+	# 1. ПОЛУЧАЕМ АКТУАЛЬНЫЙ ШАНС ДЛЯ ЭТОЙ ЛОКАЦИИ
+	# Теперь шанс берется из таблиц RARE_DROP_LEVELS (0.05, 0.15 и т.д.)
+	var t2_chance = DataManager.get_location_upgrade(location_type, DataManager.UpgradeType.RARE_DROP)
+	
 	# Генерируем "пачку" из 12 предметов (2 полных комплекта)
 	for i in range(2):
 		var shuffled_types = types.duplicate()
 		shuffled_types.shuffle()
 		
 		for p_type in shuffled_types:
-			# Определяем грейд
+			# По умолчанию грейд T1
 			var target_grade = DataManager.EntityGrade.T1
-			# Добавляем шанс к T2 при улучшении
-			var total_t2_chance = DataManager.chances_dict[DataManager.EntityGrade.T2] + PlayerManager.rare_drop_bonus
-			if randf() <= total_t2_chance:
+			
+			# 2. ПРОВЕРЯЕМ ШАНС НА T2
+			# Если рандом меньше или равен значению из таблицы (например, 0.15 на 1 уровне)
+			if randf() <= t2_chance:
 				target_grade = DataManager.EntityGrade.T2
 			
 			# Фильтруем лут-пул
@@ -208,7 +214,7 @@ func generate_next_set():
 				return res is PartRes and res.part_type == p_type and res.card_grade == target_grade
 			)
 			
-			# Фолбэк на Т1
+			# Фолбэк на Т1, если в лут-пуле нет T2 версии этой детали
 			if possible.is_empty() and target_grade == DataManager.EntityGrade.T2:
 				possible = location_loot.filter(func(res):
 					return res is PartRes and res.part_type == p_type and res.card_grade == DataManager.EntityGrade.T1

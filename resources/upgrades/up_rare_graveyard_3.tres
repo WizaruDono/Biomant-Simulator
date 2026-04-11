@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="UpgradeRes" format=3 uid="uid://dngi200iryppy"]
+
+[ext_resource type="Texture2D" uid="uid://dn6be3lv1teal" path="res://img/upgrades/up_rare_graveyard.png" id="1_g6ngt"]
+[ext_resource type="Script" uid="uid://b5g6safwfk3s8" path="res://resources/res_scripts/upgrade_res.gd" id="2_ka8gn"]
+
+[resource]
+script = ExtResource("2_ka8gn")
+upgrade_type = 1
+target_card_type = 1
+target_production = 6
+card_name = "Ларь LvL3"
+card_desc = "Повысьте до 50% шанс получить конечность 2 уровня на Кладбищах"
+card_grade = 2
+card_texture = ExtResource("1_g6ngt")
+card_type = 10
+card_cost = 60
+metadata/_custom_type_script = "uid://b5g6safwfk3s8"

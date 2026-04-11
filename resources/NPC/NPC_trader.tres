@@ -26,12 +26,18 @@
 [ext_resource type="Resource" uid="uid://b5oybgyyuk22i" path="res://resources/upgrades/up_merge_part_23_1.tres" id="23_yd25u"]
 [ext_resource type="Resource" uid="uid://tioct0i243qx" path="res://resources/upgrades/up_merge_part_23_2.tres" id="24_sjisq"]
 [ext_resource type="Resource" uid="uid://co15j8d5fwxq5" path="res://resources/upgrades/up_merge_part_23_3.tres" id="25_ytpc6"]
+[ext_resource type="Resource" uid="uid://3utc20w6hi1m" path="res://resources/upgrades/up_rare_farm_1.tres" id="26_xma6f"]
+[ext_resource type="Resource" uid="uid://logv1tkcgibq" path="res://resources/upgrades/up_rare_farm_2.tres" id="27_u6rpl"]
+[ext_resource type="Resource" uid="uid://cs0my3ei2oqcw" path="res://resources/upgrades/up_rare_farm_3.tres" id="28_lth00"]
+[ext_resource type="Resource" uid="uid://boun5judhk4h7" path="res://resources/upgrades/up_rare_graveyard_1.tres" id="29_07e3o"]
+[ext_resource type="Resource" uid="uid://bqdg47ffw8ene" path="res://resources/upgrades/up_rare_graveyard_2.tres" id="30_2vdss"]
+[ext_resource type="Resource" uid="uid://dngi200iryppy" path="res://resources/upgrades/up_rare_graveyard_3.tres" id="31_ieuuh"]
 
 [resource]
 script = ExtResource("8_rdcnc")
 npc_type = 1
 replics = Array[String](["Добрейшего вечерочка! Не хочешь закупиться?", "Не спеши, выбирай с умом."])
-npc_shop_content = Array[ExtResource("2_i7lth")]([ExtResource("3_pxd5d"), ExtResource("5_f6tdp"), ExtResource("6_hpw2u"), ExtResource("7_arrkt"), ExtResource("8_i7lth"), ExtResource("8_arrkt"), ExtResource("9_rdcnc"), ExtResource("10_esvu4"), ExtResource("11_x7avn"), ExtResource("12_ik3ua"), ExtResource("13_ia5ir"), ExtResource("14_qb76e"), ExtResource("15_tr76v"), ExtResource("16_x1ktc"), ExtResource("17_eaydn"), ExtResource("18_1loqm"), ExtResource("19_qp1ye"), ExtResource("20_foqv1"), ExtResource("21_3ui10"), ExtResource("22_32r81"), ExtResource("23_yd25u"), ExtResource("24_sjisq"), ExtResource("25_ytpc6")])
+npc_shop_content = Array[ExtResource("2_i7lth")]([ExtResource("3_pxd5d"), ExtResource("5_f6tdp"), ExtResource("6_hpw2u"), ExtResource("7_arrkt"), ExtResource("8_i7lth"), ExtResource("8_arrkt"), ExtResource("9_rdcnc"), ExtResource("10_esvu4"), ExtResource("11_x7avn"), ExtResource("12_ik3ua"), ExtResource("13_ia5ir"), ExtResource("14_qb76e"), ExtResource("15_tr76v"), ExtResource("16_x1ktc"), ExtResource("17_eaydn"), ExtResource("18_1loqm"), ExtResource("19_qp1ye"), ExtResource("20_foqv1"), ExtResource("21_3ui10"), ExtResource("22_32r81"), ExtResource("23_yd25u"), ExtResource("24_sjisq"), ExtResource("25_ytpc6"), ExtResource("26_xma6f"), ExtResource("27_u6rpl"), ExtResource("28_lth00"), ExtResource("29_07e3o"), ExtResource("30_2vdss"), ExtResource("31_ieuuh")])
 npc_wait_timer = 60.0
 actor_health = 50
 actor_damage = 10

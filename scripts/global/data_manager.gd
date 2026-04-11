@@ -94,14 +94,14 @@ var chances_dict : Dictionary[EntityGrade, float] = {
 # UPGRADE потенциальный
 # =======================================================
 # Шансы на разный тип дропа у торгаша, в сумме по хорошему должно быть меньше 1.
-var chance_location_from_trader		: float = 0.25	# 0.25 = 25%
-var chance_production_from_trader	: float = 0.1
+var chance_location_from_trader		: float = 0.35	# 0.25 = 25%
+var chance_production_from_trader	: float = 0.25
 
-# Шанс на двойню и тройню. Работают независимо
+# Шанс на двойню и тройню. Работают независимо (удалить)
 var chacne_double_child : float = 0.25	# 0.25 = 25%
 var chacne_triple_child : float = 0.05
 
-# Шансы для обменника (PART_MERGER)
+# Шансы для обменника (PART_MERGER) (удалить)
 var chance_changeshop_to_grade_2 : float = 0.50 # 50% шанс апнуть с 1 на 2 уровень
 var chance_changeshop_to_grade_3 : float = 0.30 # 30% шанс апнуть с 2 на 3 уровень
 # =======================================================
@@ -125,9 +125,9 @@ const PRODUCTION_UPGRADES = {
 # Шансы для детей в любовном гнёздышке +++
 	UpgradeType.DOUBLE_CHILD: [0.0, 0.15, 0.30, 0.40], # 0 - это базовый уровень (шанса нет)
 	UpgradeType.TRIPLE_CHILD: [0.0, 0.05, 0.10, 0.20],
-# шанс апнуть с 1 на 2 уровень в обменнике
+# шанс апнуть с 1 на 2 уровень в обменнике +++
 	UpgradeType.MERGE_T2: [0.40, 0.55, 0.70, 0.80],
-# шанс апнуть с 2 на 3 уровень в обменнике
+# шанс апнуть с 2 на 3 уровень в обменнике +++
 	UpgradeType.MERGE_T3: [0.30, 0.45, 0.60, 0.70]
 }
 
