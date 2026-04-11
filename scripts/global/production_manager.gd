@@ -22,7 +22,8 @@ func create_stapler():
 	stapler.production_res = stapler_res
 	GameManager.level.player_productions.add_child(stapler)
 	stapler.initialize()
-	stapler.global_position = Vector2(600 + randi_range(-150, 150), 600 + randi_range(-150, 150))
+	stapler.global_position = Vector2(400, 350)
+	#stapler.global_position = Vector2(600 + randi_range(-150, 150), 600 + randi_range(-150, 150))
 
 
 func create_motel():
@@ -30,7 +31,8 @@ func create_motel():
 	motel.production_res = motel_res
 	GameManager.level.player_productions.add_child(motel)
 	motel.initialize()
-	motel.global_position = Vector2(600 + randi_range(-150, 150), 600 + randi_range(-150, 150))
+	motel.global_position = Vector2(400, 750)
+	#motel.global_position = Vector2(600 + randi_range(-150, 150), 600 + randi_range(-150, 150))
 
 
 func create_changeshop():
@@ -38,4 +40,5 @@ func create_changeshop():
 	changeshop.production_res = changeshop_res
 	GameManager.level.player_productions.add_child(changeshop)
 	changeshop.initialize()
-	changeshop.global_position = Vector2(600 + randi_range(-150, 150), 600 + randi_range(-150, 150))
+	changeshop.global_position = Vector2(960, 800)
+	#changeshop.global_position = Vector2(600 + randi_range(-150, 150), 600 + randi_range(-150, 150))

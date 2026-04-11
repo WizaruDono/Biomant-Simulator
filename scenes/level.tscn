@@ -29,6 +29,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 2
 texture = ExtResource("2_mx8sn")
 
 [node name="player_actors" type="Node2D" parent="." unique_id=945480212]
@@ -47,5 +48,6 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 
 [node name="Ui" parent="." unique_id=1878790953 instance=ExtResource("5_ppgk2")]
+mouse_filter = 2
 
 [node name="ShaderLayer" parent="." unique_id=1988482799 instance=ExtResource("3_w8frs")]

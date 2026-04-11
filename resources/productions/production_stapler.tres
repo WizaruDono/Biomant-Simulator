@@ -7,7 +7,7 @@
 script = ExtResource("1_1yek2")
 card_name = "сшиватель"
 card_desc = "Нитки и иголки наше все. Хотя не все - нужны еще голова, руки, ноги и тело на столе"
-activate_speed = 10.0
+activate_speed = 5.0
 use_count = 10
 card_texture = ExtResource("1_5xwww")
 card_cost = 10

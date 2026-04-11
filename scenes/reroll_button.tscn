@@ -6,9 +6,10 @@
 script = ExtResource("1_pmi8m")
 
 [node name="Button" type="Button" parent="." unique_id=729302974]
-offset_right = 128.0
+offset_right = 160.0
 offset_bottom = 48.0
-theme_override_font_sizes/font_size = 24
+theme_override_colors/font_color = Color(0.84313726, 0.70980394, 0.5803922, 1)
+theme_override_font_sizes/font_size = 32
 text = "Обновить"
 
 [connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

@@ -1,12 +1,61 @@
 [gd_scene format=3 uid="uid://8x708lihjj8n"]
 
 [ext_resource type="Script" uid="uid://b01gi4qdv2ehp" path="res://scripts/other/ui_gold_label.gd" id="1_dj8aq"]
+[ext_resource type="Script" uid="uid://bgqfwo3fyla6r" path="res://scripts/other/ui_tutorial.gd" id="2_ro3t7"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5en4g"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.7832279, 0.5371818, 0.347385, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.85882354, 0.65882355, 0.4862745, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 5.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ua6yw"]
+content_margin_left = 4.0
+content_margin_top = 4.0
+content_margin_right = 4.0
+content_margin_bottom = 4.0
+bg_color = Color(0.8862745, 0.627451, 0.42352942, 0.73333335)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ro3t7"]
+content_margin_left = 0.0
+content_margin_top = 0.0
+content_margin_right = 0.0
+content_margin_bottom = 0.0
+bg_color = Color(0.1254902, 0.18039216, 0.21568628, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.85882354, 0.65882355, 0.4862745, 1)
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
 [node name="Ui" type="Control" unique_id=1223898235]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = 19.0
+offset_top = -56.0
+offset_right = 19.0
+offset_bottom = -56.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -21,3 +70,101 @@ tooltip_text = "Hi"
 theme_override_font_sizes/font_size = 96
 text = "$1000"
 script = ExtResource("1_dj8aq")
+
+[node name="TutorialSidePanel" type="Control" parent="CanvasLayer" unique_id=920980370]
+custom_minimum_size = Vector2(300, 500)
+layout_mode = 3
+anchors_preset = 4
+anchor_top = 0.5
+anchor_bottom = 0.5
+offset_left = -100.0
+offset_top = -400.0
+offset_right = 400.0
+offset_bottom = 500.0
+grow_vertical = 2
+script = ExtResource("2_ro3t7")
+
+[node name="ToggleButton" type="Button" parent="CanvasLayer/TutorialSidePanel" unique_id=1659025899]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -72.0
+offset_right = 32.0
+offset_bottom = 72.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/normal = SubResource("StyleBoxFlat_5en4g")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ua6yw")
+
+[node name="ArrowLabel" type="Label" parent="CanvasLayer/TutorialSidePanel/ToggleButton" unique_id=173619875]
+layout_mode = 0
+offset_right = 32.0
+offset_bottom = 144.0
+theme_override_colors/font_color = Color(0.1254902, 0.18039216, 0.21568628, 1)
+theme_override_font_sizes/font_size = 96
+text = ">"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Background" type="PanelContainer" parent="CanvasLayer/TutorialSidePanel" unique_id=1416508525]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_ro3t7")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TutorialSidePanel/Background" unique_id=1896673335]
+layout_mode = 2
+mouse_filter = 0
+theme_override_constants/margin_left = 15
+theme_override_constants/margin_top = 15
+theme_override_constants/margin_right = 15
+theme_override_constants/margin_bottom = 15
+
+[node name="Rule" type="RichTextLabel" parent="CanvasLayer/TutorialSidePanel/Background/MarginContainer" unique_id=870364860]
+layout_mode = 2
+theme_override_colors/default_color = Color(0.84313726, 0.70980394, 0.5803922, 1)
+theme_override_font_sizes/normal_font_size = 48
+bbcode_enabled = true
+text = "[center][color=#dba87c]Кодекс начинающего Биоманта[/color][/center]
+
+- Забрось работягу на [color=#FFD1DC]Кладбище[/color] или [color=#FFD1DC]Ферму[/color]. Кости сами себя не выкопают!
+
+- В [color=#FFD1DC]Сшивателе[/color] порядок не важен. [color=#B2E2F2]Голова, туловище, две руки, две ноги[/color] - и вуаля, новый друг готов!
+
+- В [color=#FFD1DC]Любовном Гнёздышке[/color] [color=#B2E2F2]1+1[/color] равно [color=#B2E2F2]3[/color]... или [color=#B2E2F2]5[/color]. Не спрашивай как, просто радуйся прибавлению.
+
+- [color=#FFD1DC]Ветошь[/color] торгует очень многим. Глянь, может и тебе что-то понадобиться.
+
+- Сверху висят [color=#FFD1DC]Заказы[/color]. Наведись, прочти, что от тебя хотят и положи нужную карту. Деньги не пахнут!
+
+- Помести [color=#B2E2F2]3 одинаковых[/color] карты в [color=#FFD1DC]Обменник[/color] - и получишь грейд выше... Или нет. Рандом - штука суровая.
+
+- Покупай [color=#FFD1DC]улучшения[/color]. Они работают сразу. Биомантия - это инвестиции!"
+autowrap_mode = 2
+
+[node name="QuestPanel" type="MarginContainer" parent="CanvasLayer" unique_id=1610052127]
+visible = false
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/QuestPanel" unique_id=1594151499]
+layout_mode = 2
+
+[node name="QuestTitle" type="Label" parent="CanvasLayer/QuestPanel/VBoxContainer" unique_id=1414262952]
+layout_mode = 2
+
+[node name="QuestDescription" type="Label" parent="CanvasLayer/QuestPanel/VBoxContainer" unique_id=396266913]
+layout_mode = 2
+
+[node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/QuestPanel/VBoxContainer" unique_id=1528895423]
+layout_mode = 2
+max_value = 3.0
+step = 1.0
+
+[connection signal="pressed" from="CanvasLayer/TutorialSidePanel/ToggleButton" to="CanvasLayer/TutorialSidePanel" method="_on_toggle_button_pressed"]

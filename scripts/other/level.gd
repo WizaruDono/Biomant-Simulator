@@ -17,9 +17,9 @@ func _ready() -> void:
 	
 	# Для отладки:
 	#MonsterManager.create_grandpa()
-	#ProductionManager.create_stapler()		# Сшиватель
-	#ProductionManager.create_motel()		# Любовное Гнёздышко
-	#ProductionManager.create_changeshop()	# Обменник
+	ProductionManager.create_stapler()		# Сшиватель
+	ProductionManager.create_motel()		# Любовное Гнёздышко
+	ProductionManager.create_changeshop()	# Обменник
 	
 	# Кнопкка ReRoll - можно удалить
 	#var btn_scene = preload("res://scenes/reroll_button.tscn")

@@ -10,8 +10,21 @@ func _ready() -> void:
 	SignalManager.card_focused.connect(_on_camera_focused)
 
 func _unhandled_input(event):
+# Проверяем, стоит ли мышь над UI, который ХОЧЕТ поймать клик
+	var hovered_node = get_viewport().gui_get_hovered_control()
+	if hovered_node:
+		# Если у объекта под мышкой фильтр "Ignore", он нам не мешает.
+		# Если "Stop" или "Pass" — значит это важный UI (кнопка, текст, панель).
+		if hovered_node.mouse_filter != Control.MOUSE_FILTER_IGNORE:
+			# Специальная проверка для зума:
+			# Если это событие мыши (колесико), блокируем.
+			if event is InputEventMouseButton:
+				return
 	_process_zoom(event)
 	_process_camera_movement(event)
+
+
+
 
 func _process_zoom(event):
 	if event.is_action_pressed("zoom_out"):

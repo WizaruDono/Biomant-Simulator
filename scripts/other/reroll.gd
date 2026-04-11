@@ -8,7 +8,7 @@ func setup(price: int, action: Callable):
 	cost = price
 	action_callable = action
 	if cost > 0:
-		btn.text = "Обновить (" + str(cost) + ")"
+		btn.text = "Обновить (" + str(cost) + "$)"
 	else:
 		btn.text = "Обновить (Бесплатно)"
 

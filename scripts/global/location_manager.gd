@@ -19,5 +19,5 @@ func create_graveyard():
 	graveyard.location_res = graveyard_res
 	GameManager.level.player_locations.add_child(graveyard)
 	graveyard.initialize()
-	graveyard.global_position = Vector2(600, 600)	# зафиксировал позицию для гайда
+	graveyard.global_position = Vector2(870, 350)	# зафиксировал позицию для гайда
 	#graveyard.global_position = Vector2(600 + randi_range(-150, 150), 600 + randi_range(-150, 150))

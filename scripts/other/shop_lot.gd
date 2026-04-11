@@ -9,7 +9,7 @@ class_name ShopLot
 func initialize():
 	await get_tree().process_frame
 	lot_cost = lot.card_cost
-	button_buy.text = str(lot_cost)
+	button_buy.text = str(lot_cost)+"$"
 	global_position = lot.global_position - Vector2(0, lot_offset * 5)
 
 
