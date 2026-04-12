@@ -17,4 +17,13 @@ signal stapler_started()	# гайд - начали сшивать монстра
 signal order_finished(order_type: DataManager.CardType, grade: int) # передаем уровень и тип выполненого заказа (монстр / конечность)
 
 # 3 глава
-signal part_merger_finished() # Обменник сработал
+signal part_merger_started() # Обменник начал работать
+
+# 4 глава
+signal love_nest_started()	# монстры начали спариваться (для обучения)
+
+# 5 глава
+signal love_nest_finished()	# монстры закончили спариваться
+
+# 7 глава
+signal part_merger_finished() # Обменник улучшил конечность успешно

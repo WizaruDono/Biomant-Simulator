@@ -103,7 +103,6 @@ func create_rewards():
 	PlayerManager.add_gold(reward_amount)
 	OrderManager.on_order_completed(self)
 	SignalManager.order_finished.emit(order_type, card_grade)	# отправляем сигнал об успешном выполнении заказа для задания. Передаём тип заказа: монстр / конечность
-	
 	destroy()
 
 func destroy() -> void:

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://dtaed2yr7lnbr"]
+[gd_scene format=3 uid="uid://dtaed2yr7lnbr"]
 
 [ext_resource type="StyleBox" uid="uid://py225ruvj6j1" path="res://styles/panel_purple.tres" id="1_85aq5"]
 [ext_resource type="Script" uid="uid://bbqal2qf2x75l" path="res://scripts/other/options_menu.gd" id="1_gyu1t"]
@@ -41,7 +41,7 @@ font = ExtResource("8_tvlg4")
 font_size = 12
 font_color = Color(0.9098039, 0.75686276, 0.4392157, 1)
 
-[node name="Options" type="PanelContainer"]
+[node name="Options" type="PanelContainer" unique_id=843486350]
 process_mode = 3
 z_index = 4096
 anchors_preset = 8
@@ -60,9 +60,9 @@ size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_gyu1t")
 script = ExtResource("1_gyu1t")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1433893262]
 
-[node name="OptionsMenu" type="PanelContainer" parent="CanvasLayer"]
+[node name="OptionsMenu" type="PanelContainer" parent="CanvasLayer" unique_id=645658683]
 process_mode = 3
 anchors_preset = 8
 anchor_left = 0.5
@@ -81,7 +81,7 @@ theme_override_styles/panel = ExtResource("1_85aq5")
 script = ExtResource("1_gyu1t")
 metadata/_custom_type_script = "uid://bbqal2qf2x75l"
 
-[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/OptionsMenu"]
+[node name="MarginContainer2" type="MarginContainer" parent="CanvasLayer/OptionsMenu" unique_id=1806560281]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 5
@@ -89,7 +89,7 @@ theme_override_constants/margin_top = 5
 theme_override_constants/margin_right = 5
 theme_override_constants/margin_bottom = 5
 
-[node name="close_button" type="Button" parent="CanvasLayer/OptionsMenu/MarginContainer2"]
+[node name="close_button" type="Button" parent="CanvasLayer/OptionsMenu/MarginContainer2" unique_id=171915708]
 unique_name_in_owner = true
 layout_mode = 2
 size_flags_horizontal = 8
@@ -111,7 +111,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_gyu1t")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_g5hix")
 text = "X"
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/OptionsMenu"]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/OptionsMenu" unique_id=2122460261]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/margin_left = 40
@@ -119,30 +119,30 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/OptionsMenu/MarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/OptionsMenu/MarginContainer" unique_id=410794802]
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 10
 
-[node name="filler2" type="Control" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer"]
+[node name="filler2" type="Control" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer" unique_id=1922042404]
 visible = false
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer"]
+[node name="Buttons" type="VBoxContainer" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer" unique_id=802995747]
 unique_name_in_owner = true
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 16
 
-[node name="MusicLabel" type="Label" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer/Buttons"]
+[node name="MusicLabel" type="Label" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer/Buttons" unique_id=1331662488]
 unique_name_in_owner = true
 layout_mode = 2
 text = "МУЗЫКА"
 label_settings = SubResource("LabelSettings_gyu1t")
 
-[node name="MusicSlider" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer/Buttons" instance=ExtResource("3_rftt1")]
+[node name="MusicSlider" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer/Buttons" unique_id=475352788 instance=ExtResource("3_rftt1")]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 theme_override_icons/grabber = ExtResource("4_0un6s")
@@ -153,13 +153,13 @@ theme_override_styles/grabber_area_highlight = ExtResource("8_gycth")
 value = 0.1
 audio_bus_name = "Music"
 
-[node name="SFXLabel" type="Label" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer/Buttons"]
+[node name="SFXLabel" type="Label" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer/Buttons" unique_id=1343264368]
 unique_name_in_owner = true
 layout_mode = 2
 text = "ЗВУКИ"
 label_settings = SubResource("LabelSettings_rftt1")
 
-[node name="SFXSlider" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer/Buttons" instance=ExtResource("3_rftt1")]
+[node name="SFXSlider" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer/Buttons" unique_id=664768734 instance=ExtResource("3_rftt1")]
 layout_mode = 2
 theme_override_icons/grabber = ExtResource("4_0un6s")
 theme_override_icons/grabber_highlight = ExtResource("5_kywri")
@@ -168,7 +168,7 @@ theme_override_styles/grabber_area = ExtResource("8_gycth")
 theme_override_styles/grabber_area_highlight = ExtResource("8_gycth")
 audio_bus_name = "SFX"
 
-[node name="shake_check" type="CheckBox" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer"]
+[node name="shake_check" type="CheckBox" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer" unique_id=1659513662]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
@@ -190,12 +190,12 @@ theme_override_colors/checkbox_unchecked_color = Color(0.92156863, 0.92941177, 0
 text = "UI_SHAKE_NAME"
 alignment = 1
 
-[node name="filler" type="Control" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer"]
+[node name="filler" type="Control" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer" unique_id=549727960]
 custom_minimum_size = Vector2(0, 20)
 layout_mode = 2
 mouse_filter = 2
 
-[node name="to_lobby_button" type="Button" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer"]
+[node name="to_lobby_button" type="Button" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer" unique_id=1575460822]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
@@ -215,24 +215,24 @@ theme_override_styles/hover_pressed = ExtResource("11_rftt1")
 theme_override_styles/disabled = ExtResource("12_0un6s")
 text = "ВЫЙТИ"
 
-[node name="confirmed_container" type="VBoxContainer" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer"]
+[node name="confirmed_container" type="VBoxContainer" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer" unique_id=1595621690]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 mouse_filter = 2
 theme_override_constants/separation = 10
 
-[node name="label_confirmed" type="Label" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer/confirmed_container"]
+[node name="label_confirmed" type="Label" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer/confirmed_container" unique_id=1921457062]
 layout_mode = 2
 text = "Вы уверены, что хотите покинуть игру?"
 label_settings = SubResource("LabelSettings_g5hix")
 autowrap_mode = 2
 
-[node name="hb" type="HBoxContainer" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer/confirmed_container"]
+[node name="hb" type="HBoxContainer" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer/confirmed_container" unique_id=1921604677]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="yes_button" type="Button" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer/confirmed_container/hb"]
+[node name="yes_button" type="Button" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer/confirmed_container/hb" unique_id=1552850563]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0
@@ -252,12 +252,12 @@ theme_override_styles/hover_pressed = ExtResource("11_rftt1")
 theme_override_styles/disabled = ExtResource("12_0un6s")
 text = "Да"
 
-[node name="filler" type="Control" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer/confirmed_container/hb"]
+[node name="filler" type="Control" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer/confirmed_container/hb" unique_id=1314443317]
 layout_mode = 2
 size_flags_horizontal = 3
 mouse_filter = 2
 
-[node name="no_button" type="Button" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer/confirmed_container/hb"]
+[node name="no_button" type="Button" parent="CanvasLayer/OptionsMenu/MarginContainer/VBoxContainer/confirmed_container/hb" unique_id=1951073836]
 unique_name_in_owner = true
 layout_mode = 2
 focus_mode = 0

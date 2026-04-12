@@ -1,6 +1,6 @@
 extends Node
 
-@export var gold : int = 250
+@export var gold : int = 150
 @export var current_gold : int
 
 # === Глобальные модификаторы ===

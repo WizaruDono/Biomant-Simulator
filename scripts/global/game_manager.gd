@@ -5,6 +5,7 @@ extends Node
 @export var main_menu_scene = preload("res://scenes/main_menu_ui.tscn")
 @export var options_scene = preload("res://scenes/options.tscn")
 @export var level_scene = preload("res://scenes/level.tscn")
+@export var victory_scene = preload("res://scenes/VictoryUI.tscn")
 var main_menu_UI : MainMenuUI
 var options_UI : OptionsMenu
 
@@ -51,6 +52,23 @@ func show_menu():
 	main_menu_UI = main_menu_scene.instantiate()
 	get_tree().root.add_child(main_menu_UI)
 
+# скрывать UI когда открывается окно победы
+func set_game_ui_visible(is_visible: bool):
+	# Достаем все узлы в группе (у нас он там один: CanvasLayer в Ui)
+	var ui_nodes = get_tree().get_nodes_in_group("game_ui")
+	for node in ui_nodes:
+		if is_visible:
+			node.show()
+		else:
+			node.hide()
+			
+# победное окно
+func show_victory_window():
+	var victory_ins = victory_scene.instantiate()
+	# Добавляем окно в корень пирога, чтобы оно было поверх всего
+	get_tree().root.add_child(victory_ins)
+	# Скрываем игровой UI при появлении окна
+	set_game_ui_visible(false)
 
 func start_level():
 	if main_menu_UI:

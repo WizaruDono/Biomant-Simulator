@@ -149,7 +149,8 @@ func check_possible_production() -> bool:
 				if not card in monsters:
 					card.reparent_to_level()
 					_move_card_away(card)
-			
+					
+			SignalManager.love_nest_started.emit()		# монстры начали спариваться, 4 глава, задания, гайд
 			return true
 		
 		DataManager.ProductionType.MONSTER_MERGER:
@@ -195,7 +196,7 @@ func check_possible_production() -> bool:
 				# Если хотя бы одна карта отличается, обменник не срабатывает
 				if not (same_base and same_type and same_grade):
 					return false
-			SignalManager.part_merger_finished.emit()	# сигнал о том, что сшивание началось, для заданий, глава 3, гайд
+			SignalManager.part_merger_started.emit()	# обменник начал работать, для заданий, глава 3, гайд
 			return true
 	
 	print_rich("[color=orange]DEBUG: Не должно здесь вылетать[/color]")
@@ -265,12 +266,15 @@ func create():
 		# 1-й ребенок (гарантированно)
 			spawn_child_monster(0)
 			var child_count = 1
+			SignalManager.love_nest_finished.emit()	# родился один малыш
 		# 2-й ребенок
 			if randf() <= double_chance:
 				spawn_child_monster(child_count)
 				child_count += 1
+				SignalManager.love_nest_finished.emit()	# родился один малыш
 		# 3-й ребенок
 			if randf() <= triple_chance:
+				SignalManager.love_nest_finished.emit()	# родился один малыш
 				spawn_child_monster(child_count)
 		
 		DataManager.ProductionType.PART_MERGER:		# Обменник

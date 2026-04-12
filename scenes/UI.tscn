@@ -60,7 +60,7 @@ offset_bottom = -56.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=564160136]
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=564160136 groups=["game_ui"]]
 offset = Vector2(20, 20)
 transform = Transform2D(1, 0, 0, 1, 20, 20)
 

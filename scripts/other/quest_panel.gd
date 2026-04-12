@@ -11,7 +11,7 @@ func _ready():
 	update_ui()
 
 func update_ui():
-	title_label.text = "ГЛАВА %d" % QuestManager.current_chapter
+	title_label.text = "ГЛАВА %d из 10" % QuestManager.current_chapter
 	var text = ""
 	
 	if QuestManager.current_chapter == 1:
@@ -45,6 +45,41 @@ func update_ui():
 		progress_bar.value = (1 if QuestManager.ch3_merger_done else 0) + \
 							 (1 if QuestManager.ch3_grade2_order_done else 0) + \
 							 QuestManager.ch3_orders_done
+	
+	elif QuestManager.current_chapter == 4:
+		var love_status = "1/1" if QuestManager.ch4_love_started else "0/1"
+		
+		text += "[%s] Положи 2-х монстров в Гнёздышко\n" % love_status
+		text += "[%d/2] Выполни заказы на монстров\n" % QuestManager.ch4_monster_orders
+		text += "[%d/4] Выполни заказы" % QuestManager.ch4_total_orders
+		
+		progress_bar.max_value = 1 + 2 + 4
+		progress_bar.value = (1 if QuestManager.ch4_love_started else 0) + \
+							 QuestManager.ch4_monster_orders + \
+							 QuestManager.ch4_total_orders
+	
+	elif QuestManager.current_chapter == 5:
+		text += "[%d/3] Разведи монстров в Гнёздышке\n" % QuestManager.ch5_monsters_bred
+		text += "[%d/5] Выполни заказы" % QuestManager.ch5_total_orders
+	
+	elif QuestManager.current_chapter == 6:
+		text += "[%d/1] Выполни заказ на монстра 2 уровня\n" % QuestManager.ch6_grade2_monster_order
+		text += "[%d/5] Выполни заказы" % QuestManager.ch6_total_orders
+		
+	elif QuestManager.current_chapter == 7:
+		text += "[%d/3] Успешно улучши конечности в Обменнике\n" % QuestManager.ch7_merges_done
+		text += "[%d/3] Выполни заказы 2 уровня" % QuestManager.ch7_grade2_orders
+		
+	elif QuestManager.current_chapter == 8:
+		text += "[%d/1] Выполни заказ 3 уровня\n" % QuestManager.ch8_grade3_part_order
+		text += "[%d/6] Выполни заказы" % QuestManager.ch8_total_orders
+		
+	elif QuestManager.current_chapter == 9:
+		text += "[%d/1] Выполни заказ на монстра 3 уровня\n" % QuestManager.ch9_grade3_monster_order
+		text += "[%d/6] Выполни заказы" % QuestManager.ch9_total_orders
+		
+	elif QuestManager.current_chapter == 10:
+		text += "[%d/10] Выполни марафон заказов" % QuestManager.ch10_done_orders
 	
 	
 	

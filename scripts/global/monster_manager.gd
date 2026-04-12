@@ -42,6 +42,7 @@ func create_grade_up_part(part: PartRes):
 
 	# Если успех сработал и деталь нашлась — возвращаем её!
 	if new_part != null: 
+		SignalManager.part_merger_finished.emit()	# обменник удачно повысил уровень, 7 глава
 		return new_part
 
 	# ШАГ 2: ФОЛБЭК (Если кубик НЕ прокнул, не нашли уровень выше, или достигли лимита)
