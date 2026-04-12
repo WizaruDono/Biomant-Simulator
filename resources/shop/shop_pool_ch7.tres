@@ -1,0 +1,30 @@
+[gd_resource type="Resource" script_class="ShopPool" format=3 uid="uid://b3ccxpttxq5jk"]
+
+[ext_resource type="Script" uid="uid://d3723m4sa384o" path="res://resources/res_scripts/card_res_script.gd" id="1_tiakh"]
+[ext_resource type="Resource" uid="uid://bde2idpoq2fwl" path="res://resources/locations/location_graveyard.tres" id="2_oxdcx"]
+[ext_resource type="Resource" uid="uid://cbhyt3hyw4ab" path="res://resources/locations/location_farm.tres" id="3_1sohd"]
+[ext_resource type="Resource" uid="uid://dpndkp2oli2lh" path="res://resources/productions/production_changeshop.tres" id="4_fy5v7"]
+[ext_resource type="Resource" uid="uid://bhfftbyys414k" path="res://resources/productions/production_motel.tres" id="5_0asvy"]
+[ext_resource type="Resource" uid="uid://bcc056dvqheht" path="res://resources/productions/production_stapler.tres" id="6_42xtm"]
+[ext_resource type="Resource" uid="uid://c5tghmo6wf2tt" path="res://resources/upgrades/up_merge_part_12_1.tres" id="7_phm5m"]
+[ext_resource type="Resource" uid="uid://b5oybgyyuk22i" path="res://resources/upgrades/up_merge_part_23_1.tres" id="8_is70k"]
+[ext_resource type="Resource" uid="uid://wtcywbqwa4df" path="res://resources/upgrades/up_motel_double_1.tres" id="9_iax8w"]
+[ext_resource type="Resource" uid="uid://lv77mo30pnqw" path="res://resources/upgrades/up_motel_triple_1.tres" id="10_2oun4"]
+[ext_resource type="Resource" uid="uid://3utc20w6hi1m" path="res://resources/upgrades/up_rare_farm_1.tres" id="11_wktvb"]
+[ext_resource type="Resource" uid="uid://boun5judhk4h7" path="res://resources/upgrades/up_rare_graveyard_1.tres" id="12_b35o0"]
+[ext_resource type="Resource" uid="uid://crrq7ucfuwldy" path="res://resources/upgrades/up_speed_farm_1.tres" id="13_ajlk3"]
+[ext_resource type="Resource" uid="uid://b2kgt3x0nd2o5" path="res://resources/upgrades/up_speed_graveyard_1.tres" id="14_lm6v6"]
+[ext_resource type="Resource" uid="uid://ykpa3wp4a4uf" path="res://resources/upgrades/up_merge_part_12_2.tres" id="15_04bt5"]
+[ext_resource type="Resource" uid="uid://tioct0i243qx" path="res://resources/upgrades/up_merge_part_23_2.tres" id="16_6yuuh"]
+[ext_resource type="Resource" uid="uid://j3weveqxpuc8" path="res://resources/upgrades/up_motel_double_2.tres" id="17_dre3d"]
+[ext_resource type="Resource" uid="uid://cygtg8u8wmfq4" path="res://resources/upgrades/up_motel_triple_2.tres" id="18_rbidb"]
+[ext_resource type="Resource" uid="uid://logv1tkcgibq" path="res://resources/upgrades/up_rare_farm_2.tres" id="19_76kcx"]
+[ext_resource type="Resource" uid="uid://bqdg47ffw8ene" path="res://resources/upgrades/up_rare_graveyard_2.tres" id="20_15aox"]
+[ext_resource type="Resource" uid="uid://b8txbuwqe3e6p" path="res://resources/upgrades/up_speed_farm_2.tres" id="21_i62fg"]
+[ext_resource type="Resource" uid="uid://s2qs0d2qepoi" path="res://resources/upgrades/up_speed_graveyard_2.tres" id="22_bth80"]
+[ext_resource type="Script" uid="uid://b0i7dq3dw0gpe" path="res://resources/res_scripts/shop_pool.gd" id="23_xbpc0"]
+
+[resource]
+script = ExtResource("23_xbpc0")
+items = Array[ExtResource("1_tiakh")]([ExtResource("2_oxdcx"), ExtResource("3_1sohd"), ExtResource("4_fy5v7"), ExtResource("5_0asvy"), ExtResource("6_42xtm"), ExtResource("7_phm5m"), ExtResource("8_is70k"), ExtResource("9_iax8w"), ExtResource("10_2oun4"), ExtResource("11_wktvb"), ExtResource("12_b35o0"), ExtResource("13_ajlk3"), ExtResource("14_lm6v6"), ExtResource("15_04bt5"), ExtResource("16_6yuuh"), ExtResource("17_dre3d"), ExtResource("18_rbidb"), ExtResource("19_76kcx"), ExtResource("20_15aox"), ExtResource("21_i62fg"), ExtResource("22_bth80")])
+metadata/_custom_type_script = "uid://b0i7dq3dw0gpe"

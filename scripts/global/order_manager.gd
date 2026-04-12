@@ -56,7 +56,7 @@ func create_order() -> void:
 	GameManager.level.player_loot.add_child(order_node)
 	order_node.position.x = get_viewport().get_visible_rect().size.x
 	order_node.initialize()
-	order_node.wait_time = 120.0	# перенести в датаменеджер, увеличить время для монстров
+	order_node.wait_time = 100.0	# перенести в датаменеджер, увеличить время для монстров
 	
 	order_node.scale = Vector2.ZERO
 	var tween: Tween = create_tween()
@@ -69,7 +69,7 @@ func create_order() -> void:
 	
 	if active_orders.size() < number_of_orders and not draw_pile.is_empty():
 		await get_tree().create_timer(0.5).timeout
-		create_deck()
+		create_deck()# Чтобы доспавнить заказы, нужно вызывать create_order(), а не пересоздавать всю колоду.
 
 func set_order_pos() -> void:
 	# Собираем все карты заказов в контейнере
@@ -111,7 +111,6 @@ func on_order_destroyed(destroyed_order: Card) -> void:
 		rate += 1
 	else:
 		set_order_pos()
-
 
 ## Спавнит 3 случайных заказа из пула
 #func spawn_3_random_orders():

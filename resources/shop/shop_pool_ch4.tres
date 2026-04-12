@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="ShopPool" format=3 uid="uid://23jrg0w3im4f"]
+
+[ext_resource type="Script" uid="uid://d3723m4sa384o" path="res://resources/res_scripts/card_res_script.gd" id="1_ux2ev"]
+[ext_resource type="Resource" uid="uid://bde2idpoq2fwl" path="res://resources/locations/location_graveyard.tres" id="2_4jsru"]
+[ext_resource type="Resource" uid="uid://dpndkp2oli2lh" path="res://resources/productions/production_changeshop.tres" id="3_bhy3u"]
+[ext_resource type="Resource" uid="uid://cbhyt3hyw4ab" path="res://resources/locations/location_farm.tres" id="3_xutk7"]
+[ext_resource type="Resource" uid="uid://bhfftbyys414k" path="res://resources/productions/production_motel.tres" id="4_avot4"]
+[ext_resource type="Resource" uid="uid://bcc056dvqheht" path="res://resources/productions/production_stapler.tres" id="5_rl3w1"]
+[ext_resource type="Script" uid="uid://b0i7dq3dw0gpe" path="res://resources/res_scripts/shop_pool.gd" id="6_if0b6"]
+[ext_resource type="Resource" uid="uid://c5tghmo6wf2tt" path="res://resources/upgrades/up_merge_part_12_1.tres" id="7_olm00"]
+[ext_resource type="Resource" uid="uid://b5oybgyyuk22i" path="res://resources/upgrades/up_merge_part_23_1.tres" id="8_b42c7"]
+[ext_resource type="Resource" uid="uid://wtcywbqwa4df" path="res://resources/upgrades/up_motel_double_1.tres" id="9_7kkiy"]
+[ext_resource type="Resource" uid="uid://lv77mo30pnqw" path="res://resources/upgrades/up_motel_triple_1.tres" id="10_6otox"]
+[ext_resource type="Resource" uid="uid://3utc20w6hi1m" path="res://resources/upgrades/up_rare_farm_1.tres" id="11_50bh2"]
+[ext_resource type="Resource" uid="uid://boun5judhk4h7" path="res://resources/upgrades/up_rare_graveyard_1.tres" id="12_ca6ul"]
+[ext_resource type="Resource" uid="uid://crrq7ucfuwldy" path="res://resources/upgrades/up_speed_farm_1.tres" id="13_rg3tr"]
+[ext_resource type="Resource" uid="uid://b2kgt3x0nd2o5" path="res://resources/upgrades/up_speed_graveyard_1.tres" id="14_qf7vv"]
+
+[resource]
+script = ExtResource("6_if0b6")
+items = Array[ExtResource("1_ux2ev")]([ExtResource("2_4jsru"), ExtResource("3_xutk7"), ExtResource("3_bhy3u"), ExtResource("4_avot4"), ExtResource("5_rl3w1"), ExtResource("7_olm00"), ExtResource("8_b42c7"), ExtResource("9_7kkiy"), ExtResource("10_6otox"), ExtResource("11_50bh2"), ExtResource("12_ca6ul"), ExtResource("13_rg3tr"), ExtResource("14_qf7vv")])
+metadata/_custom_type_script = "uid://b0i7dq3dw0gpe"

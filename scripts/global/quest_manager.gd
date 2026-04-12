@@ -214,10 +214,10 @@ func show_victory_screen():
 #func _unhandled_key_input(event: InputEvent) -> void:
 	#if event is InputEventKey and event.pressed:
 		#match event.keycode:
-			#KEY_F5: # Деньги
-				#if "PlayerManager" in get_tree().root: # проверка на всякий случай
-					#PlayerManager.add_gold(100)
-					#print("DEBUG: +100$")
+			##KEY_F5: # Деньги
+				##if "PlayerManager" in get_tree().root: # проверка на всякий случай
+					##PlayerManager.add_gold(100)
+					##print("DEBUG: +100$")
 			#
 			#KEY_F6: # Скип главы
 				#start_next_chapter()
@@ -235,8 +235,8 @@ func show_victory_screen():
 				#elif current_chapter == 10:
 					#ch10_done_orders = 10
 				#emit_update()
-			#
-			#KEY_F8: # конец игры
+			##
+			#KEY_F9: # конец игры
 				#show_victory_screen()
 	
 """

@@ -1,0 +1,19 @@
+[gd_resource type="Resource" script_class="ShopPool" format=3 uid="uid://b2wbd4jbrwllw"]
+
+[ext_resource type="Script" uid="uid://d3723m4sa384o" path="res://resources/res_scripts/card_res_script.gd" id="1_nh8o6"]
+[ext_resource type="Resource" uid="uid://bde2idpoq2fwl" path="res://resources/locations/location_graveyard.tres" id="2_mkaln"]
+[ext_resource type="Resource" uid="uid://dpndkp2oli2lh" path="res://resources/productions/production_changeshop.tres" id="3_7ya1x"]
+[ext_resource type="Resource" uid="uid://bhfftbyys414k" path="res://resources/productions/production_motel.tres" id="4_1yb84"]
+[ext_resource type="Resource" uid="uid://bcc056dvqheht" path="res://resources/productions/production_stapler.tres" id="5_vbp8q"]
+[ext_resource type="Script" uid="uid://b0i7dq3dw0gpe" path="res://resources/res_scripts/shop_pool.gd" id="6_bs46h"]
+[ext_resource type="Resource" uid="uid://c5tghmo6wf2tt" path="res://resources/upgrades/up_merge_part_12_1.tres" id="6_uo6xq"]
+[ext_resource type="Resource" uid="uid://b5oybgyyuk22i" path="res://resources/upgrades/up_merge_part_23_1.tres" id="7_t5u01"]
+[ext_resource type="Resource" uid="uid://wtcywbqwa4df" path="res://resources/upgrades/up_motel_double_1.tres" id="8_53ygo"]
+[ext_resource type="Resource" uid="uid://lv77mo30pnqw" path="res://resources/upgrades/up_motel_triple_1.tres" id="9_rhmdo"]
+[ext_resource type="Resource" uid="uid://boun5judhk4h7" path="res://resources/upgrades/up_rare_graveyard_1.tres" id="10_12tyc"]
+[ext_resource type="Resource" uid="uid://b2kgt3x0nd2o5" path="res://resources/upgrades/up_speed_graveyard_1.tres" id="11_51rd3"]
+
+[resource]
+script = ExtResource("6_bs46h")
+items = Array[ExtResource("1_nh8o6")]([ExtResource("2_mkaln"), ExtResource("3_7ya1x"), ExtResource("4_1yb84"), ExtResource("5_vbp8q"), ExtResource("6_uo6xq"), ExtResource("7_t5u01"), ExtResource("8_53ygo"), ExtResource("9_rhmdo"), ExtResource("10_12tyc"), ExtResource("11_51rd3")])
+metadata/_custom_type_script = "uid://b0i7dq3dw0gpe"

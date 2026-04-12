@@ -13,7 +13,7 @@ class_name CardActorNPC
 @export var quest_part_conditions : Array[DataManager.MonsterPartType]
 @export var quest_grade_conditions : DataManager.EntityGrade
 @export var quest_family_conditions : Array[DataManager.MonsterFamily]
-@export var npc_shop_content : Array[CardRes]
+#@export var npc_shop_content : Array[CardRes]	# меняем
 @export var ncp_shop_lots_count : int
 @export var npc_mood : DataManager.OwnerType
 @export var npc_wait_timer : float
@@ -43,7 +43,7 @@ func initialize():
 	quest_part_conditions = npc_res.quest_part_conditions 
 	quest_grade_conditions = npc_res.quest_grade_conditions 
 	quest_family_conditions = npc_res.quest_family_conditions 
-	npc_shop_content = npc_res.npc_shop_content 
+	#npc_shop_content = npc_res.npc_shop_content 
 	ncp_shop_lots_count = npc_res.ncp_shop_lots_count 
 	npc_mood = npc_res.npc_mood 
 	npc_wait_timer = npc_res.npc_wait_timer 
@@ -75,16 +75,37 @@ func create_shop():
 		if is_instance_valid(btn): btn.queue_free()
 	active_buttons.clear()
 	
-	if not npc_res or npc_res.npc_shop_content.is_empty():
+	# Проверяем, есть ли вообще пулы товаров
+	if not npc_res or npc_res.shop_pools_by_chapter.is_empty():
+		print("Ошибка: У торговца нет пулов товаров!")
 		return
 		
-	# Берем копию товаров из ресурса
-	var pool = npc_res.npc_shop_content.duplicate()
-	pool = pool.filter(func(res): return res != null)
+	# === НОВАЯ ЛОГИКА: ВЫБОР ПУЛА ПО ГЛАВЕ ===
+# 1. Получаем базовый пул товаров для текущей главы (как мы делали в прошлом шаге)
+	var chapter_index = clampi(QuestManager.current_chapter - 1, 0, npc_res.shop_pools_by_chapter.size() - 1)
+	var raw_pool = npc_res.shop_pools_by_chapter[chapter_index].items
 	
-	if pool.is_empty():
-		print("Ошибка: У торговца нет доступных товаров!")
+	# 2. ФИЛЬТРУЕМ ПУЛ (Убираем купленное и недоступное)
+	var filtered_pool = raw_pool.filter(func(res):
+		if res == null: return false
+		
+		# Если это не апгрейд, оставляем как есть (например, локации или существа)
+		if not res is UpgradeRes:
+			return true
+			
+		# Если это апгрейд, проверяем его уровень через DataManager
+		return is_upgrade_available(res)
+	)
+
+	# 3. Работаем дальше с отфильтрованным пулом
+	if filtered_pool.is_empty():
+		print("Магазин пуст! Все апгрейды куплены или пулы не настроены.")
 		return
+
+	# Заменяем переменную pool на наш отфильтрованный список
+	var pool = filtered_pool.duplicate()
+	
+	# --- ДАЛЬШЕ КОД ОСТАЕТСЯ БЕЗ ИЗМЕНЕНИЙ ---
 	
 	# Спавним ровно 3 товара
 	for i in range(3):
@@ -130,6 +151,30 @@ func create_shop():
 		
 	align_lots()
 
+
+# нужна, чтоб не повторялись купленные ранее апгрейды
+func is_upgrade_available(upgrade: UpgradeRes) -> bool:
+	var current_lv = 0
+	
+	# Проверяем, к чему относится апгрейд: к локации или производству
+	if upgrade.target_card_type == DataManager.CardType.LOCATION:
+		var loc_data = DataManager.current_location_upgrades.get(upgrade.target_location, {})
+		current_lv = loc_data.get(upgrade.upgrade_type, 0)
+		
+	elif upgrade.target_card_type == DataManager.CardType.PRODUCTION:
+		var prod_data = DataManager.current_production_upgrades.get(upgrade.target_production, {})
+		current_lv = prod_data.get(upgrade.upgrade_type, 0)
+
+	# Переводим грейд из Enum (T1, T2, T3) в цифры (1, 2, 3)
+	# В Godot Enum начинаются с 0, поэтому T1 = 0. Прибавим 1.
+	var upgrade_lv = int(upgrade.card_grade) + 1 
+	
+	# УСЛОВИЕ: Апгрейд доступен, если его уровень СЛЕДУЮЩИЙ за текущим
+	# Если current_lv = 0 (ничего нет), то доступен только уровень 1.
+	# Если current_lv = 1, доступен только уровень 2.
+	return upgrade_lv == (current_lv + 1)
+
+
 func align_lots():
 	if lots.is_empty(): return
 	
@@ -166,6 +211,12 @@ func align_lots():
 func buy_lot(lot : Card):
 	if npc_type != DataManager.NPCType.TRADER: return
 	if not lots.has(lot): return
+	# Проверяем, является ли купленная карта апгрейдом
+	# Мы смотрим в lot.card_res (или как у тебя хранится ресурс внутри ноды Card)
+	var res = lot.get("card_res") # или lot.upgrade_res в зависимости от твоей структуры
+	
+	if res and res is UpgradeRes:
+		apply_upgrade_to_datamanager(res)
 	
 	lot._move_card_away_down(lot)
 	lot.card_owner_type = DataManager.OwnerType.PLAYER
@@ -182,3 +233,16 @@ func buy_lot(lot : Card):
 		
 		create_shop()	# === АВТООБНОВЛЕНИЕ ТОВАРОВ ===
 		# queue_free() УДАЛЕН. Торговец остается стоять на месте.
+
+
+# Функция записи прогресса
+func apply_upgrade_to_datamanager(res: UpgradeRes):
+	var new_lv = int(res.card_grade) + 1
+	
+	if res.target_card_type == DataManager.CardType.LOCATION:
+		DataManager.current_location_upgrades[res.target_location][res.upgrade_type] = new_lv
+		print("Улучшена локация ", res.target_location, " до уровня ", new_lv)
+		
+	elif res.target_card_type == DataManager.CardType.PRODUCTION:
+		DataManager.current_production_upgrades[res.target_production][res.upgrade_type] = new_lv
+		print("Улучшено здание ", res.target_production, " до уровня ", new_lv)

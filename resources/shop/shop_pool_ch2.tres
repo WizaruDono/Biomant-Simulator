@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ShopPool" format=3 uid="uid://dcnhxnfuvffc4"]
+
+[ext_resource type="Script" uid="uid://d3723m4sa384o" path="res://resources/res_scripts/card_res_script.gd" id="1_cw3at"]
+[ext_resource type="Resource" uid="uid://bde2idpoq2fwl" path="res://resources/locations/location_graveyard.tres" id="2_ekttr"]
+[ext_resource type="Resource" uid="uid://dpndkp2oli2lh" path="res://resources/productions/production_changeshop.tres" id="3_lxj8q"]
+[ext_resource type="Resource" uid="uid://bhfftbyys414k" path="res://resources/productions/production_motel.tres" id="4_8qo7j"]
+[ext_resource type="Resource" uid="uid://bcc056dvqheht" path="res://resources/productions/production_stapler.tres" id="5_lxbrt"]
+[ext_resource type="Script" uid="uid://b0i7dq3dw0gpe" path="res://resources/res_scripts/shop_pool.gd" id="6_1mo4w"]
+
+[resource]
+script = ExtResource("6_1mo4w")
+items = Array[ExtResource("1_cw3at")]([ExtResource("2_ekttr"), ExtResource("3_lxj8q"), ExtResource("4_8qo7j"), ExtResource("5_lxbrt")])
+metadata/_custom_type_script = "uid://b0i7dq3dw0gpe"

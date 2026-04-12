@@ -1,43 +1,22 @@
 [gd_resource type="Resource" script_class="NPCRes" format=3 uid="uid://bl7a4crtya6vd"]
 
 [ext_resource type="Texture2D" uid="uid://h01wlbak5max" path="res://img/npc_location_trader.png" id="1_iagjc"]
-[ext_resource type="Script" uid="uid://d3723m4sa384o" path="res://resources/res_scripts/card_res_script.gd" id="2_i7lth"]
-[ext_resource type="Resource" uid="uid://bde2idpoq2fwl" path="res://resources/locations/location_graveyard.tres" id="3_pxd5d"]
-[ext_resource type="Resource" uid="uid://cbhyt3hyw4ab" path="res://resources/locations/location_farm.tres" id="5_f6tdp"]
-[ext_resource type="Resource" uid="uid://dpndkp2oli2lh" path="res://resources/productions/production_changeshop.tres" id="6_hpw2u"]
-[ext_resource type="Resource" uid="uid://bcc056dvqheht" path="res://resources/productions/production_stapler.tres" id="7_arrkt"]
-[ext_resource type="Resource" uid="uid://crrq7ucfuwldy" path="res://resources/upgrades/up_speed_farm_1.tres" id="8_arrkt"]
-[ext_resource type="Resource" uid="uid://bhfftbyys414k" path="res://resources/productions/production_motel.tres" id="8_i7lth"]
+[ext_resource type="Script" uid="uid://b0i7dq3dw0gpe" path="res://resources/res_scripts/shop_pool.gd" id="3_iagjc"]
+[ext_resource type="Resource" uid="uid://u0sqetr2tipi" path="res://resources/shop/shop_pool_ch1.tres" id="4_1yuns"]
+[ext_resource type="Resource" uid="uid://dcnhxnfuvffc4" path="res://resources/shop/shop_pool_ch2.tres" id="5_f6tdp"]
+[ext_resource type="Resource" uid="uid://b2wbd4jbrwllw" path="res://resources/shop/shop_pool_ch3.tres" id="6_hpw2u"]
+[ext_resource type="Resource" uid="uid://23jrg0w3im4f" path="res://resources/shop/shop_pool_ch4.tres" id="7_arrkt"]
+[ext_resource type="Resource" uid="uid://r5ub6fru3nry" path="res://resources/shop/shop_pool_ch5.tres" id="8_esvu4"]
 [ext_resource type="Script" uid="uid://dl2tf7lxboat6" path="res://resources/res_scripts/npc_res.gd" id="8_rdcnc"]
-[ext_resource type="Resource" uid="uid://b8txbuwqe3e6p" path="res://resources/upgrades/up_speed_farm_2.tres" id="9_rdcnc"]
-[ext_resource type="Resource" uid="uid://7omcalrp2lmu" path="res://resources/upgrades/up_speed_farm_3.tres" id="10_esvu4"]
-[ext_resource type="Resource" uid="uid://b2kgt3x0nd2o5" path="res://resources/upgrades/up_speed_graveyard_1.tres" id="11_x7avn"]
-[ext_resource type="Resource" uid="uid://s2qs0d2qepoi" path="res://resources/upgrades/up_speed_graveyard_2.tres" id="12_ik3ua"]
-[ext_resource type="Resource" uid="uid://bjtx58qv7blhh" path="res://resources/upgrades/up_speed_graveyard_3.tres" id="13_ia5ir"]
-[ext_resource type="Resource" uid="uid://wtcywbqwa4df" path="res://resources/upgrades/up_motel_double_1.tres" id="14_qb76e"]
-[ext_resource type="Resource" uid="uid://j3weveqxpuc8" path="res://resources/upgrades/up_motel_double_2.tres" id="15_tr76v"]
-[ext_resource type="Resource" uid="uid://cx3p0aalchgs4" path="res://resources/upgrades/up_motel_double_3.tres" id="16_x1ktc"]
-[ext_resource type="Resource" uid="uid://lv77mo30pnqw" path="res://resources/upgrades/up_motel_triple_1.tres" id="17_eaydn"]
-[ext_resource type="Resource" uid="uid://cygtg8u8wmfq4" path="res://resources/upgrades/up_motel_triple_2.tres" id="18_1loqm"]
-[ext_resource type="Resource" uid="uid://bt1lbbu1oxbdf" path="res://resources/upgrades/up_motel_triple_3.tres" id="19_qp1ye"]
-[ext_resource type="Resource" uid="uid://c5tghmo6wf2tt" path="res://resources/upgrades/up_merge_part_12_1.tres" id="20_foqv1"]
-[ext_resource type="Resource" uid="uid://ykpa3wp4a4uf" path="res://resources/upgrades/up_merge_part_12_2.tres" id="21_3ui10"]
-[ext_resource type="Resource" uid="uid://dsh68j2rxkatj" path="res://resources/upgrades/up_merge_part_12_3.tres" id="22_32r81"]
-[ext_resource type="Resource" uid="uid://b5oybgyyuk22i" path="res://resources/upgrades/up_merge_part_23_1.tres" id="23_yd25u"]
-[ext_resource type="Resource" uid="uid://tioct0i243qx" path="res://resources/upgrades/up_merge_part_23_2.tres" id="24_sjisq"]
-[ext_resource type="Resource" uid="uid://co15j8d5fwxq5" path="res://resources/upgrades/up_merge_part_23_3.tres" id="25_ytpc6"]
-[ext_resource type="Resource" uid="uid://3utc20w6hi1m" path="res://resources/upgrades/up_rare_farm_1.tres" id="26_xma6f"]
-[ext_resource type="Resource" uid="uid://logv1tkcgibq" path="res://resources/upgrades/up_rare_farm_2.tres" id="27_u6rpl"]
-[ext_resource type="Resource" uid="uid://cs0my3ei2oqcw" path="res://resources/upgrades/up_rare_farm_3.tres" id="28_lth00"]
-[ext_resource type="Resource" uid="uid://boun5judhk4h7" path="res://resources/upgrades/up_rare_graveyard_1.tres" id="29_07e3o"]
-[ext_resource type="Resource" uid="uid://bqdg47ffw8ene" path="res://resources/upgrades/up_rare_graveyard_2.tres" id="30_2vdss"]
-[ext_resource type="Resource" uid="uid://dngi200iryppy" path="res://resources/upgrades/up_rare_graveyard_3.tres" id="31_ieuuh"]
+[ext_resource type="Resource" uid="uid://cyhsi1gae67a2" path="res://resources/shop/shop_pool_ch6.tres" id="9_x7avn"]
+[ext_resource type="Resource" uid="uid://b3ccxpttxq5jk" path="res://resources/shop/shop_pool_ch7.tres" id="10_ik3ua"]
+[ext_resource type="Resource" uid="uid://db2bw60ig4fwk" path="res://resources/shop/shop_pool_ch8.tres" id="11_ia5ir"]
 
 [resource]
 script = ExtResource("8_rdcnc")
 npc_type = 1
 replics = Array[String](["Добрейшего вечерочка! Не хочешь закупиться?", "Не спеши, выбирай с умом."])
-npc_shop_content = Array[ExtResource("2_i7lth")]([ExtResource("3_pxd5d"), ExtResource("5_f6tdp"), ExtResource("6_hpw2u"), ExtResource("7_arrkt"), ExtResource("8_i7lth"), ExtResource("8_arrkt"), ExtResource("9_rdcnc"), ExtResource("10_esvu4"), ExtResource("11_x7avn"), ExtResource("12_ik3ua"), ExtResource("13_ia5ir"), ExtResource("14_qb76e"), ExtResource("15_tr76v"), ExtResource("16_x1ktc"), ExtResource("17_eaydn"), ExtResource("18_1loqm"), ExtResource("19_qp1ye"), ExtResource("20_foqv1"), ExtResource("21_3ui10"), ExtResource("22_32r81"), ExtResource("23_yd25u"), ExtResource("24_sjisq"), ExtResource("25_ytpc6"), ExtResource("26_xma6f"), ExtResource("27_u6rpl"), ExtResource("28_lth00"), ExtResource("29_07e3o"), ExtResource("30_2vdss"), ExtResource("31_ieuuh")])
+shop_pools_by_chapter = Array[ExtResource("3_iagjc")]([ExtResource("4_1yuns"), ExtResource("5_f6tdp"), ExtResource("6_hpw2u"), ExtResource("7_arrkt"), ExtResource("8_esvu4"), ExtResource("9_x7avn"), ExtResource("10_ik3ua"), ExtResource("11_ia5ir")])
 npc_wait_timer = 60.0
 actor_health = 50
 actor_damage = 10
