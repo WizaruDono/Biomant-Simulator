@@ -9,19 +9,35 @@ var is_dragging = false
 func _ready() -> void:
 	SignalManager.card_focused.connect(_on_camera_focused)
 
-func _unhandled_input(event):
 # Проверяем, стоит ли мышь над UI, который ХОЧЕТ поймать клик
+func _unhandled_input(event):
 	var hovered_node = get_viewport().gui_get_hovered_control()
-	if hovered_node:
-		# Если у объекта под мышкой фильтр "Ignore", он нам не мешает.
-		# Если "Stop" или "Pass" — значит это важный UI (кнопка, текст, панель).
-		if hovered_node.mouse_filter != Control.MOUSE_FILTER_IGNORE:
-			# Специальная проверка для зума:
-			# Если это событие мыши (колесико), блокируем.
-			if event is InputEventMouseButton:
-				return
+	
+	# Проверяем, блокирует ли текущий UI камеру
+	var is_over_blocking_ui = hovered_node != null and hovered_node.is_in_group("camera_blocker")
+
+	# ЛОГИКА ЗУМА
+	if event is InputEventMouseButton:
+		if event.button_index == MOUSE_BUTTON_WHEEL_UP or event.button_index == MOUSE_BUTTON_WHEEL_DOWN:
+			if is_over_blocking_ui:
+				return # Если над квестами — зум не работает, работает прокрутка текста
+	
+	# ЛОГИКА ПЕРЕМЕЩЕНИЯ (ДРАГА)
+	if event is InputEventMouseButton and event.button_index == MOUSE_BUTTON_LEFT:
+		if event.pressed:
+			# Начинаем драг только если МЫ НЕ над блокирующим UI
+			if not is_over_blocking_ui:
+				is_dragging = true
+		else:
+			# Всегда разрешаем отпустить камеру, даже если мышь уже над UI
+			is_dragging = false
+
+	# Если мы сейчас в процессе перетаскивания — двигаем камеру
+	if is_dragging and event is InputEventMouseMotion:
+		_process_camera_movement(event)
+	
+	# Зум обрабатываем отдельно
 	_process_zoom(event)
-	_process_camera_movement(event)
 
 
 

@@ -65,7 +65,7 @@ func correct_options():
 	if main_menu_UI:		# options_UI and main_menu_UI
 		options_UI.hide_to_lobby_button()
 	# Дополнительно гарантируем, что звук настроен, когда открыто меню (на случай, если что-то сбилось)
-	set_default_volumes()
+	#set_default_volumes()	# вызывало баг при перезаходе тройном в меню - настройки сбрасывались до средних
 
 func show_options():
 	options_UI = options_scene.instantiate()

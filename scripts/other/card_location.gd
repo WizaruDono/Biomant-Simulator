@@ -85,6 +85,7 @@ func set_digger(new_digger : CardActorMonster):
 
 
 func start_digging():
+	SignalManager.monster_started_digging.emit() # сигнал для заданий (обучение), монстр начал копать
 	digg()
 
 func stop_digging():
@@ -251,3 +252,5 @@ func get_loot():
 	if randf() < 0.5: pos_offset *= -1
 	loot.global_position = global_position + pos_offset
 	loot.card_state = DataManager.CardState.ON_FIELD
+	
+	SignalManager.part_mined.emit() 	# для задания: выбить N конечностей

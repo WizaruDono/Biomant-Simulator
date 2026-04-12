@@ -69,22 +69,6 @@ func _on_reward_amount_set(value: int) -> void:
 func start_rewarding():
 	create_rewards()
 	
-	
-	
-#func perform_is_stack_action() -> void:
-	#var is_order_consistency: bool = check_order_consistency()
-	#if is_order_consistency:
-		#var order_card: Card = card_container.get_child(0)
-		#
-		#if not order_card.card_container.get_children().is_empty():
-			#var outside_card: Card = order_card.card_container.get_child(0)
-			#outside_card.reparent_to_level()
-			#_move_card_away(outside_card)
-			#await get_tree().process_frame
-			#
-		#card_container.get_child(0).queue_free()
-		#create_rewards()
-		
 		
 func perform_is_stack_action() -> void:
 	if card_container.get_children().is_empty():
@@ -118,6 +102,7 @@ func create_rewards():
 	
 	PlayerManager.add_gold(reward_amount)
 	OrderManager.on_order_completed(self)
+	SignalManager.order_finished.emit(order_type, card_grade)	# отправляем сигнал об успешном выполнении заказа для задания. Передаём тип заказа: монстр / конечность
 	
 	destroy()
 
@@ -211,7 +196,25 @@ func check_order_consistency() -> bool:
 	
 	return true
 
+#func perform_is_stack_action() -> void:
+	#var is_order_consistency: bool = check_order_consistency()
+	#if is_order_consistency:
+		#var order_card: Card = card_container.get_child(0)
+		#
+		#if not order_card.card_container.get_children().is_empty():
+			#var outside_card: Card = order_card.card_container.get_child(0)
+			#outside_card.reparent_to_level()
+			#_move_card_away(outside_card)
+			#await get_tree().process_frame
+			#
+		#card_container.get_child(0).queue_free()
+		#create_rewards()
+		
 
+
+
+
+		
 	
 #func check_order_consistency() -> bool:
 	#var submitted_card: Card = card_container.get_child(0)

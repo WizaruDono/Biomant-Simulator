@@ -137,16 +137,16 @@ func calculate():
 			order_card = cards[0]
 			is_can_get_reward = check_order_consistency()
 			if is_can_get_reward:
-				# === ИЗМЕНЕНИЯ ЗДЕСЬ ===
 				var submitted_card = cards[1] # Теперь это просто карта, а не обязательно монстр
+				start_getting_reward() 		# Запускаем функцию получения награды
 				
-				# Запускаем функцию получения награды
-				start_getting_reward() 
+				# === ИЗМЕНЕНИЯ ЗДЕСЬ ===
+				#SignalManager.order_finished.emit()	# Отправляем сигнал о сдаче заказа для заданий
+				# =======================
 				
 				# Удаляем сданную карту (будь то кусок или целый монстр)
 				remove_card(submitted_card)
 				submitted_card.queue_free()
-				# =======================
 
 
 func check_order_consistency() -> bool:

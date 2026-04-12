@@ -84,7 +84,7 @@ var MAX_GRADES = {
 
 var npc_positions : Array[float] = [-500, -200]
 
-var chances_dict : Dictionary[EntityGrade, float] = {
+var chances_dict : Dictionary[EntityGrade, float] = {	# (удалить)
 	EntityGrade.T1 : 0.1,	# значение 0.1 лишнее или используется хз где. Оставь
 	EntityGrade.T2 : 0.2,	# 20% шанс на Т2
 	EntityGrade.T3 : 1

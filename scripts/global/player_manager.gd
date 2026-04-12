@@ -3,7 +3,7 @@ extends Node
 @export var gold : int = 250
 @export var current_gold : int
 
-# === НОВОЕ: Глобальные модификаторы ===
+# === Глобальные модификаторы ===
 @export var dig_speed_multiplier : float = 1.0  # Чем меньше, тем быстрее (напр. 0.8 = на 20% быстрее)
 @export var rare_drop_bonus : float = 0.05       # Прибавка к шансу (напр. 0.1 = +10% шанс Т2)
 

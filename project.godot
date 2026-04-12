@@ -31,6 +31,7 @@ LocationManager="*res://scripts/global/location_manager.gd"
 ProductionManager="*res://scripts/global/production_manager.gd"
 NpcManager="*res://scripts/global/NPC_manager.gd"
 OrderManager="*uid://d1vi2lq44rplc"
+QuestManager="*uid://w5jo6j331813"
 
 [display]
 

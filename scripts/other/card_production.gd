@@ -1,3 +1,4 @@
+# card_production
 class_name CardProduction
 extends Card
 # ПРОИЗВОДСТВО
@@ -119,6 +120,7 @@ func check_possible_production() -> bool:
 			throw_out_trach_cards()
 			
 			if part_reses.size() == DataManager.parts_size and get_all_nested_cards_recursive().size() == DataManager.parts_size:
+				SignalManager.stapler_started.emit()	# для задания: гайд - начали сшивать монстра
 				return true
 			return false
 		
@@ -193,7 +195,7 @@ func check_possible_production() -> bool:
 				# Если хотя бы одна карта отличается, обменник не срабатывает
 				if not (same_base and same_type and same_grade):
 					return false
-					
+			SignalManager.part_merger_finished.emit()	# сигнал о том, что сшивание началось, для заданий, глава 3, гайд
 			return true
 	
 	print_rich("[color=orange]DEBUG: Не должно здесь вылетать[/color]")
@@ -281,6 +283,7 @@ func create():
 			exchanged_part.global_position = global_position
 			SoundManager.play_asmr_sfx(SoundManager.SND_SPAWN, -8.0)
 			_move_card_away(exchanged_part)
+			
 			for p in exchanging_parts: p.queue_free()
 
 func throw_out_trach_cards() -> void:

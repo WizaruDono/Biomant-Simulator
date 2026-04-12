@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://b01gi4qdv2ehp" path="res://scripts/other/ui_gold_label.gd" id="1_dj8aq"]
 [ext_resource type="Script" uid="uid://bgqfwo3fyla6r" path="res://scripts/other/ui_tutorial.gd" id="2_ro3t7"]
+[ext_resource type="Script" uid="uid://c4q17ed1vicrv" path="res://scripts/other/quest_panel.gd" id="3_5en4g"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5en4g"]
 content_margin_left = 4.0
@@ -71,7 +72,7 @@ theme_override_font_sizes/font_size = 96
 text = "$1000"
 script = ExtResource("1_dj8aq")
 
-[node name="TutorialSidePanel" type="Control" parent="CanvasLayer" unique_id=920980370]
+[node name="TutorialSidePanel" type="Control" parent="CanvasLayer" unique_id=920980370 groups=["camera_blocker"]]
 custom_minimum_size = Vector2(300, 500)
 layout_mode = 3
 anchors_preset = 4
@@ -109,7 +110,7 @@ text = ">"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="Background" type="PanelContainer" parent="CanvasLayer/TutorialSidePanel" unique_id=1416508525]
+[node name="Background" type="PanelContainer" parent="CanvasLayer/TutorialSidePanel" unique_id=1416508525 groups=["camera_blocker"]]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -118,7 +119,7 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_ro3t7")
 
-[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TutorialSidePanel/Background" unique_id=1896673335]
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/TutorialSidePanel/Background" unique_id=1896673335 groups=["camera_blocker"]]
 layout_mode = 2
 mouse_filter = 0
 theme_override_constants/margin_left = 15
@@ -126,7 +127,7 @@ theme_override_constants/margin_top = 15
 theme_override_constants/margin_right = 15
 theme_override_constants/margin_bottom = 15
 
-[node name="Rule" type="RichTextLabel" parent="CanvasLayer/TutorialSidePanel/Background/MarginContainer" unique_id=870364860]
+[node name="Rule" type="RichTextLabel" parent="CanvasLayer/TutorialSidePanel/Background/MarginContainer" unique_id=870364860 groups=["camera_blocker"]]
 layout_mode = 2
 theme_override_colors/default_color = Color(0.84313726, 0.70980394, 0.5803922, 1)
 theme_override_font_sizes/normal_font_size = 48
@@ -149,21 +150,36 @@ text = "[center][color=#dba87c]Кодекс начинающего Биоман�
 autowrap_mode = 2
 
 [node name="QuestPanel" type="MarginContainer" parent="CanvasLayer" unique_id=1610052127]
-visible = false
-offset_right = 40.0
-offset_bottom = 40.0
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -540.0
+offset_right = -40.0
+offset_bottom = 200.0
+grow_horizontal = 0
+script = ExtResource("3_5en4g")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/QuestPanel" unique_id=1594151499]
 layout_mode = 2
+theme_override_constants/separation = 5
 
 [node name="QuestTitle" type="Label" parent="CanvasLayer/QuestPanel/VBoxContainer" unique_id=1414262952]
+unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 64
+text = "Цель Главы"
+horizontal_alignment = 1
 
 [node name="QuestDescription" type="Label" parent="CanvasLayer/QuestPanel/VBoxContainer" unique_id=396266913]
+unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 48
+text = "Выполнить заказы (0/3)"
 
 [node name="ProgressBar" type="ProgressBar" parent="CanvasLayer/QuestPanel/VBoxContainer" unique_id=1528895423]
+unique_name_in_owner = true
 layout_mode = 2
+theme_override_font_sizes/font_size = 48
 max_value = 3.0
 step = 1.0
 
